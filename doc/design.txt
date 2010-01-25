@@ -1,101 +1,43 @@
-<<<<<<< HEAD
 - input samples split on areas of low signal, not time based as in loopcollector
 
-input management
+input management - libsox
 - audio separated into three types: samples, words, and specimens
-- samples are raw input, stamped with time of creation
-- samples are split into words based on areas of low signal. the threshold is proportional to the maximum and minimum signal level. words inherit the parent sample's timestamp
+- samples are raw input, stamped with time of creation, read in through **libsox**
+- samples are split into words based on areas of low signal. the threshold is proportional to the maximum and minimum signal level. words inherit the parent sample's timestamp. each word is normalized post split
 - specimens are created from a random assortment of words, weighted to give advantage to more recently recorded words, random length between 1 and 17
 - word weight is determined by the following formula
 let x be mtime of sample
 weight(x) = x/(max - min)
 for ties (delta < 0.01), sort by length, based on winner. (winner = top rated of population. if winner's total length is > mean length, longer samples score higher, otherwise shorter samples score higher)
-- use libsox
 
-audio genetics
+audio genetics - galib + coreaudio (no redistribution)
 - mutation: specimens may add or subtract a word from beginning, or exchange any word for a randomly chosen new one from pool
 - crossover: first child takes first half of first parent, second half of second parent. second child takes second half of first parent, first half of second parent (crossover point chosen independently and randomly (uniform) for each parent, so halves is a misnomer)
 - evaluation: take total of all ratings
 - monotonically increasing "object id"
 
 fs1rgen algorithm used to create accompanying patches
-- if fs1rgen not completed in time, choose random patch
-- random note selected, played for duration of audio bits, recorded and mixed with audio bits
+- if fs1rgen not completed in time, choose random patch from presets
+- 4 random notes selected, played for duration of audio bits, recorded and mixed with audio bits
 
-inputs
-- user submitted recordings (via upload, voice mail)
+inputs - pygooglevoice (not included in mac os x) + pyobjc (included in mac os x), coreaudio
+- user submitted recordings (via upload, voice mail) - 
 - seed recordings (unfields, apodion, scott)
 
 state
 - population should be saved to a file after every generation
 - no elitism, only new creations in each generation
 
-interface
+interface - openframeworks
 - specimens to be evaluated are randomly streamed over the Internet and run through in-person UI for one hour. Ratings collected and new generation of ten specimens created at that time.
 - before new generation is created, new samples downloaded from web server and google voice and used
 - interface should allow adding new recordings from attached storage. make sure this user has no permissions to break anything! back up everything on that computer!
 
-web server
+web server - blosxom
 - about page with explanation
 - link page with info on seed recordings and libraries
 - streaming info and voting page, votes -> server file, downloaded before new generation is complete
 - info on current generation uploaded when files are uploaded. samples may need to be uploaded to different server. NEED SPACE
 - file upload page -> upload dir on server
 - progress blog - blosxom
-
-=======
-The FS1r user manual has a handy guide that describes all the fields in the programs. The machine's patches consist of 1-4 individual voices, along with effects, controller, volume, envelope, etc. settings. Individual voices are basically FM instruments, although the FS1r is designed primarily around formant synthesis which allows some really weird voice-type effects. There is a somewhat hidden feature which allows you to make sequences called FSEQs that mutate the formants over time, almost like an arpeggiator. Yamaha never released an editor and the only third-party ones are long since defunct, especially for Mac as this synth was released in the OS 8 days, maybe even System 7.
-
-In any case, now that I know the ranges of all valid parameters, I can create random patches, save them to a MIDI file, then send them straight to the synth.
-
-The plan right now is to implement this as a perl application, just to get the patch generation right. Then, I will rewrite it as a Cocoa app so I can talk directly to the device.
-
-Now, I've never done genetic programming or annealing, but since the success criteria are so subjective, what's it matter?
-
-Anyway, here is what will happen:
-
-   1. The user selects a number (P) of pre-existing patches (saved as MIDI files) and instructs the script to generate a number (R) of totally random patches. The program will also need the number (G) of patches to generate for each generation of offspring, the number (K) of patches to keep unaltered based on rank, the maximum shift (M) in the index of enumerated parameters, and ranges of performance, voice, and FSEQ banks that are safe to overwrite. These ranges could be as little as 1 performance, 4 voices, and 1 FSEQ.
-   2. The program instructs the user to audition all voices in generation 0 and score them from 1 to 100. These scores are recorded and normalized so that all the scores in a generation will add up to 1.
-   3. For every parameter in every voice, the program will do the following for every new patch it generates for the current generation (G-K):
-          * For numeric parameters, create a weighted average of the values of that parameter across the members of the previous generation. Split the new offspring between values within 1 standard deviation of the norm and values outside that range.
-          * For enumerated parameters, the new offspring should have the value set by choosing one value at random from the values amongst the members of the previous generation. Probabilities will be weighted so that higher scoring patches are more likely to have their value chosen. Half of the new offspring will have this parameter shifted in either direction by no more than M.
-          * If a parameter does not have source data in a parent, the source data should be synthesized with a random value.
-   4. All members of the new generation are scored, and we repeat the process.
-   5. History should be tracked non-destructively, so that the user can at any time invalidate a generation, or decide to carry or drop particular members regardless of score.
-   6. Similarly, the user should be able to lock particular parameters. This could be the way to evolve new FSEQs on a particular patch.
-   7. At any time the user can say "Oh! this is what ! want!" and save off the patch to a safe place.
-   8. The app should probably have a config file that lays out all the parameters, their limits, and dependencies. It will probably be easier to do this than to hardcode everything! 
-
-TODO:
-- design model class for use with galib, create basic model for testing
-- xml parser tests
-- makefile with test target
-- think about using libdispatch
-- change staticHex to constParam in layout
-- finish layout.xml
-- write XSD for layout.xml
-- rethink setting and validation. validation should only be necessary when reading from disk
-
-- figure out how to send and receive sysex data in coremidi
-- need midi file version also
-- http://developer.apple.com/documentation/MusicAudio/Reference/CACoreMIDIRef/MIDIServices/index.html
-- http://developer.apple.com/documentation/MusicAudio/Reference/CACoreMIDIRef/MIDIServices/CompositePage.html#//apple_ref/c/tag/MIDISyse xSendRequest
-- http://developer.apple.com/documentation/MusicAudio/Reference/CACoreMIDIRef/MIDIServices/CompositePage.html#//apple_ref/c/func/MIDISendSysex
-- boost is ok
-- gui in obj-c obviously
-- GALib?
-- hold off on fseq evolver for now
-- "link" tags mean special cases for assignment of other items of interest
-- performance effect code is going to need a different data model than the rest
-- maybe use googlemock or google test for cpp tests.
-- mmap xml file for parsing
-- or param parser must make implicit max values for intparams
-
-workflow:
-	- startup, read xml file
-	- install data model in perf/voice genome class
-	- 
-
-genome class itself holds a collection of values. each value contains a reference to its param. genome also contains a reference to the model, which is the object needed to initialize a new genome. each genetic operator will iterate through all values and call the individual param's operator
->>>>>>> fs1rgen/master
 

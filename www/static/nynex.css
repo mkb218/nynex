@@ -1,0 +1,34 @@
+body {
+  font-family: Futura, Helvetica, Arial, sans-serif;
+  text-align:justify;
+  margin-left:2in;
+  margin-right:2in
+}
+
+div {
+  padding-top: 12pt ;
+  padding-bottom: 12pt
+}
+
+div#pagetitle {
+  font-weight: bold;
+  font-size: 36pt;
+  border-bottom-style: solid;
+  border-bottom-width:1pt;
+  text-align:center
+}
+
+div#pagesubtitle {
+    font-weight: bold;
+    font-size: 24pt
+}
+
+
+div#pagecontent {
+    font-size: 12pt
+}
+
+div#cc{
+  text-align: center;
+  font-size: 9pt
+}

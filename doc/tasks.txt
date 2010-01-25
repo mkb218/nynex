@@ -1,3 +1,5 @@
-- all 3rd party libraries selected
+- all 3rd party libraries selected - done!
 - code layout
 - site design + blosxom template
+- site autoupdate git pull
+- create facebook page
