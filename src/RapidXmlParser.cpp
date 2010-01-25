@@ -3,7 +3,7 @@
 #include <string>
 #include <memory>
 
-using namespace fs1rgen;
+using namespace nynex::fs1rgen;
 using namespace rapidxml;
 
 void RapidXmlParser::parse(const char *xmlData, size_t bufSize) throw (exception) {

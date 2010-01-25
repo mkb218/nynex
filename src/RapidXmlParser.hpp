@@ -7,6 +7,7 @@
 using namespace rapidxml;
 using namespace std;
 
+namespace nynex {
 namespace fs1rgen {
   class RapidXmlParser {
   public:
@@ -18,5 +19,5 @@ namespace fs1rgen {
     xml_document<> m_doc;
   };
 }
-
+}
 #endif

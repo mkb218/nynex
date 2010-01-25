@@ -1,9 +1,9 @@
 /*
  *  params.cpp
- *  fs1rgen
+ *  nynex
  *
  *  Created by Matthew J Kane on 12/18/09.
- *  Copyright 2009 Akamai Technologies. All rights reserved.
+ *  Copyright 2009 Matthew J Kane. All rights reserved.
  *
  */
 
@@ -11,6 +11,7 @@
 #include "ga/ga.h"
 #include <algorithm>
 
+namespace nynex {
 namespace fs1rgen {
     ValuePtr StringParam::newValue() const {
         // TODO sensible default
@@ -89,4 +90,5 @@ namespace fs1rgen {
         int random = GARandomInt();
         return NULL;
     }
+}
 }

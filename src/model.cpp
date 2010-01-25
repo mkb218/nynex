@@ -1,16 +1,17 @@
 /*
  *  model.cpp
- *  fs1rgen
+ *  nynex
  *
  *  Created by Matthew J Kane on 12/15/09.
- *  Copyright 2009 Akamai Technologies. All rights reserved.
+ *  Copyright 2009 Matthew J Kane. All rights reserved.
  *
  */
 
 #include "model.h"
 
-fs1rgen::Evaluator *fs1rgen::Evaluator::instance_ = NULL;
+nynex:: Evaluator *nynex::fs1rgen::Evaluator::instance_ = NULL;
 
+namespace nynex {
 namespace fs1rgen {
     time_t gSeed = time(NULL);
     
@@ -68,12 +69,12 @@ namespace fs1rgen {
         }
     }
 
-    void fs1rgen::Evaluator::sendToSynth() throw (std::runtime_error) {
+    void nynex::fs1rgen::Evaluator::sendToSynth() throw (std::runtime_error) {
         // no body yet!
     }
     
     float Genome::evaluate() {
-        const fs1rgen::Evaluator *eval = fs1rgen::Evaluator::getInstance();
+        const nynex::fs1rgen::Evaluator *eval = nynex::fs1rgen::Evaluator::getInstance();
         _evaluated = gaFalse;
         assert (eval != NULL); // this means programmer error
         float score = 0.0;

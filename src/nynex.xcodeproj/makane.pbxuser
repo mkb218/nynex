@@ -1,0 +1,59 @@
+// !$*UTF8*$!
+{
+	E4B69B4C0A3A1720003C02F2 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = FC16F163110DEACC0043823A /* nynex */;
+		activeTarget = E4B69B5A0A3A1756003C02F2 /* nynex */;
+		codeSenseManager = FC16F16C110DEACF0043823A /* Code sense */;
+		executables = (
+			FC16F163110DEACC0043823A /* nynex */,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 286124748;
+			PBXWorkspaceStateSaveDate = 286124748;
+		};
+		sourceControlManager = FC16F16B110DEACF0043823A /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	E4B69B5A0A3A1756003C02F2 /* nynex */ = {
+		activeExec = 0;
+		executables = (
+			FC16F163110DEACC0043823A /* nynex */,
+		);
+	};
+	FC16F163110DEACC0043823A /* nynex */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = nynex;
+		sourceDirectories = (
+		);
+	};
+	FC16F16B110DEACF0043823A /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	FC16F16C110DEACF0043823A /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+}

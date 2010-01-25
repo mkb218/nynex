@@ -8,6 +8,7 @@
 
 using namespace std;
 
+namespace nynex {
 namespace fs1rgen {
   class XmlParser {
   public:
@@ -18,5 +19,5 @@ namespace fs1rgen {
     Model m_model;
   };
 }
-
+}
 #endif

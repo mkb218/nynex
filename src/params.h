@@ -1,6 +1,6 @@
 /*
  *  params.h
- *  fs1rgen
+ *  nynex
  *
  *  Created by Matthew J Kane on 12/18/09.
  *
@@ -14,6 +14,7 @@
 #include <string>
 #include <map>
 
+namespace nynex {
 namespace fs1rgen {
     class StringParam : public Param{
     public:

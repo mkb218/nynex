@@ -1,9 +1,9 @@
 /*
  *  model.h
- *  fs1rgen
+ *  nynex
  *
  *  Created by Matthew J Kane on 12/15/09.
- *  Copyright 2009 Akamai Technologies. All rights reserved.
+ *  Copyright 2009 Matthew J Kane. All rights reserved.
  *
  */
 #ifndef H2P_FS1RGEN_MODEL
@@ -23,6 +23,7 @@
 
 #define foreach BOOST_FOREACH
 
+namespace nynex {
 namespace fs1rgen {
     extern time_t gSeed;
     class Value;
@@ -146,5 +147,5 @@ namespace fs1rgen {
     
     
 }  
-
+}
 #endif
