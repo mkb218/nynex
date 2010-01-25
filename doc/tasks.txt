@@ -5,3 +5,4 @@
 - create facebook page
 - get external dirs working in xcode
 - makefile
+- soundcloud api access to dropbox?

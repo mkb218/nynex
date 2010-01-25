@@ -2,27 +2,27 @@
 {
 	E4B69B4C0A3A1720003C02F2 /* Project object */ = {
 		activeBuildConfigurationName = Debug;
-		activeExecutable = FC16F163110DEACC0043823A /* nynex */;
-		activeTarget = E4B69B5A0A3A1756003C02F2 /* nynex */;
-		codeSenseManager = FC16F16C110DEACF0043823A /* Code sense */;
+		activeExecutable = FC14663F110E5FFA006F10FB /* emptyExample */;
+		activeTarget = E4B69B5A0A3A1756003C02F2 /* emptyExample */;
+		codeSenseManager = FC146648110E6007006F10FB /* Code sense */;
 		executables = (
-			FC16F163110DEACC0043823A /* nynex */,
+			FC14663F110E5FFA006F10FB /* emptyExample */,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 286124748;
-			PBXWorkspaceStateSaveDate = 286124748;
+			PBXPerProjectTemplateStateSaveDate = 286154933;
+			PBXWorkspaceStateSaveDate = 286154933;
 		};
-		sourceControlManager = FC16F16B110DEACF0043823A /* Source Control */;
+		sourceControlManager = FC146647110E6007006F10FB /* Source Control */;
 		userBuildSettings = {
 		};
 	};
-	E4B69B5A0A3A1756003C02F2 /* nynex */ = {
+	E4B69B5A0A3A1756003C02F2 /* emptyExample */ = {
 		activeExec = 0;
 		executables = (
-			FC16F163110DEACC0043823A /* nynex */,
+			FC14663F110E5FFA006F10FB /* emptyExample */,
 		);
 	};
-	FC16F163110DEACC0043823A /* nynex */ = {
+	FC14663F110E5FFA006F10FB /* emptyExample */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
 		);
@@ -41,18 +41,18 @@
 		executableSystemSymbolLevel = 0;
 		executableUserSymbolLevel = 0;
 		libgmallocEnabled = 0;
-		name = nynex;
+		name = emptyExample;
 		sourceDirectories = (
 		);
 	};
-	FC16F16B110DEACF0043823A /* Source Control */ = {
+	FC146647110E6007006F10FB /* Source Control */ = {
 		isa = PBXSourceControlManager;
 		fallbackIsa = XCSourceControlManager;
 		isSCMEnabled = 0;
 		scmConfiguration = {
 		};
 	};
-	FC16F16C110DEACF0043823A /* Code sense */ = {
+	FC146648110E6007006F10FB /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
