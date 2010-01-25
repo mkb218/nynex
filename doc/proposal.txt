@@ -1,0 +1,9 @@
+The Republic of Nynex is an autonomous participatory genetic audio experiment. A genetic algorithm will process a set of audio samples to create new compositions, which will then be judged by their collective authors in order to create even more compositions. 
+
+The installation consists of an Internet-connected computer with speakers, a remote web server, a Yamaha FS1r synthesizer, and a Google Voice account.
+
+The computer will be running custom software. Initially, it will scan a bank of short audio samples and arrange them randomly accompanied by a randomly generated program on the synthesizer, creating the initial generation of compositions. Each generation will be open to evaluation for approximately one hour. The web server will stream these compositions over the Internet and accept ratings from Internet users while the computer at the installation collects ratings from whoever is present. Once the ratings collection is complete a new generation of compositions will be created based on mutations and pairings of the best of the current generation.
+
+Periodically, the computer will fetch voice mails from its Google Voice account and add these messages to its pool of samples. Participants will also be able to upload new samples to the web server. New samples are split into smaller chunks based on areas of low volume. When creating new compositions, newer samples are preferred, making things more interesting.
+
+FS1rgen - http://www.hydrogenproject.com/pages/fs1rgen.html is an in-progress genetic programming project first conceptualized in May of 2009.

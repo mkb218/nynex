@@ -1,49 +1,3 @@
-<<<<<<< HEAD
-- input samples split on areas of low signal, not time based as in loopcollector
-
-input management
-- audio separated into three types: samples, words, and specimens
-- samples are raw input, stamped with time of creation
-- samples are split into words based on areas of low signal. the threshold is proportional to the maximum and minimum signal level. words inherit the parent sample's timestamp
-- specimens are created from a random assortment of words, weighted to give advantage to more recently recorded words, random length between 1 and 17
-- word weight is determined by the following formula
-let x be mtime of sample
-weight(x) = x/(max - min)
-for ties (delta < 0.01), sort by length, based on winner. (winner = top rated of population. if winner's total length is > mean length, longer samples score higher, otherwise shorter samples score higher)
-- use libsox
-
-audio genetics
-- mutation: specimens may add or subtract a word from beginning, or exchange any word for a randomly chosen new one from pool
-- crossover: first child takes first half of first parent, second half of second parent. second child takes second half of first parent, first half of second parent (crossover point chosen independently and randomly (uniform) for each parent, so halves is a misnomer)
-- evaluation: take total of all ratings
-- monotonically increasing "object id"
-
-fs1rgen algorithm used to create accompanying patches
-- if fs1rgen not completed in time, choose random patch
-- random note selected, played for duration of audio bits, recorded and mixed with audio bits
-
-inputs
-- user submitted recordings (via upload, voice mail)
-- seed recordings (unfields, apodion, scott)
-
-state
-- population should be saved to a file after every generation
-- no elitism, only new creations in each generation
-
-interface
-- specimens to be evaluated are randomly streamed over the Internet and run through in-person UI for one hour. Ratings collected and new generation of ten specimens created at that time.
-- before new generation is created, new samples downloaded from web server and google voice and used
-- interface should allow adding new recordings from attached storage. make sure this user has no permissions to break anything! back up everything on that computer!
-
-web server
-- about page with explanation
-- link page with info on seed recordings and libraries
-- streaming info and voting page, votes -> server file, downloaded before new generation is complete
-- info on current generation uploaded when files are uploaded. samples may need to be uploaded to different server. NEED SPACE
-- file upload page -> upload dir on server
-- progress blog - blosxom
-
-=======
 The FS1r user manual has a handy guide that describes all the fields in the programs. The machine's patches consist of 1-4 individual voices, along with effects, controller, volume, envelope, etc. settings. Individual voices are basically FM instruments, although the FS1r is designed primarily around formant synthesis which allows some really weird voice-type effects. There is a somewhat hidden feature which allows you to make sequences called FSEQs that mutate the formants over time, almost like an arpeggiator. Yamaha never released an editor and the only third-party ones are long since defunct, especially for Mac as this synth was released in the OS 8 days, maybe even System 7.
 
 In any case, now that I know the ranges of all valid parameters, I can create random patches, save them to a MIDI file, then send them straight to the synth.
@@ -97,5 +51,4 @@ workflow:
 	- 
 
 genome class itself holds a collection of values. each value contains a reference to its param. genome also contains a reference to the model, which is the object needed to initialize a new genome. each genetic operator will iterate through all values and call the individual param's operator
->>>>>>> fs1rgen/master
 
