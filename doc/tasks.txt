@@ -3,3 +3,5 @@
 - site design + blosxom template
 - site autoupdate git pull
 - create facebook page
+- get external dirs working in xcode
+- makefile

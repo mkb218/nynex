@@ -41,3 +41,8 @@ web server - blosxom
 - file upload page -> upload dir on server
 - progress blog - blosxom
 
+code layout
+- fs1rgen code gets own namespace
+- interface code in subdir
+- web server interface code in subdir
+- google voice interface in subdir
