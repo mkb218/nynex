@@ -20,15 +20,26 @@ div#pagetitle {
 
 div#pagesubtitle {
     font-weight: bold;
-    font-size: 24pt
+    font-size: 18pt;
 }
 
 
-div#pagecontent {
-    font-size: 12pt
+div#content {
+  margin-top:0pt;
+  margin-bottom:0pt;
+  padding-top:0pt;
+  padding-bottom:0pt;
+  font-size: 12pt
 }
 
 div#cc{
   text-align: center;
   font-size: 9pt
+}
+
+a {
+  color:#000066
+}
+a:visited {
+  color:#333300 
 }

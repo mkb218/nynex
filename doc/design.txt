@@ -46,3 +46,7 @@ code layout
 - interface code in subdir - app
 - web server interface code in subdir
 - google voice interface in subdir
+
+considerations
+- use soundcloud for all web audio stuff. that way i don't get killed if i get slashdotted
+- use twitter for new generation announcements instead of streaming
