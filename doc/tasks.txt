@@ -6,3 +6,5 @@
 - get external dirs working in xcode
 - makefile
 - soundcloud api access to dropbox?
+- twitter account for announcements
+- streaming with soundcloud?
