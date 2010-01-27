@@ -37,6 +37,8 @@ namespace nynex {
         static MidiDevice midiout_;
         static AudioDevice audioin_;
         static Ratings *ratings_;
+        static unsigned int nextObjectId_;
+        unsigned int objectId_;
 //        Fs1rModel fs1rmodel;
     };
     
@@ -45,9 +47,13 @@ namespace nynex {
         Word(const std::string & filename, int age);
         std::string & getFilename() const;
         int getAge() const;
+        float getScore() const;
+        void setScore();
     private:
         std::string filename_;
         int age_;
+        unsigned int duration_;
+        float score_;
     };
     
     class Sample {
@@ -62,12 +68,21 @@ namespace nynex {
         
     class SampleBank {
     public:
-        static getInstance();
-        static setSampleDir(const std::string & dir);
+        static SampleBank * getInstance();
+        void setSampleDir(const std::string & dir);
+        void setSampleRate(unsigned int rate);
+        void setChannels(unsigned int channels);
+        void setSampleSize(unsigned int bytes);
+        unsigned int getSampleSize() const;
+        unsigned int getSampleRate() const;
+        unsigned int getChannels() const;
         Composition makeComposition() const;
     private:
         SampleBank();
         SampleBank * instance_;
+        unsigned int sampleRate_;
+        unsigned int channels_;
+        unsigned int sampleSize_;
         std::string sampleDir_;
         std::vector<Sample> samples_;
     };

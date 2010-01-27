@@ -1,10 +1,10 @@
 - input samples split on areas of low signal, not time based as in loopcollector
 
 input management - libsox
-- audio separated into three types: samples, words, and specimens
+- audio separated into three types: samples, words, and compositions
 - samples are raw input, stamped with time of creation, read in through **libsox**
-- samples are split into words based on areas of low signal. the threshold is proportional to the maximum and minimum signal level. words inherit the parent sample's timestamp. each word is normalized post split
-- specimens are created from a random assortment of words, weighted to give advantage to more recently recorded words, random length between 1 and 17
+- samples are split into words based on areas of low signal. the threshold is proportional to the maximum and minimum signal level. words inherit the parent sample's timestamp. each word is normalized post split and stored as RAW AUDIO
+- compositions are created from a random assortment of words, weighted to give advantage to more recently recorded words, random length between 1 and 17
 - word weight is determined by the following formula
 let x be mtime of sample
 weight(x) = x/(max - min)
