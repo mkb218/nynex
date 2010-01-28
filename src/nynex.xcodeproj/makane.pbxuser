@@ -12,12 +12,13 @@
 			FC14663F110E5FFA006F10FB /* nynex */,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 286239543;
-			PBXWorkspaceStateSaveDate = 286239543;
+			PBXPerProjectTemplateStateSaveDate = 286332417;
+			PBXWorkspaceStateSaveDate = 286332417;
 		};
 		perUserProjectItems = {
-			FCD2347F11107FEF0023CC4B /* PBXBookmark */ = FCD2347F11107FEF0023CC4B /* PBXBookmark */;
-			FCD23489111085320023CC4B /* PBXTextBookmark */ = FCD23489111085320023CC4B /* PBXTextBookmark */;
+			FC8C0A991111161000AFE817 /* PBXTextBookmark */ = FC8C0A991111161000AFE817 /* PBXTextBookmark */;
+			FCD2347F11107FEF0023CC4B = FCD2347F11107FEF0023CC4B /* PBXBookmark */;
+			FCD23489111085320023CC4B = FCD23489111085320023CC4B /* PBXTextBookmark */;
 		};
 		sourceControlManager = FC146647110E6007006F10FB /* Source Control */;
 		userBuildSettings = {
@@ -63,6 +64,16 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
+	FC8C0A991111161000AFE817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
+		name = "composition.h: 41";
+		rLen = 0;
+		rLoc = 1213;
+		rType = 0;
+		vrLen = 1274;
+		vrLoc = 1082;
+	};
 	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
@@ -74,17 +85,25 @@
 	FCD23436110FABDE0023CC4B /* composition.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 1274}}";
-			sepNavSelRange = "{1213, 0}";
-			sepNavVisRange = "{134, 1441}";
+			sepNavSelRange = "{1823, 0}";
+			sepNavVisRange = "{0, 1288}";
 			sepNavWindowFrame = "{{61, 98}, {618, 733}}";
 		};
 	};
 	FCD2347311107DE20023CC4B /* ratings.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
-			sepNavSelRange = "{344, 0}";
-			sepNavVisRange = "{0, 557}";
+			sepNavSelRange = "{580, 0}";
+			sepNavVisRange = "{0, 590}";
 			sepNavWindowFrame = "{{518, 126}, {618, 733}}";
+		};
+	};
+	FCD2347411107DE20023CC4B /* ratings.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 165}";
+			sepNavWindowFrame = "{{15, 140}, {618, 733}}";
 		};
 	};
 	FCD2347F11107FEF0023CC4B /* PBXBookmark */ = {

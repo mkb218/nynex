@@ -19,6 +19,7 @@ namespace nynex {
         static Ratings* getInstance();
         void addRating(int id, int score);
     private:
+        void getServerRatings();
         static Ratings * instance_;
         Ratings();
         std::map<int, std::vector<int> > scores_;

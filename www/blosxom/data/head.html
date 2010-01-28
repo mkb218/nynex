@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<title>$blog_title</title>
+
+<link rel="alternate" type="application/rss+xml" title="RSS" href="$url/index.rss" />
+
+<style>
+body,td           { font-family: Verdana,Geneva,Arial,Sans-serif; 
+                    font-size: 10px; color: #333333; }
+a                 { color: #000000 }
+.pagetitle        { font-size: 14px; font-weight: bold; color: #336699; }
+.dateheader       { font-size: 12px; font-weight: bold; color: #336699; }
+</style>
+
+</head>
+
+<body bgcolor="#ffffff">
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+ <tr>
+  <!-- main title -->
+  <td colspan="6"><span class="pagetitle">$blog_title</span></td>
+ </tr>
+
+ <tr>
+  <td colspan="6" bgcolor="#000000" height="1" ></td>
+ </tr>
+ 
+ <tr valign="top">
+  <td bgcolor="#6699cc"><nobr>&nbsp; &nbsp; </nobr>
+
+  <!-- left column -->
+  <td bgcolor="#6699cc">
+
+   <p>
+   <br />
+   <b>About</b> <br />
+   $blog_title, $blog_description<br /><br />
+   My Name<br />
+   <a href="mailto:me@here">me@here</a> <br />
+   </p>
+
+   <p>
+   <b>Subscribe</b> <br />
+   <a href="$url/index.rss">Subscribe</a> to a syndicated feed of my weblog,
+   brought to you by the wonders of RSS.
+   </p>
+
+   <p>
+   <b>Flavours</b> <br />
+   There's more than one way to view this weblog; try these flavours on
+   for size.
+    <li><a href="$url/index.index">index</a></li>
+    <li><a href="$url/index.1993">circa 1993</a></li>
+    <li><a href="$url/index.rss">RSS</a></li>
+   </p>
+
+   <p>
+   <b>Links</b> <br />
+   These are a few of my favourite links.
+    <li><a href="http://www.raelity.org/">raelity bytes</a> ;-)</li>
+    <li><a href="">link 2</a></li>
+    <li><a href="">link 3</a></li>
+   </p>
+
+   <p>
+   <br />
+   <a href="http://www.raelity.org/apps/blosxom/"><img src="http://www.raelity.org/images/pb_blosxom.gif" border="1" hspace="3" vspace="3" /></a>
+   </p>
+
+  </td>
+
+  <td bgcolor="#6699cc"><nobr>&nbsp; &nbsp; </nobr></td>
+
+  <td bgcolor="#dddddd"><nobr>&nbsp; &nbsp; </nobr></td> 
+
+  <!-- main blog entry column -->
+  <td bgcolor="#dddddd" width="100%"> 
+
+   <br />
+
