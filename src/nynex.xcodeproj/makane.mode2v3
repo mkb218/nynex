@@ -216,7 +216,48 @@
 		</dict>
 	</array>
 	<key>OpenEditors</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>FC8C0ACA1111D39900AFE817</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>composition.h</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>FC8C0ACB1111D39900AFE817</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>composition.h</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>FC8C0ACD1111D39900AFE817</string>
+						<key>history</key>
+						<array>
+							<string>FC8C0ACC1111D39900AFE817</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {618, 636}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>61 154 618 677 0 0 1440 878 </string>
+			</dict>
+		</dict>
+	</array>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -281,19 +322,15 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 									<array>
 										<string>E4B69B4A0A3A1720003C02F2</string>
-										<string>FC8C0AA611111AB200AFE817</string>
+										<string>E45BE0360E8CC5DE009D7055</string>
 										<string>FCD23434110FABDE0023CC4B</string>
+										<string>FC8C0AB41111CF2300AFE817</string>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
+											<integer>9</integer>
 											<integer>7</integer>
-											<integer>6</integer>
-											<integer>0</integer>
-										</array>
-										<array>
-											<integer>8</integer>
-											<integer>6</integer>
 											<integer>0</integer>
 										</array>
 									</array>
@@ -462,8 +499,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>FC8C0A971111161000AFE817</string>
-				<string>FC8C0A981111161000AFE817</string>
+				<string>FC8C0AC81111D39900AFE817</string>
+				<string>FC8C0AC91111D39900AFE817</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -481,7 +518,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>286332417.64712501</real>
+	<real>286379142.77202398</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -496,8 +533,8 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
+		<string>FC8C0ACA1111D39900AFE817</string>
 	</array>
 	<key>WindowString</key>
 	<string>1090 458 350 420 0 0 1440 878 </string>

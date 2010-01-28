@@ -40,6 +40,7 @@ namespace nynex {
         static unsigned int nextObjectId_;
         unsigned int objectId_;
 //        Fs1rModel fs1rmodel;
+//        std::vector<char> notes_;
     };
     
     class Word {
