@@ -35,6 +35,8 @@
 		E4C2443910CC7693004149E2 /* openFrameworks-Info.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */; };
 		E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C246D910CCAE22004149E2 /* freeimage.a */; };
 		FC8C0AB71111CF5700AFE817 /* soundcloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */; };
+		FC8C0AD21111D4E500AFE817 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
+		FC8C0AD91111D71C00AFE817 /* streaming.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD71111D71C00AFE817 /* streaming.cpp */; };
 		FCD2343F110FABDE0023CC4B /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FCD2347511107DE20023CC4B /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
 /* End PBXBuildFile section */
@@ -115,6 +117,10 @@
 		FC8C0AB51111CF5700AFE817 /* soundcloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = soundcloud.h; sourceTree = "<group>"; };
 		FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = soundcloud.cpp; sourceTree = "<group>"; };
 		FC8C0AC71111D38100AFE817 /* ratings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ratings.h; sourceTree = "<group>"; };
+		FC8C0AD01111D4E500AFE817 /* twitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = twitter.cpp; sourceTree = "<group>"; };
+		FC8C0AD11111D4E500AFE817 /* twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitter.h; sourceTree = "<group>"; };
+		FC8C0AD71111D71C00AFE817 /* streaming.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = streaming.cpp; sourceTree = "<group>"; };
+		FC8C0AD81111D71C00AFE817 /* streaming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streaming.h; sourceTree = "<group>"; };
 		FCD23435110FABDE0023CC4B /* composition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composition.cpp; sourceTree = "<group>"; };
 		FCD23436110FABDE0023CC4B /* composition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composition.h; sourceTree = "<group>"; };
 		FCD2347411107DE20023CC4B /* ratings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ratings.cpp; sourceTree = "<group>"; };
@@ -344,6 +350,8 @@
 				E45BE0360E8CC5DE009D7055 /* libs */,
 				FCD23434110FABDE0023CC4B /* evolver */,
 				FC8C0AB41111CF2300AFE817 /* soundcloud */,
+				FC8C0AD61111D71C00AFE817 /* streaming */,
+				FC8C0ACF1111D4E500AFE817 /* twitter */,
 			);
 			sourceTree = "<group>";
 		};
@@ -450,6 +458,24 @@
 			path = soundcloud;
 			sourceTree = SOURCE_ROOT;
 		};
+		FC8C0ACF1111D4E500AFE817 /* twitter */ = {
+			isa = PBXGroup;
+			children = (
+				FC8C0AD01111D4E500AFE817 /* twitter.cpp */,
+				FC8C0AD11111D4E500AFE817 /* twitter.h */,
+			);
+			path = twitter;
+			sourceTree = "<group>";
+		};
+		FC8C0AD61111D71C00AFE817 /* streaming */ = {
+			isa = PBXGroup;
+			children = (
+				FC8C0AD71111D71C00AFE817 /* streaming.cpp */,
+				FC8C0AD81111D71C00AFE817 /* streaming.h */,
+			);
+			path = streaming;
+			sourceTree = "<group>";
+		};
 		FCD23434110FABDE0023CC4B /* evolver */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,6 +569,8 @@
 				FCD2343F110FABDE0023CC4B /* composition.cpp in Sources */,
 				FCD2347511107DE20023CC4B /* ratings.cpp in Sources */,
 				FC8C0AB71111CF5700AFE817 /* soundcloud.cpp in Sources */,
+				FC8C0AD21111D4E500AFE817 /* twitter.cpp in Sources */,
+				FC8C0AD91111D71C00AFE817 /* streaming.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

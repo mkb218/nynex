@@ -13,15 +13,17 @@
 #include <boost/ref.hpp>
 
 #include "composition.h"
+#include
 
 namespace nynex {
     class SoundCloudServer {
     public:
         void fetchDropBox(); // uses samplebank singleton
-        void submitCompositions(const std::vector<boost::reference_wrapper<Composition> > &) const;
+        std::vector<std::string> submitCompositions(const std::vector<boost::reference_wrapper<Composition> > &) const; // returns list of identifiers used for streaming
     private:
-        std::string host;
-        std::string apiKey;
+        std::string host_;
+        std::string apiKey_;
     };
+}
 
 #endif

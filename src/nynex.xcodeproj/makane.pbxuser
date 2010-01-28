@@ -66,9 +66,9 @@
 	FC8C0AB51111CF5700AFE817 /* soundcloud.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
-			sepNavSelRange = "{356, 0}";
-			sepNavVisRange = "{0, 538}";
-			sepNavWindowFrame = "{{38, 119}, {618, 733}}";
+			sepNavSelRange = "{613, 0}";
+			sepNavVisRange = "{0, 621}";
+			sepNavWindowFrame = "{{638, 129}, {618, 733}}";
 		};
 	};
 	FC8C0ACC1111D39900AFE817 /* PBXBookmark */ = {
@@ -84,6 +84,14 @@
 		rType = 0;
 		vrLen = 1419;
 		vrLoc = 160;
+	};
+	FC8C0AD11111D4E500AFE817 /* twitter.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
+			sepNavSelRange = "{746, 0}";
+			sepNavVisRange = "{0, 758}";
+			sepNavWindowFrame = "{{61, 98}, {618, 733}}";
+		};
 	};
 	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
 		uiCtxt = {
