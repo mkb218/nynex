@@ -1,0 +1,2 @@
+Git test
+Testing git fetch cron job!
