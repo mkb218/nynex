@@ -113,8 +113,8 @@
 		E4C246D910CCAE22004149E2 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/lib/osx/freeimage.a; sourceTree = "<absolute>"; };
 		FCD23435110FABDE0023CC4B /* composition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composition.cpp; sourceTree = "<group>"; };
 		FCD23436110FABDE0023CC4B /* composition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composition.h; sourceTree = "<group>"; };
-		FCD2347311107DE20023CC4B /* ratings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ratings.h; sourceTree = "<group>"; };
-		FCD2347411107DE20023CC4B /* ratings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ratings.cpp; sourceTree = "<group>"; };
+		FCD2347311107DE20023CC4B /* ratings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ratings.h; path = voting/ratings.h; sourceTree = "<group>"; };
+		FCD2347411107DE20023CC4B /* ratings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ratings.cpp; path = voting/ratings.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +339,7 @@
 				E4B69E1C0A3A1BDC003C02F2 /* app */,
 				E4C2422310CC54B6004149E2 /* openFrameworks */,
 				E45BE0360E8CC5DE009D7055 /* libs */,
+				FC8C0AA611111AB200AFE817 /* votings */,
 				FCD23434110FABDE0023CC4B /* evolver */,
 			);
 			sourceTree = "<group>";
@@ -437,13 +438,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FC8C0AA611111AB200AFE817 /* votings */ = {
+			isa = PBXGroup;
+			children = (
+				FCD2347311107DE20023CC4B /* ratings.h */,
+				FCD2347411107DE20023CC4B /* ratings.cpp */,
+			);
+			name = votings;
+			sourceTree = "<group>";
+		};
 		FCD23434110FABDE0023CC4B /* evolver */ = {
 			isa = PBXGroup;
 			children = (
 				FCD23435110FABDE0023CC4B /* composition.cpp */,
 				FCD23436110FABDE0023CC4B /* composition.h */,
-				FCD2347311107DE20023CC4B /* ratings.h */,
-				FCD2347411107DE20023CC4B /* ratings.cpp */,
 			);
 			path = evolver;
 			sourceTree = "<group>";

@@ -15,11 +15,6 @@
 			PBXPerProjectTemplateStateSaveDate = 286332417;
 			PBXWorkspaceStateSaveDate = 286332417;
 		};
-		perUserProjectItems = {
-			FC8C0A991111161000AFE817 /* PBXTextBookmark */ = FC8C0A991111161000AFE817 /* PBXTextBookmark */;
-			FCD2347F11107FEF0023CC4B = FCD2347F11107FEF0023CC4B /* PBXBookmark */;
-			FCD23489111085320023CC4B = FCD23489111085320023CC4B /* PBXTextBookmark */;
-		};
 		sourceControlManager = FC146647110E6007006F10FB /* Source Control */;
 		userBuildSettings = {
 		};
@@ -64,16 +59,6 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	FC8C0A991111161000AFE817 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 41";
-		rLen = 0;
-		rLoc = 1213;
-		rType = 0;
-		vrLen = 1274;
-		vrLoc = 1082;
-	};
 	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
@@ -105,19 +90,5 @@
 			sepNavVisRange = "{0, 165}";
 			sepNavWindowFrame = "{{15, 140}, {618, 733}}";
 		};
-	};
-	FCD2347F11107FEF0023CC4B /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-	};
-	FCD23489111085320023CC4B /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 41";
-		rLen = 0;
-		rLoc = 1213;
-		rType = 0;
-		vrLen = 1441;
-		vrLoc = 134;
 	};
 }

@@ -1,2 +1,0 @@
-First Post
-Testing a post. There is some <b>HTML</b>.

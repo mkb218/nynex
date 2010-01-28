@@ -281,12 +281,18 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 									<array>
 										<string>E4B69B4A0A3A1720003C02F2</string>
+										<string>FC8C0AA611111AB200AFE817</string>
 										<string>FCD23434110FABDE0023CC4B</string>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>9</integer>
+											<integer>7</integer>
+											<integer>6</integer>
+											<integer>0</integer>
+										</array>
+										<array>
+											<integer>8</integer>
 											<integer>6</integer>
 											<integer>0</integer>
 										</array>
@@ -490,10 +496,7 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>FC8C0AA3111116D400AFE817</string>
-		<string>FC8C0AA4111116D400AFE817</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
-		<string>FCD23480111080050023CC4B</string>
 		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

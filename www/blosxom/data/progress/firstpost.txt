@@ -1,0 +1,4 @@
+Progress Blog Initialized
+Hey everyone, welcome to the Republic of Nynex progress blog! So far, there is not a whole lot of progress. If you aren't following my git commits, here is the lowdown:
+
+I've created an XCode project based on an openFrameworks example project and created modules for the different logical sections of code: SoundCloud, Twitter, Google Voice, voting, evolving, and UI. I'm just starting to create all the class interfaces for the non-fs1rgen sections. Once that's complete, I will begin implementing the C++ parts, just enough to get to the point of making some noise.
