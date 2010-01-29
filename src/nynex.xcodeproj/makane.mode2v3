@@ -216,48 +216,7 @@
 		</dict>
 	</array>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>FC8C0ACA1111D39900AFE817</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>composition.h</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>FC8C0ACB1111D39900AFE817</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>composition.h</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>FC8C0ACD1111D39900AFE817</string>
-						<key>history</key>
-						<array>
-							<string>FC8C0ACC1111D39900AFE817</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {618, 636}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>61 154 618 677 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -325,11 +284,13 @@
 										<string>E45BE0360E8CC5DE009D7055</string>
 										<string>FCD23434110FABDE0023CC4B</string>
 										<string>FC8C0AB41111CF2300AFE817</string>
+										<string>FC8C0AD61111D71C00AFE817</string>
+										<string>FC8C0ACF1111D4E500AFE817</string>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>9</integer>
+											<integer>10</integer>
 											<integer>7</integer>
 											<integer>0</integer>
 										</array>
@@ -499,8 +460,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>FC8C0AC81111D39900AFE817</string>
-				<string>FC8C0AC91111D39900AFE817</string>
+				<string>FC9719F1111251D10089B4DB</string>
+				<string>FC9719F2111251D10089B4DB</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -518,7 +479,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>286379142.77202398</real>
+	<real>286413262.67574799</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -533,8 +494,11 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>FC9719FF1112610A0089B4DB</string>
+		<string>FC971A001112610A0089B4DB</string>
+		<string>FC971A011112610A0089B4DB</string>
+		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
-		<string>FC8C0ACA1111D39900AFE817</string>
 	</array>
 	<key>WindowString</key>
 	<string>1090 458 350 420 0 0 1440 878 </string>
@@ -795,8 +759,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {333, 190}}</string>
-											<string>{{333, 0}, {384, 190}}</string>
+											<string>{{0, 0}, {333, 201}}</string>
+											<string>{{333, 0}, {384, 201}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -811,8 +775,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {717, 190}}</string>
-											<string>{{0, 190}, {717, 206}}</string>
+											<string>{{0, 0}, {717, 201}}</string>
+											<string>{{0, 201}, {717, 195}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -845,7 +809,7 @@
 										<real>154</real>
 									</array>
 									<key>Frame</key>
-									<string>{{333, 0}, {384, 190}}</string>
+									<string>{{333, 0}, {384, 201}}</string>
 									<key>RubberWindowFrame</key>
 									<string>82 371 717 437 0 0 1440 878 </string>
 								</dict>
@@ -873,13 +837,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D54069F1CE1000CFCEE</string>
-				<string>FC8C0A9A1111161000AFE817</string>
+				<string>FC9719F3111251D10089B4DB</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>FC8C0A9B1111161000AFE817</string>
-				<string>FC8C0A9C1111161000AFE817</string>
-				<string>FC8C0A9D1111161000AFE817</string>
-				<string>FC8C0A9E1111161000AFE817</string>
-				<string>FC8C0A9F1111161000AFE817</string>
+				<string>FC9719F4111251D10089B4DB</string>
+				<string>FC9719F5111251D10089B4DB</string>
+				<string>FC9719F6111251D10089B4DB</string>
+				<string>FC9719F7111251D10089B4DB</string>
+				<string>FC9719F8111251D10089B4DB</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>

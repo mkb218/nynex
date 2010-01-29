@@ -12,12 +12,8 @@
 			FC14663F110E5FFA006F10FB /* nynex */,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 286379142;
-			PBXWorkspaceStateSaveDate = 286379142;
-		};
-		perUserProjectItems = {
-			FC8C0ACC1111D39900AFE817 /* PBXBookmark */ = FC8C0ACC1111D39900AFE817 /* PBXBookmark */;
-			FC8C0ACD1111D39900AFE817 /* PBXTextBookmark */ = FC8C0ACD1111D39900AFE817 /* PBXTextBookmark */;
+			PBXPerProjectTemplateStateSaveDate = 286413262;
+			PBXWorkspaceStateSaveDate = 286413262;
 		};
 		sourceControlManager = FC146647110E6007006F10FB /* Source Control */;
 		userBuildSettings = {
@@ -71,19 +67,13 @@
 			sepNavWindowFrame = "{{638, 129}, {618, 733}}";
 		};
 	};
-	FC8C0ACC1111D39900AFE817 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-	};
-	FC8C0ACD1111D39900AFE817 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 24";
-		rLen = 0;
-		rLoc = 473;
-		rType = 0;
-		vrLen = 1419;
-		vrLoc = 160;
+	FC8C0AC71111D38100AFE817 /* ratings.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
+			sepNavSelRange = "{250, 0}";
+			sepNavVisRange = "{0, 590}";
+			sepNavWindowFrame = "{{308, 128}, {618, 733}}";
+		};
 	};
 	FC8C0AD11111D4E500AFE817 /* twitter.h */ = {
 		uiCtxt = {
@@ -93,19 +83,27 @@
 			sepNavWindowFrame = "{{61, 98}, {618, 733}}";
 		};
 	};
-	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
+	FC8C0AD81111D71C00AFE817 /* streaming.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
-			sepNavSelRange = "{165, 0}";
-			sepNavVisRange = "{0, 165}";
-			sepNavWindowFrame = "{{38, 119}, {618, 733}}";
+			sepNavSelRange = "{336, 0}";
+			sepNavVisRange = "{0, 353}";
+			sepNavWindowFrame = "{{84, 77}, {618, 733}}";
+		};
+	};
+	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 658}}";
+			sepNavSelRange = "{1411, 0}";
+			sepNavVisRange = "{3, 1409}";
+			sepNavWindowFrame = "{{747, 145}, {618, 733}}";
 		};
 	};
 	FCD23436110FABDE0023CC4B /* composition.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 1274}}";
-			sepNavSelRange = "{473, 0}";
-			sepNavVisRange = "{160, 1419}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 1344}}";
+			sepNavSelRange = "{2310, 0}";
+			sepNavVisRange = "{160, 1479}";
 			sepNavWindowFrame = "{{61, 98}, {618, 733}}";
 		};
 	};

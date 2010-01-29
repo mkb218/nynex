@@ -20,9 +20,8 @@ namespace nynex {
     public:
         GADefineIdentity("NynexComposition", 219);
         Composition();
-        Composition(std::vector<Word> &);
+        Composition(const std::vector<Word> &);
         Composition(const Composition &);
-        ~Composition();
         Composition & operator=(const GAGenome &);
         GAGenome* clone() const;
         void copy(const GAGenome &);
@@ -33,12 +32,15 @@ namespace nynex {
         static float compare(const GAGenome &, const GAGenome &);
         static float evaluate(GAGenome &);
         static int crossover(const GAGenome &, const GAGenome &, GAGenome*, GAGenome*);
+        static setMidiDevice(MidiDevice&);
+        static AudioDevice(AudioDevice&);
     private:
-        static MidiDevice midiout_;
-        static AudioDevice audioin_;
-        static Ratings *ratings_;
         static unsigned int nextObjectId_;
-        unsigned int objectId_;
+        const unsigned int objectId_;
+        std::vector<Word> words_;
+        static bool tieBreaker;
+//        static MidiDevice midiout_;
+//        static AudioDevice audioin_;
 //        Fs1rModel fs1rmodel;
 //        std::vector<char> notes_;
     };
@@ -69,15 +71,16 @@ namespace nynex {
         
     class SampleBank {
     public:
-        static SampleBank * getInstance();
+        static SampleBank & getInstance();
         void setSampleDir(const std::string & dir);
         void setSampleRate(unsigned int rate);
         void setChannels(unsigned int channels);
         void setSampleSize(unsigned int bytes);
+        const std::vector<Word> & getWords() const;
         unsigned int getSampleSize() const;
         unsigned int getSampleRate() const;
         unsigned int getChannels() const;
-        Composition makeComposition() const;
+        void initComposition(const Composition &) const;
     private:
         SampleBank();
         SampleBank * instance_;
@@ -86,6 +89,7 @@ namespace nynex {
         unsigned int sampleSize_;
         std::string sampleDir_;
         std::vector<Sample> samples_;
+        std::vector<Word> words_;
     };
 }
 
