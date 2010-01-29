@@ -8,12 +8,14 @@
  */
 
 #include "filemgr.h"
+#include <cstdlib>
+#include <map>
 
 using namespace nynex;
 
 Composition::Composition() : objectId_(nextObjectId_++) {}
-Composition::Composition(const std::vector<Word> & words) : objectId_(nextObjectId_++),words_(words.begin(), words.end()) {}
-Composition::Composition(const Composition & other) : objectId_(nextObjectId_++),words_(other.words.begin(), othter.words.end()) {}
+Composition::Composition(const std::list<Word> & words) : objectId_(nextObjectId_++),words_(words.begin(), words.end()) {}
+Composition::Composition(const Composition & other) : objectId_(other.objectId_),words_(other.words.begin(), other.words.end()) {}
 
 Composition & Composition::operator=(const GAGenome & other) {
     copy(other);
@@ -26,7 +28,8 @@ void Composition::copy(const GAGenome & other) {
 }
 
 GAGenome * Composition::clone() const {
-    return new Composition(*this);
+    // clone is meant to be a distinct entity
+    return new Composition(words_);
 }
 
 void Composition::init(GAGenome & trg) {
@@ -37,9 +40,61 @@ void Composition::init(GAGenome & trg) {
 int Composition::mutate(GAGenome & trg, float p) {
     Composition & trgcast = dynamic_cast<Composition &>(trg);
     // roll dice on whether to remove sample from beginning
+    // random float < p means remove first sample
     // roll dice on whether to remove sample from end
+    // random float < p means remove end sample
     // iterate through words, each time rolling dice to pick a new one
+    // random float < p means choose a random new sample to replace it
+    // roll dice for remove a note
+    // random float < p means remove first note in map, whatever it is
+    // roll dice for add a note iff notes_.size < 4
+    // random float < p means choose new note in map
     // roll dice for each note
+    // random float < p means replace with new note
     // mutate fs1rgen patch
     return count;
+}
+
+float Composition::compare(GAGenome & left, GAGenome & right) {
+    float diffs = 0;
+    float denominator = 0;
+    Composition & leftcast = dynamic_cast<Composition &>(left);
+    Composition & rightcast = dynamic_cast<Composition &>(right); 
+    std::list<Word>::const_iterator leftit = leftcast.words_.begin();
+    std::list<Word>::const_iterator rightit = rightcast.words_.begin();
+    while (leftit != leftcast.words_.end() && rightit != rightcast.words_.end()) {
+        if (leftit->getFilename() != rightit->getFilename()) {
+            diffs++;
+        }
+        denominator++;
+    }
+    
+    int sizediff = abs(leftcast.words_.size() - rightcast.words_.size());
+    diffs += sizediff;
+    denominator += sizediff;
+ 
+/*
+    denominator += leftcast.notes_.size() + rightcast.notes_.size();
+    std::map<char> notes;
+    notes.insert(leftcast.notes_.begin(), leftcast.notes_.end());
+    for (std::map<char>::const_iterator it = rightcast.notes_.begin(); ++it; it != rightcast.notes_.end()) {
+        notes_.erase(*it);
+    }
+    diffs += notes.size();
+ 
+    diffs += comparison of fsr1gen models
+    denominator += fs1rgen model size
+ */
+    return diffs/denominator;
+}
+
+int Composition::crossover(const GAGenome & mom, const GAGenome & dad, GAGenome * bro, GAGenome * sis) {
+    // choose crossover point <= min(mom.words_.size(), dad.words_.size()) and >= 0
+    // mom's words to left of crossover point go to beginning of bro
+    // dad's words from right of crossover point go to end of bro
+    // dad's words from left of crossover point go to beginning of sis
+    // mom's words from right of crossover point go to end of sis
+    // crossover fs1rgen
+    // choose crossover point <= min(mom.notes_.size(), dad.notes_.size()) and >= 0
+    // same pattern as for words
 }

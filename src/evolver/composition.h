@@ -10,7 +10,7 @@
 #ifndef NYNEX_COMPOSITION
 #define NYNEX_COMPOSITION
 
-#include <vector>
+#include <list>
 #include <string>
 
 #include "ga/ga.h"
@@ -32,17 +32,16 @@ namespace nynex {
         static float compare(const GAGenome &, const GAGenome &);
         static float evaluate(GAGenome &);
         static int crossover(const GAGenome &, const GAGenome &, GAGenome*, GAGenome*);
-        static setMidiDevice(MidiDevice&);
-        static AudioDevice(AudioDevice&);
+//        static void setMidiDevice(MidiDevice&);
+//        static void AudioDevice(AudioDevice&);
     private:
         static unsigned int nextObjectId_;
         const unsigned int objectId_;
-        std::vector<Word> words_;
-        static bool tieBreaker;
+        std::list<Word> words_;
 //        static MidiDevice midiout_;
 //        static AudioDevice audioin_;
 //        Fs1rModel fs1rmodel;
-//        std::vector<char> notes_;
+//        std::map<char> notes_;
     };
     
     class Word {
@@ -80,6 +79,8 @@ namespace nynex {
         unsigned int getSampleSize() const;
         unsigned int getSampleRate() const;
         unsigned int getChannels() const;
+        void setTiebreaker(bool);
+        Word randomWord() const;
         void initComposition(const Composition &) const;
     private:
         SampleBank();
@@ -90,6 +91,7 @@ namespace nynex {
         std::string sampleDir_;
         std::vector<Sample> samples_;
         std::vector<Word> words_;
+        bool tiebreaker_;
     };
 }
 
