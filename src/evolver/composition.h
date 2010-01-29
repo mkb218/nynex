@@ -1,5 +1,5 @@
 /*
- *  compostion.h
+ *  composition.h
  *  nynex
  *  $Id$
  *

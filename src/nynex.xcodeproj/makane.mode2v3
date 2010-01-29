@@ -221,7 +221,7 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>FC971A1011131BF90089B4DB</string>
+				<string>FCEB84171113A615003E2C9A</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>composition.h</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
@@ -229,22 +229,16 @@
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>FC971A19111354960089B4DB</string>
+						<string>FCEB84181113A615003E2C9A</string>
 						<key>PBXProjectModuleLabel</key>
 						<string>composition.h</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCEB84151113A5F5003E2C9A</string>
+						<string>FCEB841A1113A631003E2C9A</string>
 						<key>history</key>
 						<array>
-							<string>FCEB84111113A5F5003E2C9A</string>
-							<string>FCEB84121113A5F5003E2C9A</string>
-						</array>
-						<key>prevStack</key>
-						<array>
-							<string>FCEB84131113A5F5003E2C9A</string>
-							<string>FCEB84141113A5F5003E2C9A</string>
+							<string>FCEB84161113A614003E2C9A</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -294,6 +288,8 @@
 					<key>Tabs</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBottomSmartGroupGIDs</key>
@@ -541,7 +537,7 @@
 	<array>
 		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
-		<string>FC971A1011131BF90089B4DB</string>
+		<string>FCEB84171113A615003E2C9A</string>
 	</array>
 	<key>WindowString</key>
 	<string>1090 458 350 420 0 0 1440 878 </string>
