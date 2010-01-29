@@ -1,6 +1,7 @@
 /*
- *  filemgr.h
+ *  compostion.h
  *  nynex
+ *  $Id$
  *
  *  Created by Matthew J Kane on 1/26/10.
  *  Copyright 2010 Matthew Kane. All rights reserved.
@@ -25,7 +26,6 @@ namespace nynex {
         Composition & operator=(const GAGenome &);
         GAGenome* clone() const;
         void copy(const GAGenome &);
-        std::string bounceToTmpFile(const std::string & tmpDir) const;
         void bounceToFile(const std::string & filename) const;
         static void init(GAGenome&);
         static int mutate(GAGenome &, float);

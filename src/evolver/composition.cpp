@@ -1,6 +1,7 @@
 /*
  *  composition.cpp
  *  nynex
+ *  $Id$
  *
  *  Created by Matthew J Kane on 1/26/10.
  *  Copyright 2010 Matthew Kane. All rights reserved.
@@ -97,4 +98,10 @@ int Composition::crossover(const GAGenome & mom, const GAGenome & dad, GAGenome 
     // crossover fs1rgen
     // choose crossover point <= min(mom.notes_.size(), dad.notes_.size()) and >= 0
     // same pattern as for words
+}
+
+void Composition::bounceToFile(const std::string & filename) {
+    // concatenate all words to libsox to filename with format autodetect
+    // calculate length of sample
+    // hold notes for length of sample while recording on audio in
 }
