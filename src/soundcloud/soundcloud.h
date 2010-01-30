@@ -13,7 +13,6 @@
 #include <boost/ref.hpp>
 
 #include "composition.h"
-#include
 
 namespace nynex {
     class SoundCloudServer {

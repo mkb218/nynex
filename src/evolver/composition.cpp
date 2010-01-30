@@ -8,7 +8,7 @@
  *
  */
 
-#include "filemgr.h"
+#include "composition.h"
 #include <cstdlib>
 #include <map>
 
@@ -16,7 +16,7 @@ using namespace nynex;
 
 Composition::Composition() : objectId_(nextObjectId_++) {}
 Composition::Composition(const std::list<Word> & words) : objectId_(nextObjectId_++),words_(words.begin(), words.end()) {}
-Composition::Composition(const Composition & other) : objectId_(other.objectId_),words_(other.words.begin(), other.words.end()) {}
+Composition::Composition(const Composition & other) : objectId_(other.objectId_),words_(other.words_.begin(), other.words_.end()) {}
 
 Composition & Composition::operator=(const GAGenome & other) {
     copy(other);
@@ -24,7 +24,7 @@ Composition & Composition::operator=(const GAGenome & other) {
 }
 
 void Composition::copy(const GAGenome & other) {
-    Composition & othercast = dynamic_cast<const Composition &>(other);
+    const Composition & othercast = dynamic_cast<const Composition &>(other);
     words_.assign(othercast.words_.begin(), othercast.words_.end());
 }
 
@@ -56,7 +56,7 @@ int Composition::mutate(GAGenome & trg, float p) {
     return count;
 }
 
-float Composition::compare(GAGenome & left, GAGenome & right) {
+float Composition::compare(const GAGenome & left, const GAGenome & right) {
     float diffs = 0;
     float denominator = 0;
     Composition & leftcast = dynamic_cast<Composition &>(left);
@@ -100,8 +100,39 @@ int Composition::crossover(const GAGenome & mom, const GAGenome & dad, GAGenome 
     // same pattern as for words
 }
 
-void Composition::bounceToFile(const std::string & filename) {
+void Composition::bounceToFile(const std::string & filename) const {
     // concatenate all words to libsox to filename with format autodetect
     // calculate length of sample
     // hold notes for length of sample while recording on audio in
+}
+
+Word::Word(const std::string & filename, int age) : filename_(filename), age_(age), score_(0.0) {
+    calcDuration();
+}
+
+std::string & Word::getFilename() const {
+    return filename_;
+}
+
+int Word::getAge() const {
+    return age_;
+}
+
+float Word::getScore() const {
+    return score_;
+}
+
+void Word::setScore(float score) {
+    score_ = score;
+}
+
+unsigned int Word::getDuration() const {
+    return duration_;
+}
+
+void Word::calcDuration() {
+    // ask libsox for duration of filename
+}
+
+Sample::Sample(const std::string & filename) : filename_(filename) {
 }

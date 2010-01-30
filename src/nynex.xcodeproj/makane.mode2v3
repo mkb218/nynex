@@ -221,24 +221,24 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>FCEB84171113A615003E2C9A</string>
+				<string>FCEB84281113A9AA003E2C9A</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>composition.h</string>
+				<string>soundcloud.h</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>FCEB84181113A615003E2C9A</string>
+						<string>FCEB84291113A9AA003E2C9A</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>composition.h</string>
+						<string>soundcloud.h</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCEB841A1113A631003E2C9A</string>
+						<string>FCEB842F1113B519003E2C9A</string>
 						<key>history</key>
 						<array>
-							<string>FCEB84161113A614003E2C9A</string>
+							<string>FCEB84271113A9A3003E2C9A</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -254,7 +254,87 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>446 201 618 677 0 0 1440 878 </string>
+				<string>638 185 618 677 0 0 1440 878 </string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>FCEB842B1113A9AA003E2C9A</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>composition.cpp</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>FCEB842C1113A9AA003E2C9A</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>composition.cpp</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>FCEB84301113B519003E2C9A</string>
+						<key>history</key>
+						<array>
+							<string>FCEB84241113A942003E2C9A</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {618, 636}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>747 201 618 677 0 0 1440 878 </string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>FCEB84171113A615003E2C9A</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>composition.h</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>FCEB84181113A615003E2C9A</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>composition.h</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>FCEB84311113B519003E2C9A</string>
+						<key>history</key>
+						<array>
+							<string>FCEB84221113A933003E2C9A</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {618, 636}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>14 201 618 677 0 0 1440 878 </string>
 			</dict>
 		</dict>
 	</array>
@@ -331,7 +411,7 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>11</integer>
+											<integer>10</integer>
 											<integer>7</integer>
 											<integer>0</integer>
 										</array>
@@ -520,7 +600,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>286499806.65081602</real>
+	<real>286504217.32820803</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -538,6 +618,9 @@
 		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 		<string>FCEB84171113A615003E2C9A</string>
+		<string>FCEB842B1113A9AA003E2C9A</string>
+		<string>1C530D52069F1CE1000CFCEE</string>
+		<string>FCEB84281113A9AA003E2C9A</string>
 	</array>
 	<key>WindowString</key>
 	<string>1090 458 350 420 0 0 1440 878 </string>
@@ -698,7 +781,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>composition.h</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -756,7 +839,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>FCD23452110FB2BD0023CC4B</string>
+				<string>FCEB841E1113A8FC003E2C9A</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

@@ -11,17 +11,34 @@
 #ifndef NYNEX_COMPOSITION
 #define NYNEX_COMPOSITION
 
+#include <vector>
 #include <list>
 #include <string>
 
 #include "ga/ga.h"
 
 namespace nynex {
+    class Word {
+    public:
+        Word(const std::string & filename, int age);
+        std::string & getFilename() const;
+        int getAge() const;
+        float getScore() const;
+        unsigned int getDuration() const;
+        void setScore();
+    private:
+        void calcDuration();
+        std::string filename_;
+        int age_;
+        unsigned int duration_; // samples
+        float score_;
+    };
+    
     class Composition : public GAGenome {
     public:
         GADefineIdentity("NynexComposition", 219);
         Composition();
-        Composition(const std::vector<Word> &);
+        Composition(const std::list<Word> &);
         Composition(const Composition &);
         Composition & operator=(const GAGenome &);
         GAGenome* clone() const;
@@ -44,26 +61,13 @@ namespace nynex {
 //        std::map<char> notes_;
     };
     
-    class Word {
-    public:
-        Word(const std::string & filename, int age);
-        std::string & getFilename() const;
-        int getAge() const;
-        float getScore() const;
-        void setScore();
-    private:
-        std::string filename_;
-        int age_;
-        unsigned int duration_;
-        float score_;
-    };
-    
     class Sample {
     public:
         Sample(const std::string & filename);
-        std::vector<Word> getWords() const;
+        std::list<Word> getWords() const;
     private:
         void makeWords() const;
+        std::list<Word> words;
         std::string filename_;
         int age_;
     };
@@ -75,7 +79,7 @@ namespace nynex {
         void setSampleRate(unsigned int rate);
         void setChannels(unsigned int channels);
         void setSampleSize(unsigned int bytes);
-        const std::vector<Word> & getWords() const;
+        const std::list<Word> & getWords() const;
         unsigned int getSampleSize() const;
         unsigned int getSampleRate() const;
         unsigned int getChannels() const;
