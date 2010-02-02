@@ -21,6 +21,7 @@ namespace nynex {
     class Word {
     public:
         Word(const std::string & filename, int age);
+        Word(const Word &);
         std::string & getFilename() const;
         int getAge() const;
         float getScore() const;
@@ -36,6 +37,7 @@ namespace nynex {
     
     class Composition : public GAGenome {
     public:
+        friend void SampleBank::initComposition(const Composition &) const;
         GADefineIdentity("NynexComposition", 219);
         Composition();
         Composition(const std::list<Word> &);
@@ -63,7 +65,9 @@ namespace nynex {
     
     class Sample {
     public:
-        Sample(const std::string & filename);
+        Sample(const std::string &);
+        Sample(const Sample &);
+        Sample & operator=(const Sample & other);
         std::list<Word> getWords() const;
     private:
         void makeWords() const;
@@ -83,12 +87,13 @@ namespace nynex {
         unsigned int getSampleSize() const;
         unsigned int getSampleRate() const;
         unsigned int getChannels() const;
+        void addSample(const std::string & filename);
         void setTiebreaker(bool);
         Word randomWord() const;
         void initComposition(const Composition &) const;
     private:
         SampleBank();
-        SampleBank * instance_;
+        static SampleBank * instance_;
         unsigned int sampleRate_;
         unsigned int channels_;
         unsigned int sampleSize_;

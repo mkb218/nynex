@@ -11,6 +11,8 @@
 #include "composition.h"
 #include <cstdlib>
 #include <map>
+#include <exception>
+#include <limits>
 
 using namespace nynex;
 
@@ -136,3 +138,84 @@ void Word::calcDuration() {
 
 Sample::Sample(const std::string & filename) : filename_(filename) {
 }
+
+SampleBank* SampleBank::instance_ = NULL;
+
+SampleBank * SampleBank::getInstance() {
+    if (instance_ == NULL) {
+        instance_ = new SampleBank();
+    }
+    return instance_;
+}
+
+SampleBank::SampleBank() {
+    srandomdev();
+}
+
+void SampleBank::setSampleDir(const std::string & dir) {
+    sampleDir_ = dir;
+}
+
+void SampleBank::setSampleRate(unsigned int rate) {
+    sampleRate_ = rate;
+}
+
+void SampleBank::setChannels(unsigned int channels) {
+    channels_ = channels;
+}
+
+void SampleBank::setSampleSize(unsigned int bytes) {
+    switch (bytes) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 8:
+            sampleSize_ = bytes;
+            break;
+        default:
+            throw exception("Invalid sample size")
+    }
+}
+
+const std::vector<Word> & SampleBank::getWords() {
+    return words_;
+}
+
+unsigned int SampleBank::getSampleSize() const {
+    return sampleSize_;
+}
+
+unsigned int SampleBank::getSampleRate() const {
+    return sampleRate_;
+}
+
+unsigned int SampleBank::getChannels() const {
+    return channels_;
+}
+
+void SampleBank::addSample(const std::string & filename) {
+    Sample s(filename);
+    samples_.add(s);
+    words_.add(s.getWords());
+}
+
+void SampleBank::setTiebreaker(bool tie) {
+    tiebreaker_ = tie;
+}
+
+Word SampleBank::randomWord() const {
+    if (!srandomdevcalled) {
+        srandomdev();
+        srandomdev = true;
+    }
+
+    
+    
+}
+
+void SampleBank::initComposition(const Composition &) const {
+    // pick number between 1 and 17
+    // pick that many random words!
+}
+
