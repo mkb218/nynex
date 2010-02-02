@@ -22,6 +22,7 @@ namespace nynex {
     public:
         Word(const std::string & filename, int age);
         Word(const Word &);
+        bool operator<(const Word &) const;
         std::string & getFilename() const;
         int getAge() const;
         float getScore() const;
@@ -89,6 +90,7 @@ namespace nynex {
         unsigned int getChannels() const;
         void addSample(const std::string & filename);
         void setTiebreaker(bool);
+        bool getTiebreaker();
         Word randomWord() const;
         void initComposition(const Composition &) const;
     private:
@@ -101,6 +103,7 @@ namespace nynex {
         std::vector<Sample> samples_;
         std::vector<Word> words_;
         bool tiebreaker_;
+        bool needsResort_;
     };
 }
 

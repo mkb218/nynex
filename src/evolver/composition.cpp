@@ -13,8 +13,10 @@
 #include <map>
 #include <exception>
 #include <limits>
+#include <algorithm>
 
 using namespace nynex;
+using std::sort;
 
 Composition::Composition() : objectId_(nextObjectId_++) {}
 Composition::Composition(const std::list<Word> & words) : objectId_(nextObjectId_++),words_(words.begin(), words.end()) {}
@@ -116,6 +118,18 @@ std::string & Word::getFilename() const {
     return filename_;
 }
 
+bool Word::operator<(const Word & other) const {
+    bool val = ( age_ < other.age_ );
+    if (!val) {
+        if (SampleBank::getInstance().getTiebreaker()) {
+            val = (getDuration() < other.getDuration());
+        } else {
+            val = (getDuration() > other.getDuration());
+        }
+    }
+    return val;
+}
+
 int Word::getAge() const {
     return age_;
 }
@@ -150,6 +164,7 @@ SampleBank * SampleBank::getInstance() {
 
 SampleBank::SampleBank() {
     srandomdev();
+    needsResort_ = false;
 }
 
 void SampleBank::setSampleDir(const std::string & dir) {
@@ -204,18 +219,35 @@ void SampleBank::setTiebreaker(bool tie) {
     tiebreaker_ = tie;
 }
 
-Word SampleBank::randomWord() const {
-    if (!srandomdevcalled) {
-        srandomdev();
-        srandomdev = true;
-    }
-
-    
-    
+bool SampleBank::getTiebreaker() {
+    return tiebreaker_;
 }
 
-void SampleBank::initComposition(const Composition &) const {
+Word SampleBank::randomWord() const {
+    float oldestAge;
+    float newestAge;
+    if (needsResort_) {
+        sort(words_.begin(), words_.end());
+        oldestAge = words_.first().getAge();
+        newestAge = words_.last().getAge();
+        for (std::vector<Word>::iterator it = words_.begin(); it != words().end(); ++it) {
+            it->setScore((it->getAge() - oldestAge) / (newestAge - oldestAge));
+        }
+        needsResort_ = false;
+    } else {
+        oldestAge = words_.first().getAge();
+        newestAge = words_.last().getAge();
+    }
+    
+    float score = random();
+}
+
+void SampleBank::initComposition(const Composition & comp) const {
+    comp.words_.clear();
     // pick number between 1 and 17
     // pick that many random words!
+    for (int wordcount = 1 + random() % 16; wordcount > 0; --wordcount) {
+        comp.words_.push_back(randomWord());
+    }
 }
 

@@ -7,8 +7,8 @@ input management - libsox
 - compositions are created from a random assortment of words, weighted to give advantage to more recently recorded words, random length between 1 and 17
 - word weight is determined by the following formula
 let x be mtime of sample
-weight(x) = x/(max - min)
-for ties (delta < 0.01), sort by length, based on winner. (winner = top rated of population. if winner's total length is > mean length, longer samples score higher, otherwise shorter samples score higher)
+weight(x) = (x - min)/(max - min)
+for ties (∂score < 0.00001), sort by length, based on winner. (winner = top rated composition of population. if winner's total length is > mean length, longer samples score higher, otherwise shorter samples score higher)
 
 audio genetics - galib + coreaudio (no redistribution)
 - mutation: specimens may add or subtract a word from beginning, or exchange any word for a randomly chosen new one from pool
