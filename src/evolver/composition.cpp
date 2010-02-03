@@ -11,7 +11,7 @@
 #include "composition.h"
 #include <cstdlib>
 #include <map>
-#include <exception>
+#include <stdexcept>
 #include <limits>
 #include <algorithm>
 
@@ -44,6 +44,7 @@ void Composition::init(GAGenome & trg) {
 
 int Composition::mutate(GAGenome & trg, float p) {
     Composition & trgcast = dynamic_cast<Composition &>(trg);
+    int count = 0;
     // roll dice on whether to remove sample from beginning
     // random float < p means remove first sample
     // roll dice on whether to remove sample from end
@@ -63,8 +64,8 @@ int Composition::mutate(GAGenome & trg, float p) {
 float Composition::compare(const GAGenome & left, const GAGenome & right) {
     float diffs = 0;
     float denominator = 0;
-    Composition & leftcast = dynamic_cast<Composition &>(left);
-    Composition & rightcast = dynamic_cast<Composition &>(right); 
+    const Composition & leftcast = dynamic_cast<const Composition &>(left);
+    const Composition & rightcast = dynamic_cast<const Composition &>(right); 
     std::list<Word>::const_iterator leftit = leftcast.words_.begin();
     std::list<Word>::const_iterator rightit = rightcast.words_.begin();
     while (leftit != leftcast.words_.end() && rightit != rightcast.words_.end()) {
@@ -114,7 +115,7 @@ Word::Word(const std::string & filename, int age) : filename_(filename), age_(ag
     calcDuration();
 }
 
-std::string & Word::getFilename() const {
+const std::string & Word::getFilename() const {
     return filename_;
 }
 
@@ -155,11 +156,11 @@ Sample::Sample(const std::string & filename) : filename_(filename) {
 
 SampleBank* SampleBank::instance_ = NULL;
 
-SampleBank * SampleBank::getInstance() {
+SampleBank & SampleBank::getInstance() {
     if (instance_ == NULL) {
         instance_ = new SampleBank();
     }
-    return instance_;
+    return *instance_;
 }
 
 SampleBank::SampleBank() {
@@ -189,11 +190,11 @@ void SampleBank::setSampleSize(unsigned int bytes) {
             sampleSize_ = bytes;
             break;
         default:
-            throw exception("Invalid sample size")
+            throw std::runtime_error("Invalid sample size");
     }
 }
 
-const std::vector<Word> & SampleBank::getWords() {
+const std::vector<Word> & SampleBank::getWords() const {
     return words_;
 }
 
@@ -211,8 +212,8 @@ unsigned int SampleBank::getChannels() const {
 
 void SampleBank::addSample(const std::string & filename) {
     Sample s(filename);
-    samples_.add(s);
-    words_.add(s.getWords());
+    samples_.push_back(s);
+    words_.insert(words_.end(), s.getWords().begin(), s.getWords().end());
 }
 
 void SampleBank::setTiebreaker(bool tie) {
@@ -223,26 +224,27 @@ bool SampleBank::getTiebreaker() {
     return tiebreaker_;
 }
 
-Word SampleBank::randomWord() const {
+Word SampleBank::randomWord() {
     float oldestAge;
     float newestAge;
     if (needsResort_) {
         sort(words_.begin(), words_.end());
-        oldestAge = words_.first().getAge();
-        newestAge = words_.last().getAge();
-        for (std::vector<Word>::iterator it = words_.begin(); it != words().end(); ++it) {
+        oldestAge = words_.front().getAge();
+        newestAge = words_.back().getAge();
+        for (std::vector<Word>::iterator it = words_.begin(); it != words_.end(); ++it) {
             it->setScore((it->getAge() - oldestAge) / (newestAge - oldestAge));
         }
         needsResort_ = false;
     } else {
-        oldestAge = words_.first().getAge();
-        newestAge = words_.last().getAge();
+        oldestAge = words_.front().getAge();
+        newestAge = words_.back().getAge();
     }
     
     float score = random();
+    
 }
 
-void SampleBank::initComposition(const Composition & comp) const {
+void SampleBank::initComposition(Composition & comp) {
     comp.words_.clear();
     // pick number between 1 and 17
     // pick that many random words!

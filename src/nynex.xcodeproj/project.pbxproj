@@ -34,6 +34,11 @@
 		E4C242CD10CC650E004149E2 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C242CC10CC650E004149E2 /* libfmodex.dylib */; };
 		E4C2443910CC7693004149E2 /* openFrameworks-Info.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */; };
 		E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C246D910CCAE22004149E2 /* freeimage.a */; };
+		FC4C45741118EAFD00394B9E /* ratings.h in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AC71111D38100AFE817 /* ratings.h */; };
+		FC4C45751118EAFD00394B9E /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
+		FC4C45761118EAFD00394B9E /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
+		FC4C45771118EAFD00394B9E /* composition.h in Sources */ = {isa = PBXBuildFile; fileRef = FCD23436110FABDE0023CC4B /* composition.h */; };
+		FC4C45CF1118EE5100394B9E /* evolvertest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */; };
 		FC8C0AB71111CF5700AFE817 /* soundcloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */; };
 		FC8C0AD21111D4E500AFE817 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
 		FC8C0AD91111D71C00AFE817 /* streaming.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD71111D71C00AFE817 /* streaming.cpp */; };
@@ -114,6 +119,9 @@
 		E4C2429310CC5C38004149E2 /* freetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freetype.a; path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/lib/osx/freetype.a; sourceTree = "<absolute>"; };
 		E4C242CC10CC650E004149E2 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodex.dylib; path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/lib/osx/libfmodex.dylib; sourceTree = "<absolute>"; };
 		E4C246D910CCAE22004149E2 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/lib/osx/freeimage.a; sourceTree = "<absolute>"; };
+		FC4C45691118EA3500394B9E /* evolver-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "evolver-test"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC4C45CC1118EE4300394B9E /* evolvertest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolvertest.h; sourceTree = "<group>"; };
+		FC4C45CD1118EE4300394B9E /* evolvertest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = evolvertest.cpp; sourceTree = "<group>"; };
 		FC8C0AB51111CF5700AFE817 /* soundcloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = soundcloud.h; sourceTree = "<group>"; };
 		FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = soundcloud.cpp; sourceTree = "<group>"; };
 		FC8C0AC71111D38100AFE817 /* ratings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ratings.h; sourceTree = "<group>"; };
@@ -154,6 +162,13 @@
 				E4C2429410CC5C38004149E2 /* freetype.a in Frameworks */,
 				E4C242CD10CC650E004149E2 /* libfmodex.dylib in Frameworks */,
 				E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4C45671118EA3500394B9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +367,7 @@
 				FC8C0AB41111CF2300AFE817 /* soundcloud */,
 				FC8C0AD61111D71C00AFE817 /* streaming */,
 				FC8C0ACF1111D4E500AFE817 /* twitter */,
+				FC4C45691118EA3500394B9E /* evolver-test */,
 			);
 			sourceTree = "<group>";
 		};
@@ -483,6 +499,8 @@
 				FCD2347411107DE20023CC4B /* ratings.cpp */,
 				FCD23435110FABDE0023CC4B /* composition.cpp */,
 				FCD23436110FABDE0023CC4B /* composition.h */,
+				FC4C45CC1118EE4300394B9E /* evolvertest.h */,
+				FC4C45CD1118EE4300394B9E /* evolvertest.cpp */,
 			);
 			path = evolver;
 			sourceTree = "<group>";
@@ -509,6 +527,22 @@
 			productReference = E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FC4C45681118EA3500394B9E /* evolver-test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC4C45701118EA5600394B9E /* Build configuration list for PBXNativeTarget "evolver-test" */;
+			buildPhases = (
+				FC4C45661118EA3500394B9E /* Sources */,
+				FC4C45671118EA3500394B9E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "evolver-test";
+			productName = "evolver-test";
+			productReference = FC4C45691118EA3500394B9E /* evolver-test */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -529,6 +563,7 @@
 			projectRoot = "";
 			targets = (
 				E4B69B5A0A3A1756003C02F2 /* nynex */,
+				FC4C45681118EA3500394B9E /* evolver-test */,
 			);
 		};
 /* End PBXProject section */
@@ -571,6 +606,18 @@
 				FC8C0AB71111CF5700AFE817 /* soundcloud.cpp in Sources */,
 				FC8C0AD21111D4E500AFE817 /* twitter.cpp in Sources */,
 				FC8C0AD91111D71C00AFE817 /* streaming.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4C45661118EA3500394B9E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC4C45CF1118EE5100394B9E /* evolvertest.cpp in Sources */,
+				FC4C45741118EAFD00394B9E /* ratings.h in Sources */,
+				FC4C45751118EAFD00394B9E /* ratings.cpp in Sources */,
+				FC4C45761118EAFD00394B9E /* composition.cpp in Sources */,
+				FC4C45771118EAFD00394B9E /* composition.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,6 +906,51 @@
 			};
 			name = Release;
 		};
+		FC4C456B1118EA3600394B9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				PRODUCT_NAME = "evolver-test";
+			};
+			name = Debug;
+		};
+		FC4C456C1118EA3600394B9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				PRODUCT_NAME = "evolver-test";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FC4C456D1118EA3600394B9E /* ReleaseUniversal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				PRODUCT_NAME = "evolver-test";
+			};
+			name = ReleaseUniversal;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -878,6 +970,16 @@
 				E4B69B600A3A1757003C02F2 /* Debug */,
 				E4B69B610A3A1757003C02F2 /* Release */,
 				E4B27CA110CBF8A600536013 /* ReleaseUniversal */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC4C45701118EA5600394B9E /* Build configuration list for PBXNativeTarget "evolver-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC4C456B1118EA3600394B9E /* Debug */,
+				FC4C456C1118EA3600394B9E /* Release */,
+				FC4C456D1118EA3600394B9E /* ReleaseUniversal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
