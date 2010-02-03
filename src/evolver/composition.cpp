@@ -14,6 +14,7 @@
 #include <stdexcept>
 #include <limits>
 #include <algorithm>
+#include <cmath>
 
 using namespace nynex;
 using std::sort;
@@ -120,15 +121,7 @@ const std::string & Word::getFilename() const {
 }
 
 bool Word::operator<(const Word & other) const {
-    bool val = ( age_ < other.age_ );
-    if (!val) {
-        if (SampleBank::getInstance().getTiebreaker()) {
-            val = (getDuration() < other.getDuration());
-        } else {
-            val = (getDuration() > other.getDuration());
-        }
-    }
-    return val;
+    return ( age_ < other.age_ );
 }
 
 int Word::getAge() const {
@@ -216,32 +209,34 @@ void SampleBank::addSample(const std::string & filename) {
     words_.insert(words_.end(), s.getWords().begin(), s.getWords().end());
 }
 
-void SampleBank::setTiebreaker(bool tie) {
-    tiebreaker_ = tie;
-}
+ScoreFinder::ScoreFinder() : score_(random()%10000/10000.0) {}
 
-bool SampleBank::getTiebreaker() {
-    return tiebreaker_;
-}
+ScoreFinder::ScoreFinder(float score) : score_(score) {}
 
+bool ScoreFinder::operator()(Word & check) const {
+    return (abs(check.getScore() - score_) <= 0.00001);
+}
+        
 Word SampleBank::randomWord() {
-    float oldestAge;
-    float newestAge;
     if (needsResort_) {
         sort(words_.begin(), words_.end());
-        oldestAge = words_.front().getAge();
-        newestAge = words_.back().getAge();
+        float oldestAge = words_.front().getAge();
+        float newestAge = words_.back().getAge();
         for (std::vector<Word>::iterator it = words_.begin(); it != words_.end(); ++it) {
             it->setScore((it->getAge() - oldestAge) / (newestAge - oldestAge));
         }
         needsResort_ = false;
-    } else {
-        oldestAge = words_.front().getAge();
-        newestAge = words_.back().getAge();
     }
     
-    float score = random();
+    std::vector<Word>::iterator it = find_if(words_.begin(), words_.end(), ScoreFinder());
+    float firstScore = words_.front().getScore();
+    std::vector<Word> choices;
+    while (abs(it->getScore() - firstScore)) {
+        choices.insert(choices.end(), *it);
+    }
     
+    size_t choice = random() % (choices.size() - 1);
+    return choices[choice];
 }
 
 void SampleBank::initComposition(Composition & comp) {

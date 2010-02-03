@@ -49,6 +49,15 @@ namespace nynex {
         int age_;
     };
     
+    class ScoreFinder {
+    public:
+        ScoreFinder();
+        ScoreFinder(float score);
+        bool operator()(Word &) const;
+    private:
+        float score_;
+    };
+    
     class Composition;
         
     class SampleBank {
@@ -63,8 +72,6 @@ namespace nynex {
         unsigned int getSampleRate() const;
         unsigned int getChannels() const;
         void addSample(const std::string & filename);
-        void setTiebreaker(bool);
-        bool getTiebreaker();
         Word randomWord();
         void initComposition(Composition & comp);
     private:
@@ -76,7 +83,6 @@ namespace nynex {
         std::string sampleDir_;
         std::vector<Sample> samples_;
         std::vector<Word> words_;
-        bool tiebreaker_;
         mutable bool needsResort_;
     };
 
