@@ -114,10 +114,55 @@ float Composition::compare(const GAGenome & left, const GAGenome & right) {
 
 int Composition::crossover(const GAGenome & mom, const GAGenome & dad, GAGenome * bro, GAGenome * sis) {
     // choose crossover point <= min(mom.words_.size(), dad.words_.size()) and >= 0
-    // mom's words to left of crossover point go to beginning of bro
-    // dad's words from right of crossover point go to end of bro
-    // dad's words from left of crossover point go to beginning of sis
-    // mom's words from right of crossover point go to end of sis
+    SampleBank::getInstance(); // ensure srandomdev has been called
+    const Composition & momcast = dynamic_cast<const Composition &>(mom);
+    const Composition & dadcast = dynamic_cast<const Composition &>(dad);
+    Composition * brocast = NULL; 
+    if (bro != NULL) {
+        brocast = dynamic_cast<Composition *>(bro);
+        brocast->words_.clear();
+    }
+    
+    Composition * siscast = NULL; 
+    if (sis != NULL) {
+        siscast = dynamic_cast<Composition *>(sis);
+        siscast->words_.clear();
+    }
+    
+    size_t crossover = random() % min(momcast.words_.size(), dadcast.words_.size());
+    std::list<Word>::iterator momit, dadit;
+    momit = mom.words_.begin();
+    dadit = dad.words_.begin();
+
+    for (size_t i = 0; i < max(momcast.words_.size(), dadcast.words_.size()) ; ++i) {
+        if (i < crossover) {
+            // mom's words to left of crossover point go to beginning of bro
+            // dad's words from left of crossover point go to beginning of sis
+            if (brocast != NULL && i < momcast.words_.size()) {
+                brocast->words_.push_back(*momit);
+            }
+            if (siscast != NULL && i < dadcast.words_.size()) {
+                siscast->words_.push_back(*dadit);
+            }
+        } else {
+            // dad's words from right of crossover point go to end of bro
+            // mom's words from right of crossover point go to end of sis
+            if (brocast != NULL && i < dadcast.words_.size()) {
+                brocast->words_.push_back(*dadit);
+            }
+            if (siscast != NULL && i < momcast.words_.size()) {
+                siscast->words_.push_back(*momit);
+            }
+        }
+        
+        if (i < dadcast.words_.size()) {
+            ++dadit;
+        }
+
+        if (i < momcast.words_.size()) {
+            ++momit;
+        }
+    }
     // crossover fs1rgen
     // choose crossover point <= min(mom.notes_.size(), dad.notes_.size()) and >= 0
     // same pattern as for words
@@ -231,7 +276,7 @@ ScoreFinder::ScoreFinder() : score_(random()%10000/10000.0) {}
 ScoreFinder::ScoreFinder(float score) : score_(score) {}
 
 bool ScoreFinder::operator()(Word & check) const {
-    return (abs(check.getScore() - score_) <= 0.00001);
+    return (check.getScore() - score_ <= 0.00001);
 }
         
 Word SampleBank::randomWord() {
