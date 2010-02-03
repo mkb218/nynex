@@ -46,12 +46,29 @@ void Composition::init(GAGenome & trg) {
 int Composition::mutate(GAGenome & trg, float p) {
     Composition & trgcast = dynamic_cast<Composition &>(trg);
     int count = 0;
+    SampleBank & samplebank = SampleBank::getInstance();
+    
     // roll dice on whether to remove sample from beginning
     // random float < p means remove first sample
+    if (random() % 10000 / 10000.0 > p) {
+        words_.pop_front();
+    }
+    
     // roll dice on whether to remove sample from end
     // random float < p means remove end sample
+    if (random() % 10000 / 10000.0 > p) {
+        words_.pop_back();
+    }
+    
     // iterate through words, each time rolling dice to pick a new one
     // random float < p means choose a random new sample to replace it
+    for (std::list<Word>::iterator it = words_.begin(); it != words_.end(); ++it) {
+        if (random() % 10000 / 10000.0 > p) {
+            *it = samplebank.randomWord();
+        }
+    }
+    
+    // below needs fs1rgen integration
     // roll dice for remove a note
     // random float < p means remove first note in map, whatever it is
     // roll dice for add a note iff notes_.size < 4
