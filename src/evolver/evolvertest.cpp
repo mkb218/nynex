@@ -14,6 +14,10 @@
 using namespace nynex;
 
 int main(int argc, char **argv) {
-    Word word = SampleBank::getInstance().randomWord();
+    Word word(SampleBank::getInstance().randomWord());
+    Sample s("gobbledygook");
+    s.getWords();
+    Composition c;
+    SampleBank::getInstance().initComposition(c);
     return 0;
 }

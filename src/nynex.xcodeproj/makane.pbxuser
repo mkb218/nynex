@@ -24,6 +24,15 @@
 			FC364368111A469B00BE48A1 /* PBXTextBookmark */ = FC364368111A469B00BE48A1 /* PBXTextBookmark */;
 			FC364369111A469B00BE48A1 /* PBXTextBookmark */ = FC364369111A469B00BE48A1 /* PBXTextBookmark */;
 			FC36436A111A469B00BE48A1 /* PBXTextBookmark */ = FC36436A111A469B00BE48A1 /* PBXTextBookmark */;
+			FC364372111A46F200BE48A1 /* PBXTextBookmark */ = FC364372111A46F200BE48A1 /* PBXTextBookmark */;
+			FC364373111A46F200BE48A1 /* PBXTextBookmark */ = FC364373111A46F200BE48A1 /* PBXTextBookmark */;
+			FC364374111A46F200BE48A1 /* PBXTextBookmark */ = FC364374111A46F200BE48A1 /* PBXTextBookmark */;
+			FC364375111A46F200BE48A1 /* PBXTextBookmark */ = FC364375111A46F200BE48A1 /* PBXTextBookmark */;
+			FC36437C111A485500BE48A1 /* PBXTextBookmark */ = FC36437C111A485500BE48A1 /* PBXTextBookmark */;
+			FC364381111A491600BE48A1 /* PBXTextBookmark */ = FC364381111A491600BE48A1 /* PBXTextBookmark */;
+			FC364382111A491600BE48A1 /* PBXTextBookmark */ = FC364382111A491600BE48A1 /* PBXTextBookmark */;
+			FC364383111A491600BE48A1 /* PBXTextBookmark */ = FC364383111A491600BE48A1 /* PBXTextBookmark */;
+			FC364384111A491600BE48A1 /* PBXTextBookmark */ = FC364384111A491600BE48A1 /* PBXTextBookmark */;
 			FC4C45DF1118F7BF00394B9E = FC4C45DF1118F7BF00394B9E /* PBXTextBookmark */;
 			FC4C45E01118F7BF00394B9E = FC4C45E01118F7BF00394B9E /* PBXTextBookmark */;
 			FC7404661119BAA700AAE3FF = FC7404661119BAA700AAE3FF /* PBXTextBookmark */;
@@ -80,7 +89,7 @@
 		comments = "error: prototype for ‘const std::vector<nynex::Word, std::allocator<nynex::Word> >& nynex::SampleBank::getWords()’ does not match any in class ‘nynex::SampleBank’";
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		rLen = 1;
-		rLoc = 250;
+		rLoc = 268;
 		rType = 1;
 	};
 	FC364360111A468B00BE48A1 /* PBXTextBookmark */ = {
@@ -96,7 +105,7 @@
 		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
 		name = "evolvertest.cpp: 17";
 		rLen = 0;
-		rLoc = 311;
+		rLoc = 309;
 		rType = 0;
 		vrLen = 340;
 		vrLoc = 0;
@@ -116,7 +125,7 @@
 		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
 		name = "composition.h: 44";
 		rLen = 0;
-		rLoc = 978;
+		rLoc = 986;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 252;
@@ -126,7 +135,7 @@
 		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
 		name = "composition.h: 120";
 		rLen = 0;
-		rLoc = 3435;
+		rLoc = 3444;
 		rType = 0;
 		vrLen = 1577;
 		vrLoc = 1858;
@@ -140,6 +149,94 @@
 		rType = 0;
 		vrLen = 608;
 		vrLoc = 0;
+	};
+	FC364372111A46F200BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		name = "composition.cpp: 180";
+		rLen = 0;
+		rLoc = 6466;
+		rType = 0;
+		vrLen = 1087;
+		vrLoc = 5642;
+	};
+	FC364373111A46F200BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
+		name = "composition.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1086;
+		vrLoc = 253;
+	};
+	FC364374111A46F200BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
+		name = "evolvertest.cpp: 17";
+		rLen = 0;
+		rLoc = 309;
+		rType = 0;
+		vrLen = 340;
+		vrLoc = 0;
+	};
+	FC364375111A46F200BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
+		name = "ratings.h: 22";
+		rLen = 13;
+		rLoc = 363;
+		rType = 0;
+		vrLen = 608;
+		vrLoc = 0;
+	};
+	FC36437C111A485500BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: prototype for ‘const std::list<nynex::Word, std::allocator<nynex::Word> >& nynex::Sample::getWords()’ does not match any in class ‘nynex::Sample’";
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		rLen = 1;
+		rLoc = 213;
+		rType = 1;
+	};
+	FC364381111A491600BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
+		name = "evolvertest.cpp: 21";
+		rLen = 0;
+		rLoc = 440;
+		rType = 0;
+		vrLen = 456;
+		vrLoc = 0;
+	};
+	FC364382111A491600BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
+		name = "ratings.h: 22";
+		rLen = 13;
+		rLoc = 363;
+		rType = 0;
+		vrLen = 608;
+		vrLoc = 0;
+	};
+	FC364383111A491600BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
+		name = "composition.h: 68";
+		rLen = 0;
+		rLoc = 1533;
+		rType = 0;
+		vrLen = 1625;
+		vrLoc = 1813;
+	};
+	FC364384111A491600BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		name = "composition.cpp: 226";
+		rLen = 0;
+		rLoc = 7407;
+		rType = 0;
+		vrLen = 955;
+		vrLoc = 6710;
 	};
 	FC4C45681118EA3500394B9E /* evolver-test */ = {
 		activeExec = 0;
@@ -181,8 +278,8 @@
 	FC4C45CD1118EE4300394B9E /* evolvertest.cpp */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
-			sepNavSelRange = "{311, 0}";
-			sepNavVisRange = "{0, 340}";
+			sepNavSelRange = "{440, 0}";
+			sepNavVisRange = "{0, 456}";
 			sepNavWindowFrame = "{{61, 98}, {618, 733}}";
 		};
 	};
@@ -191,7 +288,7 @@
 		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
 		name = "composition.h: 85";
 		rLen = 0;
-		rLoc = 2372;
+		rLoc = 2381;
 		rType = 0;
 		vrLen = 1364;
 		vrLoc = 789;
@@ -211,7 +308,7 @@
 		comments = "error: prototype for ‘bool nynex::ScoreFinder::operator()(nynex::Word) const’ does not match any in class ‘nynex::ScoreFinder’";
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		rLen = 1;
-		rLoc = 276;
+		rLoc = 294;
 		rType = 1;
 	};
 	FC7404701119BD9700AAE3FF /* PBXTextBookmark */ = {
@@ -219,7 +316,7 @@
 		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
 		name = "composition.h: 86";
 		rLen = 0;
-		rLoc = 2213;
+		rLoc = 2222;
 		rType = 0;
 		vrLen = 1459;
 		vrLoc = 1147;
@@ -229,7 +326,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 211";
 		rLen = 0;
-		rLoc = 8152;
+		rLoc = 8695;
 		rType = 0;
 		vrLen = 1372;
 		vrLoc = 5568;
@@ -278,17 +375,17 @@
 	};
 	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 4452}}";
-			sepNavSelRange = "{5990, 0}";
-			sepNavVisRange = "{8024, 1424}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 4648}}";
+			sepNavSelRange = "{7407, 0}";
+			sepNavVisRange = "{6710, 955}";
 			sepNavWindowFrame = "{{744, 143}, {618, 733}}";
 		};
 	};
 	FCD23436110FABDE0023CC4B /* composition.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 1680}}";
-			sepNavSelRange = "{3435, 0}";
-			sepNavVisRange = "{1858, 1577}";
+			sepNavSelRange = "{1533, 0}";
+			sepNavVisRange = "{1813, 1625}";
 			sepNavWindowFrame = "{{14, 145}, {618, 733}}";
 		};
 	};

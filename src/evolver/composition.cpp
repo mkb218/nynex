@@ -177,6 +177,9 @@ Word::Word(const std::string & filename, int age) : filename_(filename), age_(ag
     calcDuration();
 }
 
+Word::Word(const Word & other) : filename_(other.filename_), age_(other.age_), score_(other.score_), duration_(other.duration_)  {
+}
+
 const std::string & Word::getFilename() const {
     return filename_;
 }
@@ -206,6 +209,21 @@ void Word::calcDuration() {
 }
 
 Sample::Sample(const std::string & filename) : filename_(filename) {
+}
+
+const std::list<Word> & Sample::getWords() {
+    if (!wordsReady_) {
+        makeWords();
+    }
+    return words_;
+}
+
+void Sample::makeWords() {
+    // read in sample data to buffer
+    // find 2nd standard deviation below mean of abs values
+    // if more than 0.1 s is below this level eliminate those sample
+    // all samples between gaps are put in own files
+    // make a new word with each filename
 }
 
 SampleBank* SampleBank::instance_ = NULL;
