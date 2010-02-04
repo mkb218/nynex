@@ -41,12 +41,13 @@ namespace nynex {
         Sample(const std::string &);
         Sample(const Sample &);
         Sample & operator=(const Sample & other);
-        std::list<Word> getWords() const;
+        std::list<Word> getWords();
     private:
-        void makeWords() const;
+        void makeWords();
         std::list<Word> words;
         std::string filename_;
         int age_;
+        bool wordsReady_;
     };
     
     class ScoreFinder {

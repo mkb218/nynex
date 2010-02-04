@@ -51,18 +51,18 @@ int Composition::mutate(GAGenome & trg, float p) {
     // roll dice on whether to remove sample from beginning
     // random float < p means remove first sample
     if (random() % 10000 / 10000.0 > p) {
-        words_.pop_front();
+        trgcast.words_.pop_front();
     }
     
     // roll dice on whether to remove sample from end
     // random float < p means remove end sample
     if (random() % 10000 / 10000.0 > p) {
-        words_.pop_back();
+        trgcast.words_.pop_back();
     }
     
     // iterate through words, each time rolling dice to pick a new one
     // random float < p means choose a random new sample to replace it
-    for (std::list<Word>::iterator it = words_.begin(); it != words_.end(); ++it) {
+    for (std::list<Word>::iterator it = trgcast.words_.begin(); it != trgcast.words_.end(); ++it) {
         if (random() % 10000 / 10000.0 > p) {
             *it = samplebank.randomWord();
         }
@@ -129,12 +129,11 @@ int Composition::crossover(const GAGenome & mom, const GAGenome & dad, GAGenome 
         siscast->words_.clear();
     }
     
-    size_t crossover = random() % min(momcast.words_.size(), dadcast.words_.size());
-    std::list<Word>::iterator momit, dadit;
-    momit = mom.words_.begin();
-    dadit = dad.words_.begin();
+    size_t crossover = random() % std::min(momcast.words_.size(), dadcast.words_.size());
+    std::list<Word>::const_iterator momit = momcast.words_.begin();
+    std::list<Word>::const_iterator dadit = dadcast.words_.begin();
 
-    for (size_t i = 0; i < max(momcast.words_.size(), dadcast.words_.size()) ; ++i) {
+    for (size_t i = 0; i < std::max(momcast.words_.size(), dadcast.words_.size()) ; ++i) {
         if (i < crossover) {
             // mom's words to left of crossover point go to beginning of bro
             // dad's words from left of crossover point go to beginning of sis

@@ -118,7 +118,7 @@
 		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
 		name = "composition.h: 85";
 		rLen = 0;
-		rLoc = 2358;
+		rLoc = 2372;
 		rType = 0;
 		vrLen = 1364;
 		vrLoc = 789;
@@ -138,7 +138,7 @@
 		comments = "error: prototype for ‘bool nynex::ScoreFinder::operator()(nynex::Word) const’ does not match any in class ‘nynex::ScoreFinder’";
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		rLen = 1;
-		rLoc = 215;
+		rLoc = 276;
 		rType = 1;
 	};
 	FC7404701119BD9700AAE3FF /* PBXTextBookmark */ = {
@@ -146,7 +146,7 @@
 		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
 		name = "composition.h: 86";
 		rLen = 0;
-		rLoc = 2199;
+		rLoc = 2213;
 		rType = 0;
 		vrLen = 1459;
 		vrLoc = 1147;
@@ -156,7 +156,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 211";
 		rLen = 0;
-		rLoc = 6058;
+		rLoc = 8152;
 		rType = 0;
 		vrLen = 1372;
 		vrLoc = 5568;

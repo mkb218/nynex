@@ -8,6 +8,10 @@
  */
 
 #include "evolvertest.h"
+#include "composition.h"
+#include "ga/ga.h"
+
+using namespace nynex;
 
 int main(int argc, char **argv) {
     return 0;
