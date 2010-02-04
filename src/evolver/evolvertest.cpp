@@ -14,5 +14,6 @@
 using namespace nynex;
 
 int main(int argc, char **argv) {
+    Word word = SampleBank::getInstance().randomWord();
     return 0;
 }
