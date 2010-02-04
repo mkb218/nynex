@@ -17,35 +17,12 @@
 			PBXWorkspaceStateSaveDate = 286932339;
 		};
 		perUserProjectItems = {
-			FC364353111A45DB00BE48A1 /* PBXTextBookmark */ = FC364353111A45DB00BE48A1 /* PBXTextBookmark */;
-			FC364360111A468B00BE48A1 /* PBXTextBookmark */ = FC364360111A468B00BE48A1 /* PBXTextBookmark */;
-			FC364366111A469B00BE48A1 /* PBXTextBookmark */ = FC364366111A469B00BE48A1 /* PBXTextBookmark */;
-			FC364367111A469B00BE48A1 /* PBXTextBookmark */ = FC364367111A469B00BE48A1 /* PBXTextBookmark */;
 			FC364368111A469B00BE48A1 /* PBXTextBookmark */ = FC364368111A469B00BE48A1 /* PBXTextBookmark */;
-			FC364369111A469B00BE48A1 /* PBXTextBookmark */ = FC364369111A469B00BE48A1 /* PBXTextBookmark */;
-			FC36436A111A469B00BE48A1 /* PBXTextBookmark */ = FC36436A111A469B00BE48A1 /* PBXTextBookmark */;
-			FC364372111A46F200BE48A1 /* PBXTextBookmark */ = FC364372111A46F200BE48A1 /* PBXTextBookmark */;
-			FC364373111A46F200BE48A1 /* PBXTextBookmark */ = FC364373111A46F200BE48A1 /* PBXTextBookmark */;
-			FC364374111A46F200BE48A1 /* PBXTextBookmark */ = FC364374111A46F200BE48A1 /* PBXTextBookmark */;
-			FC364375111A46F200BE48A1 /* PBXTextBookmark */ = FC364375111A46F200BE48A1 /* PBXTextBookmark */;
-			FC36437C111A485500BE48A1 /* PBXTextBookmark */ = FC36437C111A485500BE48A1 /* PBXTextBookmark */;
-			FC364381111A491600BE48A1 /* PBXTextBookmark */ = FC364381111A491600BE48A1 /* PBXTextBookmark */;
-			FC364382111A491600BE48A1 /* PBXTextBookmark */ = FC364382111A491600BE48A1 /* PBXTextBookmark */;
-			FC364383111A491600BE48A1 /* PBXTextBookmark */ = FC364383111A491600BE48A1 /* PBXTextBookmark */;
-			FC364384111A491600BE48A1 /* PBXTextBookmark */ = FC364384111A491600BE48A1 /* PBXTextBookmark */;
 			FC36438A111A728700BE48A1 /* PBXTextBookmark */ = FC36438A111A728700BE48A1 /* PBXTextBookmark */;
-			FC36438E111A72D600BE48A1 /* PBXTextBookmark */ = FC36438E111A72D600BE48A1 /* PBXTextBookmark */;
-			FC36438F111A72D600BE48A1 /* PBXTextBookmark */ = FC36438F111A72D600BE48A1 /* PBXTextBookmark */;
-			FC364390111A72D600BE48A1 /* PBXTextBookmark */ = FC364390111A72D600BE48A1 /* PBXTextBookmark */;
-			FC364392111A72EB00BE48A1 /* PBXTextBookmark */ = FC364392111A72EB00BE48A1 /* PBXTextBookmark */;
-			FC364393111A72EB00BE48A1 /* PBXTextBookmark */ = FC364393111A72EB00BE48A1 /* PBXTextBookmark */;
-			FC364394111A72EB00BE48A1 /* PBXTextBookmark */ = FC364394111A72EB00BE48A1 /* PBXTextBookmark */;
-			FC4C45DF1118F7BF00394B9E = FC4C45DF1118F7BF00394B9E /* PBXTextBookmark */;
-			FC4C45E01118F7BF00394B9E = FC4C45E01118F7BF00394B9E /* PBXTextBookmark */;
-			FC7404661119BAA700AAE3FF = FC7404661119BAA700AAE3FF /* PBXTextBookmark */;
-			FC7404701119BD9700AAE3FF = FC7404701119BD9700AAE3FF /* PBXTextBookmark */;
-			FC7404711119BD9700AAE3FF = FC7404711119BD9700AAE3FF /* PBXTextBookmark */;
-			FC7404721119BD9700AAE3FF = FC7404721119BD9700AAE3FF /* PBXTextBookmark */;
+			FC3643A0111B0F3800BE48A1 /* PBXTextBookmark */ = FC3643A0111B0F3800BE48A1 /* PBXTextBookmark */;
+			FC3643A1111B0F3800BE48A1 /* PBXTextBookmark */ = FC3643A1111B0F3800BE48A1 /* PBXTextBookmark */;
+			FC3643A2111B0F3800BE48A1 /* PBXTextBookmark */ = FC3643A2111B0F3800BE48A1 /* PBXTextBookmark */;
+			FC7404721119BD9700AAE3FF /* PBXTextBookmark */ = FC7404721119BD9700AAE3FF /* PBXTextBookmark */;
 		};
 		sourceControlManager = FC146647110E6007006F10FB /* Source Control */;
 		userBuildSettings = {
@@ -91,42 +68,6 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	FC364353111A45DB00BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: prototype for ‘const std::vector<nynex::Word, std::allocator<nynex::Word> >& nynex::SampleBank::getWords()’ does not match any in class ‘nynex::SampleBank’";
-		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		rLen = 1;
-		rLoc = 269;
-		rType = 1;
-	};
-	FC364360111A468B00BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: cannot call member function ‘nynex::Word nynex::SampleBank::randomWord()’ without object";
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		rLen = 1;
-		rLoc = 16;
-		rType = 1;
-	};
-	FC364366111A469B00BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		name = "evolvertest.cpp: 17";
-		rLen = 0;
-		rLoc = 309;
-		rType = 0;
-		vrLen = 340;
-		vrLoc = 0;
-	};
-	FC364367111A469B00BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		name = "composition.cpp: 170";
-		rLen = 0;
-		rLoc = 6035;
-		rType = 0;
-		vrLen = 1424;
-		vrLoc = 8024;
-	};
 	FC364368111A469B00BE48A1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
@@ -137,173 +78,35 @@
 		vrLen = 1064;
 		vrLoc = 252;
 	};
-	FC364369111A469B00BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 120";
-		rLen = 0;
-		rLoc = 3444;
-		rType = 0;
-		vrLen = 1577;
-		vrLoc = 1858;
-	};
-	FC36436A111A469B00BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
-		name = "ratings.h: 22";
-		rLen = 13;
-		rLoc = 363;
-		rType = 0;
-		vrLen = 608;
-		vrLoc = 0;
-	};
-	FC364372111A46F200BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		name = "composition.cpp: 180";
-		rLen = 0;
-		rLoc = 6511;
-		rType = 0;
-		vrLen = 1087;
-		vrLoc = 5642;
-	};
-	FC364373111A46F200BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1086;
-		vrLoc = 253;
-	};
-	FC364374111A46F200BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		name = "evolvertest.cpp: 17";
-		rLen = 0;
-		rLoc = 309;
-		rType = 0;
-		vrLen = 340;
-		vrLoc = 0;
-	};
-	FC364375111A46F200BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
-		name = "ratings.h: 22";
-		rLen = 13;
-		rLoc = 363;
-		rType = 0;
-		vrLen = 608;
-		vrLoc = 0;
-	};
-	FC36437C111A485500BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: prototype for ‘const std::list<nynex::Word, std::allocator<nynex::Word> >& nynex::Sample::getWords()’ does not match any in class ‘nynex::Sample’";
-		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		rLen = 1;
-		rLoc = 214;
-		rType = 1;
-	};
-	FC364381111A491600BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		name = "evolvertest.cpp: 21";
-		rLen = 0;
-		rLoc = 440;
-		rType = 0;
-		vrLen = 456;
-		vrLoc = 0;
-	};
-	FC364382111A491600BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
-		name = "ratings.h: 22";
-		rLen = 13;
-		rLoc = 363;
-		rType = 0;
-		vrLen = 608;
-		vrLoc = 0;
-	};
-	FC364383111A491600BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 68";
-		rLen = 0;
-		rLoc = 1533;
-		rType = 0;
-		vrLen = 1625;
-		vrLoc = 1813;
-	};
-	FC364384111A491600BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		name = "composition.cpp: 226";
-		rLen = 0;
-		rLoc = 7452;
-		rType = 0;
-		vrLen = 955;
-		vrLoc = 6710;
-	};
 	FC36438A111A728700BE48A1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		comments = "error: ‘static’ may not be used when defining (as opposed to declaring) a static data member";
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		rLen = 0;
-		rLoc = 20;
+		rLoc = 24;
 		rType = 1;
 	};
-	FC36438E111A72D600BE48A1 /* PBXTextBookmark */ = {
+	FC3643A0111B0F3800BE48A1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		name = "composition.cpp: 22";
+		name = "composition.cpp: 24";
 		rLen = 0;
-		rLoc = 327;
+		rLoc = 358;
 		rType = 0;
-		vrLen = 1242;
-		vrLoc = 33;
+		vrLen = 1016;
+		vrLoc = 7197;
 	};
-	FC36438F111A72D600BE48A1 /* PBXTextBookmark */ = {
+	FC3643A1111B0F3800BE48A1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 1";
+		name = "composition.h: 117";
 		rLen = 0;
-		rLoc = 0;
+		rLoc = 3434;
 		rType = 0;
-		vrLen = 1577;
-		vrLoc = 1867;
+		vrLen = 1459;
+		vrLoc = 1170;
 	};
-	FC364390111A72D600BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
-		name = "ratings.h: 22";
-		rLen = 13;
-		rLoc = 363;
-		rType = 0;
-		vrLen = 608;
-		vrLoc = 0;
-	};
-	FC364392111A72EB00BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		name = "composition.cpp: 22";
-		rLen = 0;
-		rLoc = 327;
-		rType = 0;
-		vrLen = 1242;
-		vrLoc = 33;
-	};
-	FC364393111A72EB00BE48A1 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 1577;
-		vrLoc = 1867;
-	};
-	FC364394111A72EB00BE48A1 /* PBXTextBookmark */ = {
+	FC3643A2111B0F3800BE48A1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
 		name = "ratings.h: 22";
@@ -358,54 +161,6 @@
 			sepNavWindowFrame = "{{631, 141}, {618, 733}}";
 		};
 	};
-	FC4C45DF1118F7BF00394B9E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 85";
-		rLen = 0;
-		rLoc = 2381;
-		rType = 0;
-		vrLen = 1364;
-		vrLoc = 789;
-	};
-	FC4C45E01118F7BF00394B9E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
-		name = "ratings.h: 15";
-		rLen = 0;
-		rLoc = 229;
-		rType = 0;
-		vrLen = 608;
-		vrLoc = 0;
-	};
-	FC7404661119BAA700AAE3FF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: prototype for ‘bool nynex::ScoreFinder::operator()(nynex::Word) const’ does not match any in class ‘nynex::ScoreFinder’";
-		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		rLen = 1;
-		rLoc = 295;
-		rType = 1;
-	};
-	FC7404701119BD9700AAE3FF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 86";
-		rLen = 0;
-		rLoc = 2222;
-		rType = 0;
-		vrLen = 1459;
-		vrLoc = 1147;
-	};
-	FC7404711119BD9700AAE3FF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		name = "composition.cpp: 211";
-		rLen = 0;
-		rLoc = 8740;
-		rType = 0;
-		vrLen = 1372;
-		vrLoc = 5568;
-	};
 	FC7404721119BD9700AAE3FF /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
@@ -450,17 +205,17 @@
 	};
 	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 4662}}";
-			sepNavSelRange = "{327, 0}";
-			sepNavVisRange = "{33, 1242}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 4788}}";
+			sepNavSelRange = "{358, 0}";
+			sepNavVisRange = "{7197, 1016}";
 			sepNavWindowFrame = "{{744, 143}, {618, 733}}";
 		};
 	};
 	FCD23436110FABDE0023CC4B /* composition.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 1680}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{1867, 1577}";
+			sepNavSelRange = "{3434, 0}";
+			sepNavVisRange = "{1170, 1459}";
 			sepNavWindowFrame = "{{14, 145}, {618, 733}}";
 		};
 	};

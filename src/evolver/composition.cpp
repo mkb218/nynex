@@ -16,6 +16,10 @@
 #include <algorithm>
 #include <cmath>
 
+extern "C" {
+#include "sox.h"
+}
+
 using namespace nynex;
 using std::sort;
 
