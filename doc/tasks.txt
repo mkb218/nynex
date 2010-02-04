@@ -9,5 +9,5 @@
 - twitter account for announcements - done!
 - streaming with soundcloud?
 - get sound file bits working
-- compile custom libsox (mad, flac, ogg vorbis only)
+- compile custom libsox (mad, flac, ogg vorbis only) with dynamic linking so i'm not redistributing gpl code
 - add sox libs to other projects web page
