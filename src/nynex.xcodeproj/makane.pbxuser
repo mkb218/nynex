@@ -33,6 +33,13 @@
 			FC364382111A491600BE48A1 /* PBXTextBookmark */ = FC364382111A491600BE48A1 /* PBXTextBookmark */;
 			FC364383111A491600BE48A1 /* PBXTextBookmark */ = FC364383111A491600BE48A1 /* PBXTextBookmark */;
 			FC364384111A491600BE48A1 /* PBXTextBookmark */ = FC364384111A491600BE48A1 /* PBXTextBookmark */;
+			FC36438A111A728700BE48A1 /* PBXTextBookmark */ = FC36438A111A728700BE48A1 /* PBXTextBookmark */;
+			FC36438E111A72D600BE48A1 /* PBXTextBookmark */ = FC36438E111A72D600BE48A1 /* PBXTextBookmark */;
+			FC36438F111A72D600BE48A1 /* PBXTextBookmark */ = FC36438F111A72D600BE48A1 /* PBXTextBookmark */;
+			FC364390111A72D600BE48A1 /* PBXTextBookmark */ = FC364390111A72D600BE48A1 /* PBXTextBookmark */;
+			FC364392111A72EB00BE48A1 /* PBXTextBookmark */ = FC364392111A72EB00BE48A1 /* PBXTextBookmark */;
+			FC364393111A72EB00BE48A1 /* PBXTextBookmark */ = FC364393111A72EB00BE48A1 /* PBXTextBookmark */;
+			FC364394111A72EB00BE48A1 /* PBXTextBookmark */ = FC364394111A72EB00BE48A1 /* PBXTextBookmark */;
 			FC4C45DF1118F7BF00394B9E = FC4C45DF1118F7BF00394B9E /* PBXTextBookmark */;
 			FC4C45E01118F7BF00394B9E = FC4C45E01118F7BF00394B9E /* PBXTextBookmark */;
 			FC7404661119BAA700AAE3FF = FC7404661119BAA700AAE3FF /* PBXTextBookmark */;
@@ -89,7 +96,7 @@
 		comments = "error: prototype for ‘const std::vector<nynex::Word, std::allocator<nynex::Word> >& nynex::SampleBank::getWords()’ does not match any in class ‘nynex::SampleBank’";
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		rLen = 1;
-		rLoc = 268;
+		rLoc = 269;
 		rType = 1;
 	};
 	FC364360111A468B00BE48A1 /* PBXTextBookmark */ = {
@@ -115,7 +122,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 170";
 		rLen = 0;
-		rLoc = 5990;
+		rLoc = 6035;
 		rType = 0;
 		vrLen = 1424;
 		vrLoc = 8024;
@@ -155,7 +162,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 180";
 		rLen = 0;
-		rLoc = 6466;
+		rLoc = 6511;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 5642;
@@ -195,7 +202,7 @@
 		comments = "error: prototype for ‘const std::list<nynex::Word, std::allocator<nynex::Word> >& nynex::Sample::getWords()’ does not match any in class ‘nynex::Sample’";
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		rLen = 1;
-		rLoc = 213;
+		rLoc = 214;
 		rType = 1;
 	};
 	FC364381111A491600BE48A1 /* PBXTextBookmark */ = {
@@ -233,10 +240,78 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 226";
 		rLen = 0;
-		rLoc = 7407;
+		rLoc = 7452;
 		rType = 0;
 		vrLen = 955;
 		vrLoc = 6710;
+	};
+	FC36438A111A728700BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: ‘static’ may not be used when defining (as opposed to declaring) a static data member";
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		rLen = 0;
+		rLoc = 20;
+		rType = 1;
+	};
+	FC36438E111A72D600BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		name = "composition.cpp: 22";
+		rLen = 0;
+		rLoc = 327;
+		rType = 0;
+		vrLen = 1242;
+		vrLoc = 33;
+	};
+	FC36438F111A72D600BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
+		name = "composition.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1577;
+		vrLoc = 1867;
+	};
+	FC364390111A72D600BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
+		name = "ratings.h: 22";
+		rLen = 13;
+		rLoc = 363;
+		rType = 0;
+		vrLen = 608;
+		vrLoc = 0;
+	};
+	FC364392111A72EB00BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		name = "composition.cpp: 22";
+		rLen = 0;
+		rLoc = 327;
+		rType = 0;
+		vrLen = 1242;
+		vrLoc = 33;
+	};
+	FC364393111A72EB00BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
+		name = "composition.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1577;
+		vrLoc = 1867;
+	};
+	FC364394111A72EB00BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
+		name = "ratings.h: 22";
+		rLen = 13;
+		rLoc = 363;
+		rType = 0;
+		vrLen = 608;
+		vrLoc = 0;
 	};
 	FC4C45681118EA3500394B9E /* evolver-test */ = {
 		activeExec = 0;
@@ -280,7 +355,7 @@
 			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
 			sepNavSelRange = "{440, 0}";
 			sepNavVisRange = "{0, 456}";
-			sepNavWindowFrame = "{{61, 98}, {618, 733}}";
+			sepNavWindowFrame = "{{631, 141}, {618, 733}}";
 		};
 	};
 	FC4C45DF1118F7BF00394B9E /* PBXTextBookmark */ = {
@@ -308,7 +383,7 @@
 		comments = "error: prototype for ‘bool nynex::ScoreFinder::operator()(nynex::Word) const’ does not match any in class ‘nynex::ScoreFinder’";
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		rLen = 1;
-		rLoc = 294;
+		rLoc = 295;
 		rType = 1;
 	};
 	FC7404701119BD9700AAE3FF /* PBXTextBookmark */ = {
@@ -326,7 +401,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 211";
 		rLen = 0;
-		rLoc = 8695;
+		rLoc = 8740;
 		rType = 0;
 		vrLen = 1372;
 		vrLoc = 5568;
@@ -375,17 +450,17 @@
 	};
 	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 4648}}";
-			sepNavSelRange = "{7407, 0}";
-			sepNavVisRange = "{6710, 955}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 4662}}";
+			sepNavSelRange = "{327, 0}";
+			sepNavVisRange = "{33, 1242}";
 			sepNavWindowFrame = "{{744, 143}, {618, 733}}";
 		};
 	};
 	FCD23436110FABDE0023CC4B /* composition.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 1680}}";
-			sepNavSelRange = "{1533, 0}";
-			sepNavVisRange = "{1813, 1625}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{1867, 1577}";
 			sepNavWindowFrame = "{{14, 145}, {618, 733}}";
 		};
 	};

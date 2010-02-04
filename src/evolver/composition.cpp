@@ -19,6 +19,7 @@
 using namespace nynex;
 using std::sort;
 
+unsigned int Composition::nextObjectId_ = 1;
 Composition::Composition() : objectId_(nextObjectId_++) {}
 Composition::Composition(const std::list<Word> & words) : objectId_(nextObjectId_++),words_(words.begin(), words.end()) {}
 Composition::Composition(const Composition & other) : objectId_(other.objectId_),words_(other.words_.begin(), other.words_.end()) {}
