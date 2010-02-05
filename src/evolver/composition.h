@@ -30,7 +30,7 @@ namespace nynex {
         void setScore(float);
     private:
         void calcDuration();
-        std::string filename_;
+        std::string filename_; // relative to sampledir
         int age_;
         unsigned int duration_; // samples
         float score_;
@@ -45,7 +45,7 @@ namespace nynex {
     private:
         void makeWords();
         std::list<Word> words_;
-        std::string filename_;
+        std::string filename_; // relative to sampledir
         int age_;
         bool wordsReady_;
     };
@@ -69,11 +69,13 @@ namespace nynex {
         void setSampleRate(double rate);
         void setChannels(unsigned int channels);
         void setSampleSize(unsigned int bytes);
+        const std::string & getSampleDir() const { return sampleDir_ };
+        std::string getWordDir() const { return sampleDir_+"/words" };
         const std::vector<Word> & getWords() const;
         unsigned int getSampleSize() const;
         double getSampleRate() const;
         unsigned int getChannels() const;
-        void addSample(const std::string & filename);
+        void addSample(const std::string & path);
         Word randomWord();
         void initComposition(Composition & comp);
     private:

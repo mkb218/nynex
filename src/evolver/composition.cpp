@@ -15,10 +15,13 @@
 #include <limits>
 #include <algorithm>
 #include <cmath>
+#include <sys/stat.h>
 
 extern "C" {
 #include "sox.h"
 }
+
+typedef struct sox_sample_t sox_sample_t
 
 using namespace nynex;
 using std::sort;
@@ -227,7 +230,7 @@ void Sample::makeWords() {
     // read in sample data to buffer
     SampleBank & bank = SampleBank::getInstance();
     struct sox_format_t *in;
-    std::list<struct sox_sample_t *> buf;
+    std::list<sox_sample_t *> buf;
     struct sox_signalinfo_t signal;
     signal.rate = bank.getSampleRate();
     signal.channels = bank.getChannels();
@@ -236,8 +239,69 @@ void Sample::makeWords() {
     signal.mult = NULL;
     in = sox_open_read(filename_.c_str(), &signal, NULL, NULL);
     
-    // find 2nd standard deviation below mean of abs values
-    // if more than 0.1 s is below this level eliminate those sample
+    size_t bufsize = 1024;
+    size_t read = 0; // need this later
+    do {
+        buf.push_back((sox_sample_t*)malloc(bufsize*sizeof(sox_sample_t)));
+        read = sox_read(in, buf.back(), bufsize);
+    } while (bufsize == read);
+    sox_close(in);
+    
+    // find 3rd standard deviation below mean of abs values
+    double sum = 0.;
+    size_t count = 0;
+    size_t list_ix = 0;
+    size_t limit = bufsize;
+    for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
+        if (list_ix + 1 == buf.size()) {
+            limit = read;
+        }
+        
+        for (size_t ix = 0; ix < bufsize; ++ix) {
+            ++count;
+            sum += SOX_SAMPLE_TO_FLOAT_64BIT((*it)[i],);
+        }
+    }
+    
+    double mean = sum/count;
+    sum = 0.; // now this is sum of squares
+    list_ix = 0;
+    limit = bufsize;
+    for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
+        if (list_ix + 1 == buf.size()) {
+            limit = read;
+        }
+        
+        for (size_t ix = 0; ix < bufsize; ++ix) {
+            sum += pow((SOX_SAMPLE_TO_FLOAT_64BIT((*it)[i],) - mean),2.);
+        }
+    }
+    
+    double stddev = sqrt(sum/count);
+    int stddevs = 3;
+    bool shortcircuit = false;
+    double floor = 0.0;
+    while (floor <= 0.001 && stddevs >= 0) {
+        floor = mean - stddevs*stddev;
+        --stddevs;
+    }
+    
+    // if more than 0.01 s is below this level eliminate those samples
+    size_t gapsize = 0.01 * bank::getSampleRate() * bank::getChannels(); // s * frames/s * samples/frame
+    // normalize when reading in word files
+    list_ix = 0;
+    limit = bufsize;
+    size_t currentGapLength = 0;
+    for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
+        if (list_ix + 1 == buf.size()) {
+            limit = read;
+        }
+        
+        for (size_t ix = 0; ix < bufsize; ++ix) {
+            sum += pow((SOX_SAMPLE_TO_FLOAT_64BIT((*it)[i],) - mean),2.);
+        }
+    }
+
     // all samples between gaps are put in own files
     // make a new word with each filename
 }
@@ -303,8 +367,9 @@ unsigned int SampleBank::getChannels() const {
     return channels_;
 }
 
-void SampleBank::addSample(const std::string & filename) {
-    Sample s(filename);
+void SampleBank::addSample(const std::string & filepath) {
+    // copy filepath to sampledir
+    Sample s(basename(filepath.c_str()));
     samples_.push_back(s);
     words_.insert(words_.end(), s.getWords().begin(), s.getWords().end());
 }
