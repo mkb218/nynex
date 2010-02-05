@@ -15,6 +15,7 @@
 #include <list>
 #include <string>
 
+#include "sox.h"
 #include "ga/ga.h"
 
 namespace nynex {
@@ -30,7 +31,7 @@ namespace nynex {
         void setScore(float);
     private:
         void calcDuration();
-        std::string filename_; // relative to sampledir
+        std::string filename_; // relative to sampledir/words
         int age_;
         unsigned int duration_; // samples
         float score_;
@@ -78,6 +79,7 @@ namespace nynex {
         void addSample(const std::string & path);
         Word randomWord();
         void initComposition(Composition & comp);
+        const sox_encodinginfo_t & getEncodingInfo() const;
     private:
         SampleBank();
         static SampleBank * instance_;
@@ -87,6 +89,8 @@ namespace nynex {
         std::string sampleDir_;
         std::vector<Sample> samples_;
         std::vector<Word> words_;
+        mutable sox_encodinginfo_t soxencoding_;
+        mutable bool encodingready_;
         mutable bool needsResort_;
     };
 

@@ -21,8 +21,6 @@ extern "C" {
 #include "sox.h"
 }
 
-typedef struct sox_sample_t sox_sample_t
-
 using namespace nynex;
 using std::sort;
 
@@ -229,9 +227,9 @@ const std::list<Word> & Sample::getWords() {
 void Sample::makeWords() {
     // read in sample data to buffer
     SampleBank & bank = SampleBank::getInstance();
-    struct sox_format_t *in;
+    sox_format_t *in;
     std::list<sox_sample_t *> buf;
-    struct sox_signalinfo_t signal;
+    sox_signalinfo_t signal;
     signal.rate = bank.getSampleRate();
     signal.channels = bank.getChannels();
     signal.precision = bank.getSampleSize() * 8;
@@ -239,7 +237,7 @@ void Sample::makeWords() {
     signal.mult = NULL;
     in = sox_open_read(filename_.c_str(), &signal, NULL, NULL);
     
-    size_t bufsize = 1024;
+    size_t bufsize = 1024 * bank.getChannels(); // needs to be a multiple of number of samples in a frame
     size_t read = 0; // need this later
     do {
         buf.push_back((sox_sample_t*)malloc(bufsize*sizeof(sox_sample_t)));
@@ -272,7 +270,7 @@ void Sample::makeWords() {
             limit = read;
         }
         
-        for (size_t ix = 0; ix < bufsize; ++ix) {
+        for (size_t ix = 0; ix < limit; ++ix) {
             sum += pow((SOX_SAMPLE_TO_FLOAT_64BIT((*it)[i],) - mean),2.);
         }
     }
@@ -288,22 +286,48 @@ void Sample::makeWords() {
     
     // if more than 0.01 s is below this level eliminate those samples
     size_t gapsize = 0.01 * bank::getSampleRate() * bank::getChannels(); // s * frames/s * samples/frame
-    // normalize when reading in word files
+
+    // all samples between gaps are put in own files
+    size_t currentGapLength = 0;
+    size_t word_ix = 0;
+    std::string filebase(filename_);
+    std::string filename(filebase+word_ix);
+    sox_format_t * out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
     list_ix = 0;
     limit = bufsize;
-    size_t currentGapLength = 0;
     for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
+        size_t offset = 0;
         if (list_ix + 1 == buf.size()) {
             limit = read;
         }
         
-        for (size_t ix = 0; ix < bufsize; ++ix) {
-            sum += pow((SOX_SAMPLE_TO_FLOAT_64BIT((*it)[i],) - mean),2.);
+        for (size_t sampleix = 0; sample < bank.getChannels(); ++sampleix) {
+            for (size_t ix = 0; ix < limit/bank.getChannels(); ++ix) {
+                if (SOX_SAMPLE_TO_FLOAT_64BIT((*it)[i],) < floor) {
+                    ++currentGapLength;
+                } else {
+                    currentGapLength = 0;
+                }
+            }
+            
+            // this is outside the innermost loop to make sure 
+            // that gaps are aligned on FRAME boundaries
+            if (currentGapLength > gapsize) {
+                sox_write(out, (*it)+offset, sampleix * bank.getChannels() + ix - offset);
+                sox_close(out);
+                // make a new word with each file
+                words_.push_back(Word(filename));
+                ++word_ix;
+                filename = filebase+word_ix;
+                out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
+                offset = sampleix * bank.getChannels() + ix;
+                currentGapLength = 0;
+            }             
         }
+        sox_write(out, (*it)+offset, limit - offset);
     }
-
-    // all samples between gaps are put in own files
-    // make a new word with each filename
+    sox_close(out);
+    words_.push_back(Word(filename));
 }
 
 SampleBank* SampleBank::instance_ = NULL;
@@ -314,10 +338,23 @@ SampleBank & SampleBank::getInstance() {
     }
     return *instance_;
 }
+    
+const sox_encodinginfo_t & SampleBank::getEncodingInfo const {
+    if (!encodingready_) {
+        soxencoding_.encoding = SOX_ENCODING_SIGN2;
+        soxencoding_.bits_per_sample = sampleSize_ * 8;
+        soxencoding_.reverse_bytes = DEFAULT;
+        soxencoding_.reverse_nybbles = DEFAULT;
+        soxencoding_.reverse_bits = DEFAULT;
+        encodingready_ = true;
+    }
+    return soxencoding_;
+}
 
 SampleBank::SampleBank() {
     srandomdev();
     sox_format_init();
+    encodingready_ = false;
     needsResort_ = false;
 }
                        
@@ -327,14 +364,17 @@ SampleBank::~SampleBank() {
 
 void SampleBank::setSampleDir(const std::string & dir) {
     sampleDir_ = dir;
+    encodingready_ = false;
 }
 
 void SampleBank::setSampleRate(unsigned int rate) {
     sampleRate_ = rate;
+    encodingready_ = false;
 }
 
 void SampleBank::setChannels(unsigned int channels) {
     channels_ = channels;
+    encodingready_ = false;
 }
 
 void SampleBank::setSampleSize(unsigned int bytes) {
@@ -345,6 +385,7 @@ void SampleBank::setSampleSize(unsigned int bytes) {
         case 4:
         case 8:
             sampleSize_ = bytes;
+            encodingready_ = false;
             break;
         default:
             throw std::runtime_error("Invalid sample size");
