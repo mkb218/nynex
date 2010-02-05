@@ -225,6 +225,17 @@ const std::list<Word> & Sample::getWords() {
 
 void Sample::makeWords() {
     // read in sample data to buffer
+    SampleBank & bank = SampleBank::getInstance();
+    struct sox_format_t *in;
+    std::list<struct sox_sample_t *> buf;
+    struct sox_signalinfo_t signal;
+    signal.rate = bank.getSampleRate();
+    signal.channels = bank.getChannels();
+    signal.precision = bank.getSampleSize() * 8;
+    signal.length = SOX_IGNORE_LENGTH;
+    signal.mult = NULL;
+    in = sox_open_read(filename_.c_str(), &signal, NULL, NULL);
+    
     // find 2nd standard deviation below mean of abs values
     // if more than 0.1 s is below this level eliminate those sample
     // all samples between gaps are put in own files
@@ -242,7 +253,12 @@ SampleBank & SampleBank::getInstance() {
 
 SampleBank::SampleBank() {
     srandomdev();
+    sox_format_init();
     needsResort_ = false;
+}
+                       
+SampleBank::~SampleBank() {
+    sox_format_quit();
 }
 
 void SampleBank::setSampleDir(const std::string & dir) {

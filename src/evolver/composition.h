@@ -64,13 +64,14 @@ namespace nynex {
     class SampleBank {
     public:
         static SampleBank & getInstance();
+        ~SampleBank();
         void setSampleDir(const std::string & dir);
-        void setSampleRate(unsigned int rate);
+        void setSampleRate(double rate);
         void setChannels(unsigned int channels);
         void setSampleSize(unsigned int bytes);
         const std::vector<Word> & getWords() const;
         unsigned int getSampleSize() const;
-        unsigned int getSampleRate() const;
+        double getSampleRate() const;
         unsigned int getChannels() const;
         void addSample(const std::string & filename);
         Word randomWord();
@@ -78,7 +79,7 @@ namespace nynex {
     private:
         SampleBank();
         static SampleBank * instance_;
-        unsigned int sampleRate_;
+        double sampleRate_;
         unsigned int channels_;
         unsigned int sampleSize_;
         std::string sampleDir_;
