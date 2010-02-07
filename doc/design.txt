@@ -1,0 +1,52 @@
+- input samples split on areas of low signal, not time based as in loopcollector
+
+input management - libsox
+- audio separated into three types: samples, words, and compositions
+- samples are raw input, stamped with time of creation, read in through **libsox**
+- samples are split into words based on areas of low signal. the threshold is proportional to the maximum and minimum signal level. words inherit the parent sample's timestamp. each word is normalized post split and stored as RAW AUDIO
+- compositions are created from a random assortment of words, weighted to give advantage to more recently recorded words, random length between 1 and 17
+- word weight is determined by the following formula
+let x be mtime of sample
+weight(x) = (x - min)/(max - min)
+choose at random from ties
+
+audio genetics - galib + coreaudio (no redistribution)
+- mutation: specimens may add or subtract a word from beginning, or exchange any word for a randomly chosen new one from pool
+- crossover: first child takes first half of first parent, second half of second parent. second child takes second half of first parent, first half of second parent (crossover point chosen independently and randomly (uniform) for each parent, so halves is a misnomer)
+- evaluation: take total of all ratings
+- monotonically increasing "object id"
+
+fs1rgen algorithm used to create accompanying patches
+- if fs1rgen not completed in time, choose random patch from presets
+- 4 random notes selected, played for duration of audio bits, recorded and mixed with audio bits
+
+inputs - pygooglevoice (not included in mac os x) + pyobjc (included in mac os x), coreaudio
+- user submitted recordings (via upload, voice mail) - 
+- seed recordings (unfields, apodion, scott)
+
+state
+- population should be saved to a file after every generation
+- no elitism, only new creations in each generation
+
+interface - openframeworks
+- specimens to be evaluated are randomly streamed over the Internet and run through in-person UI for one hour. Ratings collected and new generation of ten specimens created at that time.
+- before new generation is created, new samples downloaded from web server and google voice and used
+- interface should allow adding new recordings from attached storage. make sure this user has no permissions to break anything! back up everything on that computer!
+
+web server - blosxom
+- about page with explanation
+- link page with info on seed recordings and libraries
+- streaming info and voting page, votes -> server file, downloaded before new generation is complete
+- info on current generation uploaded when files are uploaded. samples may need to be uploaded to different server. NEED SPACE
+- file upload page -> upload dir on server
+- progress blog - blosxom
+
+code layout
+- fs1rgen code gets own namespace
+- interface code in subdir - app
+- web server interface code in subdir
+- google voice interface in subdir
+
+considerations
+- use soundcloud for all web audio stuff. that way i don't get killed if i get slashdotted
+- use twitter for new generation announcements instead of streaming

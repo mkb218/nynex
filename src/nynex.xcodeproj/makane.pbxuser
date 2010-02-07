@@ -1,0 +1,232 @@
+// !$*UTF8*$!
+{
+	E4B69B4C0A3A1720003C02F2 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = FC4C456A1118EA3500394B9E /* evolver-test */;
+		activeTarget = FC4C45681118EA3500394B9E /* evolver-test */;
+		addToTargets = (
+			E4B69B5A0A3A1756003C02F2 /* nynex */,
+		);
+		codeSenseManager = FC146648110E6007006F10FB /* Code sense */;
+		executables = (
+			FC14663F110E5FFA006F10FB /* nynex */,
+			FC4C456A1118EA3500394B9E /* evolver-test */,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 287100853;
+			PBXWorkspaceStateSaveDate = 287100853;
+		};
+		perUserProjectItems = {
+			FC3643A0111B0F3800BE48A1 = FC3643A0111B0F3800BE48A1 /* PBXTextBookmark */;
+			FC3643A1111B0F3800BE48A1 = FC3643A1111B0F3800BE48A1 /* PBXTextBookmark */;
+			FC3643A2111B0F3800BE48A1 = FC3643A2111B0F3800BE48A1 /* PBXTextBookmark */;
+			FCF53C28111C53DC005F1447 = FCF53C28111C53DC005F1447 /* PBXTextBookmark */;
+			FCF53C29111C53DC005F1447 = FCF53C29111C53DC005F1447 /* PBXTextBookmark */;
+			FCF53C2A111C53DC005F1447 = FCF53C2A111C53DC005F1447 /* PBXTextBookmark */;
+		};
+		sourceControlManager = FC146647110E6007006F10FB /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	E4B69B5A0A3A1756003C02F2 /* nynex */ = {
+		activeExec = 0;
+		executables = (
+			FC14663F110E5FFA006F10FB /* nynex */,
+		);
+	};
+	FC14663F110E5FFA006F10FB /* nynex */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = nynex;
+		sourceDirectories = (
+		);
+	};
+	FC146647110E6007006F10FB /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	FC146648110E6007006F10FB /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	FC3643A0111B0F3800BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		name = "composition.cpp: 24";
+		rLen = 0;
+		rLoc = 422;
+		rType = 0;
+		vrLen = 1016;
+		vrLoc = 7197;
+	};
+	FC3643A1111B0F3800BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
+		name = "composition.h: 117";
+		rLen = 0;
+		rLoc = 3628;
+		rType = 0;
+		vrLen = 1459;
+		vrLoc = 1170;
+	};
+	FC3643A2111B0F3800BE48A1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
+		name = "ratings.h: 22";
+		rLen = 13;
+		rLoc = 363;
+		rType = 0;
+		vrLen = 608;
+		vrLoc = 0;
+	};
+	FC4C45681118EA3500394B9E /* evolver-test */ = {
+		activeExec = 0;
+		executables = (
+			FC4C456A1118EA3500394B9E /* evolver-test */,
+		);
+	};
+	FC4C456A1118EA3500394B9E /* evolver-test */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = "evolver-test";
+		sourceDirectories = (
+		);
+	};
+	FC4C45CC1118EE4300394B9E /* evolvertest.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
+			sepNavSelRange = "{137, 0}";
+			sepNavVisRange = "{0, 137}";
+			sepNavWindowFrame = "{{38, 119}, {618, 733}}";
+		};
+	};
+	FC4C45CD1118EE4300394B9E /* evolvertest.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
+			sepNavSelRange = "{440, 0}";
+			sepNavVisRange = "{0, 456}";
+			sepNavWindowFrame = "{{631, 141}, {618, 733}}";
+		};
+	};
+	FC8C0AB51111CF5700AFE817 /* soundcloud.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
+			sepNavSelRange = "{595, 0}";
+			sepNavVisRange = "{0, 612}";
+			sepNavWindowFrame = "{{638, 129}, {618, 733}}";
+		};
+	};
+	FC8C0AC71111D38100AFE817 /* ratings.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
+			sepNavSelRange = "{363, 13}";
+			sepNavVisRange = "{0, 608}";
+			sepNavWindowFrame = "{{308, 128}, {618, 733}}";
+		};
+	};
+	FC8C0AD11111D4E500AFE817 /* twitter.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
+			sepNavSelRange = "{746, 0}";
+			sepNavVisRange = "{0, 758}";
+			sepNavWindowFrame = "{{61, 98}, {618, 733}}";
+		};
+	};
+	FC8C0AD81111D71C00AFE817 /* streaming.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
+			sepNavSelRange = "{336, 0}";
+			sepNavVisRange = "{0, 353}";
+			sepNavWindowFrame = "{{84, 77}, {618, 733}}";
+		};
+	};
+	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 5936}}";
+			sepNavSelRange = "{9411, 0}";
+			sepNavVisRange = "{9016, 1174}";
+			sepNavWindowFrame = "{{744, 143}, {618, 733}}";
+		};
+	};
+	FCD23436110FABDE0023CC4B /* composition.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 1722}}";
+			sepNavSelRange = "{717, 0}";
+			sepNavVisRange = "{252, 1146}";
+			sepNavWindowFrame = "{{14, 145}, {618, 733}}";
+		};
+	};
+	FCD2347411107DE20023CC4B /* ratings.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 165}";
+			sepNavWindowFrame = "{{15, 140}, {618, 733}}";
+		};
+	};
+	FCF53C28111C53DC005F1447 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		name = "composition.cpp: 294";
+		rLen = 0;
+		rLoc = 9411;
+		rType = 0;
+		vrLen = 1174;
+		vrLoc = 9016;
+	};
+	FCF53C29111C53DC005F1447 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
+		name = "composition.h: 33";
+		rLen = 0;
+		rLoc = 717;
+		rType = 0;
+		vrLen = 1146;
+		vrLoc = 252;
+	};
+	FCF53C2A111C53DC005F1447 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC8C0AC71111D38100AFE817 /* ratings.h */;
+		name = "ratings.h: 22";
+		rLen = 13;
+		rLoc = 363;
+		rType = 0;
+		vrLen = 608;
+		vrLoc = 0;
+	};
+}

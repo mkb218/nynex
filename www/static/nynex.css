@@ -1,0 +1,51 @@
+body {
+  font-family: Futura,
+  "Gill Sans",
+  "Gill Sans MT",
+  Helvetica,
+  "Century Gothic",
+  Arial,
+  sans-serif;
+  text-align:justify;
+  margin-left:2in;
+  margin-right:2in
+}
+
+div {
+  padding-top: 12pt ;
+  padding-bottom: 12pt
+}
+
+div#pagetitle {
+  font-weight: bold;
+  font-size: 36pt;
+  border-bottom-style: solid;
+  border-bottom-width:1pt;
+  text-align:center
+}
+
+div#pagesubtitle {
+    font-weight: bold;
+    font-size: 18pt;
+}
+
+
+div#content {
+  margin-top:0pt;
+  margin-bottom:0pt;
+  padding-top:0pt;
+  padding-bottom:0pt;
+  font-size: 12pt
+}
+
+div#cc{
+  text-align: center;
+  font-size: 9pt
+}
+
+a {
+  color:#000066
+}
+a:visited {
+  color:#333300 
+}

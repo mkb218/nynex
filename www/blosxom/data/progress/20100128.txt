@@ -1,0 +1,2 @@
+January 28, 2010
+I started writing actual code as opposed to designs and specs. Exciting! Once I get a test case running, I'll be sure to post it.

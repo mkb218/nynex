@@ -1,0 +1,13 @@
+- all 3rd party libraries selected - done!
+- code layout - done!
+- site design + blosxom template - done! 
+- site autoupdate git pull - done!
+- create facebook page - done!
+- get external dirs working in xcode - done!
+- makefile
+- soundcloud api access to dropbox?
+- twitter account for announcements - done!
+- streaming with soundcloud?
+- get sound file bits working
+- compile custom libsox (mad, flac, ogg vorbis only) with dynamic linking so i'm not redistributing gpl code
+- add sox libs to other projects web page
