@@ -915,6 +915,20 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					"../3rdparty/sox-14.3.0/src",
+					../3rdparty/galib247,
+					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOsc/libs/oscpack/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glut/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
+				);
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = ../3rdparty/galib247/ga;
 				ONLY_ACTIVE_ARCH = YES;
@@ -932,6 +946,20 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					"../3rdparty/sox-14.3.0/src",
+					../3rdparty/galib247,
+					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOsc/libs/oscpack/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glut/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
+				);
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = ../3rdparty/galib247/ga;
 				ONLY_ACTIVE_ARCH = YES;
@@ -948,6 +976,20 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					"../3rdparty/sox-14.3.0/src",
+					../3rdparty/galib247,
+					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOsc/libs/oscpack/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glut/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
+				);
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = ../3rdparty/galib247/ga;
 				ONLY_ACTIVE_ARCH = YES;

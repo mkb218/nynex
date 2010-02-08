@@ -16,6 +16,8 @@
 #include <algorithm>
 #include <cmath>
 #include <sys/stat.h>
+#include <libgen.h>
+#include <sstream>
 
 extern "C" {
 #include "sox.h"
@@ -23,6 +25,13 @@ extern "C" {
 
 using namespace nynex;
 using std::sort;
+
+template <class IntegerType>
+std::string stringFromInt(IntegerType i) {
+    std::ostringstream is;
+    is << i;
+    return is.str();
+}
 
 unsigned int Composition::nextObjectId_ = 1;
 Composition::Composition() : objectId_(nextObjectId_++) {}
@@ -233,8 +242,12 @@ void Sample::makeWords() {
     signal.rate = bank.getSampleRate();
     signal.channels = bank.getChannels();
     signal.precision = bank.getSampleSize() * 8;
+#if SOX_LIB_VERSION_CODE >= SOX_LIB_VERSION(14,3,0)
     signal.length = SOX_IGNORE_LENGTH;
     signal.mult = NULL;
+#else
+    signal.length = 0;
+#endif
     in = sox_open_read(filename_.c_str(), &signal, NULL, NULL);
     
     size_t bufsize = 1024 * bank.getChannels(); // needs to be a multiple of number of samples in a frame
@@ -257,7 +270,7 @@ void Sample::makeWords() {
         
         for (size_t ix = 0; ix < bufsize; ++ix) {
             ++count;
-            sum += SOX_SAMPLE_TO_FLOAT_64BIT((*it)[i],);
+            sum += (SOX_SAMPLE_TO_FLOAT_64BIT((*it)[ix],0));
         }
     }
     
@@ -271,7 +284,7 @@ void Sample::makeWords() {
         }
         
         for (size_t ix = 0; ix < limit; ++ix) {
-            sum += pow((SOX_SAMPLE_TO_FLOAT_64BIT((*it)[i],) - mean),2.);
+            sum += pow((SOX_SAMPLE_TO_FLOAT_64BIT((*it)[ix],0) - mean),2);
         }
     }
     
@@ -285,13 +298,15 @@ void Sample::makeWords() {
     }
     
     // if more than 0.01 s is below this level eliminate those samples
-    size_t gapsize = 0.01 * bank::getSampleRate() * bank::getChannels(); // s * frames/s * samples/frame
+    size_t gapsize = 0.01 * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
+    size_t maxSampleSize = gapsize * 200;
 
     // all samples between gaps are put in own files
     size_t currentGapLength = 0;
+    size_t currentSampleLength = 0;
     size_t word_ix = 0;
     std::string filebase(filename_);
-    std::string filename(filebase+word_ix);
+    std::string filename(filebase+stringFromInt(word_ix));
     sox_format_t * out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
     list_ix = 0;
     limit = bufsize;
@@ -301,9 +316,10 @@ void Sample::makeWords() {
             limit = read;
         }
         
-        for (size_t sampleix = 0; sample < bank.getChannels(); ++sampleix) {
+        for (size_t sampleix = 0; sampleix < bank.getChannels(); ++sampleix) {
             for (size_t ix = 0; ix < limit/bank.getChannels(); ++ix) {
-                if (SOX_SAMPLE_TO_FLOAT_64BIT((*it)[i],) < floor) {
+                ++currentSampleLength;
+                if (SOX_SAMPLE_TO_FLOAT_64BIT((*it)[ix],) < floor) {
                     ++currentGapLength;
                 } else {
                     currentGapLength = 0;
@@ -312,22 +328,23 @@ void Sample::makeWords() {
             
             // this is outside the innermost loop to make sure 
             // that gaps are aligned on FRAME boundaries
-            if (currentGapLength > gapsize) {
-                sox_write(out, (*it)+offset, sampleix * bank.getChannels() + ix - offset);
+            if (currentGapLength > gapsize || currentSampleLength > maxSampleSize) {
+                sox_write(out, (*it)+offset, sampleix * bank.getChannels() - offset);
                 sox_close(out);
                 // make a new word with each file
-                words_.push_back(Word(filename));
+                words_.push_back(Word(filename, age_));
                 ++word_ix;
-                filename = filebase+word_ix;
+                filename = filebase+stringFromInt(word_ix);
                 out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
-                offset = sampleix * bank.getChannels() + ix;
+                offset = sampleix * bank.getChannels();
                 currentGapLength = 0;
+                currentSampleLength = 0;
             }             
         }
         sox_write(out, (*it)+offset, limit - offset);
     }
     sox_close(out);
-    words_.push_back(Word(filename));
+    words_.push_back(Word(filename, age_));
 }
 
 SampleBank* SampleBank::instance_ = NULL;
@@ -339,13 +356,13 @@ SampleBank & SampleBank::getInstance() {
     return *instance_;
 }
     
-const sox_encodinginfo_t & SampleBank::getEncodingInfo const {
+const sox_encodinginfo_t & SampleBank::getEncodingInfo() const {
     if (!encodingready_) {
         soxencoding_.encoding = SOX_ENCODING_SIGN2;
         soxencoding_.bits_per_sample = sampleSize_ * 8;
-        soxencoding_.reverse_bytes = DEFAULT;
-        soxencoding_.reverse_nybbles = DEFAULT;
-        soxencoding_.reverse_bits = DEFAULT;
+        soxencoding_.reverse_bytes = SOX_OPTION_DEFAULT;
+        soxencoding_.reverse_nibbles = SOX_OPTION_DEFAULT;
+        soxencoding_.reverse_bits = SOX_OPTION_DEFAULT;
         encodingready_ = true;
     }
     return soxencoding_;
@@ -367,7 +384,7 @@ void SampleBank::setSampleDir(const std::string & dir) {
     encodingready_ = false;
 }
 
-void SampleBank::setSampleRate(unsigned int rate) {
+void SampleBank::setSampleRate(double rate) {
     sampleRate_ = rate;
     encodingready_ = false;
 }
@@ -400,7 +417,7 @@ unsigned int SampleBank::getSampleSize() const {
     return sampleSize_;
 }
 
-unsigned int SampleBank::getSampleRate() const {
+double SampleBank::getSampleRate() const {
     return sampleRate_;
 }
 
