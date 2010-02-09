@@ -180,6 +180,24 @@ int Composition::crossover(const GAGenome & mom, const GAGenome & dad, GAGenome 
 
 void Composition::bounceToFile(const std::string & filename) const {
     // concatenate all words to libsox to filename with format autodetect
+    SampleBank & bank = SampleBank::getInstance();
+    sox_format_t *out = sox_open_write(filename.c_str(), NULL, NULL, NULL, NULL, NULL);
+    size_t framecount;
+    for (std::list<Word>::const_iterator it = words_.begin(); it != words_.end(); ++it) {
+        sox_signalinfo_t signal;
+        signal.rate = bank.getSampleRate();
+        signal.channels = bank.getChannels();
+        signal.precision = bank.getSampleSize() * 8;
+        signal.length = SOX_IGNORE_LENGTH;
+        signal.mult = NULL;
+        sox_format_t *in;
+        in = sox_open_read(it->getFilename().c_str(), &signal, NULL, NULL);
+        size_t bufsize = bank.getChannels()*1024;
+        sox_sample_t *buf = (sox_sample_t*)malloc(bufsize);
+        sox_write(out, buf, bufsize);
+        sox_close(in);
+    }
+    sox_close(out);
     // calculate length of sample
     // hold notes for length of sample while recording on audio in
 }
@@ -341,6 +359,11 @@ void Sample::makeWords() {
     }
     sox_close(out);
     words_.push_back(Word(filename, age_));
+    // TODO make this more elegant
+    while (!buf.empty()) {
+        delete [] buf.front();
+        buf.pop_front();
+    }
 }
 
 SampleBank* SampleBank::instance_ = NULL;
