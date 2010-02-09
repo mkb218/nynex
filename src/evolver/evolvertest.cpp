@@ -14,10 +14,15 @@
 using namespace nynex;
 
 int main(int argc, char **argv) {
-    Word word(SampleBank::getInstance().randomWord());
+    SampleBank & bank = SampleBank::getInstance();
+    bank.setChannels(2);
+    bank.setSampleRate(48000.0);
+    bank.setSampleDir("/Users/makane/code/nynex/samples");
+    Word word(bank.randomWord());
     Sample s("gobbledygook");
     s.getWords();
     Composition c;
-    SampleBank::getInstance().initComposition(c);
+    bank.initComposition(c);
+    c.bounceToFile("/Users/makane/code/nynex/output/whatwhat.wav");
     return 0;
 }

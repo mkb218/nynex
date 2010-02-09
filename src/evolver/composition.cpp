@@ -18,6 +18,7 @@
 #include <sys/stat.h>
 #include <libgen.h>
 #include <sstream>
+#include <dirent.h>
 
 using namespace nynex;
 using std::sort;
@@ -237,7 +238,16 @@ void Word::calcDuration() {
     // ask libsox for duration of filename
 }
 
-Sample::Sample(const std::string & filename) : filename_(filename) {
+Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(filename) {
+}
+
+Sample::Sample(const Sample & other) : filename_(other.filename_),age_(other.age_),wordsReady_(false) {
+}
+
+Sample & Sample::operator=(const Sample & other) {
+    filename_ = other.filename_;
+    age_ = other.age_;
+    wordsReady_ = false;
 }
 
 const std::list<Word> & Sample::getWords() {
@@ -262,6 +272,7 @@ void Sample::makeWords() {
 #else
     signal.length = 0;
 #endif
+    chdir(bank.getSampleDir().c_str());
     in = sox_open_read(filename_.c_str(), &signal, NULL, NULL);
     
     size_t bufsize = 1024 * bank.getChannels(); // needs to be a multiple of number of samples in a frame
@@ -307,7 +318,7 @@ void Sample::makeWords() {
     bool shortcircuit = false;
     double floor = 0.0;
     while (floor <= 0.001 && stddevs >= 0) {
-        floor = mean - stddevs*stddev;
+        floor = fabs(mean - stddevs*stddev);
         --stddevs;
     }
     
@@ -401,6 +412,15 @@ SampleBank::~SampleBank() {
 void SampleBank::setSampleDir(const std::string & dir) {
     sampleDir_ = dir;
     encodingready_ = false;
+    DIR *d = opendir(dir.c_str());
+    dirent *e = NULL;
+    while ((e = readdir(d)) != NULL) {
+        if (e->d_name[0] == '.') {
+            continue;
+        }
+        addSample(e->d_name);
+    }
+    closedir(d);
 }
 
 void SampleBank::setSampleRate(double rate) {
@@ -445,7 +465,6 @@ unsigned int SampleBank::getChannels() const {
 }
 
 void SampleBank::addSample(const std::string & filepath) {
-    // copy filepath to sampledir
     Sample s(basename(filepath.c_str()));
     samples_.push_back(s);
     words_.insert(words_.end(), s.getWords().begin(), s.getWords().end());

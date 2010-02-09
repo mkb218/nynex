@@ -78,12 +78,12 @@ namespace nynex {
         unsigned int getSampleSize() const;
         double getSampleRate() const;
         unsigned int getChannels() const;
-        void addSample(const std::string & path);
         Word randomWord();
         void initComposition(Composition & comp);
         const sox_encodinginfo_t & getEncodingInfo() const;
     private:
         SampleBank();
+        void addSample(const std::string & path);
         static SampleBank * instance_;
         double sampleRate_;
         unsigned int channels_;
