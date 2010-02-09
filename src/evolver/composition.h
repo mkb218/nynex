@@ -15,7 +15,9 @@
 #include <list>
 #include <string>
 
+extern "C" {
 #include "sox.h"
+}
 #include "ga/ga.h"
 
 namespace nynex {

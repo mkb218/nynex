@@ -235,10 +235,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCE232FE1120535900C4D2AA</string>
+						<string>FCF5DE0E1120EAA8004FA4B3</string>
 						<key>history</key>
 						<array>
-							<string>FCE232FB1120534B00C4D2AA</string>
+							<string>FCE233021120578800C4D2AA</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -275,10 +275,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCE232FF1120535900C4D2AA</string>
+						<string>FCF5DE0F1120EAA8004FA4B3</string>
 						<key>history</key>
 						<array>
-							<string>FCE232DE1120506A00C4D2AA</string>
+							<string>FCE233031120578800C4D2AA</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -315,10 +315,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCE233001120535900C4D2AA</string>
+						<string>FCF5DE101120EAA8004FA4B3</string>
 						<key>history</key>
 						<array>
-							<string>FCE232BF11204E1000C4D2AA</string>
+							<string>FCE233041120578800C4D2AA</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -355,10 +355,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCE233011120535900C4D2AA</string>
+						<string>FCF5DE111120EAA8004FA4B3</string>
 						<key>history</key>
 						<array>
-							<string>FCF53C2A111C53DC005F1447</string>
+							<string>FCE233061120578800C4D2AA</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -422,7 +422,7 @@
 								<dict>
 									<key>PBXSmartGroupTreeModuleColumnWidthsKey</key>
 									<array>
-										<real>227</real>
+										<real>461</real>
 										<real>20</real>
 										<real>43</real>
 										<real>43</real>
@@ -455,7 +455,7 @@
 										</array>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-									<string>{{0, 0}, {333, 334}}</string>
+									<string>{{0, 0}, {567, 314}}</string>
 								</dict>
 								<key>PBXTopSmartGroupGIDs</key>
 								<array/>
@@ -465,11 +465,11 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{10, 27}, {350, 352}}</string>
+								<string>{{10, 27}, {584, 332}}</string>
 								<key>GroupTreeTableConfiguration</key>
 								<array>
 									<string>MainColumn</string>
-									<real>227</real>
+									<real>461</real>
 									<string>FileBuiltColumn</string>
 									<real>20</real>
 									<string>ErrorsColumn</string>
@@ -482,8 +482,6 @@
 							<string>PBXSmartGroupTreeModule</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBottomSmartGroupGIDs</key>
@@ -621,8 +619,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>FCE2329911204B5E00C4D2AA</string>
-				<string>FCE2329A11204B5E00C4D2AA</string>
+				<string>FCF5DDFF1120E97F004FA4B3</string>
+				<string>FCF5DE001120E97F004FA4B3</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -640,7 +638,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>287331161.80717999</real>
+	<real>287369896.08095998</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -655,13 +653,12 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D54069F1CE1000CFCEE</string>
+		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>FC4C459A1118EBF400394B9E</string>
-		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 		<string>FCE232C011204E1600C4D2AA</string>
+		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 		<string>FCE2329B11204B5E00C4D2AA</string>
 		<string>FCE232E11120507900C4D2AA</string>
-		<string>1C530D52069F1CE1000CFCEE</string>
 	</array>
 	<key>WindowString</key>
 	<string>1089 458 350 420 0 0 1440 878 </string>
@@ -822,7 +819,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>stl_bvector.h</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -880,7 +877,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>FCE232A011204B5E00C4D2AA</string>
+				<string>FCF5DE051120E97F004FA4B3</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -891,7 +888,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D52069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

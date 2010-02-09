@@ -916,7 +916,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
-					"../3rdparty/sox-14.3.0/src",
+					/opt/local/include,
 					../3rdparty/galib247,
 					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
 					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
@@ -930,9 +930,15 @@
 					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
 				);
 				INSTALL_PATH = /usr/local/bin;
-				LIBRARY_SEARCH_PATHS = ../3rdparty/galib247/ga;
+				LIBRARY_SEARCH_PATHS = (
+					../3rdparty/galib247/ga,
+					/opt/local/lib,
+				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lga";
+				OTHER_LDFLAGS = (
+					"-lsox",
+					"-lga",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "evolver-test";
 			};
@@ -947,7 +953,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
-					"../3rdparty/sox-14.3.0/src",
+					/opt/local/include,
 					../3rdparty/galib247,
 					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
 					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
@@ -961,9 +967,15 @@
 					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
 				);
 				INSTALL_PATH = /usr/local/bin;
-				LIBRARY_SEARCH_PATHS = ../3rdparty/galib247/ga;
+				LIBRARY_SEARCH_PATHS = (
+					../3rdparty/galib247/ga,
+					/opt/local/lib,
+				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lga";
+				OTHER_LDFLAGS = (
+					"-lsox",
+					"-lga",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "evolver-test";
 				ZERO_LINK = NO;
@@ -977,7 +989,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
-					"../3rdparty/sox-14.3.0/src",
+					/opt/local/include,
 					../3rdparty/galib247,
 					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
 					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
@@ -991,9 +1003,15 @@
 					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
 				);
 				INSTALL_PATH = /usr/local/bin;
-				LIBRARY_SEARCH_PATHS = ../3rdparty/galib247/ga;
+				LIBRARY_SEARCH_PATHS = (
+					../3rdparty/galib247/ga,
+					/opt/local/lib,
+				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lga";
+				OTHER_LDFLAGS = (
+					"-lsox",
+					"-lga",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "evolver-test";
 			};

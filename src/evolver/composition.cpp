@@ -19,10 +19,6 @@
 #include <libgen.h>
 #include <sstream>
 
-extern "C" {
-#include "sox.h"
-}
-
 using namespace nynex;
 using std::sort;
 
