@@ -406,7 +406,8 @@ void SampleBank::setSampleDir(const std::string & dir) {
     DIR *d = opendir(dir.c_str());
     dirent *e = NULL;
     while ((e = readdir(d)) != NULL) {
-        if (e->d_name[0] == '.') {
+        // HACK should test for fileness
+        if (e->d_name[0] == '.' || strcmp(e->d_name, "words") == 0) {
             continue;
         }
         // TODO one thread per CPU
@@ -481,6 +482,7 @@ Word SampleBank::randomWord() {
         needsResort_ = false;
     }
     
+    // this ain't working, but need word index file first to test more easily.
     std::vector<Word>::iterator it = find_if(words_.begin(), words_.end(), ScoreFinder());
     float firstScore = words_.front().getScore();
     std::vector<Word> choices;
