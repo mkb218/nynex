@@ -295,32 +295,12 @@ void Sample::makeWords() {
         
         for (size_t ix = 0; ix < bufsize; ++ix) {
             ++count;
-            sum += (SOX_SAMPLE_TO_FLOAT_64BIT((*it)[ix],0));
+            sum += fabs(SOX_SAMPLE_TO_FLOAT_64BIT((*it)[ix],0));
         }
     }
     
     double mean = sum/count;
-    sum = 0.; // now this is sum of squares
-    list_ix = 0;
-    limit = bufsize;
-    for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
-        if (list_ix + 1 == buf.size()) {
-            limit = read;
-        }
-        
-        for (size_t ix = 0; ix < limit; ++ix) {
-            sum += pow((SOX_SAMPLE_TO_FLOAT_64BIT((*it)[ix],0) - mean),2);
-        }
-    }
-    
-    double stddev = sqrt(sum/count);
-    int stddevs = 3;
-    bool shortcircuit = false;
-    double floor = 0.0;
-    while (floor <= 0.001 && stddevs >= 0) {
-        floor = fabs(mean - stddevs*stddev);
-        --stddevs;
-    }
+    double floor = 0.1 * mean;
     
     // if more than 0.01 s is below this level eliminate those samples
     size_t gapsize = 0.01 * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
@@ -341,20 +321,20 @@ void Sample::makeWords() {
             limit = read;
         }
         
-        for (size_t sampleix = 0; sampleix < bank.getChannels(); ++sampleix) {
-            for (size_t ix = 0; ix < limit/bank.getChannels(); ++ix) {
-                ++currentSampleLength;
-                if (SOX_SAMPLE_TO_FLOAT_64BIT((*it)[ix],) < floor) {
-                    ++currentGapLength;
-                } else {
-                    currentGapLength = 0;
-                }
+        for (size_t sampleix = 0; sampleix < limit; ++sampleix) {
+            ++currentSampleLength;
+            double s = SOX_SAMPLE_TO_FLOAT_64BIT((*it)[sampleix],);
+            if (fabs(s) < floor) {
+                ++currentGapLength;
+            } else {
+                currentGapLength = 0;
             }
             
             // this is outside the innermost loop to make sure 
             // that gaps are aligned on FRAME boundaries
-            if (currentGapLength > gapsize || currentSampleLength > maxSampleSize) {
-                sox_write(out, (*it)+offset, sampleix * bank.getChannels() - offset);
+            if (sampleix % bank.getChannels() == bank.getChannels() - 1 && // last sample in frame
+                ((currentGapLength > gapsize && fabs(s) > floor) || currentSampleLength > maxSampleSize)) {
+                sox_write(out, (*it) + offset + currentGapLength, sampleix * bank.getChannels() - offset - currentGapLength);
                 sox_close(out);
                 // make a new word with each file
                 words_.push_back(Word(filename, age_));
