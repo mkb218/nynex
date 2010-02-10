@@ -258,6 +258,7 @@ const std::list<Word> & Sample::getWords() {
 }
 
 void Sample::makeWords() {
+    // TODO IMPORTANT write file tracking words to samples, don't keep re-splitting samples each run
     // read in sample data to buffer
     SampleBank & bank = SampleBank::getInstance();
     sox_format_t *in;
@@ -283,7 +284,7 @@ void Sample::makeWords() {
     } while (bufsize == read);
     sox_close(in);
     
-    // find 3rd standard deviation below mean of abs values
+    // find mean of abs values
     double sum = 0.;
     size_t count = 0;
     size_t list_ix = 0;
@@ -295,12 +296,13 @@ void Sample::makeWords() {
         
         for (size_t ix = 0; ix < bufsize; ++ix) {
             ++count;
-            sum += fabs(SOX_SAMPLE_TO_FLOAT_64BIT((*it)[ix],0));
+            sum += abs((*it)[ix]);
         }
     }
     
     double mean = sum/count;
-    double floor = 0.1 * mean;
+    sox_sample_t floor = 0.01 * mean;
+    const size_t lastbufsize = read;
     
     // if more than 0.01 s is below this level eliminate those samples
     size_t gapsize = 0.01 * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
@@ -310,38 +312,46 @@ void Sample::makeWords() {
     size_t currentGapLength = 0;
     size_t currentSampleLength = 0;
     size_t word_ix = 0;
-    std::string filebase(filename_);
+    std::string filebase(filename_+"."); // TODO kill extension
     std::string filename(filebase+stringFromInt(word_ix));
     sox_format_t * out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
     list_ix = 0;
     limit = bufsize;
     for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
         size_t offset = 0;
+        size_t lastwrite = 0;
         if (list_ix + 1 == buf.size()) {
-            limit = read;
+            limit = lastbufsize;
         }
         
+        bool sampleend = false;
         for (size_t sampleix = 0; sampleix < limit; ++sampleix) {
             ++currentSampleLength;
-            double s = SOX_SAMPLE_TO_FLOAT_64BIT((*it)[sampleix],);
-            if (fabs(s) < floor) {
+            sox_sample_t s = (*it)[sampleix];
+            if (abs(s) < floor) {
                 ++currentGapLength;
+                ++offset;
             } else {
                 currentGapLength = 0;
             }
             
+            sampleend = sampleend || (currentGapLength > gapsize || currentSampleLength > maxSampleSize);
+            
             // this is outside the innermost loop to make sure 
             // that gaps are aligned on FRAME boundaries
             if (sampleix % bank.getChannels() == bank.getChannels() - 1 && // last sample in frame
-                ((currentGapLength > gapsize && fabs(s) > floor) || currentSampleLength > maxSampleSize)) {
-                sox_write(out, (*it) + offset + currentGapLength, sampleix * bank.getChannels() - offset - currentGapLength);
+                sampleend) {
+                sox_write(out, (*it) + offset + lastwrite, sampleix * bank.getChannels() - offset - lastwrite);
                 sox_close(out);
                 // make a new word with each file
                 words_.push_back(Word(filename, age_));
                 ++word_ix;
                 filename = filebase+stringFromInt(word_ix);
                 out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
-                offset = sampleix * bank.getChannels();
+                lastwrite = sampleix * bank.getChannels();
+                offset = 0;
+                
+                sampleend = false;
                 currentGapLength = 0;
                 currentSampleLength = 0;
             }             
@@ -355,6 +365,7 @@ void Sample::makeWords() {
         delete [] buf.front();
         buf.pop_front();
     }
+    wordsReady_ = true;
 }
 
 SampleBank* SampleBank::instance_ = NULL;
@@ -398,6 +409,7 @@ void SampleBank::setSampleDir(const std::string & dir) {
         if (e->d_name[0] == '.') {
             continue;
         }
+        // TODO one thread per CPU
         addSample(e->d_name);
     }
     closedir(d);
