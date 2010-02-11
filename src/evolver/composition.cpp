@@ -10,15 +10,18 @@
 
 #include "composition.h"
 #include <cstdlib>
+#include <fstream>
 #include <map>
 #include <stdexcept>
 #include <limits>
 #include <algorithm>
 #include <cmath>
+#include <sys/types.h>
 #include <sys/stat.h>
 #include <libgen.h>
 #include <sstream>
 #include <dirent.h>
+#include <errno.h>
 
 using namespace nynex;
 using std::sort;
@@ -28,6 +31,19 @@ std::string stringFromInt(IntegerType i) {
     std::ostringstream is;
     is << i;
     return is.str();
+}
+
+static void mkdir_or_throw(const char * dir) throw(std::runtime_error) {
+    struct stat dirinfo;
+    if (0 == stat(dir, &dirinfo)) {
+        if (!(dirinfo.st_mode & S_IFDIR)) {
+            throw std::runtime_error(std::string(dir) + "file exists and is not dir");
+        }
+    } else {
+        if (!mkdir(dir, 0700)) {
+            throw std::runtime_error("mkdir failed: " + stringFromInt(errno));
+        }
+    }
 }
 
 unsigned int Composition::nextObjectId_ = 1;
@@ -182,6 +198,7 @@ int Composition::crossover(const GAGenome & mom, const GAGenome & dad, GAGenome 
 void Composition::bounceToFile(const std::string & filename) const {
     // concatenate all words to libsox to filename with format autodetect
     SampleBank & bank = SampleBank::getInstance();
+    chdir(bank.getSampleDir().c_str());
     sox_format_t *out = sox_open_write(filename.c_str(), NULL, NULL, NULL, NULL, NULL);
     size_t framecount;
     for (std::list<Word>::const_iterator it = words_.begin(); it != words_.end(); ++it) {
@@ -239,6 +256,13 @@ void Word::calcDuration() {
 }
 
 Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(filename) {
+    chdir(SampleBank::getInstance().getSampleDir().c_str());
+    struct stat age_s;
+    if (0 == stat(filename_.c_str(),&age_s)) {
+        age_ = age_s.st_mtime;
+    } else {
+        throw std::runtime_error("couldn't stat file " + filename + " given as sample file");
+    }
 }
 
 Sample::Sample(const Sample & other) : filename_(other.filename_),age_(other.age_),wordsReady_(false) {
@@ -258,8 +282,33 @@ const std::list<Word> & Sample::getWords() {
 }
 
 void Sample::makeWords() {
-    // TODO IMPORTANT write file tracking words to samples, don't keep re-splitting samples each run
     // read in sample data to buffer
+    SampleBank & bank = SampleBank::getInstance();
+    // TODO IMPORTANT write file tracking words to samples, don't keep re-splitting samples each run
+    chdir(bank.getSampleDir().c_str());
+    static std::string indexdir = "indexes";
+    std::string indexfile = indexdir + "/" + filename_ + ".index";
+    struct stat junk;
+    
+    if (0 == stat(indexfile.c_str(), &junk)) {
+        int files;
+        std::ifstream stream(indexfile.c_str());
+        if (stream.fail()) {
+            throw std::runtime_error("index file open failed for " + indexfile);
+        }
+        stream >> files;
+        stream.close();
+        while (files > 0) {
+            --files;
+            words_.push_front(Word("words/"+filename_+"."+stringFromInt(files), age_));
+        }
+    } else {
+        splitFile();
+    }
+    wordsReady_ = true;
+}
+
+void Sample::splitFile() {
     SampleBank & bank = SampleBank::getInstance();
     sox_format_t *in;
     std::list<sox_sample_t *> buf;
@@ -307,13 +356,14 @@ void Sample::makeWords() {
     // if more than 0.01 s is below this level eliminate those samples
     size_t gapsize = 0.01 * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
     size_t maxSampleSize = gapsize * 200;
-
     // all samples between gaps are put in own files
     size_t currentGapLength = 0;
     size_t currentSampleLength = 0;
     size_t word_ix = 0;
     std::string filebase(filename_+"."); // TODO kill extension
     std::string filename(filebase+stringFromInt(word_ix));
+    chdir(bank.getSampleDir().c_str());
+    mkdir_or_throw("words");
     sox_format_t * out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
     list_ix = 0;
     limit = bufsize;
@@ -360,13 +410,18 @@ void Sample::makeWords() {
     }
     sox_close(out);
     words_.push_back(Word(filename, age_));
+    
+    mkdir_or_throw("indexes");
+    std::ofstream stream(("indexes/"+filebase+"index").c_str());
+    stream << (word_ix+1) << std::endl;
+    stream.close();    
+    
     // TODO make this more elegant
     while (!buf.empty()) {
         delete [] buf.front();
         buf.pop_front();
     }
-    wordsReady_ = true;
-}
+}    
 
 SampleBank* SampleBank::instance_ = NULL;
 
@@ -393,7 +448,7 @@ SampleBank::SampleBank() {
     srandomdev();
     sox_format_init();
     encodingready_ = false;
-    needsResort_ = false;
+    needsResort_ = true;
 }
                        
 SampleBank::~SampleBank() {
@@ -403,13 +458,19 @@ SampleBank::~SampleBank() {
 void SampleBank::setSampleDir(const std::string & dir) {
     sampleDir_ = dir;
     encodingready_ = false;
+    chdir(dir.c_str());
     DIR *d = opendir(dir.c_str());
     dirent *e = NULL;
     while ((e = readdir(d)) != NULL) {
-        // HACK should test for fileness
-        if (e->d_name[0] == '.' || strcmp(e->d_name, "words") == 0) {
+        // stat and mode & 0xfff0000 should be 0
+        struct stat dirinfo;
+        if (0 != stat(e->d_name,&dirinfo)) {
+            throw std::runtime_error(std::string("couldn't stat file we know exists: ") + e->d_name + " errno " + stringFromInt(errno));
+        }
+        if (dirinfo.st_mode & S_IFDIR) {
             continue;
         }
+        
         // TODO one thread per CPU
         addSample(e->d_name);
     }
@@ -461,6 +522,7 @@ void SampleBank::addSample(const std::string & filepath) {
     Sample s(basename(filepath.c_str()));
     samples_.push_back(s);
     words_.insert(words_.end(), s.getWords().begin(), s.getWords().end());
+    needsResort_ = true;
 }
 
 ScoreFinder::ScoreFinder() : score_(random()%10000/10000.0) {}

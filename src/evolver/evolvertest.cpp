@@ -19,9 +19,6 @@ int main(int argc, char **argv) {
     bank.setSampleRate(48000.0);
     bank.setSampleSize(2);
     bank.setSampleDir("/Users/makane/code/nynex/samplesubset");
-    Word word(bank.randomWord());
-    Sample s("gobbledygook");
-    s.getWords();
     Composition c;
     bank.initComposition(c);
     c.bounceToFile("/Users/makane/code/nynex/output/whatwhat.wav");

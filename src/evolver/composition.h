@@ -47,6 +47,7 @@ namespace nynex {
         const std::list<Word> & getWords();
     private:
         void makeWords();
+        void splitFile();
         std::list<Word> words_;
         std::string filename_; // relative to sampledir
         int age_;
