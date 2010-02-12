@@ -21,6 +21,8 @@
 #include <libgen.h>
 #include <sstream>
 #include <dirent.h>
+#include <unistd.h>
+#include <sys/param.h>
 #include <errno.h>
 
 using namespace nynex;
@@ -40,7 +42,7 @@ static void mkdir_or_throw(const char * dir) throw(std::runtime_error) {
             throw std::runtime_error(std::string(dir) + "file exists and is not dir");
         }
     } else {
-        if (!mkdir(dir, 0700)) {
+        if (0 != mkdir(dir, 0700)) {
             throw std::runtime_error("mkdir failed: " + stringFromInt(errno));
         }
     }
@@ -524,10 +526,26 @@ unsigned int SampleBank::getChannels() const {
 }
 
 void SampleBank::addSample(const std::string & filepath) {
-    Sample s(basename(filepath.c_str()));
-    samples_.push_back(s);
-    words_.insert(words_.end(), s.getWords().begin(), s.getWords().end());
-    needsResort_ = true;
+    sox_signalinfo_t signal;
+    signal.rate = getSampleRate();
+    signal.channels = getChannels();
+    signal.precision = getSampleSize() * 8;
+#if SOX_LIB_VERSION_CODE >= SOX_LIB_VERSION(14,3,0)
+    signal.length = SOX_IGNORE_LENGTH;
+    signal.mult = NULL;
+#else
+    signal.length = 0;
+#endif
+    chdir(getSampleDir().c_str());
+    sox_format_t *in;
+    in = sox_open_read(filepath.c_str(), &signal, NULL, NULL);
+    if (in != NULL) {
+        sox_close(in);
+        Sample s(basename(filepath.c_str()));
+        samples_.push_back(s);
+        words_.insert(words_.end(), s.getWords().begin(), s.getWords().end());
+        needsResort_ = true;
+    }
 }
 
 //ScoreFinder::ScoreFinder() : score_(random()%10000/10000.0) {}
