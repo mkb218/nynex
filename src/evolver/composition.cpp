@@ -25,6 +25,8 @@
 #include <sys/param.h>
 #include <errno.h>
 
+#define BUFSIZE 262144
+
 using namespace nynex;
 using std::sort;
 
@@ -209,7 +211,7 @@ void Composition::bounceToFile(const std::string & filename) const {
     signal.mult = NULL;
     sox_format_t *out = sox_open_write(filename.c_str(), &signal, NULL, NULL, NULL, NULL);
     size_t framecount;
-    size_t bufsize = bank.getChannels()*1024;
+    size_t bufsize = bank.getChannels()*BUFSIZE;
     sox_sample_t *buf = (sox_sample_t*)malloc(bufsize*sizeof(sox_sample_t));
     for (std::list<Word>::const_iterator it = words_.begin(); it != words_.end(); ++it) {
         sox_format_t *in;
@@ -332,7 +334,7 @@ void Sample::splitFile() {
     chdir(bank.getSampleDir().c_str());
     in = sox_open_read(filename_.c_str(), &signal, NULL, NULL);
     
-    size_t bufsize = 1024 * bank.getChannels(); // needs to be a multiple of number of samples in a frame
+    size_t bufsize = BUFSIZE * bank.getChannels(); // needs to be a multiple of number of samples in a frame
     size_t read = 0; // need this later
     do {
         buf.push_back((sox_sample_t*)malloc(bufsize*sizeof(sox_sample_t)));
@@ -576,7 +578,7 @@ Word SampleBank::randomWord() {
     std::vector<Word>::iterator it = words_.begin();
     size_t ix = 0;
     while (ix + 1 < words_.size()) { 
-        double nextWordChance = (words_.size() - (double)ix - 1) / words_.size();
+        double nextWordChance = it->getScore();
         double dice = (double)(random() % 10000 / 10000.0);
         if (dice > nextWordChance) {
             break;

@@ -221,46 +221,6 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>FCE232E11120507900C4D2AA</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>composition.cpp</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>FCE232E21120507900C4D2AA</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>composition.cpp</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>FCA2BF9011259242007F7AB3</string>
-						<key>history</key>
-						<array>
-							<string>FCA2BE9E1124EB6D007F7AB3</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {618, 636}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>743 200 618 677 0 0 1440 878 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
 				<string>FCA2BF5E1125906B007F7AB3</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>evolvertest.cpp</string>
@@ -275,7 +235,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCA2BF9111259242007F7AB3</string>
+						<string>FCA2BF9B112595B0007F7AB3</string>
 						<key>history</key>
 						<array>
 							<string>FCA2BF5D11259063007F7AB3</string>
@@ -315,7 +275,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCA2BF9211259242007F7AB3</string>
+						<string>FCA2BF9C112595B0007F7AB3</string>
 						<key>history</key>
 						<array>
 							<string>FC2B11EB11244D4B007911E3</string>
@@ -600,7 +560,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>287674946.58496398</real>
+	<real>287675824.31599599</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -623,7 +583,6 @@
 		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 		<string>FCA2BF5E1125906B007F7AB3</string>
 		<string>1C530D5B069F1CE1000CFCEE</string>
-		<string>FCE232E11120507900C4D2AA</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 	</array>
 	<key>WindowString</key>
