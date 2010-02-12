@@ -28,15 +28,15 @@ namespace nynex {
         bool operator<(const Word &) const;
         const std::string & getFilename() const;
         int getAge() const;
-        float getScore() const;
+        double getScore() const;
         unsigned int getDuration() const;
-        void setScore(float);
+        void setScore(double);
     private:
         void calcDuration();
         std::string filename_; // relative to sampledir/words
         int age_;
         unsigned int duration_; // samples
-        float score_;
+        double score_;
     };
     
     class Sample {
@@ -57,10 +57,10 @@ namespace nynex {
     class ScoreFinder {
     public:
         ScoreFinder();
-        ScoreFinder(float score);
+        ScoreFinder(double score);
         bool operator()(Word &) const;
     private:
-        float score_;
+        double score_;
     };
     
     class Composition;

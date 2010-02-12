@@ -199,21 +199,26 @@ void Composition::bounceToFile(const std::string & filename) const {
     // concatenate all words to libsox to filename with format autodetect
     SampleBank & bank = SampleBank::getInstance();
     chdir(bank.getSampleDir().c_str());
-    sox_format_t *out = sox_open_write(filename.c_str(), NULL, NULL, NULL, NULL, NULL);
+    sox_signalinfo_t signal;
+    signal.rate = bank.getSampleRate();
+    signal.channels = bank.getChannels();
+    signal.precision = bank.getSampleSize() * 8;
+    signal.length = SOX_IGNORE_LENGTH;
+    signal.mult = NULL;
+    sox_format_t *out = sox_open_write(filename.c_str(), &signal, NULL, NULL, NULL, NULL);
     size_t framecount;
     for (std::list<Word>::const_iterator it = words_.begin(); it != words_.end(); ++it) {
-        sox_signalinfo_t signal;
-        signal.rate = bank.getSampleRate();
-        signal.channels = bank.getChannels();
-        signal.precision = bank.getSampleSize() * 8;
-        signal.length = SOX_IGNORE_LENGTH;
-        signal.mult = NULL;
         sox_format_t *in;
-        in = sox_open_read(it->getFilename().c_str(), &signal, NULL, NULL);
+        in = sox_open_read(it->getFilename().c_str(), &signal, &(bank.getEncodingInfo()), "raw");
         size_t bufsize = bank.getChannels()*1024;
         sox_sample_t *buf = (sox_sample_t*)malloc(bufsize);
-        sox_write(out, buf, bufsize);
+        size_t read;
+        while (bufsize == (read = sox_read(in,buf,bufsize))) {
+            sox_write(out, buf, read);
+        }
+        sox_write(out,buf,read);
         sox_close(in);
+        free(buf);
     }
     sox_close(out);
     // calculate length of sample
@@ -239,11 +244,11 @@ int Word::getAge() const {
     return age_;
 }
 
-float Word::getScore() const {
+double Word::getScore() const {
     return score_;
 }
 
-void Word::setScore(float score) {
+void Word::setScore(double score) {
     score_ = score;
 }
 
@@ -525,35 +530,45 @@ void SampleBank::addSample(const std::string & filepath) {
     needsResort_ = true;
 }
 
-ScoreFinder::ScoreFinder() : score_(random()%10000/10000.0) {}
-
-ScoreFinder::ScoreFinder(float score) : score_(score) {}
-
-bool ScoreFinder::operator()(Word & check) const {
-    return (check.getScore() - score_ <= 0.00001);
-}
-        
+//ScoreFinder::ScoreFinder() : score_(random()%10000/10000.0) {}
+//
+//ScoreFinder::ScoreFinder(double score) : score_(score) {}
+//
+//bool ScoreFinder::operator()(Word & check) const {
+//    return (score_ - check.getScore() <= 0.00001);
+//}
+//        
 Word SampleBank::randomWord() {
     if (needsResort_) {
         sort(words_.begin(), words_.end());
-        float oldestAge = words_.front().getAge();
-        float newestAge = words_.back().getAge();
+        double oldestAge = words_.front().getAge();
+        double newestAge = words_.back().getAge();
         for (std::vector<Word>::iterator it = words_.begin(); it != words_.end(); ++it) {
-            it->setScore((it->getAge() - oldestAge) / (newestAge - oldestAge));
+            double score = (it->getAge() - oldestAge) / (newestAge - oldestAge);
+            if (score != score) { // NaN
+                score = 0;
+            }
+            
+            it->setScore(score);
         }
         needsResort_ = false;
     }
     
     // this ain't working, but need word index file first to test more easily.
-    std::vector<Word>::iterator it = find_if(words_.begin(), words_.end(), ScoreFinder());
-    float firstScore = words_.front().getScore();
-    std::vector<Word> choices;
-    while (abs(it->getScore() - firstScore)) {
-        choices.insert(choices.end(), *it);
+    std::vector<Word>::iterator it = words_.begin();
+    size_t ix = 0;
+    while (ix + 1 < words_.size()) { 
+        double nextWordChance = (words_.size() - (double)ix - 1) / words_.size();
+        double dice = (double)(random() % 10000 / 10000.0);
+        if (dice > nextWordChance) {
+            break;
+        }
+        ++it;
+        ++ix;
     }
-    
-    size_t choice = random() % (choices.size() - 1);
-    return choices[choice];
+    double firstScore = words_.front().getScore();
+
+    return *it;
 }
 
 void SampleBank::initComposition(Composition & comp) {
