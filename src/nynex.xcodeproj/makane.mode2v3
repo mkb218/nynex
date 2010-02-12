@@ -235,10 +235,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCA2BF9B112595B0007F7AB3</string>
+						<string>FCFC102F1125EA2F00435B05</string>
 						<key>history</key>
 						<array>
-							<string>FCA2BF5D11259063007F7AB3</string>
+							<string>FCA2BF9B112595B0007F7AB3</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -275,10 +275,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCA2BF9C112595B0007F7AB3</string>
+						<string>FCFC10301125EA2F00435B05</string>
 						<key>history</key>
 						<array>
-							<string>FC2B11EB11244D4B007911E3</string>
+							<string>FCA2BF9C112595B0007F7AB3</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -328,8 +328,6 @@
 					<key>Tabs</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBottomSmartGroupGIDs</key>
@@ -541,8 +539,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>FCA2BE5C1124E674007F7AB3</string>
-				<string>FCA2BE5D1124E674007F7AB3</string>
+				<string>FCFC102D1125EA2F00435B05</string>
+				<string>FCFC102E1125EA2F00435B05</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -560,7 +558,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>287675824.31599599</real>
+	<real>287697452.383834</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -575,15 +573,9 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>FCA2BE911124EA9C007F7AB3</string>
-		<string>FCA2BE6C1124E674007F7AB3</string>
-		<string>FCA2BE6D1124E674007F7AB3</string>
-		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>FCE2329B11204B5E00C4D2AA</string>
 		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 		<string>FCA2BF5E1125906B007F7AB3</string>
-		<string>1C530D5B069F1CE1000CFCEE</string>
-		<string>1C530D52069F1CE1000CFCEE</string>
 	</array>
 	<key>WindowString</key>
 	<string>1089 458 350 420 0 0 1440 878 </string>
