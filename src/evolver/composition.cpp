@@ -207,20 +207,20 @@ void Composition::bounceToFile(const std::string & filename) const {
     signal.mult = NULL;
     sox_format_t *out = sox_open_write(filename.c_str(), &signal, NULL, NULL, NULL, NULL);
     size_t framecount;
+    size_t bufsize = bank.getChannels()*1024;
+    sox_sample_t *buf = (sox_sample_t*)malloc(bufsize);
     for (std::list<Word>::const_iterator it = words_.begin(); it != words_.end(); ++it) {
         sox_format_t *in;
         in = sox_open_read(it->getFilename().c_str(), &signal, &(bank.getEncodingInfo()), "raw");
-        size_t bufsize = bank.getChannels()*1024;
-        sox_sample_t *buf = (sox_sample_t*)malloc(bufsize);
         size_t read;
         while (bufsize == (read = sox_read(in,buf,bufsize))) {
             sox_write(out, buf, read);
         }
         sox_write(out,buf,read);
         sox_close(in);
-        free(buf);
     }
     sox_close(out);
+    free(buf);
     // calculate length of sample
     // hold notes for length of sample while recording on audio in
 }

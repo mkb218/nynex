@@ -14,6 +14,7 @@
 			FCA2BE9C1124EB60007F7AB3 /* composition.cpp:561 */,
 			FCA2BEA31124EBCC007F7AB3 /* composition.cpp:563 */,
 			FCA2BEA71124EC41007F7AB3 /* composition.cpp:208 */,
+			FCA2BECB1124F597007F7AB3 /* composition.cpp:211 */,
 		);
 		codeSenseManager = FC146648110E6007006F10FB /* Code sense */;
 		executables = (
@@ -166,7 +167,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 523";
 		rLen = 0;
-		rLoc = 16987;
+		rLoc = 16975;
 		rType = 0;
 		vrLen = 1261;
 		vrLoc = 16326;
@@ -176,7 +177,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 259";
 		rLen = 0;
-		rLoc = 8806;
+		rLoc = 8794;
 		rType = 0;
 		vrLen = 989;
 		vrLoc = 8101;
@@ -308,7 +309,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 259";
 		rLen = 0;
-		rLoc = 8806;
+		rLoc = 8794;
 		rType = 0;
 		vrLen = 1377;
 		vrLoc = 16938;
@@ -318,7 +319,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 523";
 		rLen = 0;
-		rLoc = 16987;
+		rLoc = 16975;
 		rType = 0;
 		vrLen = 1453;
 		vrLoc = 16637;
@@ -357,7 +358,7 @@
 		ignoreCount = 0;
 		lineNumber = 533;
 		location = "evolver-test";
-		modificationTime = 287632876.767119;
+		modificationTime = 287634844.378761;
 		state = 2;
 	};
 	FCA2BE7A1124E747007F7AB3 /* PBXTextBookmark */ = {
@@ -373,7 +374,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 547";
 		rLen = 0;
-		rLoc = 17842;
+		rLoc = 17830;
 		rType = 0;
 		vrLen = 1382;
 		vrLoc = 17065;
@@ -393,7 +394,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 523";
 		rLen = 0;
-		rLoc = 16987;
+		rLoc = 16975;
 		rType = 0;
 		vrLen = 1392;
 		vrLoc = 16639;
@@ -422,7 +423,7 @@
 		ignoreCount = 0;
 		lineNumber = 564;
 		location = "evolver-test";
-		modificationTime = 287632876.767796;
+		modificationTime = 287634844.379353;
 		state = 2;
 	};
 	FCA2BE8F1124EA9C007F7AB3 /* PBXTextBookmark */ = {
@@ -438,7 +439,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 246";
 		rLen = 36;
-		rLoc = 8461;
+		rLoc = 8449;
 		rType = 0;
 		vrLen = 154;
 		vrLoc = 8259;
@@ -457,7 +458,7 @@
 		ignoreCount = 0;
 		lineNumber = 569;
 		location = "evolver-test";
-		modificationTime = 287632876.768403;
+		modificationTime = 287634844.3798;
 		state = 2;
 	};
 	FCA2BE9C1124EB60007F7AB3 /* composition.cpp:561 */ = {
@@ -474,7 +475,7 @@
 		ignoreCount = 0;
 		lineNumber = 561;
 		location = "evolver-test";
-		modificationTime = 287632876.769008;
+		modificationTime = 287634844.380253;
 		state = 2;
 	};
 	FCA2BE9E1124EB6D007F7AB3 /* PBXTextBookmark */ = {
@@ -499,7 +500,7 @@
 		ignoreCount = 0;
 		lineNumber = 563;
 		location = "evolver-test";
-		modificationTime = 287632876.769533;
+		modificationTime = 287634844.380716;
 		state = 2;
 	};
 	FCA2BEA71124EC41007F7AB3 /* composition.cpp:208 */ = {
@@ -512,11 +513,11 @@
 		delayBeforeContinue = 0;
 		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		functionName = "Composition::bounceToFile(const std::string & filename)";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 208;
 		location = "evolver-test";
-		modificationTime = 287632881.220995;
+		modificationTime = 287634844.38116;
 		state = 2;
 	};
 	FCA2BEA81124EC5F007F7AB3 /* PBXTextBookmark */ = {
@@ -524,7 +525,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 557";
 		rLen = 0;
-		rLoc = 18198;
+		rLoc = 18186;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 17180;
@@ -614,7 +615,7 @@
 		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		name = "composition.cpp: 251";
 		rLen = 36;
-		rLoc = 8461;
+		rLoc = 8449;
 		rType = 0;
 		vrLen = 103;
 		vrLoc = 8357;
@@ -649,11 +650,28 @@
 		vrLen = 1753;
 		vrLoc = 1577;
 	};
+	FCA2BECB1124F597007F7AB3 /* composition.cpp:211 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		functionName = "Composition::bounceToFile(const std::string & filename)";
+		hitCount = 1;
+		ignoreCount = 0;
+		lineNumber = 211;
+		location = "evolver-test";
+		modificationTime = 287634847.848708;
+		state = 1;
+	};
 	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 8078}}";
-			sepNavSelRange = "{7234, 0}";
-			sepNavVisRange = "{6269, 1547}";
+			sepNavIntBoundsRect = "{{0, 0}, {439, 8414}}";
+			sepNavSelRange = "{8449, 36}";
+			sepNavVisRange = "{8347, 102}";
 			sepNavWindowFrame = "{{743, 143}, {618, 733}}";
 		};
 	};
