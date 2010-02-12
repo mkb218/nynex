@@ -18,9 +18,9 @@ int main(int argc, char **argv) {
     bank.setChannels(2);
     bank.setSampleRate(48000.0);
     bank.setSampleSize(2);
-    bank.setSampleDir("/Users/makane/code/nynex/samplesubset");
+    bank.setSampleDir("/Users/makane/code/nynex/samples");
     Composition c;
     bank.initComposition(c);
-    c.bounceToFile("/Users/makane/code/nynex/output/whatwhat.wav");
+    c.bounceToFile("/Users/makane/code/nynex/output/whatwhat.mp3");
     return 0;
 }

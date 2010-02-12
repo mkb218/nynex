@@ -208,7 +208,7 @@ void Composition::bounceToFile(const std::string & filename) const {
     sox_format_t *out = sox_open_write(filename.c_str(), &signal, NULL, NULL, NULL, NULL);
     size_t framecount;
     size_t bufsize = bank.getChannels()*1024;
-    sox_sample_t *buf = (sox_sample_t*)malloc(bufsize);
+    sox_sample_t *buf = (sox_sample_t*)malloc(bufsize*sizeof(sox_sample_t));
     for (std::list<Word>::const_iterator it = words_.begin(); it != words_.end(); ++it) {
         sox_format_t *in;
         in = sox_open_read(it->getFilename().c_str(), &signal, &(bank.getEncodingInfo()), "raw");
@@ -360,7 +360,7 @@ void Sample::splitFile() {
     
     // if more than 0.01 s is below this level eliminate those samples
     size_t gapsize = 0.01 * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
-    size_t maxSampleSize = gapsize * 200;
+    size_t maxSampleSize = gapsize * 50;
     // all samples between gaps are put in own files
     size_t currentGapLength = 0;
     size_t currentSampleLength = 0;
@@ -399,7 +399,7 @@ void Sample::splitFile() {
                 sox_write(out, (*it) + offset + lastwrite, sampleix * bank.getChannels() - offset - lastwrite);
                 sox_close(out);
                 // make a new word with each file
-                words_.push_back(Word(filename, age_));
+                words_.push_back(Word("words/"+filename, age_));
                 ++word_ix;
                 filename = filebase+stringFromInt(word_ix);
                 out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
@@ -414,7 +414,7 @@ void Sample::splitFile() {
         sox_write(out, (*it)+offset, limit - offset);
     }
     sox_close(out);
-    words_.push_back(Word(filename, age_));
+    words_.push_back(Word("words/"+filename, age_));
     
     mkdir_or_throw("indexes");
     std::ofstream stream(("indexes/"+filebase+"index").c_str());
@@ -544,7 +544,7 @@ Word SampleBank::randomWord() {
         double oldestAge = words_.front().getAge();
         double newestAge = words_.back().getAge();
         for (std::vector<Word>::iterator it = words_.begin(); it != words_.end(); ++it) {
-            double score = (it->getAge() - oldestAge) / (newestAge - oldestAge);
+            double score = (it->getAge()/2 - oldestAge) / (newestAge - oldestAge) + 1;
             if (score != score) { // NaN
                 score = 0;
             }
@@ -575,7 +575,7 @@ void SampleBank::initComposition(Composition & comp) {
     comp.words_.clear();
     // pick number between 1 and 17
     // pick that many random words!
-    for (int wordcount = 1 + random() % 16; wordcount > 0; --wordcount) {
+    for (int wordcount = (random() % 17 + 17); wordcount > 0; --wordcount) {
         comp.words_.push_back(randomWord());
     }
 }
