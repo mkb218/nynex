@@ -4,11 +4,12 @@
 - site autoupdate git pull - done!
 - create facebook page - done!
 - get external dirs working in xcode - done!
-- makefile so i can build on 10.4
+- makefile or antfile so i can build on 10.4
 - soundcloud api access to dropbox?
 - twitter account for announcements - done!
 - streaming with soundcloud?
-- get sound file bits working
+- get sound file bits working - almost done!
 - compile custom libsox (mad, flac, ogg vorbis only) with dynamic linking so i'm not redistributing gpl code
 - add sox libs to other projects web page - done!
-- add unlockedgroove to contributors page and add three releases to inputs
+- add unlockedgroove to contributors page and add three releases to inputs - done!
+- change Word class to keep reference to parent sample's filename instead of copy, saving some memory
