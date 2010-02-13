@@ -12,4 +12,4 @@
 - compile custom libsox (mad, flac, ogg vorbis only) with dynamic linking so i'm not redistributing gpl code
 - add sox libs to other projects web page - done!
 - add unlockedgroove to contributors page and add three releases to inputs - done!
-- change Word class to keep reference to parent sample's filename instead of copy, saving some memory
+- figure out what the heck is going on with memory

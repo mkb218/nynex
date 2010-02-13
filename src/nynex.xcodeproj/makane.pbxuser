@@ -1,7 +1,7 @@
 // !$*UTF8*$!
 {
 	E4B69B4C0A3A1720003C02F2 /* Project object */ = {
-		activeBuildConfigurationName = Release;
+		activeBuildConfigurationName = Debug;
 		activeExecutable = FC4C456A1118EA3500394B9E /* evolver-test */;
 		activeTarget = FC4C45681118EA3500394B9E /* evolver-test */;
 		addToTargets = (
@@ -20,6 +20,7 @@
 			FCA2BEFF112587E1007F7AB3 /* composition.cpp:217 */,
 			FCA2BF3C11258C49007F7AB3 /* composition.cpp:299 */,
 			FCA2BF691125912C007F7AB3 /* composition.cpp:423 */,
+			FC0F68F8112624AE00C9C3C8 /* composition.cpp:433 */,
 		);
 		codeSenseManager = FC146648110E6007006F10FB /* Code sense */;
 		executables = (
@@ -73,14 +74,14 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 287697452;
-			PBXWorkspaceStateSaveDate = 287697452;
+			PBXPerProjectTemplateStateSaveDate = 287712022;
+			PBXWorkspaceStateSaveDate = 287712022;
 		};
 		perUserProjectItems = {
-			FC2B11EB11244D4B007911E3 = FC2B11EB11244D4B007911E3 /* PBXTextBookmark */;
-			FCA2BF5D11259063007F7AB3 = FCA2BF5D11259063007F7AB3 /* PBXBookmark */;
-			FCA2BF9B112595B0007F7AB3 = FCA2BF9B112595B0007F7AB3 /* PBXTextBookmark */;
-			FCA2BF9C112595B0007F7AB3 = FCA2BF9C112595B0007F7AB3 /* PBXTextBookmark */;
+			FC0F68F0112623C200C9C3C8 /* PBXBookmark */ = FC0F68F0112623C200C9C3C8 /* PBXBookmark */;
+			FC0F69011126256200C9C3C8 /* PBXTextBookmark */ = FC0F69011126256200C9C3C8 /* PBXTextBookmark */;
+			FC0F69021126256200C9C3C8 /* PBXTextBookmark */ = FC0F69021126256200C9C3C8 /* PBXTextBookmark */;
+			FC0F69031126256200C9C3C8 /* PBXTextBookmark */ = FC0F69031126256200C9C3C8 /* PBXTextBookmark */;
 			FCFC102F1125EA2F00435B05 /* PBXTextBookmark */ = FCFC102F1125EA2F00435B05 /* PBXTextBookmark */;
 			FCFC10301125EA2F00435B05 /* PBXTextBookmark */ = FCFC10301125EA2F00435B05 /* PBXTextBookmark */;
 		};
@@ -93,6 +94,57 @@
 		executables = (
 			FC14663F110E5FFA006F10FB /* nynex */,
 		);
+	};
+	FC0F68F0112623C200C9C3C8 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+	};
+	FC0F68F8112624AE00C9C3C8 /* composition.cpp:433 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		functionName = "Sample::splitFile()";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 433;
+		location = "evolver-test";
+		modificationTime = 287712541.310365;
+		state = 1;
+	};
+	FC0F69011126256200C9C3C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		name = "composition.cpp: 409";
+		rLen = 0;
+		rLoc = 13940;
+		rType = 0;
+		vrLen = 1250;
+		vrLoc = 14045;
+	};
+	FC0F69021126256200C9C3C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
+		name = "evolvertest.cpp: 19";
+		rLen = 0;
+		rLoc = 375;
+		rType = 0;
+		vrLen = 595;
+		vrLoc = 0;
+	};
+	FC0F69031126256200C9C3C8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
+		name = "composition.h: 86";
+		rLen = 0;
+		rLoc = 2257;
+		rType = 0;
+		vrLen = 1088;
+		vrLoc = 199;
 	};
 	FC14663F110E5FFA006F10FB /* nynex */ = {
 		isa = PBXExecutable;
@@ -128,16 +180,6 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	FC2B11EB11244D4B007911E3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 50";
-		rLen = 0;
-		rLoc = 1106;
-		rType = 0;
-		vrLen = 1119;
-		vrLoc = 234;
-	};
 	FC4C45681118EA3500394B9E /* evolver-test */ = {
 		activeExec = 0;
 		executables = (
@@ -151,7 +193,7 @@
 		argumentStrings = (
 		);
 		autoAttachOnCrash = 1;
-		breakpointsEnabled = 0;
+		breakpointsEnabled = 1;
 		configStateDict = {
 		};
 		customDataFormattersEnabled = 1;
@@ -185,7 +227,7 @@
 			sepNavIntBoundsRect = "{{0, 0}, {559, 620}}";
 			sepNavSelRange = "{375, 0}";
 			sepNavVisRange = "{0, 595}";
-			sepNavWindowFrame = "{{631, 141}, {618, 733}}";
+			sepNavWindowFrame = "{{631, 142}, {618, 733}}";
 		};
 	};
 	FC8C0AB51111CF5700AFE817 /* soundcloud.h */ = {
@@ -234,7 +276,7 @@
 		ignoreCount = 0;
 		lineNumber = 553;
 		location = "evolver-test";
-		modificationTime = 287674668.517423;
+		modificationTime = 287712541.309299;
 		state = 2;
 	};
 	FCA2BE8D1124EA71007F7AB3 /* composition.cpp:584 */ = {
@@ -251,7 +293,7 @@
 		ignoreCount = 0;
 		lineNumber = 584;
 		location = "evolver-test";
-		modificationTime = 287674668.5189281;
+		modificationTime = 287712541.309426;
 		state = 2;
 	};
 	FCA2BE991124EAFE007F7AB3 /* composition.cpp:589 */ = {
@@ -268,7 +310,7 @@
 		ignoreCount = 0;
 		lineNumber = 589;
 		location = "evolver-test";
-		modificationTime = 287674668.519914;
+		modificationTime = 287712541.309509;
 		state = 2;
 	};
 	FCA2BE9C1124EB60007F7AB3 /* composition.cpp:581 */ = {
@@ -285,7 +327,7 @@
 		ignoreCount = 0;
 		lineNumber = 581;
 		location = "evolver-test";
-		modificationTime = 287674668.520813;
+		modificationTime = 287712541.309591;
 		state = 2;
 	};
 	FCA2BEA31124EBCC007F7AB3 /* composition.cpp:583 */ = {
@@ -302,7 +344,7 @@
 		ignoreCount = 0;
 		lineNumber = 583;
 		location = "evolver-test";
-		modificationTime = 287674668.5330461;
+		modificationTime = 287712541.309673;
 		state = 2;
 	};
 	FCA2BEA71124EC41007F7AB3 /* composition.cpp:212 */ = {
@@ -319,7 +361,7 @@
 		ignoreCount = 0;
 		lineNumber = 212;
 		location = "evolver-test";
-		modificationTime = 287674668.534103;
+		modificationTime = 287712541.309775;
 		state = 2;
 	};
 	FCA2BECB1124F597007F7AB3 /* composition.cpp:215 */ = {
@@ -336,7 +378,7 @@
 		ignoreCount = 0;
 		lineNumber = 215;
 		location = "evolver-test";
-		modificationTime = 287674668.535059;
+		modificationTime = 287712541.309861;
 		state = 2;
 	};
 	FCA2BEE711257D3B007F7AB3 /* composition.cpp:474 */ = {
@@ -353,7 +395,7 @@
 		ignoreCount = 0;
 		lineNumber = 474;
 		location = "evolver-test";
-		modificationTime = 287674668.536018;
+		modificationTime = 287712541.309948;
 		state = 2;
 	};
 	FCA2BEFA11258758007F7AB3 /* composition.cpp:204 */ = {
@@ -370,7 +412,7 @@
 		ignoreCount = 0;
 		lineNumber = 204;
 		location = "evolver-test";
-		modificationTime = 287674668.537685;
+		modificationTime = 287712541.310032;
 		state = 2;
 	};
 	FCA2BEFF112587E1007F7AB3 /* composition.cpp:217 */ = {
@@ -387,7 +429,7 @@
 		ignoreCount = 0;
 		lineNumber = 217;
 		location = "evolver-test";
-		modificationTime = 287674668.539145;
+		modificationTime = 287712541.310113;
 		state = 2;
 	};
 	FCA2BF3C11258C49007F7AB3 /* composition.cpp:299 */ = {
@@ -404,12 +446,8 @@
 		ignoreCount = 0;
 		lineNumber = 299;
 		location = "evolver-test";
-		modificationTime = 287674668.540584;
+		modificationTime = 287712541.310189;
 		state = 2;
-	};
-	FCA2BF5D11259063007F7AB3 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
 	};
 	FCA2BF691125912C007F7AB3 /* composition.cpp:423 */ = {
 		isa = PBXFileBreakpoint;
@@ -421,46 +459,26 @@
 		delayBeforeContinue = 0;
 		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
 		functionName = "Sample::splitFile()";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 423;
 		location = "evolver-test";
-		modificationTime = 287674702.801252;
+		modificationTime = 287712541.310271;
 		state = 2;
-	};
-	FCA2BF9B112595B0007F7AB3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		name = "evolvertest.cpp: 19";
-		rLen = 0;
-		rLoc = 375;
-		rType = 0;
-		vrLen = 595;
-		vrLoc = 0;
-	};
-	FCA2BF9C112595B0007F7AB3 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 60";
-		rLen = 0;
-		rLoc = 1348;
-		rType = 0;
-		vrLen = 1819;
-		vrLoc = 1511;
 	};
 	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {439, 8680}}";
-			sepNavSelRange = "{8544, 36}";
-			sepNavVisRange = "{8354, 168}";
-			sepNavWindowFrame = "{{743, 144}, {618, 733}}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 8638}}";
+			sepNavSelRange = "{13940, 0}";
+			sepNavVisRange = "{14045, 1250}";
+			sepNavWindowFrame = "{{741, 142}, {618, 733}}";
 		};
 	};
 	FCD23436110FABDE0023CC4B /* composition.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 1820}}";
-			sepNavSelRange = "{1348, 0}";
-			sepNavVisRange = "{1511, 1819}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 2072}}";
+			sepNavSelRange = "{2257, 0}";
+			sepNavVisRange = "{199, 1088}";
 			sepNavWindowFrame = "{{13, 140}, {618, 733}}";
 		};
 	};

@@ -427,7 +427,7 @@ void Sample::splitFile() {
     
     // TODO make this more elegant
     while (!buf.empty()) {
-        delete [] buf.front();
+        free(buf.front());
         buf.pop_front();
     }
 }    
