@@ -318,6 +318,7 @@ void Sample::makeWords() {
 }
 
 void Sample::splitFile() {
+    std::cout << "splitting sample " << filename_ << std::endl;
     SampleBank & bank = SampleBank::getInstance();
     sox_format_t *in;
     std::list<sox_sample_t *> buf;
@@ -524,6 +525,7 @@ unsigned int SampleBank::getChannels() const {
 }
 
 void SampleBank::addSample(const std::string & filepath) {
+    std::cout << "adding sample " << filepath << std::endl;
     sox_signalinfo_t signal;
     signal.rate = getSampleRate();
     signal.channels = getChannels();

@@ -13,4 +13,4 @@
 - add sox libs to other projects web page - done!
 - add unlockedgroove to contributors page and add three releases to inputs - done!
 - figure out what the heck is going on with memory - think this is done
-- run all samples through evolver-test
+- sox can't always give me requested sample rate or channel number. need to handle this gracefully. possibly use http://www.mega-nerd.com/SRC/. maybe use libsndfile instead of sox?
