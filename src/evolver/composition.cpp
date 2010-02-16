@@ -378,7 +378,6 @@ void Sample::splitFile() {
     limit = bufsize;
     for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
         size_t offset = 0;
-        size_t lastwrite = 0;
         if (list_ix + 1 == buf.size()) {
             limit = lastbufsize;
         }
@@ -389,7 +388,6 @@ void Sample::splitFile() {
             sox_sample_t s = (*it)[sampleix];
             if (abs(s) < floor) {
                 ++currentGapLength;
-                ++offset;
             } else {
                 currentGapLength = 0;
             }
@@ -400,16 +398,14 @@ void Sample::splitFile() {
             // that gaps are aligned on FRAME boundaries
             if (sampleix % bank.getChannels() == bank.getChannels() - 1 && // last sample in frame
                 sampleend) {
-                sox_write(out, (*it) + offset + lastwrite, sampleix * bank.getChannels() - offset - lastwrite);
+                sox_write(out, (*it) + offset, sampleix - offset);
                 sox_close(out);
                 // make a new word with each file
                 words_.push_back(Word("words/"+filename, age_));
                 ++word_ix;
                 filename = filebase+stringFromInt(word_ix);
                 out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
-                lastwrite = sampleix * bank.getChannels();
-                offset = 0;
-                
+                offset = sampleix;
                 sampleend = false;
                 currentGapLength = 0;
                 currentSampleLength = 0;

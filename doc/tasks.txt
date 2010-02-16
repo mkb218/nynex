@@ -12,4 +12,5 @@
 - compile custom libsox (mad, flac, ogg vorbis only) with dynamic linking so i'm not redistributing gpl code
 - add sox libs to other projects web page - done!
 - add unlockedgroove to contributors page and add three releases to inputs - done!
-- figure out what the heck is going on with memory
+- figure out what the heck is going on with memory - think this is done
+- run all samples through evolver-test
