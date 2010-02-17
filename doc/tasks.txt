@@ -13,12 +13,4 @@
 - add sox libs to other projects web page - done!
 - add unlockedgroove to contributors page and add three releases to inputs - done!
 - figure out what the heck is going on with memory - think this is done
-- sox can't always give me requested sample rate or channel number. need to handle this gracefully. and convert. options:
-* libsamplerate http://www.mega-nerd.com/SRC/: pros - handle upconversion and downconversion. purports to be fast. cons: forces me to use gpl. only does floats as sample type which may be slooooooow. doesn't upconvert for number of channels. maybe use libsndfile instead of sox for reading files? doesn't support mp3! could try to open in something else and convert first
-* openframeworks supports reading wav, aif, mp2, mp3, and raw, and wraps fmod
-* thus, perhaps using fmod is an option, also
-* quicktime api
-* coreaudio
-* BASS - http://www.un4seen.com/
-* wwise - http://www.audiokinetic.com/4105/wwise-introduction.asp
-* irrklang - http://www.ambiera.com/irrklang
+- switch to coreaudio for file i/o
