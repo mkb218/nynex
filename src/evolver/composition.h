@@ -15,9 +15,6 @@
 #include <list>
 #include <string>
 
-extern "C" {
-#include "sox.h"
-}
 #include "ga/ga.h"
 
 namespace nynex {
@@ -81,7 +78,6 @@ namespace nynex {
         unsigned int getChannels() const;
         Word randomWord();
         void initComposition(Composition & comp);
-        const sox_encodinginfo_t & getEncodingInfo() const;
     private:
         SampleBank();
         void addSample(const std::string & path);
@@ -92,8 +88,6 @@ namespace nynex {
         std::string sampleDir_;
         std::vector<Sample> samples_;
         std::vector<Word> words_;
-        mutable sox_encodinginfo_t soxencoding_;
-        mutable bool encodingready_;
         mutable bool needsResort_;
     };
 

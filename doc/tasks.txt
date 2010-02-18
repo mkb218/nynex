@@ -13,4 +13,4 @@
 - add sox libs to other projects web page - done!
 - add unlockedgroove to contributors page and add three releases to inputs - done!
 - figure out what the heck is going on with memory - think this is done
-- switch to coreaudio for file i/o
+- switch to coreaudio for file i/o - investigate sample code from apple. this includes checking file duration
