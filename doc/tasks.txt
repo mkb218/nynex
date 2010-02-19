@@ -14,3 +14,4 @@
 - add unlockedgroove to contributors page and add three releases to inputs - done!
 - figure out what the heck is going on with memory - think this is done
 - switch to coreaudio for file i/o - investigate sample code from apple. this includes checking file duration
+- look through apple example code to see how to get raw linear pcm samples from a file using audioconverter api. will not be using coreaudio for audio device i/o. it is too complicated :(

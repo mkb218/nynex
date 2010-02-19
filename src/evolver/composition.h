@@ -78,6 +78,9 @@ namespace nynex {
         unsigned int getChannels() const;
         Word randomWord();
         void initComposition(Composition & comp);
+        NynexAudioFile * inFile(const std::string & pathtofile) const;
+        NynexAudioFile * wordFile(const std::string & pathtofile) const;
+        NynexAudioFile * bounceFile(const std::string & pathtofile) const;
     private:
         SampleBank();
         void addSample(const std::string & path);
