@@ -308,6 +308,7 @@ void Sample::makeWords() {
     wordsReady_ = true;
 }
 
+/*
 #define sampletype unsigned short
 void Sample::splitFile() {
     std::cout << "splitting sample " << filename_ << std::endl;
@@ -326,7 +327,19 @@ void Sample::splitFile() {
     } while (bufsize == read);
 //    close input file
     
-    // find mean of abs values
+ while (true) {
+ UInt32 nFrames = framesToRead;
+ mReadPtrs->SetFrom(mReadBuffer);
+ AudioBufferList *readbuf = &mReadPtrs->GetModifiableBufferList();
+ 
+ //printf("read %ld of %ld frames\n", nFrames, framesToRead);
+ if (nFrames == 0)
+ break;
+ 
+ if (ShouldTerminateConversion())
+ break;
+ }
+ // find mean of abs values
     double sum = 0.;
     size_t count = 0;
     size_t list_ix = 0;
@@ -411,7 +424,7 @@ void Sample::splitFile() {
         buf.pop_front();
     }
 }    
-
+*/
 SampleBank* SampleBank::instance_ = NULL;
 
 SampleBank & SampleBank::getInstance() {
@@ -421,7 +434,7 @@ SampleBank & SampleBank::getInstance() {
     return *instance_;
 }
     
-const sox_encodinginfo_t & SampleBank::getEncodingInfo() const {
+/*const sox_encodinginfo_t & SampleBank::getEncodingInfo() const {
     if (!encodingready_) {
         soxencoding_.encoding = SOX_ENCODING_SIGN2;
         soxencoding_.bits_per_sample = sampleSize_ * 8;
@@ -431,22 +444,22 @@ const sox_encodinginfo_t & SampleBank::getEncodingInfo() const {
         encodingready_ = true;
     }
     return soxencoding_;
-}
+}*/
 
 SampleBank::SampleBank() {
     srandomdev();
-    sox_format_init();
-    encodingready_ = false;
+//    sox_format_init();
+//    encodingready_ = false;
     needsResort_ = true;
 }
                        
 SampleBank::~SampleBank() {
-    sox_format_quit();
+//    sox_format_quit();
 }
 
 void SampleBank::setSampleDir(const std::string & dir) {
     sampleDir_ = dir;
-    encodingready_ = false;
+//    encodingready_ = false;
     chdir(dir.c_str());
     DIR *d = opendir(dir.c_str());
     dirent *e = NULL;
@@ -468,12 +481,12 @@ void SampleBank::setSampleDir(const std::string & dir) {
 
 void SampleBank::setSampleRate(double rate) {
     sampleRate_ = rate;
-    encodingready_ = false;
+//    encodingready_ = false;
 }
 
 void SampleBank::setChannels(unsigned int channels) {
     channels_ = channels;
-    encodingready_ = false;
+//    encodingready_ = false;
 }
 
 void SampleBank::setSampleSize(unsigned int bytes) {
@@ -484,7 +497,7 @@ void SampleBank::setSampleSize(unsigned int bytes) {
         case 4:
         case 8:
             sampleSize_ = bytes;
-            encodingready_ = false;
+//            encodingready_ = false;
             break;
         default:
             throw std::runtime_error("Invalid sample size");
@@ -508,7 +521,7 @@ unsigned int SampleBank::getChannels() const {
 }
 
 void SampleBank::addSample(const std::string & filepath) {
-    std::cout << "adding sample " << filepath << std::endl;
+/*    std::cout << "adding sample " << filepath << std::endl;
 //    sox_signalinfo_t signal;
 //    signal.rate = getSampleRate();
 //    signal.channels = getChannels();
@@ -525,6 +538,7 @@ void SampleBank::addSample(const std::string & filepath) {
         words_.insert(words_.end(), s.getWords().begin(), s.getWords().end());
         needsResort_ = true;
     }
+ */
 }
 
 //ScoreFinder::ScoreFinder() : score_(random()%10000/10000.0) {}
