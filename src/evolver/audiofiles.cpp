@@ -266,6 +266,7 @@ void nynex::FileReaderWriter::Prepare(const nynex::FileReaderWriter::ConversionP
 	
 	mParams = _params;
     PrepareConverters();
+    mReady = true;
 }
 
 void nynex::FileReaderWriter::PrepareConverters()

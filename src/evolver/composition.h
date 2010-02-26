@@ -16,6 +16,7 @@
 #include <string>
 
 #include "ga/ga.h"
+#include "audiofiles.h"
 
 namespace nynex {
     class Word {
@@ -78,9 +79,7 @@ namespace nynex {
         unsigned int getChannels() const;
         Word randomWord();
         void initComposition(Composition & comp);
-/*        NynexAudioFile * inFile(const std::string & pathtofile) const;
-        NynexAudioFile * wordFile(const std::string & pathtofile) const;
-        NynexAudioFile * bounceFile(const std::string & pathtofile) const; */
+        FileReaderWriter::ConversionParameters getConversionParameters() const;
     private:
         SampleBank();
         void addSample(const std::string & path);
@@ -91,7 +90,9 @@ namespace nynex {
         std::string sampleDir_;
         std::vector<Sample> samples_;
         std::vector<Word> words_;
+        mutable FileReaderWriter::ConversionParameters baseParams_;
         mutable bool needsResort_;
+        mutable bool conversionReady_;
     };
 
     class Composition : public GAGenome {

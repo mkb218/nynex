@@ -9,30 +9,31 @@
 			E4B69B5A0A3A1756003C02F2 /* nynex */,
 		);
 		breakpoints = (
-			FCA2BE701124E681007F7AB3 /* composition.cpp:544 */,
-			FCA2BE8D1124EA71007F7AB3 /* composition.cpp:575 */,
-			FCA2BE991124EAFE007F7AB3 /* composition.cpp:580 */,
-			FCA2BE9C1124EB60007F7AB3 /* composition.cpp:572 */,
-			FCA2BEA31124EBCC007F7AB3 /* composition.cpp:574 */,
+			FCA2BE701124E681007F7AB3 /* composition.cpp:557 */,
+			FCA2BE8D1124EA71007F7AB3 /* composition.cpp:580 */,
+			FCA2BE991124EAFE007F7AB3 /* composition.cpp:585 */,
+			FCA2BE9C1124EB60007F7AB3 /* composition.cpp:577 */,
+			FCA2BEA31124EBCC007F7AB3 /* composition.cpp:579 */,
 			FCA2BEA71124EC41007F7AB3 /* composition.cpp:208 */,
 			FCA2BECB1124F597007F7AB3 /* composition.cpp:211 */,
-			FCA2BEE711257D3B007F7AB3 /* composition.cpp:467 */,
+			FCA2BEE711257D3B007F7AB3 /* composition.cpp:482 */,
 			FCA2BEFA11258758007F7AB3 /* composition.cpp:206 */,
 			FCA2BEFF112587E1007F7AB3 /* composition.cpp:216 */,
-			FCA2BF3C11258C49007F7AB3 /* composition.cpp:290 */,
-			FCA2BF691125912C007F7AB3 /* composition.cpp:416 */,
-			FC0F68F8112624AE00C9C3C8 /* composition.cpp:426 */,
+			FCA2BF3C11258C49007F7AB3 /* composition.cpp:295 */,
+			FCA2BF691125912C007F7AB3 /* composition.cpp:424 */,
+			FC0F68F8112624AE00C9C3C8 /* composition.cpp:434 */,
 			FC1512441135F7A600673CDB /* evolvertest.cpp:21 */,
-			FC1512521135F81900673CDB /* evolvertest.cpp:45 */,
+			FC1512521135F81900673CDB /* evolvertest.cpp:57 */,
 			FC15127D1136B31100673CDB /* CAXException.h:167 */,
 			FC1512931136B34500673CDB /* evolvertest.cpp:39 */,
 			FC15129F1136B35500673CDB /* audiofiles.cpp:264 */,
-			FC1512C61136BC3300673CDB /* audiofiles.cpp:347 */,
+			FC1512C61136BC3300673CDB /* audiofiles.cpp:348 */,
 			FC1512D61136BCF500673CDB /* audiofiles.cpp:190 */,
-			FC3E4F721137367A0021FAE0 /* audiofiles.cpp:373 */,
+			FC3E4F721137367A0021FAE0 /* audiofiles.cpp:374 */,
 			FC3E4FB011373AC00021FAE0 /* evolvertest.cpp:26 */,
-			FC3E4FB411373B030021FAE0 /* audiofiles.cpp:273 */,
+			FC3E4FB411373B030021FAE0 /* audiofiles.cpp:274 */,
 			FC3E4FD611373CDF0021FAE0 /* evolvertest.cpp:40 */,
+			FC3E5010113741920021FAE0 /* evolvertest.cpp:51 */,
 		);
 		codeSenseManager = FC146648110E6007006F10FB /* Code sense */;
 		executables = (
@@ -86,46 +87,26 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 288830682;
-			PBXWorkspaceStateSaveDate = 288830682;
+			PBXPerProjectTemplateStateSaveDate = 288915298;
+			PBXWorkspaceStateSaveDate = 288915298;
 		};
 		perUserProjectItems = {
-			FC15122C1135F75100673CDB = FC15122C1135F75100673CDB /* PBXTextBookmark */;
-			FC15123C1135F79100673CDB = FC15123C1135F79100673CDB /* PBXTextBookmark */;
-			FC15127B1136B2FD00673CDB = FC15127B1136B2FD00673CDB /* PBXBookmark */;
-			FC1512B31136BB1100673CDB = FC1512B31136BB1100673CDB /* PBXTextBookmark */;
-			FC1512E31136BE5300673CDB = FC1512E31136BE5300673CDB /* PBXTextBookmark */;
-			FC1512F31136C34700673CDB = FC1512F31136C34700673CDB /* PBXTextBookmark */;
-			FC1512F41136C34700673CDB = FC1512F41136C34700673CDB /* PBXTextBookmark */;
-			FC1512F51136C34700673CDB = FC1512F51136C34700673CDB /* PBXTextBookmark */;
-			FC1512F61136C34700673CDB = FC1512F61136C34700673CDB /* PBXTextBookmark */;
-			FC1512F71136C34700673CDB = FC1512F71136C34700673CDB /* PBXTextBookmark */;
-			FC1512F91136C34700673CDB = FC1512F91136C34700673CDB /* PBXTextBookmark */;
-			FC2781C311357112005B5F7E = FC2781C311357112005B5F7E /* PBXTextBookmark */;
-			FC3E4F76113736980021FAE0 /* PBXTextBookmark */ = FC3E4F76113736980021FAE0 /* PBXTextBookmark */;
-			FC3E4F77113736980021FAE0 /* PBXTextBookmark */ = FC3E4F77113736980021FAE0 /* PBXTextBookmark */;
-			FC3E4F78113736980021FAE0 /* PBXTextBookmark */ = FC3E4F78113736980021FAE0 /* PBXTextBookmark */;
-			FC3E4F79113736980021FAE0 /* PBXTextBookmark */ = FC3E4F79113736980021FAE0 /* PBXTextBookmark */;
-			FC3E4F7A113736980021FAE0 /* PBXTextBookmark */ = FC3E4F7A113736980021FAE0 /* PBXTextBookmark */;
-			FC3E4F7B113736980021FAE0 /* PBXTextBookmark */ = FC3E4F7B113736980021FAE0 /* PBXTextBookmark */;
-			FC3E4FC011373BA40021FAE0 /* PBXTextBookmark */ = FC3E4FC011373BA40021FAE0 /* PBXTextBookmark */;
-			FC3E4FC111373BA40021FAE0 /* PBXTextBookmark */ = FC3E4FC111373BA40021FAE0 /* PBXTextBookmark */;
-			FC3E4FC211373BA40021FAE0 /* PBXTextBookmark */ = FC3E4FC211373BA40021FAE0 /* PBXTextBookmark */;
-			FC3E4FC311373BA40021FAE0 /* PBXTextBookmark */ = FC3E4FC311373BA40021FAE0 /* PBXTextBookmark */;
-			FC3E4FC411373BA40021FAE0 /* PBXTextBookmark */ = FC3E4FC411373BA40021FAE0 /* PBXTextBookmark */;
-			FC3E4FC511373BA40021FAE0 /* PBXTextBookmark */ = FC3E4FC511373BA40021FAE0 /* PBXTextBookmark */;
-			FC3E4FCA11373C680021FAE0 /* PBXTextBookmark */ = FC3E4FCA11373C680021FAE0 /* PBXTextBookmark */;
-			FC3E4FCB11373C680021FAE0 /* PBXTextBookmark */ = FC3E4FCB11373C680021FAE0 /* PBXTextBookmark */;
-			FC3E4FCC11373C680021FAE0 /* PBXTextBookmark */ = FC3E4FCC11373C680021FAE0 /* PBXTextBookmark */;
-			FC3E4FCD11373C680021FAE0 /* PBXTextBookmark */ = FC3E4FCD11373C680021FAE0 /* PBXTextBookmark */;
-			FC3E4FD811373CF80021FAE0 /* PBXTextBookmark */ = FC3E4FD811373CF80021FAE0 /* PBXTextBookmark */;
-			FC3E4FD911373CF80021FAE0 /* PBXTextBookmark */ = FC3E4FD911373CF80021FAE0 /* PBXTextBookmark */;
-			FC3E4FDA11373CF80021FAE0 /* PBXTextBookmark */ = FC3E4FDA11373CF80021FAE0 /* PBXTextBookmark */;
-			FC3E4FDB11373CF80021FAE0 /* PBXTextBookmark */ = FC3E4FDB11373CF80021FAE0 /* PBXTextBookmark */;
-			FC3E4FE611373E880021FAE0 /* PBXTextBookmark */ = FC3E4FE611373E880021FAE0 /* PBXTextBookmark */;
-			FC3E4FE711373E880021FAE0 /* PBXTextBookmark */ = FC3E4FE711373E880021FAE0 /* PBXTextBookmark */;
-			FC3E4FE811373E880021FAE0 /* PBXTextBookmark */ = FC3E4FE811373E880021FAE0 /* PBXTextBookmark */;
-			FC3E4FE911373E880021FAE0 /* PBXTextBookmark */ = FC3E4FE911373E880021FAE0 /* PBXTextBookmark */;
+			FC3E507B113814B30021FAE0 /* PBXTextBookmark */ = FC3E507B113814B30021FAE0 /* PBXTextBookmark */;
+			FC3E507F113814B30021FAE0 /* PBXTextBookmark */ = FC3E507F113814B30021FAE0 /* PBXTextBookmark */;
+			FC3E5080113814B30021FAE0 /* PBXTextBookmark */ = FC3E5080113814B30021FAE0 /* PBXTextBookmark */;
+			FCC0206F11388153002EFA75 /* PBXTextBookmark */ = FCC0206F11388153002EFA75 /* PBXTextBookmark */;
+			FCC0207111388186002EFA75 /* PBXTextBookmark */ = FCC0207111388186002EFA75 /* PBXTextBookmark */;
+			FCC02079113882BE002EFA75 /* PBXTextBookmark */ = FCC02079113882BE002EFA75 /* PBXTextBookmark */;
+			FCC0207D113882BE002EFA75 /* PBXTextBookmark */ = FCC0207D113882BE002EFA75 /* PBXTextBookmark */;
+			FCC02081113882BE002EFA75 /* PBXTextBookmark */ = FCC02081113882BE002EFA75 /* PBXTextBookmark */;
+			FCC02089113882BE002EFA75 /* PBXTextBookmark */ = FCC02089113882BE002EFA75 /* PBXTextBookmark */;
+			FCC0208A113882BE002EFA75 /* PBXTextBookmark */ = FCC0208A113882BE002EFA75 /* PBXTextBookmark */;
+			FCC0208C113882BE002EFA75 /* PBXTextBookmark */ = FCC0208C113882BE002EFA75 /* PBXTextBookmark */;
+			FCC0208D113882BE002EFA75 /* PBXTextBookmark */ = FCC0208D113882BE002EFA75 /* PBXTextBookmark */;
+			FCC0208F113882BE002EFA75 /* PBXTextBookmark */ = FCC0208F113882BE002EFA75 /* PBXTextBookmark */;
+			FCC02090113882BE002EFA75 /* PBXTextBookmark */ = FCC02090113882BE002EFA75 /* PBXTextBookmark */;
+			FCC02091113882BE002EFA75 /* PBXTextBookmark */ = FCC02091113882BE002EFA75 /* PBXTextBookmark */;
+			FCC02092113882BE002EFA75 /* PBXTextBookmark */ = FCC02092113882BE002EFA75 /* PBXTextBookmark */;
 		};
 		sourceControlManager = FC146647110E6007006F10FB /* Source Control */;
 		userBuildSettings = {
@@ -154,9 +135,9 @@
 	};
 	FC05760D11335B750059A5A6 /* CABufferList.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 4242}}";
-			sepNavSelRange = "{7760, 7}";
-			sepNavVisRange = "{6888, 1220}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 4382}}";
+			sepNavSelRange = "{4547, 15}";
+			sepNavVisRange = "{3476, 1278}";
 			sepNavWindowFrame = "{{15, 140}, {618, 733}}";
 		};
 	};
@@ -185,9 +166,9 @@
 	};
 	FC05766211335B750059A5A6 /* CAStreamBasicDescription.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 3696}}";
-			sepNavSelRange = "{3415, 0}";
-			sepNavVisRange = "{3185, 1509}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 3430}}";
+			sepNavSelRange = "{3951, 27}";
+			sepNavVisRange = "{3719, 1423}";
 			sepNavWindowFrame = "{{61, 99}, {618, 733}}";
 		};
 	};
@@ -207,7 +188,7 @@
 			sepNavWindowFrame = "{{15, 140}, {618, 733}}";
 		};
 	};
-	FC0F68F8112624AE00C9C3C8 /* composition.cpp:426 */ = {
+	FC0F68F8112624AE00C9C3C8 /* composition.cpp:434 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -219,9 +200,9 @@
 		functionName = "Sample::splitFile()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 426;
+		lineNumber = 434;
 		location = "evolver-test";
-		modificationTime = 288832896.607898;
+		modificationTime = 288837902.288753;
 		state = 2;
 	};
 	FC14663F110E5FFA006F10FB /* nynex */ = {
@@ -258,33 +239,6 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	FC15122C1135F75100673CDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC15122D1135F75100673CDB /* CoreAudioTypes.h */;
-		rLen = 1;
-		rLoc = 154;
-		rType = 1;
-	};
-	FC15122D1135F75100673CDB /* CoreAudioTypes.h */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.h;
-		name = CoreAudioTypes.h;
-		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/CoreAudio.framework/Versions/A/Headers/CoreAudioTypes.h;
-		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 15092}}";
-			sepNavSelRange = "{17516, 0}";
-			sepNavVisRange = "{16820, 2390}";
-		};
-	};
-	FC15123C1135F79100673CDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: ‘class nynex::FileReaderWriter’ has no member named ‘ReadNextInputBuffer’";
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		rLen = 1;
-		rLoc = 39;
-		rType = 1;
-	};
 	FC1512441135F7A600673CDB /* evolvertest.cpp:21 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
@@ -299,10 +253,10 @@
 		ignoreCount = 0;
 		lineNumber = 21;
 		location = "evolver-test";
-		modificationTime = 288832896.607908;
+		modificationTime = 288837902.288766;
 		state = 2;
 	};
-	FC1512521135F81900673CDB /* evolvertest.cpp:45 */ = {
+	FC1512521135F81900673CDB /* evolvertest.cpp:57 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -314,14 +268,10 @@
 		functionName = "main(int argc, char **argv)";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 45;
+		lineNumber = 57;
 		location = "evolver-test";
-		modificationTime = 288832896.607978;
+		modificationTime = 288837902.288885;
 		state = 2;
-	};
-	FC15127B1136B2FD00673CDB /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = FC82AFF31132C37F00368033 /* audiofiles.cpp */;
 	};
 	FC15127D1136B31100673CDB /* CAXException.h:167 */ = {
 		isa = PBXFileBreakpoint;
@@ -335,7 +285,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 167;
-		modificationTime = 288832897.422722;
+		modificationTime = 288837902.533002;
 		state = 0;
 	};
 	FC1512931136B34500673CDB /* evolvertest.cpp:39 */ = {
@@ -352,7 +302,7 @@
 		ignoreCount = 0;
 		lineNumber = 39;
 		location = "evolver-test";
-		modificationTime = 288832896.608021;
+		modificationTime = 288837902.288995;
 		state = 2;
 	};
 	FC15129F1136B35500673CDB /* audiofiles.cpp:264 */ = {
@@ -369,17 +319,10 @@
 		ignoreCount = 0;
 		lineNumber = 264;
 		location = "evolver-test";
-		modificationTime = 288832896.608051;
+		modificationTime = 288837902.28907;
 		state = 2;
 	};
-	FC1512B31136BB1100673CDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC05766F11335B750059A5A6 /* CAXException.h */;
-		rLen = 1;
-		rLoc = 55;
-		rType = 1;
-	};
-	FC1512C61136BC3300673CDB /* audiofiles.cpp:347 */ = {
+	FC1512C61136BC3300673CDB /* audiofiles.cpp:348 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -391,9 +334,9 @@
 		functionName = "nynex::FileReaderWriter::PrepareConverters()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 347;
+		lineNumber = 348;
 		location = "evolver-test";
-		modificationTime = 288832896.608185;
+		modificationTime = 288837902.289163;
 		state = 2;
 	};
 	FC1512D61136BCF500673CDB /* audiofiles.cpp:190 */ = {
@@ -410,94 +353,10 @@
 		ignoreCount = 0;
 		lineNumber = 190;
 		location = "evolver-test";
-		modificationTime = 288832896.6083;
+		modificationTime = 288837902.289236;
 		state = 2;
 	};
-	FC1512E31136BE5300673CDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC05766211335B750059A5A6 /* CAStreamBasicDescription.h */;
-		rLen = 1;
-		rLoc = 77;
-		rType = 1;
-	};
-	FC1512F31136C34700673CDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		name = "evolvertest.cpp: 26";
-		rLen = 0;
-		rLoc = 821;
-		rType = 0;
-		vrLen = 1617;
-		vrLoc = 234;
-	};
-	FC1512F41136C34700673CDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF31132C37F00368033 /* audiofiles.cpp */;
-		name = "audiofiles.cpp: 298";
-		rLen = 0;
-		rLoc = 13261;
-		rType = 0;
-		vrLen = 1337;
-		vrLoc = 6293;
-	};
-	FC1512F51136C34700673CDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC05766211335B750059A5A6 /* CAStreamBasicDescription.h */;
-		name = "CAStreamBasicDescription.h: 79";
-		rLen = 27;
-		rLoc = 3885;
-		rType = 0;
-		vrLen = 1681;
-		vrLoc = 2950;
-	};
-	FC1512F61136C34700673CDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC05766F11335B750059A5A6 /* CAXException.h */;
-		name = "CAXException.h: 102";
-		rLen = 0;
-		rLoc = 4007;
-		rType = 0;
-		vrLen = 1300;
-		vrLoc = 3193;
-	};
-	FC1512F71136C34700673CDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC1512F81136C34700673CDB /* CoreAudioTypes.h */;
-		name = "CoreAudioTypes.h: 157";
-		rLen = 0;
-		rLoc = 6295;
-		rType = 0;
-		vrLen = 1983;
-		vrLoc = 4992;
-	};
-	FC1512F81136C34700673CDB /* CoreAudioTypes.h */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.h;
-		name = CoreAudioTypes.h;
-		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/CoreAudio.framework/Versions/A/Headers/CoreAudioTypes.h;
-		sourceTree = "<absolute>";
-	};
-	FC1512F91136C34700673CDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF41132C37F00368033 /* audiofiles.h */;
-		name = "audiofiles.h: 133";
-		rLen = 4;
-		rLoc = 5090;
-		rType = 0;
-		vrLen = 1520;
-		vrLoc = 3773;
-	};
-	FC2781C311357112005B5F7E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF41132C37F00368033 /* audiofiles.h */;
-		name = "audiofiles.h: 170";
-		rLen = 0;
-		rLoc = 7381;
-		rType = 0;
-		vrLen = 1765;
-		vrLoc = 5345;
-	};
-	FC3E4F721137367A0021FAE0 /* audiofiles.cpp:373 */ = {
+	FC3E4F721137367A0021FAE0 /* audiofiles.cpp:374 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -509,70 +368,10 @@
 		functionName = "nynex::FileReaderWriter::PrepareConverters()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 373;
+		lineNumber = 374;
 		location = "evolver-test";
-		modificationTime = 288832896.608406;
+		modificationTime = 288837902.289308;
 		state = 2;
-	};
-	FC3E4F76113736980021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF31132C37F00368033 /* audiofiles.cpp */;
-		name = "audiofiles.cpp: 204";
-		rLen = 54;
-		rLoc = 7366;
-		rType = 0;
-		vrLen = 2014;
-		vrLoc = 13417;
-	};
-	FC3E4F77113736980021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		name = "evolvertest.cpp: 26";
-		rLen = 0;
-		rLoc = 824;
-		rType = 0;
-		vrLen = 1504;
-		vrLoc = 234;
-	};
-	FC3E4F78113736980021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC05766211335B750059A5A6 /* CAStreamBasicDescription.h */;
-		name = "CAStreamBasicDescription.h: 79";
-		rLen = 27;
-		rLoc = 3885;
-		rType = 0;
-		vrLen = 1623;
-		vrLoc = 2950;
-	};
-	FC3E4F79113736980021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC05766F11335B750059A5A6 /* CAXException.h */;
-		name = "CAXException.h: 102";
-		rLen = 0;
-		rLoc = 4007;
-		rType = 0;
-		vrLen = 1238;
-		vrLoc = 3229;
-	};
-	FC3E4F7A113736980021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC15122D1135F75100673CDB /* CoreAudioTypes.h */;
-		name = "CoreAudioTypes.h: 157";
-		rLen = 0;
-		rLoc = 6295;
-		rType = 0;
-		vrLen = 1976;
-		vrLoc = 4992;
-	};
-	FC3E4F7B113736980021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF41132C37F00368033 /* audiofiles.h */;
-		name = "audiofiles.h: 133";
-		rLen = 4;
-		rLoc = 5090;
-		rType = 0;
-		vrLen = 1433;
-		vrLoc = 3773;
 	};
 	FC3E4FB011373AC00021FAE0 /* evolvertest.cpp:26 */ = {
 		isa = PBXFileBreakpoint;
@@ -588,10 +387,10 @@
 		ignoreCount = 0;
 		lineNumber = 26;
 		location = "evolver-test";
-		modificationTime = 288832896.608516;
+		modificationTime = 288837902.289381;
 		state = 2;
 	};
-	FC3E4FB411373B030021FAE0 /* audiofiles.cpp:273 */ = {
+	FC3E4FB411373B030021FAE0 /* audiofiles.cpp:274 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -603,104 +402,10 @@
 		functionName = "nynex::FileReaderWriter::PrepareConverters()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 273;
+		lineNumber = 274;
 		location = "evolver-test";
-		modificationTime = 288832896.608553;
+		modificationTime = 288837902.289475;
 		state = 2;
-	};
-	FC3E4FC011373BA40021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF31132C37F00368033 /* audiofiles.cpp */;
-		name = "audiofiles.cpp: 343";
-		rLen = 0;
-		rLoc = 13186;
-		rType = 0;
-		vrLen = 1851;
-		vrLoc = 11875;
-	};
-	FC3E4FC111373BA40021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		name = "evolvertest.cpp: 26";
-		rLen = 24;
-		rLoc = 691;
-		rType = 0;
-		vrLen = 1504;
-		vrLoc = 234;
-	};
-	FC3E4FC211373BA40021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC15122D1135F75100673CDB /* CoreAudioTypes.h */;
-		rLen = 1;
-		rLoc = 352;
-		rType = 1;
-	};
-	FC3E4FC311373BA40021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC15122D1135F75100673CDB /* CoreAudioTypes.h */;
-		name = "CoreAudioTypes.h: 353";
-		rLen = 0;
-		rLoc = 17516;
-		rType = 0;
-		vrLen = 2390;
-		vrLoc = 16820;
-	};
-	FC3E4FC411373BA40021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF41132C37F00368033 /* audiofiles.h */;
-		rLen = 1;
-		rLoc = 178;
-		rType = 1;
-	};
-	FC3E4FC511373BA40021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF41132C37F00368033 /* audiofiles.h */;
-		name = "audiofiles.h: 179";
-		rLen = 24;
-		rLoc = 7109;
-		rType = 0;
-		vrLen = 1734;
-		vrLoc = 5730;
-	};
-	FC3E4FCA11373C680021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF31132C37F00368033 /* audiofiles.cpp */;
-		name = "audiofiles.cpp: 343";
-		rLen = 0;
-		rLoc = 13186;
-		rType = 0;
-		vrLen = 1131;
-		vrLoc = 9892;
-	};
-	FC3E4FCB11373C680021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		name = "evolvertest.cpp: 26";
-		rLen = 24;
-		rLoc = 691;
-		rType = 0;
-		vrLen = 1504;
-		vrLoc = 234;
-	};
-	FC3E4FCC11373C680021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC15122D1135F75100673CDB /* CoreAudioTypes.h */;
-		name = "CoreAudioTypes.h: 353";
-		rLen = 0;
-		rLoc = 17516;
-		rType = 0;
-		vrLen = 2390;
-		vrLoc = 16820;
-	};
-	FC3E4FCD11373C680021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF41132C37F00368033 /* audiofiles.h */;
-		name = "audiofiles.h: 179";
-		rLen = 24;
-		rLoc = 7109;
-		rType = 0;
-		vrLen = 1734;
-		vrLoc = 5730;
 	};
 	FC3E4FD611373CDF0021FAE0 /* evolvertest.cpp:40 */ = {
 		isa = PBXFileBreakpoint;
@@ -712,92 +417,71 @@
 		delayBeforeContinue = 0;
 		fileReference = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
 		functionName = "main(int argc, char **argv)";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 40;
 		location = "evolver-test";
-		modificationTime = 288832900.350471;
-		state = 1;
+		modificationTime = 288837902.289556;
+		state = 2;
 	};
-	FC3E4FD811373CF80021FAE0 /* PBXTextBookmark */ = {
+	FC3E5010113741920021FAE0 /* evolvertest.cpp:51 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
+		functionName = "main(int argc, char **argv)";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 51;
+		location = "evolver-test";
+		modificationTime = 288837902.2896301;
+		state = 2;
+	};
+	FC3E507B113814B30021FAE0 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
 		name = "evolvertest.cpp: 26";
 		rLen = 24;
-		rLoc = 691;
+		rLoc = 797;
 		rType = 0;
-		vrLen = 1547;
-		vrLoc = 276;
+		vrLen = 1800;
+		vrLoc = 299;
 	};
-	FC3E4FD911373CF80021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF31132C37F00368033 /* audiofiles.cpp */;
-		name = "audiofiles.cpp: 377";
-		rLen = 0;
-		rLoc = 14637;
-		rType = 0;
-		vrLen = 1966;
-		vrLoc = 13444;
+	FC3E507D113814B30021FAE0 /* CoreAudioTypes.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CoreAudioTypes.h;
+		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/CoreAudio.framework/Versions/A/Headers/CoreAudioTypes.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 15358}}";
+			sepNavSelRange = "{6234, 35}";
+			sepNavVisRange = "{5084, 1919}";
+		};
 	};
-	FC3E4FDA11373CF80021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC15122D1135F75100673CDB /* CoreAudioTypes.h */;
-		name = "CoreAudioTypes.h: 353";
-		rLen = 0;
-		rLoc = 17516;
-		rType = 0;
-		vrLen = 2390;
-		vrLoc = 16820;
-	};
-	FC3E4FDB11373CF80021FAE0 /* PBXTextBookmark */ = {
+	FC3E507F113814B30021FAE0 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = FC82AFF41132C37F00368033 /* audiofiles.h */;
-		name = "audiofiles.h: 179";
-		rLen = 24;
-		rLoc = 7109;
+		name = "audiofiles.h: 91";
+		rLen = 12;
+		rLoc = 3682;
 		rType = 0;
-		vrLen = 1734;
-		vrLoc = 5730;
+		vrLen = 1226;
+		vrLoc = 2966;
 	};
-	FC3E4FE611373E880021FAE0 /* PBXTextBookmark */ = {
+	FC3E5080113814B30021FAE0 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		name = "evolvertest.cpp: 41";
-		rLen = 0;
-		rLoc = 1343;
+		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
+		name = "composition.h: 82";
+		rLen = 23;
+		rLoc = 2202;
 		rType = 0;
-		vrLen = 1595;
-		vrLoc = 276;
-	};
-	FC3E4FE711373E880021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF31132C37F00368033 /* audiofiles.cpp */;
-		name = "audiofiles.cpp: 442";
-		rLen = 0;
-		rLoc = 17720;
-		rType = 0;
-		vrLen = 1503;
-		vrLoc = 16569;
-	};
-	FC3E4FE811373E880021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC15122D1135F75100673CDB /* CoreAudioTypes.h */;
-		name = "CoreAudioTypes.h: 353";
-		rLen = 0;
-		rLoc = 17516;
-		rType = 0;
-		vrLen = 2390;
-		vrLoc = 16820;
-	};
-	FC3E4FE911373E880021FAE0 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC82AFF41132C37F00368033 /* audiofiles.h */;
-		name = "audiofiles.h: 179";
-		rLen = 24;
-		rLoc = 7109;
-		rType = 0;
-		vrLen = 1734;
-		vrLoc = 5730;
+		vrLen = 1633;
+		vrLoc = 1243;
 	};
 	FC4C45681118EA3500394B9E /* evolver-test */ = {
 		activeExec = 0;
@@ -843,25 +527,25 @@
 	};
 	FC4C45CD1118EE4300394B9E /* evolvertest.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 854}}";
-			sepNavSelRange = "{1343, 0}";
-			sepNavVisRange = "{276, 1595}";
-			sepNavWindowFrame = "{{631, 200}, {618, 677}}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 1022}}";
+			sepNavSelRange = "{691, 24}";
+			sepNavVisRange = "{276, 1823}";
+			sepNavWindowFrame = "{{661, 114}, {618, 677}}";
 		};
 	};
 	FC82AFF31132C37F00368033 /* audiofiles.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 8512}}";
-			sepNavSelRange = "{17720, 0}";
-			sepNavVisRange = "{16569, 1503}";
-			sepNavWindowFrame = "{{560, 191}, {618, 677}}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 8540}}";
+			sepNavSelRange = "{10248, 0}";
+			sepNavVisRange = "{9423, 1296}";
+			sepNavWindowFrame = "{{453, 131}, {618, 677}}";
 		};
 	};
 	FC82AFF41132C37F00368033 /* audiofiles.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 3010}}";
-			sepNavSelRange = "{7109, 24}";
-			sepNavVisRange = "{5730, 1734}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 2758}}";
+			sepNavSelRange = "{3682, 12}";
+			sepNavVisRange = "{2966, 1226}";
 			sepNavWindowFrame = "{{54, 185}, {618, 677}}";
 		};
 	};
@@ -913,7 +597,7 @@
 			sepNavWindowFrame = "{{84, 77}, {618, 733}}";
 		};
 	};
-	FCA2BE701124E681007F7AB3 /* composition.cpp:544 */ = {
+	FCA2BE701124E681007F7AB3 /* composition.cpp:557 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -925,29 +609,12 @@
 		functionName = "ScoreFinder::operator()(Word & check)";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 544;
+		lineNumber = 557;
 		location = "evolver-test";
-		modificationTime = 288832896.607738;
+		modificationTime = 288837902.2885939;
 		state = 2;
 	};
-	FCA2BE8D1124EA71007F7AB3 /* composition.cpp:575 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::randomWord()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 575;
-		location = "evolver-test";
-		modificationTime = 288832896.607761;
-		state = 2;
-	};
-	FCA2BE991124EAFE007F7AB3 /* composition.cpp:580 */ = {
+	FCA2BE8D1124EA71007F7AB3 /* composition.cpp:580 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -961,10 +628,10 @@
 		ignoreCount = 0;
 		lineNumber = 580;
 		location = "evolver-test";
-		modificationTime = 288832896.607776;
+		modificationTime = 288837902.288622;
 		state = 2;
 	};
-	FCA2BE9C1124EB60007F7AB3 /* composition.cpp:572 */ = {
+	FCA2BE991124EAFE007F7AB3 /* composition.cpp:585 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -976,12 +643,12 @@
 		functionName = "SampleBank::randomWord()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 572;
+		lineNumber = 585;
 		location = "evolver-test";
-		modificationTime = 288832896.607785;
+		modificationTime = 288837902.288633;
 		state = 2;
 	};
-	FCA2BEA31124EBCC007F7AB3 /* composition.cpp:574 */ = {
+	FCA2BE9C1124EB60007F7AB3 /* composition.cpp:577 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -993,9 +660,26 @@
 		functionName = "SampleBank::randomWord()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 574;
+		lineNumber = 577;
 		location = "evolver-test";
-		modificationTime = 288832896.607793;
+		modificationTime = 288837902.288643;
+		state = 2;
+	};
+	FCA2BEA31124EBCC007F7AB3 /* composition.cpp:579 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		functionName = "SampleBank::randomWord()";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 579;
+		location = "evolver-test";
+		modificationTime = 288837902.288653;
 		state = 2;
 	};
 	FCA2BEA71124EC41007F7AB3 /* composition.cpp:208 */ = {
@@ -1012,7 +696,7 @@
 		ignoreCount = 0;
 		lineNumber = 208;
 		location = "evolver-test";
-		modificationTime = 288832896.607807;
+		modificationTime = 288837902.288663;
 		state = 2;
 	};
 	FCA2BECB1124F597007F7AB3 /* composition.cpp:211 */ = {
@@ -1029,10 +713,10 @@
 		ignoreCount = 0;
 		lineNumber = 211;
 		location = "evolver-test";
-		modificationTime = 288832896.607815;
+		modificationTime = 288837902.288673;
 		state = 2;
 	};
-	FCA2BEE711257D3B007F7AB3 /* composition.cpp:467 */ = {
+	FCA2BEE711257D3B007F7AB3 /* composition.cpp:482 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1044,9 +728,9 @@
 		functionName = "SampleBank::setSampleDir(const std::string & dir)";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 467;
+		lineNumber = 482;
 		location = "evolver-test";
-		modificationTime = 288832896.607829;
+		modificationTime = 288837902.288683;
 		state = 2;
 	};
 	FCA2BEFA11258758007F7AB3 /* composition.cpp:206 */ = {
@@ -1063,7 +747,7 @@
 		ignoreCount = 0;
 		lineNumber = 206;
 		location = "evolver-test";
-		modificationTime = 288832896.607837;
+		modificationTime = 288837902.288693;
 		state = 2;
 	};
 	FCA2BEFF112587E1007F7AB3 /* composition.cpp:216 */ = {
@@ -1080,10 +764,10 @@
 		ignoreCount = 0;
 		lineNumber = 216;
 		location = "evolver-test";
-		modificationTime = 288832896.607855;
+		modificationTime = 288837902.288716;
 		state = 2;
 	};
-	FCA2BF3C11258C49007F7AB3 /* composition.cpp:290 */ = {
+	FCA2BF3C11258C49007F7AB3 /* composition.cpp:295 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1095,12 +779,12 @@
 		functionName = "Sample::makeWords()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 290;
+		lineNumber = 295;
 		location = "evolver-test";
-		modificationTime = 288832896.607865;
+		modificationTime = 288837902.288729;
 		state = 2;
 	};
-	FCA2BF691125912C007F7AB3 /* composition.cpp:416 */ = {
+	FCA2BF691125912C007F7AB3 /* composition.cpp:424 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1112,24 +796,172 @@
 		functionName = "Sample::splitFile()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 416;
+		lineNumber = 424;
 		location = "evolver-test";
-		modificationTime = 288832896.607885;
+		modificationTime = 288837902.2887389;
 		state = 2;
+	};
+	FCC0206F11388153002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: 'AudioBuffer CABufferList::mBuffers [1]' is protected";
+		fRef = FC05760D11335B750059A5A6 /* CABufferList.h */;
+		rLen = 1;
+		rLoc = 296;
+		rType = 1;
+	};
+	FCC0207111388186002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: 'class CABufferList' has no member named 'getModifiableBufferList'";
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		rLen = 1;
+		rLoc = 347;
+		rType = 1;
+	};
+	FCC02079113882BE002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC3E507D113814B30021FAE0 /* CoreAudioTypes.h */;
+		rLen = 1;
+		rLoc = 154;
+		rType = 1;
+	};
+	FCC0207D113882BE002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC05766211335B750059A5A6 /* CAStreamBasicDescription.h */;
+		rLen = 1;
+		rLoc = 77;
+		rType = 1;
+	};
+	FCC02081113882BE002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCC02082113882BE002EFA75 /* CAAudioFileConverter.h */;
+		rLen = 1;
+		rLoc = 101;
+		rType = 1;
+	};
+	FCC02082113882BE002EFA75 /* CAAudioFileConverter.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = CAAudioFileConverter.h;
+		path = /Developer/Examples/CoreAudio/Services/AudioFileTools/Utility/CAAudioFileConverter.h;
+		sourceTree = "<absolute>";
+	};
+	FCC02089113882BE002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		name = "composition.cpp: 361";
+		rLen = 0;
+		rLoc = 12341;
+		rType = 0;
+		vrLen = 1820;
+		vrLoc = 11298;
+	};
+	FCC0208A113882BE002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCC0208B113882BE002EFA75 /* CoreAudioTypes.h */;
+		name = "CoreAudioTypes.h: 155";
+		rLen = 35;
+		rLoc = 6234;
+		rType = 0;
+		vrLen = 1919;
+		vrLoc = 5084;
+	};
+	FCC0208B113882BE002EFA75 /* CoreAudioTypes.h */ = {
+		isa = PBXFileReference;
+		name = CoreAudioTypes.h;
+		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/CoreAudio.framework/Versions/A/Headers/CoreAudioTypes.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 15358}}";
+			sepNavSelRange = "{6234, 35}";
+			sepNavVisRange = "{5084, 1919}";
+			sepNavWindowFrame = "{{271, 103}, {618, 733}}";
+		};
+	};
+	FCC0208C113882BE002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC05766211335B750059A5A6 /* CAStreamBasicDescription.h */;
+		name = "CAStreamBasicDescription.h: 84";
+		rLen = 27;
+		rLoc = 3951;
+		rType = 0;
+		vrLen = 1423;
+		vrLoc = 3719;
+	};
+	FCC0208D113882BE002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCC0208E113882BE002EFA75 /* CAAudioFileConverter.h */;
+		name = "CAAudioFileConverter.h: 102";
+		rLen = 24;
+		rLoc = 4059;
+		rType = 0;
+		vrLen = 1597;
+		vrLoc = 3087;
+	};
+	FCC0208E113882BE002EFA75 /* CAAudioFileConverter.h */ = {
+		isa = PBXFileReference;
+		name = CAAudioFileConverter.h;
+		path = /Developer/Examples/CoreAudio/Services/AudioFileTools/Utility/CAAudioFileConverter.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {559, 2492}}";
+			sepNavSelRange = "{4059, 24}";
+			sepNavVisRange = "{3087, 1597}";
+			sepNavWindowFrame = "{{15, 140}, {618, 733}}";
+		};
+	};
+	FCC0208F113882BE002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC05760D11335B750059A5A6 /* CABufferList.h */;
+		name = "CABufferList.h: 105";
+		rLen = 15;
+		rLoc = 4547;
+		rType = 0;
+		vrLen = 1278;
+		vrLoc = 3476;
+	};
+	FCC02090113882BE002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
+		name = "evolvertest.cpp: 26";
+		rLen = 24;
+		rLoc = 691;
+		rType = 0;
+		vrLen = 1823;
+		vrLoc = 276;
+	};
+	FCC02091113882BE002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC82AFF41132C37F00368033 /* audiofiles.h */;
+		name = "audiofiles.h: 91";
+		rLen = 12;
+		rLoc = 3682;
+		rType = 0;
+		vrLen = 1226;
+		vrLoc = 2966;
+	};
+	FCC02092113882BE002EFA75 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
+		name = "composition.h: 82";
+		rLen = 23;
+		rLoc = 2202;
+		rType = 0;
+		vrLen = 1633;
+		vrLoc = 1243;
 	};
 	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 8554}}";
-			sepNavSelRange = "{10889, 0}";
-			sepNavVisRange = "{10022, 1282}";
-			sepNavWindowFrame = "{{51, 154}, {618, 677}}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 8484}}";
+			sepNavSelRange = "{12341, 0}";
+			sepNavVisRange = "{11298, 1820}";
+			sepNavWindowFrame = "{{547, 201}, {618, 677}}";
 		};
 	};
 	FCD23436110FABDE0023CC4B /* composition.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 1750}}";
-			sepNavSelRange = "{2354, 0}";
-			sepNavVisRange = "{1545, 2128}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 1890}}";
+			sepNavSelRange = "{2202, 23}";
+			sepNavVisRange = "{1243, 1633}";
 			sepNavWindowFrame = "{{13, 140}, {618, 733}}";
 		};
 	};

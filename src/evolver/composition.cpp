@@ -254,6 +254,11 @@ unsigned int Word::getDuration() const {
 void Word::calcDuration() {
     // these files are in raw linear pcm. no header = easy calculation
     // stat for file size (bytes / file), divide by (sample size (bytes/sample) * channels (samples/frame) * samplerate(frames/sec)) = seconds per file
+    struct stat info;
+    SampleBank & bank = SampleBank::getInstance();
+    if (stat((bank.getSampleDir() + "/words" + filename_).c_str(), &info) == 0) {
+        duration_ = info.st_size / (bank.getSampleSize() * bank.getChannels() * bank.getSampleRate());
+    }
 }
 
 Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(filename) {
@@ -308,55 +313,57 @@ void Sample::makeWords() {
     wordsReady_ = true;
 }
 
-/*
-#define sampletype unsigned short
 void Sample::splitFile() {
     std::cout << "splitting sample " << filename_ << std::endl;
     SampleBank & bank = SampleBank::getInstance();
-    std::list<AudioBuffer *> buf;
-//    set up audioconverter output stream def
-    chdir(bank.getSampleDir().c_str());
-//    open input file and converter
+    std::list<FileReaderWriter::ReadBuffer *> buf;
+    nynex::FileReaderWriter frw;
+    nynex::FileReaderWriter::ConversionParameters params = bank.getConversionParameters();
     
-    size_t bufsize = BUFSIZE * bank.getChannels(); // needs to be a multiple of number of samples in a frame
+    chdir(bank.getSampleDir().c_str());
+    frw.Prepare(params);
+    frw.Input(filename_.c_str()); // may need absolute path here
+    
+    
+    size_t bufsize = BUFSIZE; // this is now in frames
     size_t read = 0; // need this later
     do {
-//        buf.push_back((AudioBuffer*)malloc(bufsize*sizeof(sampletype)));
-//        set up other members of buf.back()
-//        read file into buffer
+        buf.push_back(frw.GetNextReadBuffer());
+        read = buf.back()->nFrames;
     } while (bufsize == read);
 //    close input file
     
- while (true) {
- UInt32 nFrames = framesToRead;
- mReadPtrs->SetFrom(mReadBuffer);
- AudioBufferList *readbuf = &mReadPtrs->GetModifiableBufferList();
- 
- //printf("read %ld of %ld frames\n", nFrames, framesToRead);
- if (nFrames == 0)
- break;
- 
- if (ShouldTerminateConversion())
- break;
- }
  // find mean of abs values
     double sum = 0.;
     size_t count = 0;
     size_t list_ix = 0;
     size_t limit = bufsize;
-    for (std::list<AudioBuffer*>::iterator it = buf.begin(); it != buf.end(); ++it) {
+    for (std::list<FileReaderWriter::ReadBuffer*>::iterator it = buf.begin(); it != buf.end(); ++it) {
         if (list_ix + 1 == buf.size()) {
             limit = read;
         }
         
         for (size_t ix = 0; ix < bufsize; ++ix) {
             ++count;
-//            sum += abs(current sample);
+            char * byteptr = static_cast<char *>((*it)->readPtrs->GetModifiableBufferList().mBuffers[0].mData);
+            int sampleval = 0.;
+            for (size_t frameix = 0; frameix < limit; ++frameix) {
+                for (size_t byteix = 0; byteix < std::max(bank.getSampleSize(), bank.getSampleSize()/ 2 * 2) ; ++byteix) {
+                     if (byteix < bank.getSampleSize()) {
+                        if (params.output.dataFormat.mFormatFlags & kAudioFormatFlagIsBigEndian) {
+                            sampleval = (sampleval << 8) | byteptr[(frameix*bank.getSampleSize()*bank.getChannels()) + byteix];
+                        } else {
+                            sampleval = (sampleval * (1 << 8)) | byteptr[(frameix*bank.getSampleSize()*bank.getChannels()) + byteix];
+                        }
+                     }
+                }
+            }
+            sum += abs(sampleval);
         }
     }
     
     double mean = sum/count;
-    sampletype floor = 0.01 * mean;
+    int floor = 0.01 * mean;
     const size_t lastbufsize = read;
     
     // if more than 0.01 s is below this level eliminate those samples
@@ -383,6 +390,7 @@ void Sample::splitFile() {
         for (size_t sampleix = 0; sampleix < limit; ++sampleix) {
             ++currentSampleLength;
 //            sox_sample_t s = (*it)[sampleix];
+            int 
             if (abs(s) < floor) {
                 ++currentGapLength;
             } else {
@@ -424,7 +432,7 @@ void Sample::splitFile() {
         buf.pop_front();
     }
 }    
-*/
+
 SampleBank* SampleBank::instance_ = NULL;
 
 SampleBank & SampleBank::getInstance() {
@@ -434,32 +442,39 @@ SampleBank & SampleBank::getInstance() {
     return *instance_;
 }
     
-/*const sox_encodinginfo_t & SampleBank::getEncodingInfo() const {
-    if (!encodingready_) {
-        soxencoding_.encoding = SOX_ENCODING_SIGN2;
-        soxencoding_.bits_per_sample = sampleSize_ * 8;
-        soxencoding_.reverse_bytes = SOX_OPTION_DEFAULT;
-        soxencoding_.reverse_nibbles = SOX_OPTION_DEFAULT;
-        soxencoding_.reverse_bits = SOX_OPTION_DEFAULT;
-        encodingready_ = true;
+FileReaderWriter::ConversionParameters SampleBank::getConversionParameters() const {
+    if (!conversionReady_) {
+        baseParams_.input.filePath = "/Users/makane/code/nynex/samples/unfields01_01_-_light_ups.wav";
+        baseParams_.output.filePath = "/Users/makane/code/nynex/output/testfrw.wav";
+        baseParams_.output.fileType = kAudioFileWAVEType;
+        baseParams_.output.dataFormat = CAStreamBasicDescription(44100., kAudioFormatLinearPCM, 4, 1, 4, 2, 16, kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked );
+        if (!SanityCheck(baseParams_.output.dataFormat)) {
+            return 1;
+        }
+        baseParams_.output.channels = 2;
+        baseParams_.output.bitRate = -1;
+        baseParams_.output.codecQuality = -1;
+        baseParams_.output.srcQuality = 127;
+        baseParams_.output.srcComplexity = 'bats';
+        baseParams_.output.strategy = -1;
+        baseParams_.output.primeMethod = -1;
+        baseParams_.output.channelLayoutTag = kAudioChannelLayoutTag_Stereo;
+        conversionReady_ = true;
     }
-    return soxencoding_;
-}*/
 
-SampleBank::SampleBank() {
-    srandomdev();
-//    sox_format_init();
-//    encodingready_ = false;
-    needsResort_ = true;
+    return baseParams_;
 }
-                       
+
+SampleBank::SampleBank() : baseParams_(), encodingready_(false), needsResort_(true) {
+    srandomdev();
+}
+
 SampleBank::~SampleBank() {
-//    sox_format_quit();
 }
 
 void SampleBank::setSampleDir(const std::string & dir) {
     sampleDir_ = dir;
-//    encodingready_ = false;
+    conversionReady_ = false;
     chdir(dir.c_str());
     DIR *d = opendir(dir.c_str());
     dirent *e = NULL;
@@ -473,7 +488,6 @@ void SampleBank::setSampleDir(const std::string & dir) {
             continue;
         }
         
-        // TODO one thread per CPU
         addSample(e->d_name);
     }
     closedir(d);
@@ -481,12 +495,12 @@ void SampleBank::setSampleDir(const std::string & dir) {
 
 void SampleBank::setSampleRate(double rate) {
     sampleRate_ = rate;
-//    encodingready_ = false;
+    conversionReady_ = false;
 }
 
 void SampleBank::setChannels(unsigned int channels) {
     channels_ = channels;
-//    encodingready_ = false;
+    conversionReady_ = false;
 }
 
 void SampleBank::setSampleSize(unsigned int bytes) {
@@ -497,7 +511,7 @@ void SampleBank::setSampleSize(unsigned int bytes) {
         case 4:
         case 8:
             sampleSize_ = bytes;
-//            encodingready_ = false;
+            conversionReady_ = false;
             break;
         default:
             throw std::runtime_error("Invalid sample size");
@@ -521,7 +535,7 @@ unsigned int SampleBank::getChannels() const {
 }
 
 void SampleBank::addSample(const std::string & filepath) {
-/*    std::cout << "adding sample " << filepath << std::endl;
+    std::cout << "adding sample " << filepath << std::endl;
 //    sox_signalinfo_t signal;
 //    signal.rate = getSampleRate();
 //    signal.channels = getChannels();
@@ -538,17 +552,8 @@ void SampleBank::addSample(const std::string & filepath) {
         words_.insert(words_.end(), s.getWords().begin(), s.getWords().end());
         needsResort_ = true;
     }
- */
 }
 
-//ScoreFinder::ScoreFinder() : score_(random()%10000/10000.0) {}
-//
-//ScoreFinder::ScoreFinder(double score) : score_(score) {}
-//
-//bool ScoreFinder::operator()(Word & check) const {
-//    return (score_ - check.getScore() <= 0.00001);
-//}
-//        
 Word SampleBank::randomWord() {
     if (needsResort_) {
         sort(words_.begin(), words_.end());
