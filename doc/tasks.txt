@@ -13,7 +13,4 @@
 - add sox libs to other projects web page - done!
 - add unlockedgroove to contributors page and add three releases to inputs - done!
 - figure out what the heck is going on with memory - think this is done
-- switch to coreaudio for file i/o - investigate sample code from apple. this includes checking file duration
-- look through apple example code to see how to get raw linear pcm samples from a file using audioconverter api. will not be using coreaudio for audio device i/o. it is too complicated :(
-- use caaudiofileconverter class as starting point for audiofiles classes. need to adapt to 10.4 SDK. i.e. no file open urls. get this compiling before any more work
-- create archive of presplit audio files
+- sox can't always give me requested sample rate or channel number. need to handle this gracefully. and convert. options. solution: convert all files to desired layout and sample rate with afconvert first
