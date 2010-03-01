@@ -15,8 +15,10 @@
 #include <list>
 #include <string>
 
+extern "C" {
+#include "sox.h"
+}
 #include "ga/ga.h"
-#include "audiofiles.h"
 
 namespace nynex {
     class Word {
@@ -79,7 +81,7 @@ namespace nynex {
         unsigned int getChannels() const;
         Word randomWord();
         void initComposition(Composition & comp);
-        FileReaderWriter::ConversionParameters getConversionParameters() const;
+        const sox_encodinginfo_t & getEncodingInfo() const;
     private:
         SampleBank();
         void addSample(const std::string & path);
@@ -90,9 +92,9 @@ namespace nynex {
         std::string sampleDir_;
         std::vector<Sample> samples_;
         std::vector<Word> words_;
-        mutable FileReaderWriter::ConversionParameters baseParams_;
+        mutable sox_encodinginfo_t soxencoding_;
+        mutable bool encodingready_;
         mutable bool needsResort_;
-        mutable bool conversionReady_;
     };
 
     class Composition : public GAGenome {

@@ -24,8 +24,6 @@
 #include <unistd.h>
 #include <sys/param.h>
 #include <errno.h>
-#include <AudioToolbox/AudioConverter.h>
-#include <AudioToolbox/AudioFile.h>
 
 #define BUFSIZE 262144
 
@@ -202,20 +200,31 @@ int Composition::crossover(const GAGenome & mom, const GAGenome & dad, GAGenome 
 }
 
 void Composition::bounceToFile(const std::string & filename) const {
-    // concatenate all words to filename. can coreaudio detect output format from ext?
+    // concatenate all words to libsox to filename with format autodetect
     SampleBank & bank = SampleBank::getInstance();
     chdir(bank.getSampleDir().c_str());
-//    set up output file with desired traits
+    sox_signalinfo_t signal;
+    signal.rate = bank.getSampleRate();
+    signal.channels = bank.getChannels();
+    signal.precision = bank.getSampleSize() * 8;
+    signal.length = SOX_IGNORE_LENGTH;
+    signal.mult = NULL;
+    sox_format_t *out = sox_open_write(filename.c_str(), &signal, NULL, NULL, NULL, NULL);
     size_t framecount;
     size_t bufsize = bank.getChannels()*BUFSIZE;
-//  allocate buffer for output - bonus: make buffer static instead of mallocing each call
+    sox_sample_t *buf = (sox_sample_t*)malloc(bufsize*sizeof(sox_sample_t));
     for (std::list<Word>::const_iterator it = words_.begin(); it != words_.end(); ++it) {
-        // read file into buf
-        // write buf to output file converter
-        // close file
+        sox_format_t *in;
+        in = sox_open_read(it->getFilename().c_str(), &signal, &(bank.getEncodingInfo()), "raw");
+        size_t read;
+        while (bufsize == (read = sox_read(in,buf,bufsize))) {
+            sox_write(out, buf, read);
+        }
+        sox_write(out,buf,read);
+        sox_close(in);
     }
-//    close output file
-//    free(buf); if making it static doesn't work
+    sox_close(out);
+    free(buf);
     // calculate length of sample
     // hold notes for length of sample while recording on audio in
 }
@@ -252,13 +261,7 @@ unsigned int Word::getDuration() const {
 }
 
 void Word::calcDuration() {
-    // these files are in raw linear pcm. no header = easy calculation
-    // stat for file size (bytes / file), divide by (sample size (bytes/sample) * channels (samples/frame) * samplerate(frames/sec)) = seconds per file
-    struct stat info;
-    SampleBank & bank = SampleBank::getInstance();
-    if (stat((bank.getSampleDir() + "/words" + filename_).c_str(), &info) == 0) {
-        duration_ = info.st_size / (bank.getSampleSize() * bank.getChannels() * bank.getSampleRate());
-    }
+    // ask libsox for duration of filename
 }
 
 Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(filename) {
@@ -290,6 +293,7 @@ const std::list<Word> & Sample::getWords() {
 void Sample::makeWords() {
     // read in sample data to buffer
     SampleBank & bank = SampleBank::getInstance();
+    // TODO IMPORTANT write file tracking words to samples, don't keep re-splitting samples each run
     chdir(bank.getSampleDir().c_str());
     static std::string indexdir = "indexes";
     std::string indexfile = indexdir + "/" + filename_ + ".index";
@@ -316,54 +320,47 @@ void Sample::makeWords() {
 void Sample::splitFile() {
     std::cout << "splitting sample " << filename_ << std::endl;
     SampleBank & bank = SampleBank::getInstance();
-    std::list<FileReaderWriter::ReadBuffer *> buf;
-    nynex::FileReaderWriter frw;
-    nynex::FileReaderWriter::ConversionParameters params = bank.getConversionParameters();
-    
+    sox_format_t *in;
+    std::list<sox_sample_t *> buf;
+    sox_signalinfo_t signal;
+    signal.rate = bank.getSampleRate();
+    signal.channels = bank.getChannels();
+    signal.precision = bank.getSampleSize() * 8;
+#if SOX_LIB_VERSION_CODE >= SOX_LIB_VERSION(14,3,0)
+    signal.length = SOX_IGNORE_LENGTH;
+    signal.mult = NULL;
+#else
+    signal.length = 0;
+#endif
     chdir(bank.getSampleDir().c_str());
-    frw.Prepare(params);
-    frw.Input(filename_.c_str()); // may need absolute path here
+    in = sox_open_read(filename_.c_str(), &signal, NULL, NULL);
     
-    
-    size_t bufsize = BUFSIZE; // this is now in frames
+    size_t bufsize = BUFSIZE * bank.getChannels(); // needs to be a multiple of number of samples in a frame
     size_t read = 0; // need this later
     do {
-        buf.push_back(frw.GetNextReadBuffer());
-        read = buf.back()->nFrames;
+        buf.push_back((sox_sample_t*)malloc(bufsize*sizeof(sox_sample_t)));
+        read = sox_read(in, buf.back(), bufsize);
     } while (bufsize == read);
-//    close input file
+    sox_close(in);
     
- // find mean of abs values
+    // find mean of abs values
     double sum = 0.;
     size_t count = 0;
     size_t list_ix = 0;
     size_t limit = bufsize;
-    for (std::list<FileReaderWriter::ReadBuffer*>::iterator it = buf.begin(); it != buf.end(); ++it) {
+    for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
         if (list_ix + 1 == buf.size()) {
             limit = read;
         }
         
         for (size_t ix = 0; ix < bufsize; ++ix) {
             ++count;
-            char * byteptr = static_cast<char *>((*it)->readPtrs->GetModifiableBufferList().mBuffers[0].mData);
-            int sampleval = 0.;
-            for (size_t frameix = 0; frameix < limit; ++frameix) {
-                for (size_t byteix = 0; byteix < std::max(bank.getSampleSize(), bank.getSampleSize()/ 2 * 2) ; ++byteix) {
-                     if (byteix < bank.getSampleSize()) {
-                        if (params.output.dataFormat.mFormatFlags & kAudioFormatFlagIsBigEndian) {
-                            sampleval = (sampleval << 8) | byteptr[(frameix*bank.getSampleSize()*bank.getChannels()) + byteix];
-                        } else {
-                            sampleval = (sampleval * (1 << 8)) | byteptr[(frameix*bank.getSampleSize()*bank.getChannels()) + byteix];
-                        }
-                     }
-                }
-            }
-            sum += abs(sampleval);
+            sum += abs((*it)[ix]);
         }
     }
     
     double mean = sum/count;
-    int floor = 0.01 * mean;
+    sox_sample_t floor = 0.01 * mean;
     const size_t lastbufsize = read;
     
     // if more than 0.01 s is below this level eliminate those samples
@@ -377,10 +374,10 @@ void Sample::splitFile() {
     std::string filename(filebase+stringFromInt(word_ix));
     chdir(bank.getSampleDir().c_str());
     mkdir_or_throw("words");
-//    sox_format_t * out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
+    sox_format_t * out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
     list_ix = 0;
     limit = bufsize;
-//    for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
+    for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
         size_t offset = 0;
         if (list_ix + 1 == buf.size()) {
             limit = lastbufsize;
@@ -389,8 +386,7 @@ void Sample::splitFile() {
         bool sampleend = false;
         for (size_t sampleix = 0; sampleix < limit; ++sampleix) {
             ++currentSampleLength;
-//            sox_sample_t s = (*it)[sampleix];
-            int 
+            sox_sample_t s = (*it)[sampleix];
             if (abs(s) < floor) {
                 ++currentGapLength;
             } else {
@@ -403,22 +399,22 @@ void Sample::splitFile() {
             // that gaps are aligned on FRAME boundaries
             if (sampleix % bank.getChannels() == bank.getChannels() - 1 && // last sample in frame
                 sampleend) {
-//                sox_write(out, (*it) + offset, sampleix - offset);
-//                sox_close(out);
+                sox_write(out, (*it) + offset, sampleix - offset);
+                sox_close(out);
                 // make a new word with each file
                 words_.push_back(Word("words/"+filename, age_));
                 ++word_ix;
                 filename = filebase+stringFromInt(word_ix);
-//                out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
+                out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
                 offset = sampleix;
                 sampleend = false;
                 currentGapLength = 0;
                 currentSampleLength = 0;
             }             
         }
-//        sox_write(out, (*it)+offset, limit - offset);
+        sox_write(out, (*it)+offset, limit - offset);
     }
-//    sox_close(out);
+    sox_close(out);
     words_.push_back(Word("words/"+filename, age_));
     
     mkdir_or_throw("indexes");
@@ -442,39 +438,32 @@ SampleBank & SampleBank::getInstance() {
     return *instance_;
 }
     
-FileReaderWriter::ConversionParameters SampleBank::getConversionParameters() const {
-    if (!conversionReady_) {
-        baseParams_.input.filePath = "/Users/makane/code/nynex/samples/unfields01_01_-_light_ups.wav";
-        baseParams_.output.filePath = "/Users/makane/code/nynex/output/testfrw.wav";
-        baseParams_.output.fileType = kAudioFileWAVEType;
-        baseParams_.output.dataFormat = CAStreamBasicDescription(44100., kAudioFormatLinearPCM, 4, 1, 4, 2, 16, kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked );
-        if (!SanityCheck(baseParams_.output.dataFormat)) {
-            return 1;
-        }
-        baseParams_.output.channels = 2;
-        baseParams_.output.bitRate = -1;
-        baseParams_.output.codecQuality = -1;
-        baseParams_.output.srcQuality = 127;
-        baseParams_.output.srcComplexity = 'bats';
-        baseParams_.output.strategy = -1;
-        baseParams_.output.primeMethod = -1;
-        baseParams_.output.channelLayoutTag = kAudioChannelLayoutTag_Stereo;
-        conversionReady_ = true;
+const sox_encodinginfo_t & SampleBank::getEncodingInfo() const {
+    if (!encodingready_) {
+        soxencoding_.encoding = SOX_ENCODING_SIGN2;
+        soxencoding_.bits_per_sample = sampleSize_ * 8;
+        soxencoding_.reverse_bytes = SOX_OPTION_DEFAULT;
+        soxencoding_.reverse_nibbles = SOX_OPTION_DEFAULT;
+        soxencoding_.reverse_bits = SOX_OPTION_DEFAULT;
+        encodingready_ = true;
     }
-
-    return baseParams_;
+    return soxencoding_;
 }
 
-SampleBank::SampleBank() : baseParams_(), encodingready_(false), needsResort_(true) {
+SampleBank::SampleBank() {
     srandomdev();
+    sox_format_init();
+    encodingready_ = false;
+    needsResort_ = true;
 }
-
+                       
 SampleBank::~SampleBank() {
+    sox_format_quit();
 }
 
 void SampleBank::setSampleDir(const std::string & dir) {
     sampleDir_ = dir;
-    conversionReady_ = false;
+    encodingready_ = false;
     chdir(dir.c_str());
     DIR *d = opendir(dir.c_str());
     dirent *e = NULL;
@@ -488,6 +477,7 @@ void SampleBank::setSampleDir(const std::string & dir) {
             continue;
         }
         
+        // TODO one thread per CPU
         addSample(e->d_name);
     }
     closedir(d);
@@ -495,12 +485,12 @@ void SampleBank::setSampleDir(const std::string & dir) {
 
 void SampleBank::setSampleRate(double rate) {
     sampleRate_ = rate;
-    conversionReady_ = false;
+    encodingready_ = false;
 }
 
 void SampleBank::setChannels(unsigned int channels) {
     channels_ = channels;
-    conversionReady_ = false;
+    encodingready_ = false;
 }
 
 void SampleBank::setSampleSize(unsigned int bytes) {
@@ -511,7 +501,7 @@ void SampleBank::setSampleSize(unsigned int bytes) {
         case 4:
         case 8:
             sampleSize_ = bytes;
-            conversionReady_ = false;
+            encodingready_ = false;
             break;
         default:
             throw std::runtime_error("Invalid sample size");
@@ -536,17 +526,21 @@ unsigned int SampleBank::getChannels() const {
 
 void SampleBank::addSample(const std::string & filepath) {
     std::cout << "adding sample " << filepath << std::endl;
-//    sox_signalinfo_t signal;
-//    signal.rate = getSampleRate();
-//    signal.channels = getChannels();
-//    signal.precision = getSampleSize() * 8;
-//    signal.length = SOX_IGNORE_LENGTH;
-//    signal.mult = NULL;
+    sox_signalinfo_t signal;
+    signal.rate = getSampleRate();
+    signal.channels = getChannels();
+    signal.precision = getSampleSize() * 8;
+#if SOX_LIB_VERSION_CODE >= SOX_LIB_VERSION(14,3,0)
+    signal.length = SOX_IGNORE_LENGTH;
+    signal.mult = NULL;
+#else
+    signal.length = 0;
+#endif
     chdir(getSampleDir().c_str());
-//    sox_format_t *in;
-//    in = sox_open_read(filepath.c_str(), &signal, NULL, NULL);
+    sox_format_t *in;
+    in = sox_open_read(filepath.c_str(), &signal, NULL, NULL);
     if (in != NULL) {
-//        sox_close(in);
+        sox_close(in);
         Sample s(basename(filepath.c_str()));
         samples_.push_back(s);
         words_.insert(words_.end(), s.getWords().begin(), s.getWords().end());
@@ -554,6 +548,14 @@ void SampleBank::addSample(const std::string & filepath) {
     }
 }
 
+//ScoreFinder::ScoreFinder() : score_(random()%10000/10000.0) {}
+//
+//ScoreFinder::ScoreFinder(double score) : score_(score) {}
+//
+//bool ScoreFinder::operator()(Word & check) const {
+//    return (score_ - check.getScore() <= 0.00001);
+//}
+//        
 Word SampleBank::randomWord() {
     if (needsResort_) {
         sort(words_.begin(), words_.end());
