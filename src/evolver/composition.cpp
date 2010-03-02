@@ -25,7 +25,7 @@
 #include <sys/param.h>
 #include <errno.h>
 
-#define BUFSIZE 262144
+#define BUFSIZE 262144 * 16
 
 using namespace nynex;
 using std::sort;
@@ -229,15 +229,15 @@ void Composition::bounceToFile(const std::string & filename) const {
     // hold notes for length of sample while recording on audio in
 }
 
-Word::Word(const std::string & filename, int age) : filename_(filename), age_(age), score_(0.0) {
+Word::Word(const Sample * parent, size_t index, int age) : index_(index), parent_(parent), age_(age), score_(0.0) {
     calcDuration();
 }
 
-Word::Word(const Word & other) : filename_(other.filename_), age_(other.age_), score_(other.score_), duration_(other.duration_)  {
+Word::Word(const Word & other) : parent_(other.parent_), index_(other.index_), age_(other.age_), score_(other.score_), duration_(other.duration_)  {
 }
 
-const std::string & Word::getFilename() const {
-    return filename_;
+std::string Word::getFilename() const {
+    return std::string("words/") + parent_->getFilename() + stringFromInt(index_);
 }
 
 bool Word::operator<(const Word & other) const {
@@ -309,7 +309,7 @@ void Sample::makeWords() {
         stream.close();
         while (files > 0) {
             --files;
-            words_.push_front(Word("words/"+filename_+"."+stringFromInt(files), age_));
+            words_.push_front(Word(this, files, age_));
         }
     } else {
         splitFile();
@@ -402,7 +402,7 @@ void Sample::splitFile() {
                 sox_write(out, (*it) + offset, sampleix - offset);
                 sox_close(out);
                 // make a new word with each file
-                words_.push_back(Word("words/"+filename, age_));
+                words_.push_back(Word(this, word_ix, age_));
                 ++word_ix;
                 filename = filebase+stringFromInt(word_ix);
                 out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
@@ -415,7 +415,7 @@ void Sample::splitFile() {
         sox_write(out, (*it)+offset, limit - offset);
     }
     sox_close(out);
-    words_.push_back(Word("words/"+filename, age_));
+    words_.push_back(Word(this, word_ix, age_));
     
     mkdir_or_throw("indexes");
     std::ofstream stream(("indexes/"+filebase+"index").c_str());

@@ -21,19 +21,22 @@ extern "C" {
 #include "ga/ga.h"
 
 namespace nynex {
+    class Sample;
+    
     class Word {
     public:
-        Word(const std::string & filename, int age);
+        Word(const Sample * parent, size_t index, int age);
         Word(const Word &);
         bool operator<(const Word &) const;
-        const std::string & getFilename() const;
+        std::string getFilename() const;
         int getAge() const;
         double getScore() const;
         unsigned int getDuration() const;
         void setScore(double);
     private:
         void calcDuration();
-        std::string filename_; // relative to sampledir/words
+        size_t index_;
+        const Sample * parent_;
         int age_;
         unsigned int duration_; // samples
         double score_;
@@ -45,6 +48,7 @@ namespace nynex {
         Sample(const Sample &);
         Sample & operator=(const Sample & other);
         const std::list<Word> & getWords();
+        const std::string & getFilename() const { return filename_; }
     private:
         void makeWords();
         void splitFile();
