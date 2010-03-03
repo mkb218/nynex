@@ -47,6 +47,11 @@ namespace nynex {
         double score_;
     };
 
+    class WordSorter {
+    public:
+        bool operator()(Word* left, Word* right) { return (*left) < (*right); }
+    };
+    
     typedef sox_sample_t* samplebuf_t;
     class SplitBuf {
     public:
@@ -97,13 +102,14 @@ namespace nynex {
     public:
         Sample(const std::string &);
         Sample(const Sample &);
+        ~Sample();
         Sample & operator=(const Sample & other);
-        const std::list<Word> & getWords();
+        const std::list<Word*> & getWords();
         const std::string & getFilename() const { return filename_; }
     private:
         void makeWords();
         void splitFile();
-        std::list<Word> words_;
+        std::list<Word*> words_;
         std::string filename_; // relative to sampledir
         int age_;
         bool wordsReady_;
@@ -122,12 +128,12 @@ namespace nynex {
         void setTmpDir(const std::string & tmpdir);
         const std::string & getSampleDir() const { return sampleDir_; }
         std::string getWordDir() const { return sampleDir_+"/words"; }
-        const std::vector<Word> & getWords() const;
+        const std::vector<Word*> & getWords() const;
         unsigned int getSampleSize() const;
         double getSampleRate() const;
         unsigned int getChannels() const;
         const std::string & getTmpDir() const { return tmpDir_; }
-        Word randomWord();
+        Word *randomWord();
         void initComposition(Composition & comp);
         const sox_encodinginfo_t & getEncodingInfo() const;
         const sox_signalinfo_t & getSignalInfo() const;
@@ -140,8 +146,8 @@ namespace nynex {
         unsigned int sampleSize_;
         std::string sampleDir_;
         std::string tmpDir_;
-        std::vector<Sample> samples_;
-        std::vector<Word> words_;
+        std::vector<Sample*> samples_;
+        std::vector<Word*> words_;
         mutable sox_encodinginfo_t soxencoding_;
         mutable bool encodingready_;
         mutable sox_signalinfo_t soxsignal_;
@@ -154,7 +160,7 @@ namespace nynex {
         friend void SampleBank::initComposition(Composition &);
         GADefineIdentity("NynexComposition", 219);
         Composition();
-        Composition(const std::list<Word> &);
+        Composition(const std::list<Word*> &);
         Composition(const Composition &);
         Composition & operator=(const GAGenome &);
         GAGenome* clone() const;
@@ -170,7 +176,7 @@ namespace nynex {
     private:
         static unsigned int nextObjectId_;
         const unsigned int objectId_;
-        std::list<Word> words_;
+        std::list<Word*> words_;
         //        static MidiDevice midiout_;
         //        static AudioDevice audioin_;
         //        Fs1rModel fs1rmodel;

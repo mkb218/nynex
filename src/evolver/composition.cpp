@@ -51,7 +51,7 @@ static void mkdir_or_throw(const char * dir) throw(std::runtime_error) {
 
 unsigned int Composition::nextObjectId_ = 1;
 Composition::Composition() : objectId_(nextObjectId_++) {}
-Composition::Composition(const std::list<Word> & words) : objectId_(nextObjectId_++),words_(words.begin(), words.end()) {}
+Composition::Composition(const std::list<Word*> & words) : objectId_(nextObjectId_++),words_(words.begin(), words.end()) {}
 Composition::Composition(const Composition & other) : objectId_(other.objectId_),words_(other.words_.begin(), other.words_.end()) {}
 
 Composition & Composition::operator=(const GAGenome & other) {
@@ -93,7 +93,7 @@ int Composition::mutate(GAGenome & trg, float p) {
     
     // iterate through words, each time rolling dice to pick a new one
     // random float < p means choose a random new sample to replace it
-    for (std::list<Word>::iterator it = trgcast.words_.begin(); it != trgcast.words_.end(); ++it) {
+    for (std::list<Word*>::iterator it = trgcast.words_.begin(); it != trgcast.words_.end(); ++it) {
         if (random() % 10000 / 10000.0 > p) {
             *it = samplebank.randomWord();
         }
@@ -115,10 +115,10 @@ float Composition::compare(const GAGenome & left, const GAGenome & right) {
     float denominator = 0;
     const Composition & leftcast = dynamic_cast<const Composition &>(left);
     const Composition & rightcast = dynamic_cast<const Composition &>(right); 
-    std::list<Word>::const_iterator leftit = leftcast.words_.begin();
-    std::list<Word>::const_iterator rightit = rightcast.words_.begin();
+    std::list<Word*>::const_iterator leftit = leftcast.words_.begin();
+    std::list<Word*>::const_iterator rightit = rightcast.words_.begin();
     while (leftit != leftcast.words_.end() && rightit != rightcast.words_.end()) {
-        if (leftit->getFilename() != rightit->getFilename()) {
+        if ((*leftit)->getFilename() != (*rightit)->getFilename()) {
             diffs++;
         }
         denominator++;
@@ -161,8 +161,8 @@ int Composition::crossover(const GAGenome & mom, const GAGenome & dad, GAGenome 
     }
     
     size_t crossover = random() % std::min(momcast.words_.size(), dadcast.words_.size());
-    std::list<Word>::const_iterator momit = momcast.words_.begin();
-    std::list<Word>::const_iterator dadit = dadcast.words_.begin();
+    std::list<Word*>::const_iterator momit = momcast.words_.begin();
+    std::list<Word*>::const_iterator dadit = dadcast.words_.begin();
 
     for (size_t i = 0; i < std::max(momcast.words_.size(), dadcast.words_.size()) ; ++i) {
         if (i < crossover) {
@@ -207,9 +207,11 @@ void Composition::bounceToFile(const std::string & filename) const {
     size_t framecount;
     size_t bufsize = bank.getChannels()*BUFSIZE;
     sox_sample_t *buf = (sox_sample_t*)malloc(bufsize*sizeof(sox_sample_t));
-    for (std::list<Word>::const_iterator it = words_.begin(); it != words_.end(); ++it) {
+    for (std::list<Word*>::const_iterator it = words_.begin(); it != words_.end(); ++it) {
         sox_format_t *in;
-        in = sox_open_read(it->getFilename().c_str(), &signal, &(bank.getEncodingInfo()), "raw");
+        in = sox_open_read((*it)->getFilename().c_str(), &signal, &(bank.getEncodingInfo()), "raw");
+        if (!in) { throw std::runtime_error("sox_open failed"); }
+        std::cout << (*it)->getFilename() << std::endl;
         size_t read;
         while (bufsize == (read = sox_read(in,buf,bufsize))) {
             sox_write(out, buf, read);
@@ -225,13 +227,15 @@ void Composition::bounceToFile(const std::string & filename) const {
 
 Word::Word(const Sample * parent, size_t index, int age) : index_(index), parent_(parent), age_(age), score_(0.0) {
     calcDuration();
+//    std::cout << "Word constructor " << stringFromInt((unsigned int)this) << " " << parent_->getFilename() <<std:: endl;
 }
 
 Word::Word(const Word & other) : parent_(other.parent_), index_(other.index_), age_(other.age_), score_(other.score_), duration_(other.duration_)  {
+//    std::cout << "Word copy constructor " << stringFromInt((unsigned int)this) << " " << parent_->getFilename() << std::endl;
 }
 
 std::string Word::getFilename() const {
-    return std::string("words/") + parent_->getFilename() + stringFromInt(index_);
+    return std::string("words/") + parent_->getFilename() + "." + stringFromInt(index_);
 }
 
 bool Word::operator<(const Word & other) const {
@@ -271,13 +275,20 @@ Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(file
 Sample::Sample(const Sample & other) : filename_(other.filename_),age_(other.age_),wordsReady_(other.wordsReady_),words_(other.words_) {
 }
 
+Sample::~Sample() {
+    while (!words_.empty()) {
+        delete words_.front();
+        words_.pop_front();
+    }
+}
+
 Sample & Sample::operator=(const Sample & other) {
     filename_ = other.filename_;
     age_ = other.age_;
     wordsReady_ = false;
 }
 
-const std::list<Word> & Sample::getWords() {
+const std::list<Word*> & Sample::getWords() {
     if (!wordsReady_) {
         makeWords();
     }
@@ -303,7 +314,7 @@ void Sample::makeWords() {
         stream.close();
         while (files > 0) {
             --files;
-            words_.push_front(Word(this, files, age_));
+            words_.push_front(new Word(this, files, age_));
         }
     } else {
         splitFile();
@@ -400,7 +411,7 @@ void Sample::splitFile() {
                 sox_write(out, *(buf.front()) + offset, sampleix - offset);
                 sox_close(out);
                 // make a new word with each file
-                words_.push_back(Word(this, word_ix, age_));
+                words_.push_back(new Word(this, word_ix, age_));
                 ++word_ix;
                 filename = filebase+stringFromInt(word_ix);
                 out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
@@ -415,7 +426,7 @@ void Sample::splitFile() {
         buf.pop_front();
     }
     sox_close(out);
-    words_.push_back(Word(this, word_ix, age_));
+    words_.push_back(new Word(this, word_ix, age_));
     
     mkdir_or_throw("indexes");
     std::ofstream stream(("indexes/"+filebase+"index").c_str());
@@ -464,6 +475,10 @@ SampleBank::SampleBank() {
 }
                        
 SampleBank::~SampleBank() {
+    while (!samples_.empty()) {
+        delete samples_.back();
+        samples_.pop_back();
+    }
     sox_format_quit();
 }
 
@@ -523,7 +538,7 @@ void SampleBank::setSampleSize(unsigned int bytes) {
     }
 }
 
-const std::vector<Word> & SampleBank::getWords() const {
+const std::vector<Word*> & SampleBank::getWords() const {
     return words_;
 }
 
@@ -546,11 +561,14 @@ void SampleBank::addSample(const std::string & filepath) {
     in = sox_open_read(filepath.c_str(), &soxsignal_, NULL, NULL);
     if (in != NULL) {
         sox_close(in);
-        {
-            Sample s(basename(filepath.c_str()));
-            samples_.push_back(s);
+        Sample *s;
+        try {
+            s = new Sample(basename(filepath.c_str()));
+        } catch (std::bad_alloc& e) {
+            throw std::runtime_error("creating new sample threw bad_alloc. dying.");
         }
-        words_.insert(words_.end(), (samples_.end() - 1)->getWords().begin(), (samples_.end() - 1)->getWords().end());
+        samples_.push_back(s);
+        words_.insert(words_.end(), s->getWords().begin(), s->getWords().end());
         needsResort_ = true;
     }
 }
@@ -563,44 +581,45 @@ void SampleBank::addSample(const std::string & filepath) {
 //    return (score_ - check.getScore() <= 0.00001);
 //}
 //        
-Word SampleBank::randomWord() {
+Word* SampleBank::randomWord() {
     if (needsResort_) {
-        sort(words_.begin(), words_.end());
-        double oldestAge = words_.front().getAge();
-        double newestAge = words_.back().getAge();
-        for (std::vector<Word>::iterator it = words_.begin(); it != words_.end(); ++it) {
-            double score = (it->getAge()/2 - oldestAge) / (newestAge - oldestAge) + 1;
-            if (score != score) { // NaN
-                score = 0;
+        sort(words_.begin(), words_.end(), WordSorter());
+        double oldestAge = words_.front()->getAge() / 1.0;
+        double newestAge = words_.back()->getAge() * 1.0;
+        double slope = 1 / (newestAge - oldestAge);
+        double yInt = - oldestAge * slope;
+        for (std::vector<Word*>::iterator it = words_.begin(); it != words_.end(); ++it) {
+            if (oldestAge == newestAge) {
+                (*it)->setScore(0.);
+            } else {
+                double age = (*it)->getAge();
+                double score = slope * age + yInt;
+                if (score != score) { // NaN
+                    score = 0;
+                }
+                
+//                std::cout << score << std::endl;
+                (*it)->setScore(score);
             }
-            
-            it->setScore(score);
         }
         needsResort_ = false;
     }
     
     // this ain't working, but need word index file first to test more easily.
-    std::vector<Word>::iterator it = words_.begin();
-    size_t ix = 0;
-    while (ix + 1 < words_.size()) { 
-        double nextWordChance = it->getScore();
-        double dice = (double)(random() % 10000 / 10000.0);
-        if (dice > nextWordChance) {
-            break;
-        }
-        ++it;
-        ++ix;
-    }
-    double firstScore = words_.front().getScore();
+    size_t ix;
+    do {
+        ix = random() % words_.size();
+    } while ((words_[ix])->getScore() <= random() % 10000 / 10000); 
 
-    return *it;
+    std::cout << (words_[ix])->getFilename() << std::endl;
+    return (words_[ix]);
 }
 
 void SampleBank::initComposition(Composition & comp) {
     comp.words_.clear();
     // pick number between 1 and 17
     // pick that many random words!
-    for (int wordcount = (random() % 17 + 17); wordcount > 0; --wordcount) {
+    for (int wordcount = (random() % 34 + 30); wordcount > 0; --wordcount) {
         comp.words_.push_back(randomWord());
     }
 }
