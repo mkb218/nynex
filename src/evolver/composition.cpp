@@ -23,9 +23,8 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <sys/param.h>
-#include <errno.h>
 
-#define BUFSIZE 262144 * 16
+#include <errno.h>
 
 using namespace nynex;
 using std::sort;
@@ -203,12 +202,7 @@ void Composition::bounceToFile(const std::string & filename) const {
     // concatenate all words to libsox to filename with format autodetect
     SampleBank & bank = SampleBank::getInstance();
     chdir(bank.getSampleDir().c_str());
-    sox_signalinfo_t signal;
-    signal.rate = bank.getSampleRate();
-    signal.channels = bank.getChannels();
-    signal.precision = bank.getSampleSize() * 8;
-    signal.length = SOX_IGNORE_LENGTH;
-    signal.mult = NULL;
+    const sox_signalinfo_t & signal = bank.getSignalInfo();
     sox_format_t *out = sox_open_write(filename.c_str(), &signal, NULL, NULL, NULL, NULL);
     size_t framecount;
     size_t bufsize = bank.getChannels()*BUFSIZE;
@@ -274,7 +268,7 @@ Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(file
     }
 }
 
-Sample::Sample(const Sample & other) : filename_(other.filename_),age_(other.age_),wordsReady_(false) {
+Sample::Sample(const Sample & other) : filename_(other.filename_),age_(other.age_),wordsReady_(other.wordsReady_),words_(other.words_) {
 }
 
 Sample & Sample::operator=(const Sample & other) {
@@ -321,25 +315,26 @@ void Sample::splitFile() {
     std::cout << "splitting sample " << filename_ << std::endl;
     SampleBank & bank = SampleBank::getInstance();
     sox_format_t *in;
-    std::list<sox_sample_t *> buf;
-    sox_signalinfo_t signal;
-    signal.rate = bank.getSampleRate();
-    signal.channels = bank.getChannels();
-    signal.precision = bank.getSampleSize() * 8;
-#if SOX_LIB_VERSION_CODE >= SOX_LIB_VERSION(14,3,0)
-    signal.length = SOX_IGNORE_LENGTH;
-    signal.mult = NULL;
-#else
-    signal.length = 0;
-#endif
+    std::list<SplitBuf* > buf;
     chdir(bank.getSampleDir().c_str());
-    in = sox_open_read(filename_.c_str(), &signal, NULL, NULL);
+
+    struct stat junk;
+    int stat_status = stat(filename_.c_str(), &junk);
+    if (stat_status != 0) {
+        throw std::runtime_error(std::string("stat failed ") + stringFromInt(stat_status));
+    }
+    bool unloadBufs = (junk.st_size > MAXFILEINMEM);
+    in = sox_open_read(filename_.c_str(), &(bank.getSignalInfo()), NULL, NULL);
     
     size_t bufsize = BUFSIZE * bank.getChannels(); // needs to be a multiple of number of samples in a frame
     size_t read = 0; // need this later
     do {
-        buf.push_back((sox_sample_t*)malloc(bufsize*sizeof(sox_sample_t)));
-        read = sox_read(in, buf.back(), bufsize);
+        SplitBuf *newbuf = new SplitBuf(bufsize*sizeof(sox_sample_t));
+        buf.push_back(newbuf);
+        read = sox_read(in, *newbuf, bufsize);
+        if (unloadBufs) {
+            buf.back()->unload();
+        }
     } while (bufsize == read);
     sox_close(in);
     
@@ -348,14 +343,17 @@ void Sample::splitFile() {
     size_t count = 0;
     size_t list_ix = 0;
     size_t limit = bufsize;
-    for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
+    for (std::list<SplitBuf*>::iterator it = buf.begin(); it != buf.end(); ++it) {
         if (list_ix + 1 == buf.size()) {
             limit = read;
         }
         
         for (size_t ix = 0; ix < bufsize; ++ix) {
             ++count;
-            sum += abs((*it)[ix]);
+            sum += abs((**it)[ix]);
+        }
+        if (unloadBufs) {
+            (*it)->unload();
         }
     }
     
@@ -374,19 +372,19 @@ void Sample::splitFile() {
     std::string filename(filebase+stringFromInt(word_ix));
     chdir(bank.getSampleDir().c_str());
     mkdir_or_throw("words");
-    sox_format_t * out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
+    sox_format_t * out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
     list_ix = 0;
     limit = bufsize;
-    for (std::list<sox_sample_t*>::iterator it = buf.begin(); it != buf.end(); ++it) {
+    while ( !buf.empty() ) {
         size_t offset = 0;
-        if (list_ix + 1 == buf.size()) {
+        if (1 == buf.size()) {
             limit = lastbufsize;
         }
         
         bool sampleend = false;
         for (size_t sampleix = 0; sampleix < limit; ++sampleix) {
             ++currentSampleLength;
-            sox_sample_t s = (*it)[sampleix];
+            sox_sample_t s = (*(buf.front()))[sampleix];
             if (abs(s) < floor) {
                 ++currentGapLength;
             } else {
@@ -399,20 +397,22 @@ void Sample::splitFile() {
             // that gaps are aligned on FRAME boundaries
             if (sampleix % bank.getChannels() == bank.getChannels() - 1 && // last sample in frame
                 sampleend) {
-                sox_write(out, (*it) + offset, sampleix - offset);
+                sox_write(out, *(buf.front()) + offset, sampleix - offset);
                 sox_close(out);
                 // make a new word with each file
                 words_.push_back(Word(this, word_ix, age_));
                 ++word_ix;
                 filename = filebase+stringFromInt(word_ix);
-                out = sox_open_write(("words/"+filename).c_str(), &signal, &(bank.getEncodingInfo()), "raw", NULL, NULL);
+                out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
                 offset = sampleix;
                 sampleend = false;
                 currentGapLength = 0;
                 currentSampleLength = 0;
             }             
         }
-        sox_write(out, (*it)+offset, limit - offset);
+        sox_write(out, *(buf.front())+offset, limit - offset);
+        delete buf.front();
+        buf.pop_front();
     }
     sox_close(out);
     words_.push_back(Word(this, word_ix, age_));
@@ -421,12 +421,6 @@ void Sample::splitFile() {
     std::ofstream stream(("indexes/"+filebase+"index").c_str());
     stream << (word_ix+1) << std::endl;
     stream.close();    
-    
-    // TODO make this more elegant
-    while (!buf.empty()) {
-        free(buf.front());
-        buf.pop_front();
-    }
 }    
 
 SampleBank* SampleBank::instance_ = NULL;
@@ -450,6 +444,18 @@ const sox_encodinginfo_t & SampleBank::getEncodingInfo() const {
     return soxencoding_;
 }
 
+const sox_signalinfo_t & SampleBank::getSignalInfo() const {
+    if (!signalready_) {
+        soxsignal_.rate = getSampleRate();
+        soxsignal_.channels = getChannels();
+        soxsignal_.precision = getSampleSize() * 8;
+        soxsignal_.length = SOX_IGNORE_LENGTH;
+        soxsignal_.mult = NULL;
+        signalready_ = true;
+    }
+    return soxsignal_;
+}
+
 SampleBank::SampleBank() {
     srandomdev();
     sox_format_init();
@@ -461,9 +467,14 @@ SampleBank::~SampleBank() {
     sox_format_quit();
 }
 
+void SampleBank::setTmpDir(const std::string & dir) {
+    tmpDir_ = dir;
+}
+
 void SampleBank::setSampleDir(const std::string & dir) {
     sampleDir_ = dir;
     encodingready_ = false;
+    signalready_ = false;
     chdir(dir.c_str());
     DIR *d = opendir(dir.c_str());
     dirent *e = NULL;
@@ -480,17 +491,20 @@ void SampleBank::setSampleDir(const std::string & dir) {
         // TODO one thread per CPU
         addSample(e->d_name);
     }
+    std::cout << "done adding sample" << std::endl;
     closedir(d);
 }
 
 void SampleBank::setSampleRate(double rate) {
     sampleRate_ = rate;
     encodingready_ = false;
+    signalready_ = false;
 }
 
 void SampleBank::setChannels(unsigned int channels) {
     channels_ = channels;
     encodingready_ = false;
+    signalready_ = false;
 }
 
 void SampleBank::setSampleSize(unsigned int bytes) {
@@ -501,6 +515,7 @@ void SampleBank::setSampleSize(unsigned int bytes) {
         case 4:
         case 8:
             sampleSize_ = bytes;
+            signalready_ = false;
             encodingready_ = false;
             break;
         default:
@@ -526,24 +541,16 @@ unsigned int SampleBank::getChannels() const {
 
 void SampleBank::addSample(const std::string & filepath) {
     std::cout << "adding sample " << filepath << std::endl;
-    sox_signalinfo_t signal;
-    signal.rate = getSampleRate();
-    signal.channels = getChannels();
-    signal.precision = getSampleSize() * 8;
-#if SOX_LIB_VERSION_CODE >= SOX_LIB_VERSION(14,3,0)
-    signal.length = SOX_IGNORE_LENGTH;
-    signal.mult = NULL;
-#else
-    signal.length = 0;
-#endif
     chdir(getSampleDir().c_str());
     sox_format_t *in;
-    in = sox_open_read(filepath.c_str(), &signal, NULL, NULL);
+    in = sox_open_read(filepath.c_str(), &soxsignal_, NULL, NULL);
     if (in != NULL) {
         sox_close(in);
-        Sample s(basename(filepath.c_str()));
-        samples_.push_back(s);
-        words_.insert(words_.end(), s.getWords().begin(), s.getWords().end());
+        {
+            Sample s(basename(filepath.c_str()));
+            samples_.push_back(s);
+        }
+        words_.insert(words_.end(), (samples_.end() - 1)->getWords().begin(), (samples_.end() - 1)->getWords().end());
         needsResort_ = true;
     }
 }
@@ -595,6 +602,46 @@ void SampleBank::initComposition(Composition & comp) {
     // pick that many random words!
     for (int wordcount = (random() % 17 + 17); wordcount > 0; --wordcount) {
         comp.words_.push_back(randomWord());
+    }
+}
+
+void SplitBuf::load() const {
+    if (state_ != ONDISK) throw std::logic_error("load called with no tmp file"); 
+    alloc();
+    sox_format_t *in = sox_open_read(filename().c_str(), &(SampleBank::getInstance().getSignalInfo()), &(SampleBank::getInstance().getEncodingInfo()), "raw");
+    if (in == NULL) {
+        throw std::runtime_error("couldn't open tmp file");
+    }
+    
+    if (size_ != sox_read(in, buf_, size_)) {
+        throw std::runtime_error("couldn't read whole file");
+    }
+    sox_close(in);
+    rmtmp();
+    state_ = INMEM;
+}
+
+void SplitBuf::unload() const {
+    if (state_ != INMEM) throw std::logic_error("unload called with no buffer");
+    sox_format_t *out = sox_open_write(filename().c_str(), &(SampleBank::getInstance().getSignalInfo()), &(SampleBank::getInstance().getEncodingInfo()), "raw", NULL, NULL);
+    if (size_ != sox_write(out, buf_, size_)) {
+        throw std::runtime_error("couldn't write whole file");
+    }
+    sox_close(out);
+    dealloc();
+    state_ = ONDISK;
+}
+
+std::string SplitBuf::filename() const {
+    return SampleBank::getInstance().getTmpDir() + "/" + stringFromInt((size_t)this);
+}
+
+void SplitBuf::rmtmp() const {
+    struct stat junk;
+    std::string file(filename());
+    int stat_status = stat(file.c_str(), &junk);
+    if (stat_status == ENOENT || (stat_status == 0 && unlink(file.c_str()) != 0)) {
+        throw std::runtime_error(std::string("couldn't unlink tmp file ") + file);
     }
 }
 

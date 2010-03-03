@@ -6,9 +6,14 @@ use File::Basename;
 use POSIX ":sys_wait_h";
 
 my $script = basename($0);
-opendir my $dirh, ".";
-my @files = grep { !/^\./ && !/$script/ } readdir($dirh);
-closedir($dirh);
+my @files;
+if (@ARGV) {
+    @files = @ARGV;
+} else {
+    opendir my $dirh, ".";
+    @files = grep { !/^\./ && !/$script/ } readdir($dirh);
+    closedir($dirh);
+}
 
 my @pids;
 foreach my $f (@files) {
@@ -33,4 +38,14 @@ foreach my $f (@files) {
         push @pids,$childpid;
     }
 #    sleep 10;
+}
+
+while (scalar @pids) {
+    print scalar( @pids)."\n";
+    my $status = waitpid($pids[0], 0);
+    print "$pids[0] $status\n";
+    if ($status != 0) {
+        print "reaping child $pids[0]\n";
+        shift @pids;
+    }
 }

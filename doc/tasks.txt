@@ -14,3 +14,5 @@
 - add unlockedgroove to contributors page and add three releases to inputs - done!
 - figure out what the heck is going on with memory - think this is done
 - sox can't always give me requested sample rate or channel number. need to handle this gracefully. and convert. options. solution: convert all files to desired layout and sample rate with afconvert first
+- samplebank needs a tmp dir
+- sample::splitfile needs a maxbufcount. once the length of the buffer list reaches maxbufcount, buffers get saved to disk. need a class to do this and encapsulate a sox_sample_t.

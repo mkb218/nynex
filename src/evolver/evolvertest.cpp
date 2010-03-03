@@ -18,6 +18,7 @@ int main(int argc, char **argv) {
     bank.setChannels(2);
     bank.setSampleRate(44100);
     bank.setSampleSize(2);
+    bank.setTmpDir("/tmp/nynex");
     bank.setSampleDir("/Users/makane/code/nynex/samples");
     Composition c;
     bank.initComposition(c);
