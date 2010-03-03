@@ -211,7 +211,6 @@ void Composition::bounceToFile(const std::string & filename) const {
         sox_format_t *in;
         in = sox_open_read((*it)->getFilename().c_str(), &signal, &(bank.getEncodingInfo()), "raw");
         if (!in) { throw std::runtime_error("sox_open failed"); }
-        std::cout << (*it)->getFilename() << std::endl;
         size_t read;
         while (bufsize == (read = sox_read(in,buf,bufsize))) {
             sox_write(out, buf, read);
@@ -584,8 +583,10 @@ void SampleBank::addSample(const std::string & filepath) {
 Word* SampleBank::randomWord() {
     if (needsResort_) {
         sort(words_.begin(), words_.end(), WordSorter());
-        double oldestAge = words_.front()->getAge() / 1.0;
-        double newestAge = words_.back()->getAge() * 1.0;
+        double oldestAge = words_.front()->getAge();
+        double interval = oldestAge * INTERVAL;
+        oldestAge -= interval;
+        double newestAge = words_.back()->getAge() + interval;
         double slope = 1 / (newestAge - oldestAge);
         double yInt = - oldestAge * slope;
         for (std::vector<Word*>::iterator it = words_.begin(); it != words_.end(); ++it) {
@@ -611,7 +612,7 @@ Word* SampleBank::randomWord() {
         ix = random() % words_.size();
     } while ((words_[ix])->getScore() <= random() % 10000 / 10000); 
 
-    std::cout << (words_[ix])->getFilename() << std::endl;
+    std::cout << (words_[ix])->getFilename() << " score " << (words_[ix])->getScore() << std::endl;
     return (words_[ix]);
 }
 

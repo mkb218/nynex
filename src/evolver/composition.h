@@ -24,6 +24,7 @@ extern "C" {
 #define BUFSIZE 262144 * 16
 #define MAXBUFS 64
 #define MAXFILEINMEM BUFSIZE * MAXBUFS
+#define INTERVAL 0.1
 
 namespace nynex {
     class Sample;
