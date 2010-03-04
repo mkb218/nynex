@@ -9,6 +9,7 @@
  */
 
 #include "composition.h"
+#include "ratings.h"
 #include <cstdlib>
 #include <fstream>
 #include <map>
@@ -19,7 +20,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <libgen.h>
-#include <sstream>
 #include <dirent.h>
 #include <unistd.h>
 #include <sys/param.h>
@@ -28,13 +28,6 @@
 
 using namespace nynex;
 using std::sort;
-
-template <class IntegerType>
-std::string stringFromInt(IntegerType i) {
-    std::ostringstream is;
-    is << i;
-    return is.str();
-}
 
 static void mkdir_or_throw(const char * dir) throw(std::runtime_error) {
     struct stat dirinfo;
@@ -50,21 +43,33 @@ static void mkdir_or_throw(const char * dir) throw(std::runtime_error) {
 }
 
 unsigned int Composition::nextObjectId_ = 1;
-Composition::Composition() : objectId_(nextObjectId_++) {}
-Composition::Composition(const std::list<Word*> & words) : objectId_(nextObjectId_++),words_(words.begin(), words.end()) {}
-Composition::Composition(const Composition & other) : objectId_(other.objectId_),words_(other.words_.begin(), other.words_.end()) {}
+
+Composition::Composition() : GAGenome(init, mutate, compare), objectId_(nextObjectId_++) {
+    evaluator(evaluate);
+    GAGenome::crossover(crossover);
+}
+
+Composition::Composition(const std::list<Word*> & words) : GAGenome(init, mutate, compare), objectId_(nextObjectId_++),words_(words.begin(), words.end()) {
+    evaluator(evaluate);
+    GAGenome::crossover(crossover);
+}
+
+Composition::Composition(const Composition & other) : objectId_(other.objectId_),words_(other.words_.begin(), other.words_.end()) {
+    std::cout << "c copy contructor" << std::endl;
+}
 
 Composition & Composition::operator=(const GAGenome & other) {
-    copy(other);
+    if (&other != this) copy(other);
     return *this;
 }
 
 void Composition::copy(const GAGenome & other) {
+    GAGenome::copy(other);
     const Composition & othercast = dynamic_cast<const Composition &>(other);
     words_.assign(othercast.words_.begin(), othercast.words_.end());
 }
 
-GAGenome * Composition::clone() const {
+GAGenome * Composition::clone(CloneMethod) const {
     // clone is meant to be a distinct entity
     return new Composition(words_);
 }
@@ -141,6 +146,11 @@ float Composition::compare(const GAGenome & left, const GAGenome & right) {
     denominator += fs1rgen model size
  */
     return diffs/denominator;
+}
+
+float Composition::evaluate(GAGenome & g) {
+    Composition & gcast = dynamic_cast<Composition &>(g);
+    return Ratings::getInstance().avgRatingForId(gcast.getObjectId());
 }
 
 int Composition::crossover(const GAGenome & mom, const GAGenome & dad, GAGenome * bro, GAGenome * sis) {
@@ -234,7 +244,7 @@ Word::Word(const Word & other) : parent_(other.parent_), index_(other.index_), a
 }
 
 std::string Word::getFilename() const {
-    return std::string("words/") + parent_->getFilename() + "." + stringFromInt(index_);
+    return std::string("words/") + parent_->getFilename() + "/" + stringFromInt(index_);
 }
 
 bool Word::operator<(const Word & other) const {
@@ -368,20 +378,21 @@ void Sample::splitFile() {
     }
     
     double mean = sum/count;
-    sox_sample_t floor = 0.01 * mean;
+    sox_sample_t floor = 0.05 * mean;
     const size_t lastbufsize = read;
     
     // if more than 0.01 s is below this level eliminate those samples
-    size_t gapsize = 0.01 * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
+    size_t gapsize = 0.005 * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
     size_t maxSampleSize = gapsize * 50;
     // all samples between gaps are put in own files
     size_t currentGapLength = 0;
     size_t currentSampleLength = 0;
     size_t word_ix = 0;
-    std::string filebase(filename_+"."); // TODO kill extension
-    std::string filename(filebase+stringFromInt(word_ix));
+    std::string filebase(filename_); // TODO kill extension
+    std::string filename(filebase+"/"+stringFromInt(word_ix));
     chdir(bank.getSampleDir().c_str());
     mkdir_or_throw("words");
+    mkdir_or_throw((std::string("words/")+filebase).c_str());
     sox_format_t * out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
     list_ix = 0;
     limit = bufsize;
@@ -412,7 +423,7 @@ void Sample::splitFile() {
                 // make a new word with each file
                 words_.push_back(new Word(this, word_ix, age_));
                 ++word_ix;
-                filename = filebase+stringFromInt(word_ix);
+                filename = filebase+"/"+stringFromInt(word_ix);
                 out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
                 offset = sampleix;
                 sampleend = false;
@@ -428,7 +439,7 @@ void Sample::splitFile() {
     words_.push_back(new Word(this, word_ix, age_));
     
     mkdir_or_throw("indexes");
-    std::ofstream stream(("indexes/"+filebase+"index").c_str());
+    std::ofstream stream(("indexes/"+filebase+".index").c_str());
     stream << (word_ix+1) << std::endl;
     stream.close();    
 }    

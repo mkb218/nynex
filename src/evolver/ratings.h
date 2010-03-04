@@ -12,18 +12,28 @@
 
 #include <map>
 #include <string>
-#include <vector>
+#include <list>
+
+#include "composition.h"
 
 namespace nynex {
     class Ratings {
     public:
-        static Ratings* getInstance();
-        void addRating(int id, int score);
+        static Ratings & getInstance();
+        void addRating(unsigned int id, int score);
+        double avgRatingForId(unsigned int id);
+        void getServerRatings() {}
+        void setHost(const std::string & host) { host_ = host; }
+        void setPort(int port) { port_ = port; }
+        void setPath(const std::string & path) { path_ = path; }
+        void deleteRatingsForId(unsigned int id) { scores_.erase(id); }
+        void deleteRatings() { scores_.clear(); }
     private:
-        void getServerRatings();
         static Ratings * instance_;
-        Ratings();
-        std::map<int, std::vector<int> > scores_;
+        Ratings() {}
+        Ratings(Ratings &) {}
+        Ratings & operator=(Ratings&) {return *this;}
+        std::map<unsigned int, std::list<int> > scores_;
         std::string host_;
         int port_;
         std::string path_;

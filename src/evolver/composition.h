@@ -15,6 +15,7 @@
 #include <list>
 #include <memory>
 #include <string>
+#include <sstream>
 
 extern "C" {
 #include "sox.h"
@@ -25,6 +26,13 @@ extern "C" {
 #define MAXBUFS 64
 #define MAXFILEINMEM BUFSIZE * MAXBUFS
 #define INTERVAL 0.1
+
+template <class IntegerType>
+std::string stringFromInt(IntegerType i) {
+    std::ostringstream is;
+    is << i;
+    return is.str();
+}
 
 namespace nynex {
     class Sample;
@@ -140,6 +148,8 @@ namespace nynex {
         const sox_signalinfo_t & getSignalInfo() const;
     private:
         SampleBank();
+        SampleBank(SampleBank &) {} // never called
+        SampleBank & operator=(SampleBank &) {return *this;} // never called
         void addSample(const std::string & path);
         static SampleBank * instance_;
         double sampleRate_;
@@ -164,9 +174,12 @@ namespace nynex {
         Composition(const std::list<Word*> &);
         Composition(const Composition &);
         Composition & operator=(const GAGenome &);
-        GAGenome* clone() const;
+        GAGenome* clone(CloneMethod flag = CONTENTS) const;
         void copy(const GAGenome &);
+        std::string serialize() const;
         void bounceToFile(const std::string & filename) const;
+        unsigned int getObjectId() const { return objectId_; }
+        static Composition unserialize(const std::string &);
         static void init(GAGenome&);
         static int mutate(GAGenome &, float);
         static float compare(const GAGenome &, const GAGenome &);

@@ -7,8 +7,12 @@
  *
  */
 
+#include <iostream>
+#include <cstdlib>
 #include "evolvertest.h"
+#include "evolver.h"
 #include "composition.h"
+#include "ratings.h"
 #include "ga/ga.h"
 
 using namespace nynex;
@@ -23,5 +27,33 @@ int main(int argc, char **argv) {
     Composition c;
     bank.initComposition(c);
     c.bounceToFile("/Users/makane/code/nynex/output/whatwhat.mp3");
+    
+    for (int i = 0; i <= 100; ++i) {
+        Ratings::getInstance().addRating(c.getObjectId(), random() % 5);
+    }
+    std::cout << Ratings::getInstance().avgRatingForId(c.getObjectId()) << std::endl;
+    
+    std::cout << "setting up galib" << std::endl;
+    
+    Evolver e;
+    e.initGA(0.1, 10, gaFalse);
+    while (e.getGA().generation() < 10) {
+        const GAPopulation & pop = e.getPop();
+        for (size_t i = 0; i < pop.size(); ++i) {
+            Composition & c = static_cast<Composition&>(pop.individual(i));
+            std::string file("/Users/makane/code/nynex/output/gen");
+            file.append(stringFromInt(e.getGA().generation()) + "i" + stringFromInt(i) + ".mp3");
+            c.bounceToFile(file);
+//            system((std::string("open -a quicktime\\ player ") + file).c_str());
+            std::cout << "Enter your numerical opinion: " << std::endl;
+            double rating = random() % 5;
+            Ratings::getInstance().addRating(c.getObjectId(), rating);
+            std::cout << "Enter someone else's numerical opinion: " << std::endl;
+            rating = random() % 5;
+            Ratings::getInstance().addRating(c.getObjectId(), rating);
+        }
+        e.stepGA();
+    }
+    
     return 0;
 }

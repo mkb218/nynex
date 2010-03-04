@@ -40,6 +40,8 @@
 		FC8C0AB71111CF5700AFE817 /* soundcloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */; };
 		FC8C0AD21111D4E500AFE817 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
 		FC8C0AD91111D71C00AFE817 /* streaming.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD71111D71C00AFE817 /* streaming.cpp */; };
+		FCA1170E113F208F00FEEA65 /* evolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA1170D113F208F00FEEA65 /* evolver.cpp */; };
+		FCA1170F113F208F00FEEA65 /* evolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA1170D113F208F00FEEA65 /* evolver.cpp */; };
 		FCD2343F110FABDE0023CC4B /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FCD2347511107DE20023CC4B /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
 /* End PBXBuildFile section */
@@ -99,7 +101,7 @@
 		E45BE9770E8CC7DD009D7055 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		E45BE9790E8CC7DD009D7055 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
-		E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nynexDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* nynex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nynex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = app/main.cpp; sourceTree = SOURCE_ROOT; };
 		E4B69E1E0A3A1BDC003C02F2 /* testApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = testApp.cpp; path = app/testApp.cpp; sourceTree = SOURCE_ROOT; };
 		E4B69E1F0A3A1BDC003C02F2 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = testApp.h; path = app/testApp.h; sourceTree = SOURCE_ROOT; };
@@ -127,6 +129,8 @@
 		FC8C0AD11111D4E500AFE817 /* twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitter.h; sourceTree = "<group>"; };
 		FC8C0AD71111D71C00AFE817 /* streaming.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = streaming.cpp; sourceTree = "<group>"; };
 		FC8C0AD81111D71C00AFE817 /* streaming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = streaming.h; sourceTree = "<group>"; };
+		FCA1170C113F208F00FEEA65 /* evolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolver.h; sourceTree = "<group>"; };
+		FCA1170D113F208F00FEEA65 /* evolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = evolver.cpp; sourceTree = "<group>"; };
 		FCD23435110FABDE0023CC4B /* composition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composition.cpp; sourceTree = "<group>"; };
 		FCD23436110FABDE0023CC4B /* composition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composition.h; sourceTree = "<group>"; };
 		FCD2347411107DE20023CC4B /* ratings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ratings.cpp; sourceTree = "<group>"; };
@@ -356,7 +360,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */,
+				E4B69B5B0A3A1756003C02F2 /* nynex.app */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4B69E1C0A3A1BDC003C02F2 /* app */,
 				E4C2422310CC54B6004149E2 /* openFrameworks */,
@@ -499,6 +503,8 @@
 				FCD23436110FABDE0023CC4B /* composition.h */,
 				FC4C45CC1118EE4300394B9E /* evolvertest.h */,
 				FC4C45CD1118EE4300394B9E /* evolvertest.cpp */,
+				FCA1170C113F208F00FEEA65 /* evolver.h */,
+				FCA1170D113F208F00FEEA65 /* evolver.cpp */,
 			);
 			path = evolver;
 			sourceTree = "<group>";
@@ -522,7 +528,7 @@
 			);
 			name = nynex;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* nynex.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FC4C45681118EA3500394B9E /* evolver-test */ = {
@@ -604,6 +610,7 @@
 				FC8C0AB71111CF5700AFE817 /* soundcloud.cpp in Sources */,
 				FC8C0AD21111D4E500AFE817 /* twitter.cpp in Sources */,
 				FC8C0AD91111D71C00AFE817 /* streaming.cpp in Sources */,
+				FCA1170E113F208F00FEEA65 /* evolver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +621,7 @@
 				FC4C45CF1118EE5100394B9E /* evolvertest.cpp in Sources */,
 				FC4C45751118EAFD00394B9E /* ratings.cpp in Sources */,
 				FC4C45761118EAFD00394B9E /* composition.cpp in Sources */,
+				FCA1170F113F208F00FEEA65 /* evolver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
