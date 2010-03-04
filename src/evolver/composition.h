@@ -26,6 +26,7 @@ extern "C" {
 #define MAXBUFS 64
 #define MAXFILEINMEM BUFSIZE * MAXBUFS
 #define INTERVAL 0.1
+#define MINDURATION 15.0
 
 template <class IntegerType>
 std::string stringFromInt(IntegerType i) {
@@ -45,14 +46,14 @@ namespace nynex {
         std::string getFilename() const;
         int getAge() const;
         double getScore() const;
-        unsigned int getDuration() const;
+        double getDuration() const;
         void setScore(double);
     private:
         void calcDuration();
         size_t index_;
         const Sample * parent_;
         int age_;
-        unsigned int duration_; // samples
+        double duration_; // samples
         double score_;
     };
 

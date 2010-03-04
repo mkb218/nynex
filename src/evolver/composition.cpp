@@ -263,12 +263,21 @@ void Word::setScore(double score) {
     score_ = score;
 }
 
-unsigned int Word::getDuration() const {
+double Word::getDuration() const {
     return duration_;
 }
 
 void Word::calcDuration() {
-    // ask libsox for duration of filename
+    // stat file
+    struct stat stats;
+    if (0 != stat(getFilename().c_str(), &stats)) {
+        throw new std::runtime_error(getFilename()+": stat filed while getting duration");
+    }
+    SampleBank & bank = SampleBank::getInstance();
+    duration_ = ((double)stats.st_size); // bytes / file
+    duration_ /= bank.getSampleSize(); // frames / file
+    duration_ /= bank.getChannels(); // samples / file
+    duration_ /= bank.getSampleRate(); // seconds / file
 }
 
 Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(filename) {
@@ -629,10 +638,12 @@ Word* SampleBank::randomWord() {
 
 void SampleBank::initComposition(Composition & comp) {
     comp.words_.clear();
-    // pick number between 1 and 17
-    // pick that many random words!
-    for (int wordcount = (random() % 34 + 30); wordcount > 0; --wordcount) {
-        comp.words_.push_back(randomWord());
+    // we want at least MINDURATION seconds
+    double duration = 0.;
+    while (duration <= MINDURATION) {
+        Word * w = randomWord();
+        duration += w->getDuration();
+        comp.words_.push_back(w);
     }
 }
 

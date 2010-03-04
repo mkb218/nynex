@@ -36,6 +36,7 @@ int main(int argc, char **argv) {
     std::cout << "setting up galib" << std::endl;
     
     Evolver e;
+    Ratings & r = Ratings::getInstance();
     e.initGA(0.1, 10, gaFalse);
     while (e.getGA().generation() < 10) {
         const GAPopulation & pop = e.getPop();
@@ -47,10 +48,10 @@ int main(int argc, char **argv) {
 //            system((std::string("open -a quicktime\\ player ") + file).c_str());
             std::cout << "Enter your numerical opinion: " << std::endl;
             double rating = random() % 5;
-            Ratings::getInstance().addRating(c.getObjectId(), rating);
+            r.addRating(c.getObjectId(), rating);
             std::cout << "Enter someone else's numerical opinion: " << std::endl;
             rating = random() % 5;
-            Ratings::getInstance().addRating(c.getObjectId(), rating);
+            r.addRating(c.getObjectId(), rating);
         }
         e.stepGA();
     }
