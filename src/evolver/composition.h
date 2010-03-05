@@ -31,19 +31,18 @@ extern "C" {
 #define INTERVAL 0.1
 #define MINDURATION 15.0
 #define DELIMITER ':'
-#define TERMINATOR ';'
 
-template <class IntegerType>
-std::string stringFromInt(IntegerType i) {
+template <class Type>
+std::string stringFrom(Type i) {
     std::ostringstream os;
     os << i;
     return os.str();
 }
 
-template <class IntegerType>
-IntegerType intFromString(const std::string & i) {
+template <class Type>
+Type fromString(const std::string & i) {
     std::istringstream is;
-    IntegerType num;
+    Type num;
     is.str(i);
     is >> num;
     return num;
@@ -199,7 +198,7 @@ namespace nynex {
         std::string serialize() const;
         void bounceToFile(const std::string & filename) const;
         unsigned int getObjectId() const { return objectId_; }
-        static Composition unserialize(const std::string &);
+        static Composition* unserialize(const std::string &);
         static void init(GAGenome&);
         static int mutate(GAGenome &, float);
         static float compare(const GAGenome &, const GAGenome &);

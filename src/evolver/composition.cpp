@@ -39,7 +39,7 @@ static void mkdir_or_throw(const char * dir) throw(std::runtime_error) {
         }
     } else {
         if (0 != mkdir(dir, 0700)) {
-            throw std::runtime_error("mkdir failed: " + stringFromInt(errno));
+            throw std::runtime_error("mkdir failed: " + stringFrom(errno));
         }
     }
 }
@@ -241,14 +241,13 @@ void Composition::bounceToFile(const std::string & filename) const {
 }
 
 std::string Composition::serialize() const {
-    std::string out(stringFromInt(objectId_));
+    std::string out(stringFrom(objectId_));
     BOOST_FOREACH(Word *w, words_) {
         out += DELIMITER;
         out.append(w->getParent()->getFilename());
         out += DELIMITER;
-        out.append(stringFromInt(w->getIndex()));
+        out.append(stringFrom(w->getIndex()));
     }
-    out += TERMINATOR;
     return out;
 }
 
@@ -260,13 +259,13 @@ public:
 };
 
 
-Composition Composition::unserialize(const std::string & src) {
+Composition * Composition::unserialize(const std::string & src) {
     unsigned int objectId;
     std::list<Word*> words;
     SampleBank & bank = SampleBank::getInstance();
     std::list<std::string> strs;
     boost::split(strs, src, boost::is_from_range(DELIMITER, DELIMITER));
-    objectId = intFromString<unsigned int>(strs.front());
+    objectId = fromString<unsigned int>(strs.front());
     strs.pop_front();
     bool even = true;
     Sample * parent;
@@ -274,27 +273,27 @@ Composition Composition::unserialize(const std::string & src) {
         if (even) {
             parent = bank.getSampleMap().find(s)->second;
         } else {
-            size_t index = intFromString<size_t>(s);
+            size_t index = fromString<size_t>(s);
             std::list<Word*>::const_iterator it = parent->getWords().begin();
             for (size_t i = 0; i < index; ++i) ++it;
             words.push_back(*it);
         }
         even = !even;
     }
-    return Composition(words, objectId);
+    return new Composition(words, objectId);
 }
 
 Word::Word(const Sample * parent, size_t index) : index_(index), parent_(parent) {
     calcDuration();
-//    std::cout << "Word constructor " << stringFromInt((unsigned int)this) << " " << parent_->getFilename() <<std:: endl;
+//    std::cout << "Word constructor " << stringFrom((unsigned int)this) << " " << parent_->getFilename() <<std:: endl;
 }
 
 Word::Word(const Word & other) : parent_(other.parent_), index_(other.index_), duration_(other.duration_)  {
-//    std::cout << "Word copy constructor " << stringFromInt((unsigned int)this) << " " << parent_->getFilename() << std::endl;
+//    std::cout << "Word copy constructor " << stringFrom((unsigned int)this) << " " << parent_->getFilename() << std::endl;
 }
 
 std::string Word::getFilename() const {
-    return std::string("words/") + parent_->getFilename() + "/" + stringFromInt(index_);
+    return std::string("words/") + parent_->getFilename() + "/" + stringFrom(index_);
 }
 
 bool Sample::operator<(const Sample & other) const {
@@ -404,7 +403,7 @@ void Sample::splitFile() {
     struct stat junk;
     int stat_status = stat(filename_.c_str(), &junk);
     if (stat_status != 0) {
-        throw std::runtime_error(std::string("stat failed ") + stringFromInt(stat_status));
+        throw std::runtime_error(std::string("stat failed ") + stringFrom(stat_status));
     }
     bool unloadBufs = (junk.st_size > MAXFILEINMEM);
     in = sox_open_read(filename_.c_str(), &(bank.getSignalInfo()), NULL, NULL);
@@ -452,7 +451,7 @@ void Sample::splitFile() {
     size_t currentSampleLength = 0;
     size_t word_ix = 0;
     std::string filebase(filename_); // TODO kill extension
-    std::string filename(filebase+"/"+stringFromInt(word_ix));
+    std::string filename(filebase+"/"+stringFrom(word_ix));
     chdir(bank.getSampleDir().c_str());
     mkdir_or_throw("words");
     mkdir_or_throw((std::string("words/")+filebase).c_str());
@@ -486,7 +485,7 @@ void Sample::splitFile() {
                 // make a new word with each file
                 words_.push_back(new Word(this, word_ix));
                 ++word_ix;
-                filename = filebase+"/"+stringFromInt(word_ix);
+                filename = filebase+"/"+stringFrom(word_ix);
                 out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
                 offset = sampleix;
                 sampleend = false;
@@ -570,7 +569,7 @@ void SampleBank::setSampleDir(const std::string & dir) {
         // stat and mode & 0xfff0000 should be 0
         struct stat dirinfo;
         if (0 != stat(e->d_name,&dirinfo)) {
-            throw std::runtime_error(std::string("couldn't stat file we know exists: ") + e->d_name + " errno " + stringFromInt(errno));
+            throw std::runtime_error(std::string("couldn't stat file we know exists: ") + e->d_name + " errno " + stringFrom(errno));
         }
         if (dirinfo.st_mode & S_IFDIR) {
             continue;
@@ -733,7 +732,7 @@ void SplitBuf::unload() const {
 }
 
 std::string SplitBuf::filename() const {
-    return SampleBank::getInstance().getTmpDir() + "/" + stringFromInt((size_t)this);
+    return SampleBank::getInstance().getTmpDir() + "/" + stringFrom((size_t)this);
 }
 
 void SplitBuf::rmtmp() const {

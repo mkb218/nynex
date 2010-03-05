@@ -30,6 +30,7 @@ namespace nynex {
         void saveToFile(const std::string & filename);
         void addNotifier(bool pre);
     private:
+        void initGA(float pMutation, GABoolean elitist, const GAPopulation &);
         GASimpleGA *ga_;
         std::list<boost::reference_wrapper<StepAction> > prestepactions_;
         std::list<boost::reference_wrapper<StepAction> > poststepactions_;
