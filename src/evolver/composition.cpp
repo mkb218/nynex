@@ -279,7 +279,9 @@ Composition Composition::unserialize(const std::string & src) {
             for (size_t i = 0; i < index; ++i) ++it;
             words.push_back(*it);
         }
+        even = !even;
     }
+    return Composition(words, objectId);
 }
 
 Word::Word(const Sample * parent, size_t index) : index_(index), parent_(parent) {
