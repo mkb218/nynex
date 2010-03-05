@@ -16,6 +16,9 @@
 #include <memory>
 #include <string>
 #include <sstream>
+#include <map>
+#include <boost/ref.hpp>
+#include <boost/unordered_map.hpp>
 
 extern "C" {
 #include "sox.h"
@@ -27,41 +30,46 @@ extern "C" {
 #define MAXFILEINMEM BUFSIZE * MAXBUFS
 #define INTERVAL 0.1
 #define MINDURATION 15.0
+#define DELIMITER ':'
+#define TERMINATOR ';'
 
 template <class IntegerType>
 std::string stringFromInt(IntegerType i) {
-    std::ostringstream is;
-    is << i;
-    return is.str();
+    std::ostringstream os;
+    os << i;
+    return os.str();
 }
+
+template <class IntegerType>
+IntegerType intFromString(const std::string & i) {
+    std::istringstream is;
+    IntegerType num;
+    is.str(i);
+    is >> num;
+    return num;
+}
+
 
 namespace nynex {
     class Sample;
     
     class Word {
     public:
-        Word(const Sample * parent, size_t index, int age);
+        Word(const Sample * parent, size_t index);
         Word(const Word &);
-        bool operator<(const Word &) const;
         std::string getFilename() const;
         int getAge() const;
         double getScore() const;
         double getDuration() const;
-        void setScore(double);
+        const Sample * getParent() { return parent_; }
+        size_t getIndex() { return index_; }
     private:
         void calcDuration();
         size_t index_;
         const Sample * parent_;
-        int age_;
         double duration_; // samples
-        double score_;
     };
 
-    class WordSorter {
-    public:
-        bool operator()(Word* left, Word* right) { return (*left) < (*right); }
-    };
-    
     typedef sox_sample_t* samplebuf_t;
     class SplitBuf {
     public:
@@ -113,7 +121,11 @@ namespace nynex {
         Sample(const std::string &);
         Sample(const Sample &);
         ~Sample();
+        bool operator<(const Sample &) const;
         Sample & operator=(const Sample & other);
+        int getAge() const { return age_; }
+        void setScore(double);
+        double getScore() const;
         const std::list<Word*> & getWords();
         const std::string & getFilename() const { return filename_; }
     private:
@@ -122,9 +134,15 @@ namespace nynex {
         std::list<Word*> words_;
         std::string filename_; // relative to sampledir
         int age_;
+        double score_;
         bool wordsReady_;
     };
 
+    class SampleSorter {
+    public:
+        bool operator()(Sample* left, Sample* right) { return (*left) < (*right); }
+    };
+    
     class Composition;
         
     class SampleBank {
@@ -147,6 +165,7 @@ namespace nynex {
         void initComposition(Composition & comp);
         const sox_encodinginfo_t & getEncodingInfo() const;
         const sox_signalinfo_t & getSignalInfo() const;
+        const std::map<std::string, Sample*> & getSampleMap() { return sampleMap_; }
     private:
         SampleBank();
         SampleBank(SampleBank &) {} // never called
@@ -160,6 +179,7 @@ namespace nynex {
         std::string tmpDir_;
         std::vector<Sample*> samples_;
         std::vector<Word*> words_;
+        std::map<std::string, Sample*> sampleMap_;
         mutable sox_encodinginfo_t soxencoding_;
         mutable bool encodingready_;
         mutable sox_signalinfo_t soxsignal_;
@@ -173,7 +193,6 @@ namespace nynex {
         GADefineIdentity("NynexComposition", 219);
         Composition();
         Composition(const std::list<Word*> &);
-        Composition(const Composition &);
         Composition & operator=(const GAGenome &);
         GAGenome* clone(CloneMethod flag = CONTENTS) const;
         void copy(const GAGenome &);
@@ -189,6 +208,7 @@ namespace nynex {
         //        static void setMidiDevice(MidiDevice&);
         //        static void AudioDevice(AudioDevice&);
     private:
+        Composition(const std::list<Word*> &, unsigned int objectId);
         static unsigned int nextObjectId_;
         const unsigned int objectId_;
         std::list<Word*> words_;

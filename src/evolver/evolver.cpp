@@ -11,6 +11,8 @@
 #include "ratings.h"
 
 #include <stdexcept>
+#include <boost/foreach.hpp>
+
 using namespace nynex;
 
 Evolver::Evolver() {
@@ -37,13 +39,18 @@ void Evolver::initGA(float pMutation, int popSize, GABoolean elitist) {
 
 void Evolver::stepGA() {
     Ratings::getInstance().getServerRatings();
+    BOOST_FOREACH(StepAction& stepaction, prestepactions_) {
+        // GVoice download
+        // update server ratings
+        // check soundcloud dropbox
+        stepaction.action(ga_->population());
+    }
     ga_->step();
-    // foreach stepaction in stepactions_
-    // stepaction->action
-    // SoundCloud::upload(pop_) + streaming update + check dropbox
-    // GVoice download
-    // Twitter notify
-    // update server ratings
+    BOOST_FOREACH(StepAction& stepaction, poststepactions_) {
+        // SoundCloud::upload(pop_) + streaming update
+        // Twitter notify
+        stepaction.action(ga_->population());
+    }
 }
 
 const GAPopulation & Evolver::getPop() {

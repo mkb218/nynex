@@ -11,11 +11,12 @@
 #define NYNEX_EVOLVER
 
 #include "composition.h"
+#include <boost/ref.hpp>
 
 namespace nynex {
     class StepAction {
     public:
-        virtual void action(GAPopulation &) = 0;
+        virtual void action(const GAPopulation &) = 0;
     };
     
     class Evolver {
@@ -30,8 +31,8 @@ namespace nynex {
         void addNotifier(bool pre);
     private:
         GASimpleGA *ga_;
-        std::list<StepAction*> prestepactions_;
-        std::list<StepAction*> poststepactions_;
+        std::list<boost::reference_wrapper<StepAction> > prestepactions_;
+        std::list<boost::reference_wrapper<StepAction> > poststepactions_;
     };
 }
 

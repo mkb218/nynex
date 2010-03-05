@@ -23,6 +23,8 @@
 #include <dirent.h>
 #include <unistd.h>
 #include <sys/param.h>
+#include <boost/foreach.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include <errno.h>
 
@@ -54,8 +56,12 @@ Composition::Composition(const std::list<Word*> & words) : GAGenome(init, mutate
     GAGenome::crossover(crossover);
 }
 
-Composition::Composition(const Composition & other) : objectId_(other.objectId_),words_(other.words_.begin(), other.words_.end()) {
-    std::cout << "c copy contructor" << std::endl;
+Composition::Composition(const std::list<Word*> & words, unsigned int objectId) : GAGenome(init, mutate, compare), objectId_(objectId),words_(words.begin(), words.end()) {
+    evaluator(evaluate);
+    GAGenome::crossover(crossover);
+    if (objectId_ >= nextObjectId_) {
+        nextObjectId_ = objectId_+1;
+    }
 }
 
 Composition & Composition::operator=(const GAGenome & other) {
@@ -70,7 +76,7 @@ void Composition::copy(const GAGenome & other) {
 }
 
 GAGenome * Composition::clone(CloneMethod) const {
-    // clone is meant to be a distinct entity
+    // clone is meant to be a distinct entity with different objectid
     return new Composition(words_);
 }
 
@@ -234,12 +240,54 @@ void Composition::bounceToFile(const std::string & filename) const {
     // hold notes for length of sample while recording on audio in
 }
 
-Word::Word(const Sample * parent, size_t index, int age) : index_(index), parent_(parent), age_(age), score_(0.0) {
+std::string Composition::serialize() const {
+    std::string out(stringFromInt(objectId_));
+    BOOST_FOREACH(Word *w, words_) {
+        out += DELIMITER;
+        out.append(w->getParent()->getFilename());
+        out += DELIMITER;
+        out.append(stringFromInt(w->getIndex()));
+    }
+    out += TERMINATOR;
+    return out;
+}
+
+class AddWords {
+public:
+    std::string operator()(const std::string & in) {
+        return std::string("words/") + in;
+    }
+};
+
+
+Composition Composition::unserialize(const std::string & src) {
+    unsigned int objectId;
+    std::list<Word*> words;
+    SampleBank & bank = SampleBank::getInstance();
+    std::list<std::string> strs;
+    boost::split(strs, src, boost::is_from_range(DELIMITER, DELIMITER));
+    objectId = intFromString<unsigned int>(strs.front());
+    strs.pop_front();
+    bool even = true;
+    Sample * parent;
+    BOOST_FOREACH(std::string & s, strs) {
+        if (even) {
+            parent = bank.getSampleMap().find(s)->second;
+        } else {
+            size_t index = intFromString<size_t>(s);
+            std::list<Word*>::const_iterator it = parent->getWords().begin();
+            for (size_t i = 0; i < index; ++i) ++it;
+            words.push_back(*it);
+        }
+    }
+}
+
+Word::Word(const Sample * parent, size_t index) : index_(index), parent_(parent) {
     calcDuration();
 //    std::cout << "Word constructor " << stringFromInt((unsigned int)this) << " " << parent_->getFilename() <<std:: endl;
 }
 
-Word::Word(const Word & other) : parent_(other.parent_), index_(other.index_), age_(other.age_), score_(other.score_), duration_(other.duration_)  {
+Word::Word(const Word & other) : parent_(other.parent_), index_(other.index_), duration_(other.duration_)  {
 //    std::cout << "Word copy constructor " << stringFromInt((unsigned int)this) << " " << parent_->getFilename() << std::endl;
 }
 
@@ -247,20 +295,24 @@ std::string Word::getFilename() const {
     return std::string("words/") + parent_->getFilename() + "/" + stringFromInt(index_);
 }
 
-bool Word::operator<(const Word & other) const {
+bool Sample::operator<(const Sample & other) const {
     return ( age_ < other.age_ );
 }
 
 int Word::getAge() const {
-    return age_;
+    return parent_->getAge();
 }
 
 double Word::getScore() const {
-    return score_;
+    return parent_->getScore();
 }
 
-void Word::setScore(double score) {
+void Sample::setScore(double score) {
     score_ = score;
+}
+
+double Sample::getScore() const {
+    return score_;
 }
 
 double Word::getDuration() const {
@@ -280,7 +332,7 @@ void Word::calcDuration() {
     duration_ /= bank.getSampleRate(); // seconds / file
 }
 
-Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(filename) {
+Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(filename), score_(0.) {
     chdir(SampleBank::getInstance().getSampleDir().c_str());
     struct stat age_s;
     if (0 == stat(filename_.c_str(),&age_s)) {
@@ -290,7 +342,7 @@ Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(file
     }
 }
 
-Sample::Sample(const Sample & other) : filename_(other.filename_),age_(other.age_),wordsReady_(other.wordsReady_),words_(other.words_) {
+Sample::Sample(const Sample & other) : filename_(other.filename_),age_(other.age_),wordsReady_(other.wordsReady_),words_(other.words_), score_(0.) {
 }
 
 Sample::~Sample() {
@@ -332,7 +384,7 @@ void Sample::makeWords() {
         stream.close();
         while (files > 0) {
             --files;
-            words_.push_front(new Word(this, files, age_));
+            words_.push_front(new Word(this, files));
         }
     } else {
         splitFile();
@@ -430,7 +482,7 @@ void Sample::splitFile() {
                 sox_write(out, *(buf.front()) + offset, sampleix - offset);
                 sox_close(out);
                 // make a new word with each file
-                words_.push_back(new Word(this, word_ix, age_));
+                words_.push_back(new Word(this, word_ix));
                 ++word_ix;
                 filename = filebase+"/"+stringFromInt(word_ix);
                 out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
@@ -445,7 +497,7 @@ void Sample::splitFile() {
         buf.pop_front();
     }
     sox_close(out);
-    words_.push_back(new Word(this, word_ix, age_));
+    words_.push_back(new Word(this, word_ix));
     
     mkdir_or_throw("indexes");
     std::ofstream stream(("indexes/"+filebase+".index").c_str());
@@ -587,7 +639,11 @@ void SampleBank::addSample(const std::string & filepath) {
             throw std::runtime_error("creating new sample threw bad_alloc. dying.");
         }
         samples_.push_back(s);
-        words_.insert(words_.end(), s->getWords().begin(), s->getWords().end());
+        words_.reserve(s->getWords().size());
+        sampleMap_.insert(make_pair(s->getFilename(),s));
+        BOOST_FOREACH(Word *w, s->getWords()) {
+            words_.push_back(w);
+        }
         needsResort_ = true;
     }
 }
@@ -602,14 +658,14 @@ void SampleBank::addSample(const std::string & filepath) {
 //        
 Word* SampleBank::randomWord() {
     if (needsResort_) {
-        sort(words_.begin(), words_.end(), WordSorter());
-        double oldestAge = words_.front()->getAge();
+        sort(samples_.begin(), samples_.end(), SampleSorter());
+        double oldestAge = samples_.front()->getAge();
         double interval = oldestAge * INTERVAL;
         oldestAge -= interval;
-        double newestAge = words_.back()->getAge() + interval;
+        double newestAge = samples_.back()->getAge() + interval;
         double slope = 1 / (newestAge - oldestAge);
         double yInt = - oldestAge * slope;
-        for (std::vector<Word*>::iterator it = words_.begin(); it != words_.end(); ++it) {
+        for (std::vector<Sample*>::iterator it = samples_.begin(); it != samples_.end(); ++it) {
             if (oldestAge == newestAge) {
                 (*it)->setScore(0.);
             } else {
