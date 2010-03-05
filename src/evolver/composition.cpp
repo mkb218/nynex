@@ -441,7 +441,7 @@ void Sample::splitFile() {
     }
     
     double mean = sum/count;
-    sox_sample_t floor = 0.05 * mean;
+    sox_sample_t floor = 0.1 * mean;
     const size_t lastbufsize = read;
     
     // if more than 0.01 s is below this level eliminate those samples
