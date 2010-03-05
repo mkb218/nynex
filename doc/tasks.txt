@@ -4,15 +4,22 @@
 - site autoupdate git pull - done!
 - create facebook page - done!
 - get external dirs working in xcode - done!
-- makefile or antfile so i can build on 10.4
+- makefile or antfile so i can build on 10.4 - never mind. i can build for 10.4 ppc on 10.5 intel
 - soundcloud api access to dropbox?
 - twitter account for announcements - done!
 - streaming with soundcloud?
 - get sound file bits working - almost done!
-- compile custom libsox (mad, flac, ogg vorbis only) with dynamic linking so i'm not redistributing gpl code
+- compile custom libsox (mad, flac, ogg vorbis only) with dynamic linking so i'm not redistributing gpl code - not gonna worry about this. sox is lgpl and i am not redistributing any of its other libs anyway
 - add sox libs to other projects web page - done!
 - add unlockedgroove to contributors page and add three releases to inputs - done!
-- figure out what the heck is going on with memory - think this is done
-- sox can't always give me requested sample rate or channel number. need to handle this gracefully. and convert. options. solution: convert all files to desired layout and sample rate with afconvert first
-- samplebank needs a tmp dir
-- sample::splitfile needs a maxbufcount. once the length of the buffer list reaches maxbufcount, buffers get saved to disk. need a class to do this and encapsulate a sox_sample_t.
+- figure out what the heck is going on with memory - done!
+- sox can't always give me requested sample rate or channel number. need to handle this gracefully. and convert. options. solution: convert all files to desired layout and sample rate with afconvert first - need automated afconvert. this will be in the soundcloud handler
+- samplebank needs a tmp dir - done!
+- sample::splitfile needs a maxbufcount. once the length of the buffer list reaches maxbufcount, buffers get saved to disk. need a class to do this and encapsulate a sox_sample_t. - done!
+- handlers, in order:
+* soundcloud uploader
+* web voting
+* UI
+* google voice downloader
+* twitter announcements
+- fs1rgen working, or at least patch selection and output recording
