@@ -29,6 +29,11 @@ div#pagesubtitle {
     font-size: 18pt;
 }
 
+hr#content {
+    color:#000000;
+    margin-top:16pt;
+    margin-bottom:16pt;
+}
 
 div#content {
   margin-top:0pt;
