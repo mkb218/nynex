@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
     bank.setSampleRate(44100);
     bank.setSampleSize(2);
     bank.setTmpDir("/tmp/nynex");
-    bank.setSampleDir("/Users/makane/code/nynex/samples");
+    bank.setSampleDir("/Users/makane/code/nynex/subset");
     Composition c;
     bank.initComposition(c);
     c.bounceToFile("/Users/makane/code/nynex/output/whatwhat.mp3");
