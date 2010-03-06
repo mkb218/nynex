@@ -444,7 +444,7 @@ void Sample::splitFile() {
     const size_t lastbufsize = read;
     
     // if more than 0.01 s is below this level eliminate those samples
-    size_t gapsize = 0.005 * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
+    size_t gapsize = 0.0025 * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
     size_t maxSampleSize = gapsize * 50;
     // all samples between gaps are put in own files
     size_t currentGapLength = 0;
@@ -458,41 +458,48 @@ void Sample::splitFile() {
     sox_format_t * out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
     list_ix = 0;
     limit = bufsize;
+    size_t bufsingap = 0;
     while ( !buf.empty() ) {
         size_t offset = 0;
         if (1 == buf.size()) {
             limit = lastbufsize;
         }
-        
-        bool sampleend = false;
-        for (size_t sampleix = 0; sampleix < limit; ++sampleix) {
+
+        for (size_t frameix = 0; frameix < limit; frameix += bank.getChannels()) {
             ++currentSampleLength;
-            sox_sample_t s = (*(buf.front()))[sampleix];
+            double s = 0;
+            for (size_t sampleix = 0; sampleix < bank.getChannels(); ++sampleix) {
+               s += ((*(buf.front()))[frameix+sampleix] / (double)bank.getChannels());
+            }
             if (abs(s) < floor) {
                 ++currentGapLength;
             } else {
                 currentGapLength = 0;
             }
             
-            sampleend = sampleend || (currentGapLength > gapsize || currentSampleLength > maxSampleSize);
-            
-            // this is outside the innermost loop to make sure 
-            // that gaps are aligned on FRAME boundaries
-            if (sampleix % bank.getChannels() == bank.getChannels() - 1 && // last sample in frame
-                sampleend) {
-                sox_write(out, *(buf.front()) + offset, sampleix - offset);
+            if ((currentGapLength > gapsize || currentSampleLength > maxSampleSize) &&
+                (currentSampleLength > currentGapLength)) {
+                size_t samplesToWrite = frameix - offset;
+#ifndef DONTSKIPGAPS
+                // need number of samples between start of buffer and end of gap
+                samplesToWrite -= ((currentGapLength * bank.getChannels()) // total length of gap
+                                  - (bufsingap * bufsize));
+
+#endif
+                sox_write(out, *(buf.front()) + offset, samplesToWrite);
                 sox_close(out);
                 // make a new word with each file
                 words_.push_back(new Word(this, word_ix));
                 ++word_ix;
                 filename = filebase+"/"+stringFrom(word_ix);
                 out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
-                offset = sampleix;
-                sampleend = false;
+                offset = frameix;
+                bufsingap = 0;
                 currentGapLength = 0;
                 currentSampleLength = 0;
             }             
         }
+        ++bufsingap;
         sox_write(out, *(buf.front())+offset, limit - offset);
         delete buf.front();
         buf.pop_front();
