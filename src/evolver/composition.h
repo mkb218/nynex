@@ -25,7 +25,7 @@ extern "C" {
 }
 #include "ga/ga.h"
 
-#define BUFSIZE (1 << 24)
+#define BUFSIZE 262144 * 16
 #define MAXBUFS 64
 #define MAXFILEINMEM BUFSIZE * MAXBUFS
 #define INTERVAL 0.1
@@ -102,7 +102,7 @@ namespace nynex {
         mutable State state_;
         void alloc() const {
             if (state_ != INMEM)
-                buf_ = ((samplebuf_t)valloc(size_*sizeof(sox_sample_t))); 
+                buf_ = ((samplebuf_t)malloc(size_*sizeof(sox_sample_t))); 
         }
         void dealloc() const {
             if (state_ == INMEM)
