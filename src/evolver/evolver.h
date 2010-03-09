@@ -17,6 +17,7 @@ namespace nynex {
     class StepAction {
     public:
         virtual void action(const GAPopulation &) = 0;
+        virtual ~StepAction();
     };
     
     class Evolver {

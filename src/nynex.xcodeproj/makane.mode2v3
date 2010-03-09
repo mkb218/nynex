@@ -221,86 +221,6 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>FC0EC37E1145E1A9001F632B</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>soundcloud.h</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>FC0EC37F1145E1A9001F632B</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>soundcloud.h</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>FC789088114666F800D9C8BB</string>
-						<key>history</key>
-						<array>
-							<string>FC0EC3801145E1A9001F632B</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {618, 636}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>638 185 618 677 0 0 1440 878 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>FC0EC3811145E1A9001F632B</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>soundcloud.cpp</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>FC0EC3821145E1A9001F632B</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>soundcloud.cpp</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>FC789089114666F800D9C8BB</string>
-						<key>history</key>
-						<array>
-							<string>FC0EC3831145E1A9001F632B</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {618, 636}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>61 154 618 677 0 0 1440 878 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
 				<string>FCAAE0991140908B006E0A7C</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>evolvertest.cpp</string>
@@ -315,7 +235,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FC78908A114666F800D9C8BB</string>
+						<string>FC7890C6114690F500D9C8BB</string>
 						<key>history</key>
 						<array>
 							<string>FC0EC3841145E1A9001F632B</string>
@@ -341,24 +261,24 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>FC86F9E1113FED5D0047129F</string>
+				<string>FC0EC3811145E1A9001F632B</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>evolver.h</string>
+				<string>soundcloud.cpp</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>FC86F9E2113FED5D0047129F</string>
+						<string>FC0EC3821145E1A9001F632B</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>evolver.h</string>
+						<string>soundcloud.cpp</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FC78908B114666F800D9C8BB</string>
+						<string>FC7890C7114690F500D9C8BB</string>
 						<key>history</key>
 						<array>
-							<string>FC0EC3851145E1A9001F632B</string>
+							<string>FC0EC3831145E1A9001F632B</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -370,11 +290,51 @@
 			<key>Geometry</key>
 			<dict>
 				<key>Frame</key>
-				<string>{{0, 20}, {618, 692}}</string>
+				<string>{{0, 20}, {618, 636}}</string>
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>588 109 618 733 0 0 1440 878 </string>
+				<string>61 154 618 677 0 0 1440 878 </string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>FC0EC37E1145E1A9001F632B</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>soundcloud.h</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>FC0EC37F1145E1A9001F632B</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>soundcloud.h</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>FC7890C8114690F500D9C8BB</string>
+						<key>history</key>
+						<array>
+							<string>FC0EC3801145E1A9001F632B</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {618, 636}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>638 184 618 677 0 0 1440 878 </string>
 			</dict>
 		</dict>
 		<dict>
@@ -395,7 +355,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FC78908C114666F800D9C8BB</string>
+						<string>FC7890C9114690F500D9C8BB</string>
 						<key>history</key>
 						<array>
 							<string>FC0EC3861145E1A9001F632B</string>
@@ -680,7 +640,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>289826552.65293401</real>
+	<real>289837301.492863</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -698,11 +658,10 @@
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>FCA11705113F202B00FEEA65</string>
-		<string>FC86F9E1113FED5D0047129F</string>
-		<string>FCAAE0991140908B006E0A7C</string>
-		<string>FC0EC3811145E1A9001F632B</string>
 		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 		<string>FC0EC37E1145E1A9001F632B</string>
+		<string>FC0EC3811145E1A9001F632B</string>
+		<string>FCAAE0991140908B006E0A7C</string>
 	</array>
 	<key>WindowString</key>
 	<string>984 296 350 420 0 0 1440 878 </string>
