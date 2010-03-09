@@ -719,6 +719,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/../../../libs/rtAudio/lib/osx\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)Universal";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -856,6 +857,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/../../../libs/rtAudio/lib/osx\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -905,6 +907,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/../../../libs/rtAudio/lib/osx\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -920,6 +923,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
+					"../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI",
 					/opt/local/include,
 					../3rdparty/galib247,
 					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
@@ -938,6 +942,7 @@
 					../3rdparty/galib247/ga,
 					/opt/local/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lsox",
@@ -945,6 +950,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "evolver-test";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Debug;
 		};
@@ -957,6 +963,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI",
 					/opt/local/include,
 					../3rdparty/galib247,
 					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
@@ -975,6 +982,7 @@
 					../3rdparty/galib247/ga,
 					/opt/local/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lsox",
@@ -982,6 +990,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "evolver-test";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -993,6 +1002,7 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI",
 					/opt/local/include,
 					../3rdparty/galib247,
 					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
@@ -1011,6 +1021,7 @@
 					../3rdparty/galib247/ga,
 					/opt/local/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lsox",
@@ -1018,6 +1029,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "evolver-test";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = ReleaseUniversal;
 		};

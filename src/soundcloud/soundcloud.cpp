@@ -8,4 +8,4 @@
  */
 
 #include "soundcloud.h"
-
+#include "SoundCloudCAPI.h"

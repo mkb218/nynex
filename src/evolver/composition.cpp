@@ -642,7 +642,14 @@ void SampleBank::addSample(const std::string & filepath) {
         sox_close(in);
         Sample *s;
         try {
+#ifdef __DARWIN_UNIX03
+            char * tmp = new char[filepath.size()+1];
+            strncpy(tmp, filepath.c_str(), filepath.size()+1);
+            s = new Sample(basename(tmp));
+            delete [] tmp;
+#else
             s = new Sample(basename(filepath.c_str()));
+#endif
         } catch (std::bad_alloc& e) {
             throw std::runtime_error("creating new sample threw bad_alloc. dying.");
         }
