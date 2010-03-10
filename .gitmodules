@@ -1,0 +1,3 @@
+[submodule "www/static/soundcloud-javascript-player"]
+	path = www/static/soundcloud-javascript-player
+	url = git://github.com/ericw/javascript-player.git

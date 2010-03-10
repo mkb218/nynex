@@ -34,6 +34,9 @@
 		E4C242CD10CC650E004149E2 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C242CC10CC650E004149E2 /* libfmodex.dylib */; };
 		E4C2443910CC7693004149E2 /* openFrameworks-Info.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */; };
 		E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C246D910CCAE22004149E2 /* freeimage.a */; };
+		FC336DCE1147D34C00E1A5BD /* soundcloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */; };
+		FC336DD01147D34C00E1A5BD /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
+		FC336DDB1147D38300E1A5BD /* soundcloud-test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC336DDA1147D38300E1A5BD /* soundcloud-test.cpp */; };
 		FC4C45751118EAFD00394B9E /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
 		FC4C45761118EAFD00394B9E /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FC4C45CF1118EE5100394B9E /* evolvertest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */; };
@@ -42,6 +45,7 @@
 		FC8C0AD91111D71C00AFE817 /* streaming.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD71111D71C00AFE817 /* streaming.cpp */; };
 		FCA1170E113F208F00FEEA65 /* evolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA1170D113F208F00FEEA65 /* evolver.cpp */; };
 		FCA1170F113F208F00FEEA65 /* evolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA1170D113F208F00FEEA65 /* evolver.cpp */; };
+		FCC4850C11470F2D00EF5568 /* soundcloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */; };
 		FCD2343F110FABDE0023CC4B /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FCD2347511107DE20023CC4B /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
 /* End PBXBuildFile section */
@@ -119,6 +123,8 @@
 		E4C2429310CC5C38004149E2 /* freetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freetype.a; path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/lib/osx/freetype.a; sourceTree = "<absolute>"; };
 		E4C242CC10CC650E004149E2 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodex.dylib; path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/lib/osx/libfmodex.dylib; sourceTree = "<absolute>"; };
 		E4C246D910CCAE22004149E2 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/lib/osx/freeimage.a; sourceTree = "<absolute>"; };
+		FC336DD71147D34C00E1A5BD /* evolver-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "evolver-test"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC336DDA1147D38300E1A5BD /* soundcloud-test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "soundcloud-test.cpp"; sourceTree = "<group>"; };
 		FC4C45691118EA3500394B9E /* evolver-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "evolver-test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4C45CC1118EE4300394B9E /* evolvertest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolvertest.h; sourceTree = "<group>"; };
 		FC4C45CD1118EE4300394B9E /* evolvertest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = evolvertest.cpp; sourceTree = "<group>"; };
@@ -164,6 +170,13 @@
 				E4C2429410CC5C38004149E2 /* freetype.a in Frameworks */,
 				E4C242CD10CC650E004149E2 /* libfmodex.dylib in Frameworks */,
 				E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC336DD21147D34C00E1A5BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +383,7 @@
 				FC8C0AD61111D71C00AFE817 /* streaming */,
 				FC8C0ACF1111D4E500AFE817 /* twitter */,
 				FC4C45691118EA3500394B9E /* evolver-test */,
+				FC336DD71147D34C00E1A5BD /* evolver-test */,
 			);
 			sourceTree = "<group>";
 		};
@@ -472,6 +486,7 @@
 			children = (
 				FC8C0AB51111CF5700AFE817 /* soundcloud.h */,
 				FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */,
+				FC336DDA1147D38300E1A5BD /* soundcloud-test.cpp */,
 			);
 			path = soundcloud;
 			sourceTree = SOURCE_ROOT;
@@ -531,6 +546,22 @@
 			productReference = E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FC336DCB1147D34C00E1A5BD /* soundcloud-test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC336DD31147D34C00E1A5BD /* Build configuration list for PBXNativeTarget "soundcloud-test" */;
+			buildPhases = (
+				FC336DCC1147D34C00E1A5BD /* Sources */,
+				FC336DD21147D34C00E1A5BD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "soundcloud-test";
+			productName = "evolver-test";
+			productReference = FC336DD71147D34C00E1A5BD /* evolver-test */;
+			productType = "com.apple.product-type.tool";
+		};
 		FC4C45681118EA3500394B9E /* evolver-test */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC4C45701118EA5600394B9E /* Build configuration list for PBXNativeTarget "evolver-test" */;
@@ -568,6 +599,7 @@
 			targets = (
 				E4B69B5A0A3A1756003C02F2 /* nynex */,
 				FC4C45681118EA3500394B9E /* evolver-test */,
+				FC336DCB1147D34C00E1A5BD /* soundcloud-test */,
 			);
 		};
 /* End PBXProject section */
@@ -614,11 +646,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC336DCC1147D34C00E1A5BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC336DCE1147D34C00E1A5BD /* soundcloud.cpp in Sources */,
+				FC336DD01147D34C00E1A5BD /* composition.cpp in Sources */,
+				FC336DDB1147D38300E1A5BD /* soundcloud-test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC4C45661118EA3500394B9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FC4C45CF1118EE5100394B9E /* evolvertest.cpp in Sources */,
+				FCC4850C11470F2D00EF5568 /* soundcloud.cpp in Sources */,
 				FC4C45751118EAFD00394B9E /* ratings.cpp in Sources */,
 				FC4C45761118EAFD00394B9E /* composition.cpp in Sources */,
 				FCA1170F113F208F00FEEA65 /* evolver.cpp in Sources */,
@@ -913,6 +956,126 @@
 			};
 			name = Release;
 		};
+		FC336DD41147D34C00E1A5BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					"../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI",
+					/opt/local/include,
+					../3rdparty/galib247,
+					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOsc/libs/oscpack/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glut/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					../3rdparty/galib247/ga,
+					/opt/local/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lsox",
+					"-lga",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "evolver-test";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = Debug;
+		};
+		FC336DD51147D34C00E1A5BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					"../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI",
+					/opt/local/include,
+					../3rdparty/galib247,
+					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOsc/libs/oscpack/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glut/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					../3rdparty/galib247/ga,
+					/opt/local/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lsox",
+					"-lga",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "evolver-test";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FC336DD61147D34C00E1A5BD /* ReleaseUniversal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				HEADER_SEARCH_PATHS = (
+					"../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI",
+					/opt/local/include,
+					../3rdparty/galib247,
+					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOsc/libs/oscpack/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glut/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
+				);
+				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					../3rdparty/galib247/ga,
+					/opt/local/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lsox",
+					"-lga",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "evolver-test";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = ReleaseUniversal;
+		};
 		FC4C456B1118EA3600394B9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1052,6 +1215,16 @@
 				E4B69B600A3A1757003C02F2 /* Debug */,
 				E4B69B610A3A1757003C02F2 /* Release */,
 				E4B27CA110CBF8A600536013 /* ReleaseUniversal */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FC336DD31147D34C00E1A5BD /* Build configuration list for PBXNativeTarget "soundcloud-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC336DD41147D34C00E1A5BD /* Debug */,
+				FC336DD51147D34C00E1A5BD /* Release */,
+				FC336DD61147D34C00E1A5BD /* ReleaseUniversal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

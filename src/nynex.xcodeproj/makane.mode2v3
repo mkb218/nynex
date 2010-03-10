@@ -221,86 +221,6 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>FCAAE0991140908B006E0A7C</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>evolvertest.cpp</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>FCAAE09A1140908B006E0A7C</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>evolvertest.cpp</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>FC7890C6114690F500D9C8BB</string>
-						<key>history</key>
-						<array>
-							<string>FC0EC3841145E1A9001F632B</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {618, 636}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>404 199 618 677 0 0 1440 878 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>FC0EC3811145E1A9001F632B</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>soundcloud.cpp</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>FC0EC3821145E1A9001F632B</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>soundcloud.cpp</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>FC7890C7114690F500D9C8BB</string>
-						<key>history</key>
-						<array>
-							<string>FC0EC3831145E1A9001F632B</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {618, 636}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>61 154 618 677 0 0 1440 878 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
 				<string>FC0EC37E1145E1A9001F632B</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>soundcloud.h</string>
@@ -315,10 +235,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FC7890C8114690F500D9C8BB</string>
+						<string>FC336DE21147DAD200E1A5BD</string>
 						<key>history</key>
 						<array>
-							<string>FC0EC3801145E1A9001F632B</string>
+							<string>FCC4857311471B7C00EF5568</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -341,24 +261,24 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>FCA11705113F202B00FEEA65</string>
+				<string>FC0EC3811145E1A9001F632B</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>ratings.h</string>
+				<string>soundcloud.cpp</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>FCA11706113F202B00FEEA65</string>
+						<string>FC0EC3821145E1A9001F632B</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>ratings.h</string>
+						<string>soundcloud.cpp</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FC7890C9114690F500D9C8BB</string>
+						<string>FC336DE31147DAD200E1A5BD</string>
 						<key>history</key>
 						<array>
-							<string>FC0EC3861145E1A9001F632B</string>
+							<string>FC336DAF1147D2F400E1A5BD</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -370,11 +290,11 @@
 			<key>Geometry</key>
 			<dict>
 				<key>Frame</key>
-				<string>{{0, 20}, {618, 692}}</string>
+				<string>{{0, 20}, {618, 636}}</string>
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>187 137 618 733 0 0 1440 878 </string>
+				<string>61 154 618 677 0 0 1440 878 </string>
 			</dict>
 		</dict>
 	</array>
@@ -408,6 +328,8 @@
 					<key>Tabs</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBottomSmartGroupGIDs</key>
@@ -449,13 +371,13 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>17</integer>
+											<integer>19</integer>
 											<integer>16</integer>
 											<integer>0</integer>
 										</array>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-									<string>{{0, 0}, {333, 334}}</string>
+									<string>{{0, 101}, {333, 334}}</string>
 								</dict>
 								<key>PBXTopSmartGroupGIDs</key>
 								<array/>
@@ -477,13 +399,13 @@
 									<string>WarningsColumn</string>
 									<real>43</real>
 								</array>
+								<key>RubberWindowFrame</key>
+								<string>1031 458 350 420 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXSmartGroupTreeModule</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBottomSmartGroupGIDs</key>
@@ -513,12 +435,15 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 									<array>
 										<string>1C37FBAC04509CD000000102</string>
+										<string>FC336DE01147DAD200E1A5BD</string>
+										<string>FC336DE11147DAD200E1A5BD</string>
 										<string>1C37FAAC04509CD000000102</string>
 									</array>
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>2</integer>
+											<integer>4</integer>
+											<integer>3</integer>
 											<integer>0</integer>
 										</array>
 									</array>
@@ -539,8 +464,6 @@
 									<string>MainColumn</string>
 									<real>333</real>
 								</array>
-								<key>RubberWindowFrame</key>
-								<string>984 296 350 420 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXSmartGroupTreeModule</string>
@@ -621,8 +544,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>FC7890261145F3DC00D9C8BB</string>
-				<string>FC7890271145F3DC00D9C8BB</string>
+				<string>FC336DB21147D31500E1A5BD</string>
+				<string>FC336DB31147D31500E1A5BD</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -640,7 +563,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>289837301.492863</real>
+	<real>289921746.18651003</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -655,16 +578,17 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>FC336DE51147DAD200E1A5BD</string>
+		<string>FC336DE61147DAD200E1A5BD</string>
+		<string>1C530D5B069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
-		<string>FCA11705113F202B00FEEA65</string>
-		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
-		<string>FC0EC37E1145E1A9001F632B</string>
 		<string>FC0EC3811145E1A9001F632B</string>
-		<string>FCAAE0991140908B006E0A7C</string>
+		<string>FC0EC37E1145E1A9001F632B</string>
+		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>984 296 350 420 0 0 1440 878 </string>
+	<string>1031 458 350 420 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -822,7 +746,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>soundcloud.cpp</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -880,7 +804,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D52069F1CE1000CFCEE</string>
-				<string>FC78905F114639D500D9C8BB</string>
+				<string>FC336D961147CEEF00E1A5BD</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -1000,13 +924,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D54069F1CE1000CFCEE</string>
-				<string>FC7890471146389100D9C8BB</string>
+				<string>FC336D971147CEEF00E1A5BD</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>FC7890481146389100D9C8BB</string>
-				<string>FC7890491146389100D9C8BB</string>
-				<string>FC78904A1146389100D9C8BB</string>
-				<string>FC78904B1146389100D9C8BB</string>
-				<string>FC78904C1146389100D9C8BB</string>
+				<string>FC336D981147CEEF00E1A5BD</string>
+				<string>FC336D991147CEEF00E1A5BD</string>
+				<string>FC336D9A1147CEEF00E1A5BD</string>
+				<string>FC336D9B1147CEEF00E1A5BD</string>
+				<string>FC336D9C1147CEEF00E1A5BD</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1125,8 +1049,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1162,7 +1084,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D5B069F1CE1000CFCEE</string>
-				<string>FC41D2AD1141996600C9A61D</string>
+				<string>FC336DE41147DAD200E1A5BD</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1172,7 +1094,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D5B069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
