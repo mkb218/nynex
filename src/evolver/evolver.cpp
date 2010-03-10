@@ -57,13 +57,13 @@ void Evolver::stepGA() {
         // GVoice download
         // update server ratings
         // check soundcloud dropbox
-        stepaction.action(ga_->population());
+        stepaction.action(*ga_);
     }
     ga_->step();
     BOOST_FOREACH(StepAction& stepaction, poststepactions_) {
         // SoundCloud::upload(pop_) + streaming update
         // Twitter notify
-        stepaction.action(ga_->population());
+        stepaction.action(*ga_);
     }
 }
 

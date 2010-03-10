@@ -26,6 +26,18 @@ bool TerminalAuthenticator::authenticate() {
     }
 }
 
+void SubmitSoundCloudAction::action(const GAGeneticAlgorithm & ga) {
+    server_->submitCompositions(ga); 
+    // store result, use to create m3u and listen-and-rate page
+    // upload m3u and listen-and-rate page to webhost
+}
+
+SoundCloudServer::~SoundCloudServer() {
+    if (scApi_ != NULL) {
+        SoundCloudCAPI_Delete(scApi_);
+    }
+}
+
 void SoundCloudServer::fetchDropBox() const {
     void *data;
     unsigned long long datalen;
@@ -36,4 +48,23 @@ void SoundCloudServer::fetchDropBox() const {
         std::cout << "something wrong" << std::endl;
     }
     
+    // now what?
+    
+    // foreach file in list
+    // download file
+    // delete file from dropbox
+    // convert to WAV in preferred format
+    // SampleBank::getInstance().addSample(WAV)
 }
+
+std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlgorithm & ga) const {
+    int gen = ga.generation();
+    for (int i = 0; i < ga.population().size(); ++i) {
+        Composition & comp = dynamic_cast<Composition &>(ga.population().individual(i));
+        comp.bounceToFile(filepath_+"/gen"+stringFrom(gen) + "i" + stringFrom(i));
+        // punt to id3v2 to set tags
+        // remove previous generation i track
+        // upload track to soundcloud
+    }
+}
+

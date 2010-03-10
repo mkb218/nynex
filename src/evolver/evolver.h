@@ -16,7 +16,7 @@
 namespace nynex {
     class StepAction {
     public:
-        virtual void action(const GAPopulation &) = 0;
+        virtual void action(const GAGeneticAlgorithm &) = 0;
         virtual ~StepAction();
     };
     
@@ -29,7 +29,7 @@ namespace nynex {
         const GAGeneticAlgorithm & getGA();
         void loadFromFile(const std::string & filename);
         void saveToFile(const std::string & filename);
-        void addNotifier(bool pre);
+        void addNotifier(bool pre, StepAction &);
     private:
         void initGA(float pMutation, GABoolean elitist, const GAPopulation &);
         GASimpleGA *ga_;

@@ -26,3 +26,4 @@
 - fs1rgen working, or at least patch selection and output recording
 - double check to make sure all correct license advertising clauses are present
 - make sure i am using a compatible license. might need to be gpl :(
+- make sure gas terminator is NEVER
