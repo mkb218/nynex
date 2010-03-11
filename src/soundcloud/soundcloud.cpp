@@ -29,7 +29,7 @@ bool TerminalAuthenticator::authenticate() {
 void SubmitSoundCloudAction::action(const GAGeneticAlgorithm & ga) {
     server_->submitCompositions(ga); 
     // store result, use to create m3u and listen-and-rate page
-    // upload m3u and listen-and-rate page to webhost
+    // upload m3u and listen-and-rate page with scpcmd
 }
 
 SoundCloudServer::~SoundCloudServer() {

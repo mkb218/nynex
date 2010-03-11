@@ -221,24 +221,24 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>FC686D5C11485F86004EBE76</string>
+				<string>FC686D7C1149300A004EBE76</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>soundcloud.h</string>
+				<string>twitter.cpp</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>FC686D5D11485F86004EBE76</string>
+						<string>FC686D7D1149300A004EBE76</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>soundcloud.h</string>
+						<string>twitter.cpp</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FC686D721148612C004EBE76</string>
+						<string>FC686D7E1149300A004EBE76</string>
 						<key>history</key>
 						<array>
-							<string>FC686D6A11486113004EBE76</string>
+							<string>FC686D7611492500004EBE76</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -250,35 +250,35 @@
 			<key>Geometry</key>
 			<dict>
 				<key>Frame</key>
-				<string>{{0, 20}, {618, 636}}</string>
+				<string>{{0, 20}, {750, 461}}</string>
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>638 184 618 677 0 0 1440 878 </string>
+				<string>517 216 750 502 0 0 1440 878 </string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>FC686D64114860B3004EBE76</string>
+				<string>FC686D7F1149300A004EBE76</string>
 				<key>PBXProjectModuleLabel</key>
-				<string>soundcloud.cpp</string>
+				<string>twitter.h</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
 				<dict>
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>FC686D65114860B3004EBE76</string>
+						<string>FC686D801149300A004EBE76</string>
 						<key>PBXProjectModuleLabel</key>
-						<string>soundcloud.cpp</string>
+						<string>twitter.h</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FC686D731148612C004EBE76</string>
+						<string>FC686D811149300A004EBE76</string>
 						<key>history</key>
 						<array>
-							<string>FC686D6C1148611E004EBE76</string>
+							<string>FC686D74114921A0004EBE76</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -370,6 +370,8 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
+											<integer>21</integer>
+											<integer>20</integer>
 											<integer>0</integer>
 										</array>
 									</array>
@@ -557,7 +559,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>289956140.39804101</real>
+	<real>290009098.41390401</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -572,11 +574,14 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>FC686D821149300A004EBE76</string>
+		<string>FC686D831149300A004EBE76</string>
+		<string>1C530D5B069F1CE1000CFCEE</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
+		<string>FC686D7F1149300A004EBE76</string>
+		<string>FC686D7C1149300A004EBE76</string>
 		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
-		<string>FC686D64114860B3004EBE76</string>
-		<string>FC686D5C11485F86004EBE76</string>
 	</array>
 	<key>WindowString</key>
 	<string>1031 458 350 420 0 0 1440 878 </string>
@@ -737,7 +742,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>soundcloud.cpp</string>
+								<string>&lt;No Editor&gt;</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -1075,7 +1080,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D5B069F1CE1000CFCEE</string>
-				<string>FC336DE41147DAD200E1A5BD</string>
+				<string>FC686D7911492BFC004EBE76</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

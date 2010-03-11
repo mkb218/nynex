@@ -17,8 +17,7 @@
 - samplebank needs a tmp dir - done!
 - sample::splitfile needs a maxbufcount. once the length of the buffer list reaches maxbufcount, buffers get saved to disk. need a class to do this and encapsulate a sox_sample_t. - done!
 - handlers, in order:
-* soundcloud uploader
-* soundcloud streaming
+* soundcloud uploader + streaming (listen page + m3u)
 * web voting
 * UI
 * google voice downloader
