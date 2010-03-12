@@ -2,24 +2,19 @@
 #ifndef NYNEX_NETWORK
 #define NYNEX_NETWORK
 
-#include <CFHTTPMessage.h>
 #include <list>
 
-namespace nynex {
-    class HttpPool {
+namespace nynex {  
+    class CurlContext {
     public:
-        ~HttpPool() { deleteRefs(); }
-        HttpPool & getActivePool() { return *activePool_; }
-        static void setActivePool(HttpPool * pool) { activePool_ = pool; }
-        void addRef(CFTypeRef r) { refs_.push_back(r); }
-        void deleteRefs() { while (!refs_.empty()) { CFRelease(refs.front()); refs.pop_front(); }
+        static CurlContext *getContext() { if (context_ == NULL) context = new CurlContext(); return context_; }
+        ~CurlContext() { curl_global_cleanup(); }
     private:
-        static HttpPool *activePool_;
-        std::list<CFTypeRef> refs_;
+        CurlContext() { curl_global_init(); }
+        static CurlContext *context_;
     };
     
-    CFHTTPAuthenticationRef getAuthRef(CFHTTPMessageRef errResponse, const std::string & username, const std::string & password);
-    CFHTTPMessageRef getUrl(const std::string & url, CFHTTPAuthenticationRef auth = NULL);
-    CFHTTPMessageRef postUrl(const std::string & url, const std::string & body, CFHTTPAuthenticationRef auth = NULL);
-
+    void getUrl(const std::string & url);
+    void postUrl(const std::string & url, const std::string & body, CFHTTPAuthenticationRef auth = NULL);
+}
 #endif
