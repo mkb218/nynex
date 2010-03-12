@@ -2,6 +2,8 @@
 
 #include <sstream>
 #include <iomanip>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
 
 using namespace nynex;
 
@@ -22,7 +24,7 @@ std::string TwitterServer::urlEncode(const std::string & in) {
     return out;
 }
 
-void TwitterServer::announceGeneration(const std::string & announcement, const std::string & listenUrl, const std::string & htmlUrl) {
+void TwitterServer::announceGeneration(const std::string & announcement, const std::string & listenUrl, const std::string & htmlUrl) const {
     std::string tweet(announcement);
     tweet.append(" listen and rate: ");
     tweet.append(getBitlyUrl(htmlUrl));
@@ -44,4 +46,22 @@ void TwitterServer::announceGeneration(const std::string & announcement, const s
             tweet.erase(140, tweet.size());
         }
     }
+}
+
+std::string getBitlyUrl(const std::string url) const {
+    std::string request("http://api.bit.ly/shorten?format=json&version=2.0.1&longUrl=");
+    request.append(url);
+    request.append("&login=");
+    request.append(bitlylogin_);
+    request.append("&apiKey=");
+    request.append(bitlykey_);
+    std::string response;
+    // make the request with some cf garbage or whatever
+    // fish new url out of json response
+    using boost::property_tree::ptree;
+    ptree pt;
+    istringstream is;
+    is.str(response);
+    read_json(is, pt);
+    return pt.get<std::string>("results.shortUrl");
 }

@@ -25,6 +25,7 @@ namespace nynex {
     private:
         std::string username_;
         std::string password_;
+        std::string bitlylogin_;
         std::string bitlykey_;
     };
     
