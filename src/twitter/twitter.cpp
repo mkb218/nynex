@@ -46,6 +46,17 @@ void TwitterServer::announceGeneration(const std::string & announcement, const s
             tweet.erase(140, tweet.size());
         }
     }
+    tweet = urlEncode(tweet);
+    std::string tweetUrl("http://api.twitter.com/l/statuses/update.json")
+    using boost::property_tree::ptree;
+    ptree pt;
+    pt.put("status", tweet);
+    ostringstream os;
+    write_json(os, pt);
+    std::string tweetJson(os.str());
+    // set up basic auth
+    // set up json in post body
+    // post!
 }
 
 std::string getBitlyUrl(const std::string url) const {

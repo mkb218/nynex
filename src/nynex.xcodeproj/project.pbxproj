@@ -42,6 +42,8 @@
 		FC4C45CF1118EE5100394B9E /* evolvertest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */; };
 		FC8C0AB71111CF5700AFE817 /* soundcloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */; };
 		FC8C0AD21111D4E500AFE817 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
+		FC9F3197114A79920098C488 /* network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3195114A79920098C488 /* network.cpp */; };
+		FC9F3198114A79920098C488 /* network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3195114A79920098C488 /* network.cpp */; };
 		FCA1170E113F208F00FEEA65 /* evolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA1170D113F208F00FEEA65 /* evolver.cpp */; };
 		FCA1170F113F208F00FEEA65 /* evolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA1170D113F208F00FEEA65 /* evolver.cpp */; };
 		FCC4850C11470F2D00EF5568 /* soundcloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */; };
@@ -132,6 +134,8 @@
 		FC8C0AC71111D38100AFE817 /* ratings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ratings.h; sourceTree = "<group>"; };
 		FC8C0AD01111D4E500AFE817 /* twitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = twitter.cpp; sourceTree = "<group>"; };
 		FC8C0AD11111D4E500AFE817 /* twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitter.h; sourceTree = "<group>"; };
+		FC9F3195114A79920098C488 /* network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = network.cpp; sourceTree = "<group>"; };
+		FC9F3196114A79920098C488 /* network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = network.h; sourceTree = "<group>"; };
 		FCA1170C113F208F00FEEA65 /* evolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolver.h; sourceTree = "<group>"; };
 		FCA1170D113F208F00FEEA65 /* evolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = evolver.cpp; sourceTree = "<group>"; };
 		FCD23435110FABDE0023CC4B /* composition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composition.cpp; sourceTree = "<group>"; };
@@ -376,6 +380,7 @@
 				E4C2422310CC54B6004149E2 /* openFrameworks */,
 				E45BE0360E8CC5DE009D7055 /* libs */,
 				FCD23434110FABDE0023CC4B /* evolver */,
+				FC9F3194114A79910098C488 /* network */,
 				FC8C0AB41111CF2300AFE817 /* soundcloud */,
 				FC8C0ACF1111D4E500AFE817 /* twitter */,
 				FC4C45691118EA3500394B9E /* evolver-test */,
@@ -494,6 +499,15 @@
 				FC8C0AD11111D4E500AFE817 /* twitter.h */,
 			);
 			path = twitter;
+			sourceTree = "<group>";
+		};
+		FC9F3194114A79910098C488 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				FC9F3195114A79920098C488 /* network.cpp */,
+				FC9F3196114A79920098C488 /* network.h */,
+			);
+			path = network;
 			sourceTree = "<group>";
 		};
 		FCD23434110FABDE0023CC4B /* evolver */ = {
@@ -629,6 +643,7 @@
 				FC8C0AB71111CF5700AFE817 /* soundcloud.cpp in Sources */,
 				FC8C0AD21111D4E500AFE817 /* twitter.cpp in Sources */,
 				FCA1170E113F208F00FEEA65 /* evolver.cpp in Sources */,
+				FC9F3198114A79920098C488 /* network.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +654,7 @@
 				FC336DCE1147D34C00E1A5BD /* soundcloud.cpp in Sources */,
 				FC336DD01147D34C00E1A5BD /* composition.cpp in Sources */,
 				FC336DDB1147D38300E1A5BD /* soundcloud-test.cpp in Sources */,
+				FC9F3197114A79920098C488 /* network.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
