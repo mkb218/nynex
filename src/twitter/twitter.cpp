@@ -4,6 +4,7 @@
 #include <iomanip>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/ptree.hpp>
+#include "network.h"
 
 using namespace nynex;
 
@@ -46,28 +47,30 @@ void TwitterServer::announceGeneration(const std::string & announcement, const s
             tweet.erase(140, tweet.size());
         }
     }
-    tweet = urlEncode(tweet);
+//    tweet = urlEncode(tweet);
+//    tweet = std::string("status=") + urlEncode(tweet);
+    tweet = std::string("status=") + tweet;
+    // todo get from config
     std::string tweetUrl("http://api.twitter.com/l/statuses/update.json")
     using boost::property_tree::ptree;
-    ptree pt;
+/*    ptree pt;
     pt.put("status", tweet);
     ostringstream os;
     write_json(os, pt);
-    std::string tweetJson(os.str());
-    // set up basic auth
-    // set up json in post body
-    // post!
+    std::string tweetJson(os.str());*/
+    postUrl(tweetUrl, tweet, username_, password_);
 }
 
 std::string getBitlyUrl(const std::string url) const {
+    // todo get from config
     std::string request("http://api.bit.ly/shorten?format=json&version=2.0.1&longUrl=");
     request.append(url);
     request.append("&login=");
     request.append(bitlylogin_);
     request.append("&apiKey=");
     request.append(bitlykey_);
-    std::string response;
-    // make the request with some cf garbage or whatever
+    std::string response = getUrl(request);
+
     // fish new url out of json response
     using boost::property_tree::ptree;
     ptree pt;
@@ -75,4 +78,10 @@ std::string getBitlyUrl(const std::string url) const {
     is.str(response);
     read_json(is, pt);
     return pt.get<std::string>("results.shortUrl");
+}
+
+void TwitterAnnounce::action(const GAGeneticAlgorithm & ga) {
+    std::string generation = stringFrom(ga.generation());
+    // todo get from config
+    announcer->announceGeneration("Generation " + generation + " created! #megapolis", "http://nynex.hydrogenproject.com/stream.php?generation="+generation, "http://nynex.hydrogenproject.com/listen.php?generation="generation);
 }

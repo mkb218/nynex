@@ -5,7 +5,7 @@
 #include <curl/curl.h>
 #include <stdexcept>
 
-namespace nynex {  
+namespace nynex {
     class CurlContext {
     public:
         static volatile CurlContext *getContext();
@@ -16,7 +16,8 @@ namespace nynex {
         static volatile bool init_;
     };
     
-    void getUrl(const std::string & url);
-    void postUrl(const std::string & url, const std::string & body, const std::string & user = "", const std::string & password = "");
+    std::string getUrl(const std::string & url, const std::string & user = "", const std::string & password = "");
+    std::string postUrl(const std::string & url, const std::string & body, const std::string & user = "", const std::string & password = "");
+    size_t storeData(void * ptr, size_t size, size_t nmemb, void * stream);
 }
 #endif

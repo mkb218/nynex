@@ -14,15 +14,26 @@ volatile CurlContext * CurlContext::getContext() {
     return context_; 
 }
 
-void getUrl(const std::string & url, const std::string & user = "", const std::string & password = "") {
+std::string getUrl(const std::string & url, const std::string & user = "", const std::string & password = "") {
     char errorbuf[CURL_ERROR_SIZE];
     volatile CurlContext *context = CurlContext::getContext();
+    std::string resultbuf;
     CURL * curl = curl_easy_init();
     if (curl == NULL) throw std::runtime_error("curl easy init failed!");
     try {
         CURLcode result = curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         if (result != CURLE_OK) {
             throw std::runtime_error("setopt URL failed: " + stringFrom(result));
+        }
+        
+        result = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, storeData);
+        if (result != CURLE_OK) {
+            throw std::runtime_error("setopt set callback failed: " + stringFrom(result));
+        }
+        
+        result = curl_easy_setopt(curl, CURLOPT_WRITEDATA, &resultbuf);
+        if (result != CURLE_OK) {
+            throw std::runtime_error("setopt set callback target failed: " + stringFrom(result));
         }
         
         if (user.size() > 0 && password.size() > 0) {
@@ -47,13 +58,15 @@ void getUrl(const std::string & url, const std::string & user = "", const std::s
         throw;
     }
     curl_easy_cleanup(curl);
+    return resultbuf;
 }
 
 
-void postUrl(const std::string & url, const std::string & body, const std::string & user = "", const std::string & password = "") {
+std::string postUrl(const std::string & url, const std::string & body, const std::string & user = "", const std::string & password = "") {
     char errorbuf[CURL_ERROR_SIZE];
     volatile CurlContext *context = CurlContext::getContext();
     CURL * curl = curl_easy_init();
+    std::string resultbuf;
     if (curl == NULL) throw std::runtime_error("curl easy init failed!");
     try {
         CURLcode result = curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
@@ -61,6 +74,16 @@ void postUrl(const std::string & url, const std::string & body, const std::strin
             throw std::runtime_error("setopt URL failed: " + stringFrom(result));
         }
 
+        result = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, storeData);
+        if (result != CURLE_OK) {
+            throw std::runtime_error("setopt set callback failed: " + stringFrom(result));
+        }
+        
+        result = curl_easy_setopt(curl, CURLOPT_WRITEDATA, &resultbuf);
+        if (result != CURLE_OK) {
+            throw std::runtime_error("setopt set callback target failed: " + stringFrom(result));
+        }
+        
         result = curl_easy_setopt(curl, CURLOPT_POST, 1);
         if (result != CURLE_OK) {
             throw std::runtime_error("setopt POST failed: " + stringFrom(result));
@@ -93,4 +116,12 @@ void postUrl(const std::string & url, const std::string & body, const std::strin
         throw;
     }
     curl_easy_cleanup(curl);
+    return resultbuf;
+}
+
+size_t storeData(void * ptr, size_t size, size_t nmemb, void * stream) {
+    std::string & strout = *(std::string*)ptr;
+    size_t insize = strout.size();
+    strout.append((char*)stream, size*nmemb);
+    return strout.size() - insize;
 }

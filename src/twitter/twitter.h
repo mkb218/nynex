@@ -10,10 +10,13 @@
 using namespace boost;
 
 namespace nynex {
+    class TwitterServer;
     class TwitterAnnounce : public StepAction {
     public:
-        TwitterAnnounce(const TwitterAnnounce & announcer);
+        TwitterAnnounce(const TwitterServer & announcer) : announcer_(announcer){}
         virtual void action(const GAGeneticAlgorithm &);
+    private:
+        const TwitterServer *announcer_;
     };
     
     class TwitterServer {
