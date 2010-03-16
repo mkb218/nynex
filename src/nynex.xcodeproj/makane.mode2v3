@@ -235,10 +235,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FC630CF4114FBF3400DF539D</string>
+						<string>FC943506114FD334009AF47B</string>
 						<key>history</key>
 						<array>
-							<string>FC630CEC114FBDBF00DF539D</string>
+							<string>FC630CF4114FBF3400DF539D</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -275,10 +275,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FC630CF5114FBF3400DF539D</string>
+						<string>FC943507114FD334009AF47B</string>
 						<key>history</key>
 						<array>
-							<string>FC630CEE114FBDBF00DF539D</string>
+							<string>FC630CF5114FBF3400DF539D</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -301,46 +301,6 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>FC630CF0114FBDBF00DF539D</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>soundcloud.cpp</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>FC630CF1114FBDBF00DF539D</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>soundcloud.cpp</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>FC630CF6114FBF3400DF539D</string>
-						<key>history</key>
-						<array>
-							<string>FC630CE9114FBD1500DF539D</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {618, 636}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>61 154 618 677 0 0 1440 878 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
 				<string>FC630CDC114FBBD600DF539D</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>network.h</string>
@@ -355,10 +315,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FC630CF7114FBF3400DF539D</string>
+						<string>FC943508114FD334009AF47B</string>
 						<key>history</key>
 						<array>
-							<string>FC630CD7114FBBB900DF539D</string>
+							<string>FC630CF7114FBF3400DF539D</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -451,8 +411,8 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>24</integer>
-											<integer>23</integer>
+											<integer>21</integer>
+											<integer>19</integer>
 											<integer>0</integer>
 										</array>
 									</array>
@@ -621,8 +581,8 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>FC630C28114EE1AB00DF539D</string>
-				<string>FC630C29114EE1AB00DF539D</string>
+				<string>FC9434FB114FCF93009AF47B</string>
+				<string>FC9434FC114FCF93009AF47B</string>
 				<string>1C9437FD063B20B00039CFAC</string>
 				<string>1C9437FE063B20B00039CFAC</string>
 				<string>1C9437FF063B20B00039CFAC</string>
@@ -640,7 +600,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>290438964.58442301</real>
+	<real>290443153.32388699</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -655,13 +615,10 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D52069F1CE1000CFCEE</string>
-		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>FC630CDC114FBBD600DF539D</string>
-		<string>FC630CF0114FBDBF00DF539D</string>
 		<string>FC630CA4114FB58A00DF539D</string>
-		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 		<string>FC630C96114FB1BE00DF539D</string>
+		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>1030 458 350 420 0 0 1440 878 </string>
