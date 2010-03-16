@@ -49,6 +49,8 @@ namespace nynex {
         void setFilepath(const std::string & filepath) {
             filepath_ = filepath;
         }
+        const std::string & getFilepath() const { return filepath_; }
+        const std::string & getScpcmd() const { return scpcmd_; }
         ~SoundCloudServer();
     private:
         SoundCloudServer(std::string host, std::string username, std::string password, const std::string & filepath, const std::string & albumTitle, const std::string & scpcmd, const std::string & filename) : host_(host), username_(username), password_(password), useKey_(false), authenticated_(false), scApi_(NULL), albumTitle_(albumTitle), filepath_(filepath), scpcmd_(scpcmd) { init(filename); }

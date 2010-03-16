@@ -9,6 +9,8 @@
 
 #include "soundcloud.h"
 #include <iostream>
+#include <fstream>
+#include <boost/foreach.hpp>
 
 using namespace nynex;
 
@@ -27,10 +29,24 @@ bool TerminalAuthenticator::authenticate() {
 }
 
 void SubmitSoundCloudAction::action(const GAGeneticAlgorithm & ga) {
-    server_->submitCompositions(ga); 
+    std::vector<std::string> comps = server_->submitCompositions(ga);
+    std::string outfilename(server_->getFilepath()+stringFrom(ga.generation()));
+    std::ofstream outf(outfilename.c_str()); // todo check status
+    
     // store result, upload map file
     // filename: ~/genmaps/<number>/
     // contains one soundcloud track id per line
+    
+    BOOST_FOREACH(std::string & c, comps) {
+        outf << c << std::endl;
+    }
+    outf.close();
+    
+    std::string scpcmd(server_->getScpcmd());
+    size_t pos = scpcmd.find("%f");
+    scpcmd.erase(pos, 2);
+    scpcmd.insert(pos, outfilename);
+    system(scpcmd.c_str());
 }
 
 SoundCloudServer::~SoundCloudServer() {
@@ -64,7 +80,7 @@ std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlg
         Composition & comp = dynamic_cast<Composition &>(ga.population().individual(i));
         comp.bounceToFile(filepath_+"/gen"+stringFrom(gen) + "i" + stringFrom(i));
         // punt to id3v2 to set tags
-        // remove previous generation i track
+        // remove previous generation of track?
         // upload track to soundcloud
     }
 }
