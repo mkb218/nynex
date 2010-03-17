@@ -1,52 +1,52 @@
-#include "testApp.h"
+#include "app.h"
 
 //--------------------------------------------------------------
-void testApp::setup(){
+void nynexApp::setup(){
 
 }
 
 //--------------------------------------------------------------
-void testApp::update(){
+void nynexApp::update(){
 
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
+void nynexApp::draw(){
 
 }
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
+void nynexApp::keyPressed(int key){
 
 }
 
 //--------------------------------------------------------------
-void testApp::keyReleased(int key){
+void nynexApp::keyReleased(int key){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y ){
+void nynexApp::mouseMoved(int x, int y ){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
+void nynexApp::mouseDragged(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
+void nynexApp::mousePressed(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
+void nynexApp::mouseReleased(int x, int y, int button){
 
 }
 
 //--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
+void nynexApp::windowResized(int w, int h){
 
 }
 

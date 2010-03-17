@@ -1,10 +1,10 @@
-#ifndef _TEST_APP
-#define _TEST_APP
+#ifndef _NYNEX_APP
+#define _NYNEX_APP
 
 
 #include "ofMain.h"
 
-class testApp : public ofBaseApp{
+class nynexApp : public ofBaseApp{
 
 	public:
 		void setup();
