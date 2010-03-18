@@ -2,8 +2,9 @@
 
 #include <sstream>
 #include <iomanip>
-#include <boost/property_tree/json_parser.hpp>
+#undef check
 #include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 #include "network.h"
 
 using namespace nynex;
@@ -14,10 +15,10 @@ std::string TwitterServer::urlEncode(const std::string & in) {
         char c = in[i];
         // assumes ASCII, not EBCDIC. :P
         if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '-' || c == '_' || c == '.' || c == '~') {
-            out.append(c);
+            out.append(c, 1);
         } else {
             out.append("%");
-            ostringstream os;
+            std::ostringstream os;
             os << std::hex << std::setw(2) << std::setfill('0') << (int) c;
             out.append(os.str());
         }
@@ -33,11 +34,11 @@ void TwitterServer::announceGeneration(const std::string & announcement, const s
     tweet.append(getBitlyUrl(listenUrl));
     while (tweet.size() > 140) {
         // remove hash tags
-        size_type start, end;
+        size_t start, end;
         start = tweet.find('#');
-        if (start != std::npos) {
+        if (start != std::string::npos) {
             end = tweet.find(' ', start);
-            if (end != std::npos) {
+            if (end != std::string::npos) {
                 tweet.erase(start, end - start + 1);
             } else {
                 tweet.erase(start, tweet.size());
@@ -51,7 +52,7 @@ void TwitterServer::announceGeneration(const std::string & announcement, const s
 //    tweet = std::string("status=") + urlEncode(tweet);
     tweet = std::string("status=") + tweet;
     // todo get from config
-    std::string tweetUrl("http://api.twitter.com/l/statuses/update.json")
+    std::string tweetUrl("http://api.twitter.com/l/statuses/update.json");
     using boost::property_tree::ptree;
 /*    ptree pt;
     pt.put("status", tweet);
@@ -61,7 +62,7 @@ void TwitterServer::announceGeneration(const std::string & announcement, const s
     postUrl(tweetUrl, tweet, username_, password_);
 }
 
-std::string getBitlyUrl(const std::string url) const {
+std::string TwitterServer::getBitlyUrl(const std::string & url) const {
     // todo get from config
     std::string request("http://api.bit.ly/shorten?format=json&version=2.0.1&longUrl=");
     request.append(url);
@@ -74,7 +75,7 @@ std::string getBitlyUrl(const std::string url) const {
     // fish new url out of json response
     using boost::property_tree::ptree;
     ptree pt;
-    istringstream is;
+    std::istringstream is;
     is.str(response);
     read_json(is, pt);
     return pt.get<std::string>("results.shortUrl");
@@ -83,5 +84,5 @@ std::string getBitlyUrl(const std::string url) const {
 void TwitterAnnounce::action(const GAGeneticAlgorithm & ga) {
     std::string generation = stringFrom(ga.generation());
     // todo get from config
-    announcer->announceGeneration("Generation " + generation + " created! #megapolis", "http://nynex.hydrogenproject.com/stream.php?generation="+generation, "http://nynex.hydrogenproject.com/listen.php?generation="generation);
+    announcer_->announceGeneration("Generation " + generation + " created! #megapolis", "http://nynex.hydrogenproject.com/stream.php?generation="+generation,"http://nynex.hydrogenproject.com/listen.php?generation="+generation);
 }

@@ -13,7 +13,7 @@ namespace nynex {
     class TwitterServer;
     class TwitterAnnounce : public StepAction {
     public:
-        TwitterAnnounce(const TwitterServer & announcer) : announcer_(announcer){}
+        TwitterAnnounce(const TwitterServer & announcer) : announcer_(&announcer){}
         virtual void action(const GAGeneticAlgorithm &);
     private:
         const TwitterServer *announcer_;
