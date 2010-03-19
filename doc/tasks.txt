@@ -26,3 +26,4 @@
 - double check to make sure all correct license advertising clauses are present
 - make sure i am using a compatible license. might need to be gpl :(
 - make sure gas terminator is NEVER
+- have leopard installed on external drive, need to install xcode, openframeworks, macports (sox, boost), galib
