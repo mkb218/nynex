@@ -248,7 +248,7 @@
 			path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/include;
 			sourceTree = "<absolute>";
 		};
-		E45BE0480E8CC657009D7055 /* core libraries */ = {
+		E45BE0480E8CC657009D7055 /* libs */ = {
 			isa = PBXGroup;
 			children = (
 				E4C2425B10CC5A78004149E2 /* glut */,
@@ -259,8 +259,8 @@
 				E45BE03D0E8CC650009D7055 /* fmodex */,
 				E45BE0370E8CC647009D7055 /* freeimage */,
 			);
-			name = "core libraries";
-			path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/apps/examples/nnex;
+			name = libs;
+			path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs;
 			sourceTree = "<absolute>";
 		};
 		E45BE0490E8CC676009D7055 /* freetype */ = {
@@ -338,7 +338,7 @@
 			path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/lib/osx;
 			sourceTree = "<absolute>";
 		};
-		E45BE5980E8CC70C009D7055 /* core frameworks */ = {
+		E45BE5980E8CC70C009D7055 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				E4C2424410CC5A17004149E2 /* AppKit.framework */,
@@ -354,8 +354,9 @@
 				E45BE9790E8CC7DD009D7055 /* OpenGL.framework */,
 				E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */,
 			);
-			name = "core frameworks";
-			sourceTree = "<group>";
+			name = Frameworks;
+			path = /Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks;
+			sourceTree = "<absolute>";
 		};
 		E45BEC7B0E8CC911009D7055 /* poco */ = {
 			isa = PBXGroup;
@@ -369,8 +370,8 @@
 		E45BEED60E8CCB34009D7055 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				E45BE0480E8CC657009D7055 /* core libraries */,
-				E45BE5980E8CC70C009D7055 /* core frameworks */,
+				E45BE0480E8CC657009D7055 /* libs */,
+				E45BE5980E8CC70C009D7055 /* Frameworks */,
 			);
 			name = core;
 			path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/apps/examples/nnex;
@@ -382,7 +383,7 @@
 				E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4B69E1C0A3A1BDC003C02F2 /* app */,
-				E4C2422310CC54B6004149E2 /* openFrameworks */,
+				E4C2422310CC54B6004149E2 /* osx */,
 				E45BE0360E8CC5DE009D7055 /* libs */,
 				FCD23434110FABDE0023CC4B /* evolver */,
 				FC9F3194114A79910098C488 /* network */,
@@ -403,14 +404,14 @@
 			path = app;
 			sourceTree = "<group>";
 		};
-		E4C2422310CC54B6004149E2 /* openFrameworks */ = {
+		E4C2422310CC54B6004149E2 /* osx */ = {
 			isa = PBXGroup;
 			children = (
 				E4C2421610CC549C004149E2 /* openFrameworksLib.xcodeproj */,
 			);
-			name = openFrameworks;
-			path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/apps/examples/nnex;
-			sourceTree = "<absolute>";
+			name = osx;
+			path = ../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworksCompiled/project/osx;
+			sourceTree = "<group>";
 		};
 		E4C2425B10CC5A78004149E2 /* glut */ = {
 			isa = PBXGroup;
