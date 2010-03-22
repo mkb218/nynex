@@ -11,7 +11,9 @@ using namespace nynex;
 // 4b.) user clicks cancel button, no rating stored, back to step 2
 // 5.) time's up, retrieve web ratings. if there are ratings, step ga and bounce, otherwise just go back to step 1
 
-
+static std::string fileForGenAndIndividual(int gen, int i) {
+    return std::string("gen")+stringFrom(gen)+"i"+stringFrom(i)+".wav";
+}
 
 //--------------------------------------------------------------
 void nynexApp::setup(){
@@ -19,7 +21,7 @@ void nynexApp::setup(){
     ofSetFullscreen(true);
     
     // set background color
-    ofSetBackground(BG_R, BG_G, BG_B);
+    ofBackground(BG_R, BG_G, BG_B);
     ofSetFrameRate(60);
     
     // set frame rate + vert refresh
@@ -33,9 +35,9 @@ void nynexApp::setup(){
 
 //--------------------------------------------------------------
 void nynexApp::update() {
-    switch (mode_) {
+    switch (state_) {
         case GENERATION_START:
-            if (!player.getIsPlaying()) {
+            if (!player_.getIsPlaying()) {
                 if (moreComps()) {
                     playNextComp();
                 } else {
@@ -67,19 +69,20 @@ void nynexApp::update() {
 
 //--------------------------------------------------------------
 void nynexApp::draw(){
-    switch (mode_) {
-        case STARTUP:
-            drawStartup();
-            break;
+    switch (state_) {
         case GENERATION_START:
             drawGenStart();
             break;
         case GENERATION_END:
             drawGenEnd();
             break;
+        case GENERATION_LIST:
+            drawGenList();
+        case GENERATION_RATE:
+            drawGenRate();
         default:
             // can't happen
-            mode_ = GENERATION_START;
+            switchState(GENERATION_START);
     }
     ++framesSinceStateChange_;
 }
@@ -119,5 +122,20 @@ void nynexApp::mouseReleased(int x, int y, int button){
 //--------------------------------------------------------------
 void nynexApp::windowResized(int w, int h){
     ofSetFullscreen(true); // don't fuck with the window, jerkface
+}
+
+
+void nynexApp::startPlayComp() {
+    compIndex_ = -1;
+    playNextComp();
+}
+
+void nynexApp::playNextComp() {
+    ++compIndex_;
+    player_.loadSound(bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), compIndex_));
+}
+
+bool nynexApp::moreComps() {
+    return (compIndex_ < evolver_->getPop().size());
 }
 

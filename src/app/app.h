@@ -6,6 +6,8 @@
 #include "soundcloud.h"
 #include "twitter.h"
 
+#include <string>
+
 #define POPSIZE 10
 #define GEN_LIMIT_MILLIS 3600 * 1000
 #define RATE_LIMIT_MILLIS 60 * 1000 * 5
@@ -38,7 +40,7 @@ namespace nynex {
 class nynexApp : public ofBaseApp{
 
 public:
-    nynexApp() : mode_(STARTUP), sc_(NULL), evolver_(NULL), twitter_(NULL), activeButton_(NULL) {
+    nynexApp() : state_(GENERATION_START), sc_(NULL), evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output") {
         ofBaseApp();
     }
     ~nynexApp() { 
@@ -58,11 +60,11 @@ public:
     void mouseReleased(int x, int y, int button);
     void windowResized(int w, int h);
 private:
-    enum Mode { GENERATION_START,
+    enum State { GENERATION_START,
         GENERATION_LIST,
         GENERATION_RATE,
         GENERATION_END
-    } mode_;
+    } state_;
     struct Button {
         float x;
         float y;
@@ -72,29 +74,32 @@ private:
             int b;
         } color;
         float radius;
-    }
+    };
         
     void resetTimer() { timer_ = ofGetElapsedTimeMillis(); }
     bool timesUp() { return (ofGetElapsedTimeMillis() - timer_) > GEN_LIMIT_MILLIS; }
-    void switchState(Mode state) { mode_ = state; framesSinceStateChange_ = 0; }
+    void switchState(State state) { state_ = state; framesSinceStateChange_ = 0; }
     void bounceComps();
     void startPlayComp();
     void playNextComp();
     bool gotRatings();
     bool moreComps();
-    void drawStartup();
     void drawGenEnd();
     void drawGenStart();
+    void drawGenList();
+    void drawGenRate();
     int timer_;
     unsigned int framesSinceStateChange_;
     Evolver * evolver_;
     SoundCloudServer * sc_;
     TwitterServer * twitter_;
-    ofSoundPlayer player;
-    size_t compIndex_;
+    ofSoundPlayer player_;
+    int compIndex_;
+    std::string samplepath_;
+    std::string bouncepath_;
     Button *activeButton_;
-    Button[POPSIZE] playButtons_;
-    Button[RATINGS] rateButtons_;
+    Button playButtons_[POPSIZE];
+    Button rateButtons_[RATINGS];
 };
 }
 #endif
