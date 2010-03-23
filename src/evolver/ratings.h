@@ -21,6 +21,7 @@ namespace nynex {
     public:
         static Ratings & getInstance();
         void addRating(unsigned int id, int score);
+        bool hasRatingForId(unsigned int id) { return (scores_.find(id) != scores_.end()); }
         double avgRatingForId(unsigned int id);
         void getServerRatings() {}
         void setHost(const std::string & host) { host_ = host; }

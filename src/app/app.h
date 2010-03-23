@@ -7,6 +7,7 @@
 #include "twitter.h"
 
 #include <string>
+#include <fstream>
 
 #define POPSIZE 10
 #define GEN_LIMIT_MILLIS 3600 * 1000
@@ -40,13 +41,13 @@ namespace nynex {
 class nynexApp : public ofBaseApp{
 
 public:
-    nynexApp() : state_(GENERATION_START), sc_(NULL), evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output") {
+    nynexApp() : state_(GENERATION_START), /*sc_(), */evolver_(NULL), /*twitter_(NULL), */activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf") {
         ofBaseApp();
     }
     ~nynexApp() { 
-        delete sc_;
+//        delete sc_;
         delete evolver_;
-        delete twitter_;
+//        delete twitter_;
     }
     void setup();
     void update();
@@ -65,6 +66,7 @@ private:
         GENERATION_RATE,
         GENERATION_END
     } state_;
+    
     struct Button {
         float x;
         float y;
@@ -75,7 +77,22 @@ private:
         } color;
         float radius;
     };
-        
+    
+    struct Config {
+        Config() {
+            // defaults!
+            kvp["gastatefile"] = "/opt/nynex/var/gastate";
+            kvp["pMutation"] = "0.1";
+            kvp["popSize"] = "10";
+            kvp["elitist"] = "1";
+            kvp["samplerate"] = "44100";
+            kvp["samplesize"] = "2";
+            kvp["channels"] = "2";
+        }
+        void setFromStream(std::istream & i);
+        std::map<std::string, std::string> kvp;
+    };
+    
     void resetTimer() { timer_ = ofGetElapsedTimeMillis(); }
     bool timesUp() { return (ofGetElapsedTimeMillis() - timer_) > GEN_LIMIT_MILLIS; }
     void switchState(State state) { state_ = state; framesSinceStateChange_ = 0; }
@@ -88,15 +105,17 @@ private:
     void drawGenStart();
     void drawGenList();
     void drawGenRate();
+    Config config_;
     int timer_;
     unsigned int framesSinceStateChange_;
     Evolver * evolver_;
-    SoundCloudServer * sc_;
-    TwitterServer * twitter_;
+//    SoundCloudServer * sc_;
+//    TwitterServer * twitter_;
     ofSoundPlayer player_;
     int compIndex_;
     std::string samplepath_;
     std::string bouncepath_;
+    std::string configpath_;
     Button *activeButton_;
     Button playButtons_[POPSIZE];
     Button rateButtons_[RATINGS];

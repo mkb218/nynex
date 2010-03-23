@@ -1,4 +1,7 @@
 #include "app.h"
+#include "ratings.h"
+
+#include <sys/stat.h>
 
 using namespace nynex;
 
@@ -18,19 +21,59 @@ static std::string fileForGenAndIndividual(int gen, int i) {
 //--------------------------------------------------------------
 void nynexApp::setup(){
     // fullscreen
-    ofSetFullscreen(true);
+//    ofSetFullscreen(true);
     
     // set background color
     ofBackground(BG_R, BG_G, BG_B);
-    ofSetFrameRate(60);
     
     // set frame rate + vert refresh
+    ofSetFrameRate(60);
+    ofSetVerticalSync(true);
+    
+    // init config if file exists
+    ifstream is(configpath_.c_str());
+    if (!is.fail()) {
+        config_.setFromStream(is);
+    }
+    
+    // must get this from config!
+    SampleBank::getInstance().setSampleRate(fromString<double>(config_.kvp["samplerate"]));
+    SampleBank::getInstance().setSampleSize(fromString<int>(config_.kvp["samplesize"]));
+    SampleBank::getInstance().setChannels(fromString<int>(config_.kvp["channels"]));
+    SampleBank::getInstance().setSampleDir(samplepath_);
+    
     // init ga (from file if exists)
+    evolver_ = new Evolver();
+    struct stat junk;
+    if (0 == stat(config_.kvp["gastatefile"].c_str(), &junk)) {
+        try {
+            evolver_->loadFromFile(config_.kvp["gastatefile"]);
+        } catch ( ... ) {
+            evolver_->initGA(fromString<float>(config_.kvp["pMutation"]), fromString<int>(config_.kvp["popSize"]), fromString<bool>(config_.kvp["elitist"])?gaTrue:gaFalse);
+        }
+    } else { 
+        evolver_->initGA(fromString<float>(config_.kvp["pMutation"]), fromString<int>(config_.kvp["popSize"]), fromString<bool>(config_.kvp["elitist"])?gaTrue:gaFalse);
+    }
+    
     // create soundcloud and twitter servers from settings file, google voice downloader, web rating downloader
+    
     // add notifiers to ga
+    
+    // start playin'
     bounceComps();
     startPlayComp(); // will call resetTimer()
     switchState(GENERATION_START);
+}
+
+void nynexApp::Config::setFromStream(istream & is) {
+    std::string line;
+    while (!is.eof()) {
+        is >> line;
+        size_t pos = line.find('=');
+        if (pos != std::string::npos) {
+            kvp[line.substr(0, pos-1)] = line.substr(pos-1);
+        }
+    }
 }
 
 //--------------------------------------------------------------
@@ -74,12 +117,14 @@ void nynexApp::draw(){
             drawGenStart();
             break;
         case GENERATION_END:
-            drawGenEnd();
+//            drawGenEnd();
             break;
         case GENERATION_LIST:
-            drawGenList();
+//            drawGenList();
+            break;
         case GENERATION_RATE:
-            drawGenRate();
+//            drawGenRate();
+            break;
         default:
             // can't happen
             switchState(GENERATION_START);
@@ -139,3 +184,21 @@ bool nynexApp::moreComps() {
     return (compIndex_ < evolver_->getPop().size());
 }
 
+void nynexApp::bounceComps() {
+    for(size_t i = 0; i < evolver_->getPop().size(); ++i) {
+        dynamic_cast<const Composition &>(evolver_->getPop().individual(i)).bounceToFile(bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
+    }
+}
+
+bool nynexApp::gotRatings() {
+//    Ratings::getInstance().getServerRatings();
+    for (size_t i = 0; i < evolver_->getPop().size(); ++i) {
+        if (Ratings::getInstance().hasRatingForId(i)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void nynexApp::drawGenStart() {
+}

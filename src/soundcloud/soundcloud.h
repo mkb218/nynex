@@ -41,8 +41,8 @@ namespace nynex {
     
     class SoundCloudServer {
     public:
-        static SoundCloudServer StagingServerFactory(std::string host, std::string username, std::string password, const std::string & filepath, const std::string & albumTitle, const std::string & scpcmd, const std::string & filename) { return SoundCloudServer(host, username, password, filepath, albumTitle, scpcmd, filename); }
-        static SoundCloudServer ProdServerFactory(std::string host, std::string apiKey, const std::string & filepath, const std::string & albumTitle, const std::string & scpcmd, const std::string & filename) { return SoundCloudServer(host, apiKey, filepath, albumTitle, scpcmd, filename); }
+        static SoundCloudServer *StagingServerFactory(std::string host, std::string username, std::string password, const std::string & filepath, const std::string & albumTitle, const std::string & scpcmd, const std::string & filename) { return new SoundCloudServer(host, username, password, filepath, albumTitle, scpcmd, filename); }
+        static SoundCloudServer *ProdServerFactory(std::string host, std::string apiKey, const std::string & filepath, const std::string & albumTitle, const std::string & scpcmd, const std::string & filename) { return new SoundCloudServer(host, apiKey, filepath, albumTitle, scpcmd, filename); }
         static void setDefaultAuthenticatorGenerator(SoundCloudAuthGenerator a) { defaultAuthenticatorGenerator_ = a; }
         void fetchDropBox() const; // uses samplebank singleton and afconvert to add samples
         std::vector<std::string> submitCompositions(const GAGeneticAlgorithm &) const; // returns list of identifiers used for streaming / web ratings
