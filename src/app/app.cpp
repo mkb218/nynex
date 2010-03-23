@@ -1,6 +1,7 @@
 #include "app.h"
 #include "ratings.h"
 
+#include <iostream>
 #include <sys/stat.h>
 
 using namespace nynex;
@@ -21,7 +22,7 @@ static std::string fileForGenAndIndividual(int gen, int i) {
 //--------------------------------------------------------------
 void nynexApp::setup(){
     // fullscreen
-//    ofSetFullscreen(true);
+    ofSetFullscreen(false);
     
     // set background color
     ofBackground(BG_R, BG_G, BG_B);
@@ -58,6 +59,9 @@ void nynexApp::setup(){
     // create soundcloud and twitter servers from settings file, google voice downloader, web rating downloader
     
     // add notifiers to ga
+    
+    // setup font
+    ttf_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", 32);
     
     // start playin'
     bounceComps();
@@ -117,13 +121,13 @@ void nynexApp::draw(){
             drawGenStart();
             break;
         case GENERATION_END:
-//            drawGenEnd();
+            drawGenEnd();
             break;
         case GENERATION_LIST:
-//            drawGenList();
+            drawGenList();
             break;
         case GENERATION_RATE:
-//            drawGenRate();
+            drawGenRate();
             break;
         default:
             // can't happen
@@ -171,13 +175,14 @@ void nynexApp::windowResized(int w, int h){
 
 
 void nynexApp::startPlayComp() {
-    compIndex_ = -1;
+    compIndex_ = 0;
     playNextComp();
 }
 
 void nynexApp::playNextComp() {
-    ++compIndex_;
     player_.loadSound(bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), compIndex_));
+    player_.play();
+    ++compIndex_;
 }
 
 bool nynexApp::moreComps() {
@@ -201,4 +206,26 @@ bool nynexApp::gotRatings() {
 }
 
 void nynexApp::drawGenStart() {
+    drawHeader(std::string("Generation_") + stringFrom(evolver_->getGA().generation()) +"_Individual_" + stringFrom(compIndex_));
+}
+
+void nynexApp::drawGenEnd() {
+    drawHeader(std::string("Generating_Next_Generation"));
+}
+
+void nynexApp::drawGenList() {
+    drawHeader(std::string("Please_rate_Generation_") + stringFrom(evolver_->getGA().generation()));
+}
+
+void nynexApp::drawGenRate() {
+    drawHeader(std::string("Rating_Generation_") + stringFrom(evolver_->getGA().generation()) +"_Individual_" + stringFrom(compIndex_));
+}
+
+void nynexApp::drawHeader(std::string s) {
+    float width = ttf_.stringWidth(s);
+    float height = ttf_.getLineHeight();
+    float pos = (ofGetScreenWidth() - width) / 2;
+    std::cout << width << " " << pos << std::endl;
+    ofSetColor(0x000000);
+    ttf_.drawString(s, pos, height+10);
 }

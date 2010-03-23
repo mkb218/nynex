@@ -101,6 +101,7 @@ private:
     void playNextComp();
     bool gotRatings();
     bool moreComps();
+    void drawHeader(std::string);
     void drawGenEnd();
     void drawGenStart();
     void drawGenList();
@@ -112,10 +113,12 @@ private:
 //    SoundCloudServer * sc_;
 //    TwitterServer * twitter_;
     ofSoundPlayer player_;
+    ofTrueTypeFont ttf_;
     int compIndex_;
     std::string samplepath_;
     std::string bouncepath_;
     std::string configpath_;
+    
     Button *activeButton_;
     Button playButtons_[POPSIZE];
     Button rateButtons_[RATINGS];
