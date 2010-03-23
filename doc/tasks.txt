@@ -1,21 +1,8 @@
-- all 3rd party libraries selected - done!
-- code layout - done!
-- site design + blosxom template - done! 
-- site autoupdate git pull - done!
-- create facebook page - done!
-- get external dirs working in xcode - done!
-- makefile or antfile so i can build on 10.4 - never mind. i can build for 10.4 ppc on 10.5 intel
 - soundcloud api access to dropbox?
-- twitter account for announcements - done!
 - streaming with soundcloud?
-- get sound file bits working - almost done!
+- still working on splitter on separate branch
 - compile custom libsox (mad, flac, ogg vorbis only) with dynamic linking so i'm not redistributing gpl code - not gonna worry about this. sox is lgpl and i am not redistributing any of its other libs anyway
-- add sox libs to other projects web page - done!
-- add unlockedgroove to contributors page and add three releases to inputs - done!
-- figure out what the heck is going on with memory - done!
-- sox can't always give me requested sample rate or channel number. need to handle this gracefully. and convert. options. solution: convert all files to desired layout and sample rate with afconvert first - need automated afconvert. this will be in the soundcloud handler
-- samplebank needs a tmp dir - done!
-- sample::splitfile needs a maxbufcount. once the length of the buffer list reaches maxbufcount, buffers get saved to disk. need a class to do this and encapsulate a sox_sample_t. - done!
+- sox can't always give me requested sample rate or channel number. need to handle this gracefully. and convert. options. solution: convert all files to desired layout and sample rate with afconvert first - need automated afconvert. this will be in the soundcloud handler and google voice handler, i guess
 - handlers, in order:
 * soundcloud uploader + streaming (listen page + m3u)
 * web voting
@@ -26,3 +13,4 @@
 - double check to make sure all correct license advertising clauses are present, make sure i am using a compatible license. might need to be gpl :(
 - make sure ga's terminator is NEVER
 - install galib, openframeworks, pygooglevoice, soundcloud c api wrapper, boost on kiosk
+- can i figure out a way to allow people to pop in CDs or attach usb drives? SAFELY
