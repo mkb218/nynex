@@ -10,20 +10,25 @@
 #include <fstream>
 
 #define POPSIZE 10
-#define GEN_LIMIT_MILLIS 3600 * 1000
+#define GEN_LIMIT_MILLIS 3600000
 #define RATE_LIMIT_MILLIS 60 * 1000 * 5
 #define RATINGS 5
 #define RATEBUTTON_RADIUS 100
-#define PLAYBUTTON_RADIUS 100
 #define ACTIVE_RADIUS_INCREMENT 50
 #define HOVER_RADIUS_INCREMENT 50
+
+#define BIGFONTSIZE 32
+#define BIGFONTSIZE 18
+
+#define PHONE "(978) 406-9639"
 
 #define TRANSITION_FRAMES 60
 #define FONTFILE_PATH "/Library/Fonts/Futura.dfont"
 
-#define LR_MARGIN 100
-#define VERT_MARGIN 100
+#define LR_MARGIN 25
+#define VERT_MARGIN 10
 
+#define TIMER_RED 0xff0000
 #define BG_R 255
 #define BG_G 255
 #define BG_B 255
@@ -68,8 +73,8 @@ private:
     } state_;
     
     struct Button {
-        float x;
-        float y;
+        float x; // center
+        float y; // center
         struct {
             int r;
             int g;
@@ -93,8 +98,10 @@ private:
         std::map<std::string, std::string> kvp;
     };
     
-    void resetTimer() { timer_ = ofGetElapsedTimeMillis(); }
-    bool timesUp() { return (ofGetElapsedTimeMillis() - timer_) > GEN_LIMIT_MILLIS; }
+    void resetRateTimer() { ratetimer_ = ofGetElapsedTimeMillis(); }
+    void resetGenTimer() { gentimer_ = ofGetElapsedTimeMillis(); }
+    bool generationTimesUp() { return (ofGetElapsedTimeMillis() - gentimer_) > GEN_LIMIT_MILLIS; }
+    bool ratinggTimesUp() { return (ofGetElapsedTimeMillis() - ratetimer_) > RATE_LIMIT_MILLIS; }
     void switchState(State state) { state_ = state; framesSinceStateChange_ = 0; }
     void bounceComps();
     void startPlayComp();
@@ -102,18 +109,21 @@ private:
     bool gotRatings();
     bool moreComps();
     void drawHeader(std::string);
+    void drawTimer();
     void drawGenEnd();
     void drawGenStart();
     void drawGenList();
     void drawGenRate();
     Config config_;
-    int timer_;
+    int ratetimer_;
+    int gentimer_;
     unsigned int framesSinceStateChange_;
     Evolver * evolver_;
 //    SoundCloudServer * sc_;
 //    TwitterServer * twitter_;
     ofSoundPlayer player_;
-    ofTrueTypeFont ttf_;
+    ofTrueTypeFont bigfont_;
+    ofTrueTypeFont smallfont_;
     int compIndex_;
     std::string samplepath_;
     std::string bouncepath_;

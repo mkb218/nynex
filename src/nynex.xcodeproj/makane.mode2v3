@@ -221,46 +221,6 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>FC4D3EB31158485B0059F9A3</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>app.cpp</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>FC4D3EB41158485B0059F9A3</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>app.cpp</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>FC52B5AF11597A980059C562</string>
-						<key>history</key>
-						<array>
-							<string>FC52B5AC11597A610059C562</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {750, 461}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>512 370 750 502 0 0 1440 878 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
 				<string>FCAFA5DD115449D600E10A6F</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>app.h</string>
@@ -275,7 +235,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FC52B5B011597A980059C562</string>
+						<string>FC52B61B115A4C530059C562</string>
 						<key>history</key>
 						<array>
 							<string>FC1A8C2B1158F5C1004F2E48</string>
@@ -294,7 +254,47 @@
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>37 373 750 502 0 0 1440 878 </string>
+				<string>35 370 750 502 0 0 1440 878 </string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Content</key>
+			<dict>
+				<key>PBXProjectModuleGUID</key>
+				<string>FC4D3EB31158485B0059F9A3</string>
+				<key>PBXProjectModuleLabel</key>
+				<string>app.cpp</string>
+				<key>PBXSplitModuleInNavigatorKey</key>
+				<dict>
+					<key>Split0</key>
+					<dict>
+						<key>PBXProjectModuleGUID</key>
+						<string>FC4D3EB41158485B0059F9A3</string>
+						<key>PBXProjectModuleLabel</key>
+						<string>app.cpp</string>
+						<key>_historyCapacity</key>
+						<integer>0</integer>
+						<key>bookmark</key>
+						<string>FC52B61C115A4C530059C562</string>
+						<key>history</key>
+						<array>
+							<string>FC52B5E111599CD50059C562</string>
+						</array>
+					</dict>
+					<key>SplitCount</key>
+					<string>1</string>
+				</dict>
+				<key>StatusBarVisibility</key>
+				<true/>
+			</dict>
+			<key>Geometry</key>
+			<dict>
+				<key>Frame</key>
+				<string>{{0, 20}, {750, 461}}</string>
+				<key>PBXModuleWindowStatusBarHidden2</key>
+				<false/>
+				<key>RubberWindowFrame</key>
+				<string>511 371 750 502 0 0 1440 878 </string>
 			</dict>
 		</dict>
 	</array>
@@ -328,6 +328,8 @@
 					<key>Tabs</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBottomSmartGroupGIDs</key>
@@ -361,6 +363,8 @@
 									<array>
 										<string>E4B69B4A0A3A1720003C02F2</string>
 										<string>E4B69E1C0A3A1BDC003C02F2</string>
+										<string>E4C2422310CC54B6004149E2</string>
+										<string>E4C2421610CC549C004149E2</string>
 										<string>FCD23434110FABDE0023CC4B</string>
 										<string>FC9F3194114A79910098C488</string>
 										<string>FC8C0AB41111CF2300AFE817</string>
@@ -369,7 +373,7 @@
 									<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 									<array>
 										<array>
-											<integer>7</integer>
+											<integer>6</integer>
 											<integer>4</integer>
 											<integer>0</integer>
 										</array>
@@ -557,7 +561,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>291076760.66234601</real>
+	<real>291130451.68339902</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -572,14 +576,15 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>FC52B560115972ED0059C562</string>
+		<string>FC52B5CD11599A5F0059C562</string>
 		<string>FC52B561115972ED0059C562</string>
+		<string>FC52B560115972ED0059C562</string>
 		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 		<string>1C530D54069F1CE1000CFCEE</string>
-		<string>1C530D5B069F1CE1000CFCEE</string>
-		<string>FCAFA5DD115449D600E10A6F</string>
-		<string>FC4D3EB31158485B0059F9A3</string>
 		<string>1C530D52069F1CE1000CFCEE</string>
+		<string>1C530D5B069F1CE1000CFCEE</string>
+		<string>FC4D3EB31158485B0059F9A3</string>
+		<string>FCAFA5DD115449D600E10A6F</string>
 	</array>
 	<key>WindowString</key>
 	<string>1038 457 350 420 0 0 1440 878 </string>

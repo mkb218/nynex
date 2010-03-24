@@ -60,8 +60,9 @@ void nynexApp::setup(){
     
     // add notifiers to ga
     
-    // setup font
-    ttf_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", 32);
+    // setup fonts
+    bigfont_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", BIGFONTSIZE);
+    smallfont_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", SMALLFONTSIZE);
     
     // start playin'
     bounceComps();
@@ -88,18 +89,19 @@ void nynexApp::update() {
                 if (moreComps()) {
                     playNextComp();
                 } else {
+                    resetGenTimer();
                     switchState(GENERATION_LIST);
                 }
             }
             break;
         case GENERATION_LIST:
-            if (timesUp()) {
+            if (generationTimesUp()) {
                 if (gotRatings()) {
                     evolver_->stepGA();
                     bounceComps();
                 }
                 startPlayComp();
-                switchState(GENERATION_START);
+                switchState(GENERATION_END);
             }
             break;
         case GENERATION_RATE:
@@ -108,6 +110,8 @@ void nynexApp::update() {
             }
             break;
         case GENERATION_END:
+            resetTimer();
+            switchState(GENERATION_START);
             break;
         default:
             switchState(GENERATION_START); // can't happen!
@@ -176,6 +180,7 @@ void nynexApp::windowResized(int w, int h){
 
 void nynexApp::startPlayComp() {
     compIndex_ = 0;
+    resetGenTimer();
     playNextComp();
 }
 
@@ -206,26 +211,67 @@ bool nynexApp::gotRatings() {
 }
 
 void nynexApp::drawGenStart() {
-    drawHeader(std::string("Generation_") + stringFrom(evolver_->getGA().generation()) +"_Individual_" + stringFrom(compIndex_));
+    drawHeader(std::string("Generation ") + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(compIndex_));
 }
 
 void nynexApp::drawGenEnd() {
-    drawHeader(std::string("Generating_Next_Generation"));
+    drawHeader(std::string("Creating Next Generation\nContribute! Call " PHONE " or visit\nhttp://nynex.hydrogenproject.com"));
+    drawGenTimer();
 }
 
 void nynexApp::drawGenList() {
-    drawHeader(std::string("Please_rate_Generation_") + stringFrom(evolver_->getGA().generation()));
+    drawHeader(std::string("Please rate Generation ") + stringFrom(evolver_->getGA().generation()));
+
+    for (size_t i = 0; i < POPSIZE; ++i) {
+        // draw button from playButtons
+        // draw label
+    }
+    
+    drawGenTimer();
 }
 
 void nynexApp::drawGenRate() {
-    drawHeader(std::string("Rating_Generation_") + stringFrom(evolver_->getGA().generation()) +"_Individual_" + stringFrom(compIndex_));
+    drawHeader(std::string("Rating Generation ") + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(compIndex_));
+    drawRateTimer();
 }
 
 void nynexApp::drawHeader(std::string s) {
-    float width = ttf_.stringWidth(s);
-    float height = ttf_.getLineHeight();
+    float width = bigfont_.stringWidth(s);
+    float height = bigfont_.getLineHeight();
     float pos = (ofGetScreenWidth() - width) / 2;
-    std::cout << width << " " << pos << std::endl;
     ofSetColor(0x000000);
-    ttf_.drawString(s, pos, height+10);
+    bigfont_.drawString(s, pos, height+VERT_MARGIN);
+}
+
+void nynexApp::drawRateTimer() {
+    drawTimer(GEN_LIMIT_MILLIS - (ofGetElapsedTimeMillis() - ratetimer_));
+}
+
+void nynexApp::drawGenTimer() {
+    drawTimer(GEN_LIMIT_MILLIS - (ofGetElapsedTimeMillis() - gentimer_));
+}
+              
+void nynexApp::drawTimer(int timeleft) {
+    if (timeleft > 0) {
+        ofSetColor(0x000000);
+    } else {
+        ofSetColor(TIMER_RED);
+    }
+    
+    int millis = timeleft % 1000;
+    timeleft /= 1000;
+    int seconds = timeleft % 60;
+    timeleft /= 60;
+    int minutes = timeleft % 60;
+    timeleft /= 60;
+    int hours = timeleft % 60;
+    
+    ostringstream os;
+    os << hours;
+    os << std::setw(2) << std::setfill('0');
+    os << ":" << minutes << ":" << seconds << "." << millis;
+    
+    float width = bigfont_.stringWidth(os.str());
+    float pos = (ofGetScreenWidth() - width) / 2;
+    bigfont_.drawString(os.str(), pos, ofGetScreenHeight() - VERT_MARGIN);
 }
