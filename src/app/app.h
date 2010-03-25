@@ -13,12 +13,12 @@
 #define GEN_LIMIT_MILLIS 3600000
 #define RATE_LIMIT_MILLIS 60 * 1000 * 5
 #define RATINGS 5
-#define RATEBUTTON_RADIUS 100
-#define ACTIVE_RADIUS_INCREMENT 50
-#define HOVER_RADIUS_INCREMENT 50
+
+#define ACTIVE_RADIUS_INCREMENT 10
+#define HOVER_RADIUS_INCREMENT 20
 
 #define BIGFONTSIZE 32
-#define BIGFONTSIZE 18
+#define SMALLFONTSIZE 18
 
 #define PHONE "(978) 406-9639"
 
@@ -26,7 +26,7 @@
 #define FONTFILE_PATH "/Library/Fonts/Futura.dfont"
 
 #define LR_MARGIN 25
-#define VERT_MARGIN 10
+#define VERT_MARGIN 35
 
 #define TIMER_RED 0xff0000
 #define BG_R 255
@@ -72,17 +72,6 @@ private:
         GENERATION_END
     } state_;
     
-    struct Button {
-        float x; // center
-        float y; // center
-        struct {
-            int r;
-            int g;
-            int b;
-        } color;
-        float radius;
-    };
-    
     struct Config {
         Config() {
             // defaults!
@@ -98,10 +87,19 @@ private:
         std::map<std::string, std::string> kvp;
     };
     
+    struct Button {
+        float x;
+        float y;
+        float radius;
+        float r;
+        float g;
+        float b;
+    };
+    
     void resetRateTimer() { ratetimer_ = ofGetElapsedTimeMillis(); }
     void resetGenTimer() { gentimer_ = ofGetElapsedTimeMillis(); }
     bool generationTimesUp() { return (ofGetElapsedTimeMillis() - gentimer_) > GEN_LIMIT_MILLIS; }
-    bool ratinggTimesUp() { return (ofGetElapsedTimeMillis() - ratetimer_) > RATE_LIMIT_MILLIS; }
+    bool ratingTimesUp() { return (ofGetElapsedTimeMillis() - ratetimer_) > RATE_LIMIT_MILLIS; }
     void switchState(State state) { state_ = state; framesSinceStateChange_ = 0; }
     void bounceComps();
     void startPlayComp();
@@ -109,11 +107,15 @@ private:
     bool gotRatings();
     bool moreComps();
     void drawHeader(std::string);
-    void drawTimer();
+    void drawTimer(int);
+    void drawGenTimer();
+    void drawRateTimer();
     void drawGenEnd();
     void drawGenStart();
     void drawGenList();
     void drawGenRate();
+    void setupListButtons();
+    bool checkActiveButton(int x, int y, int button);
     Config config_;
     int ratetimer_;
     int gentimer_;
@@ -128,10 +130,10 @@ private:
     std::string samplepath_;
     std::string bouncepath_;
     std::string configpath_;
-    
-    Button *activeButton_;
-    Button playButtons_[POPSIZE];
+    float listRadius_;
+    Button listButtons_[POPSIZE];
     Button rateButtons_[RATINGS];
+    Button * activeButton_;
 };
 }
 #endif
