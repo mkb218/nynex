@@ -22,7 +22,7 @@ static std::string fileForGenAndIndividual(int gen, int i) {
 //--------------------------------------------------------------
 void nynexApp::setup(){
     // fullscreen
-    ofSetFullscreen(false);
+    ofSetFullscreen(true);
     
     // set background color
     ofBackground(BG_R, BG_G, BG_B);
@@ -65,11 +65,11 @@ void nynexApp::setup(){
     smallfont_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", SMALLFONTSIZE);
     
     // start playin'
-//    bounceComps();
+    bounceComps();
     startPlayComp(); // will call resetTimer()
-    //    switchState(GENERATION_START);
-    setupListButtons();
-    switchState(GENERATION_LIST);
+    switchState(GENERATION_START);
+//    setupListButtons();
+//    switchState(GENERATION_LIST);
 }
 
 void nynexApp::Config::setFromStream(istream & is) {
@@ -99,11 +99,6 @@ void nynexApp::update() {
             break;
         case GENERATION_LIST:
             if (generationTimesUp()) {
-                if (gotRatings()) {
-                    evolver_->stepGA();
-                    bounceComps();
-                }
-                startPlayComp();
                 switchState(GENERATION_END);
             }
             break;
@@ -113,7 +108,12 @@ void nynexApp::update() {
             }
             break;
         case GENERATION_END:
-            resetGenTimer();
+            if (gotRatings()) {
+                evolver_->stepGA();
+                Ratings::getInstance().deleteRatings();
+                bounceComps();
+            }
+            startPlayComp();
             switchState(GENERATION_START);
             break;
         default:
@@ -164,7 +164,7 @@ bool nynexApp::checkActiveButton(int x, int y, int button) {
         int ydist = y - activeButton_->y;
         if (xdist*xdist + ydist*ydist > activeButton_->radius*activeButton_->radius) {
             // not active
-            activeButton_->radius = listRadius_;
+            activeButton_->radius = (state_ == GENERATION_LIST)?listRadius_:rateRadius_;
             activeButton_ = NULL;
         } else {
             return true;
@@ -185,13 +185,13 @@ bool nynexApp::checkActiveButton(int x, int y, int button) {
             }
         }
     } else if (state_ == GENERATION_RATE) {
-        for (size_t i = 0; i < RATINGS; ++i) {
+        for (size_t i = 0; i <= RATINGS; ++i) {
             int xdist = x - rateButtons_[i].x;
             int ydist = y - rateButtons_[i].y;
             if (xdist*xdist + ydist*ydist <= rateButtons_[i].radius*rateButtons_[i].radius) {
                 // active
                 
-                rateButtons_[i].radius = listRadius_+ACTIVE_RADIUS_INCREMENT;
+                rateButtons_[i].radius = rateRadius_+ACTIVE_RADIUS_INCREMENT;
                 activeButton_ = rateButtons_+i;
                 return true;
             }
@@ -205,14 +205,14 @@ bool nynexApp::checkActiveButton(int x, int y, int button) {
 void nynexApp::mouseDragged(int x, int y, int button){
     // if button == left mouse
     // if position within a button, change activebutton
-    checkActiveButton(x,y,button);
+//    checkActiveButton(x,y,button);
 }
 
 //--------------------------------------------------------------
 void nynexApp::mousePressed(int x, int y, int button){
     // if button == left mouse
     // if position within a button, change activebutton
-    checkActiveButton(x,y,button);
+//    checkActiveButton(x,y,button);
 }
 
 
@@ -223,14 +223,23 @@ void nynexApp::mouseReleased(int x, int y, int button){
     if (checkActiveButton(x,y,button)) {
         if (state_ == GENERATION_LIST) {
             compIndex_ = activeButton_ - listButtons_;
+            playNextComp();
+            resetRateTimer();
+            setupRateButtons();
             switchState(GENERATION_RATE);
+        } else if (state_ == GENERATION_RATE) {
+            if (activeButton_ != rateButtons_) { // cancel
+                Ratings::getInstance().addRating(compIndex_-1, activeButton_ - rateButtons_);
+            }
+            setupListButtons();
+            switchState(GENERATION_LIST);
         }
     }
 }
 
 //--------------------------------------------------------------
 void nynexApp::windowResized(int w, int h){
-    ofSetFullscreen(true); // don't fuck with the window, jerkface
+//    ofSetFullscreen(true); // don't fuck with the window, jerkface
 }
 
 
@@ -268,7 +277,7 @@ bool nynexApp::gotRatings() {
 
 void nynexApp::drawGenStart() {
     std::string s("Generation ");
-    s = s + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(compIndex_);
+    s = s + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(compIndex_-1);
     float width = bigfont_.stringWidth(s);
     float height = bigfont_.getLineHeight();
     float hpos = (ofGetScreenWidth() - width) / 2;
@@ -304,7 +313,21 @@ void nynexApp::drawGenList() {
 }
 
 void nynexApp::drawGenRate() {
-    drawHeader(std::string("Rating Generation ") + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(compIndex_));
+    drawHeader(std::string("Rating Generation ") + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(compIndex_-1));
+    for (size_t i = 0; i < RATINGS+1; ++i) {  
+        // draw button from playButtons
+        Button *b = rateButtons_+i;
+        ofSetColor(b->r, b->g, b->b);
+        ofCircle(b->x,b->y,b->radius);
+        
+        // draw label
+        std::string label(!i?"Cancel":stringFrom(i));
+        float x = b->x + b->radius + LR_MARGIN;
+        float y = b->y + bigfont_.stringHeight(label.c_str())/2;
+        ofSetColor(0);
+        bigfont_.drawString(label, x, y);
+    }
+
     drawRateTimer();
 }
 
@@ -351,18 +374,18 @@ void nynexApp::drawTimer(int timeleft) {
 
 void nynexApp::setupListButtons() {
     activeButton_ = NULL;
+    float radius = ofGetScreenHeight();
+    radius -= (bigfont_.getLineHeight() * 2); // header and timer
+    radius /= (POPSIZE/2); // rows
+    radius -= VERT_MARGIN * 2;
+    radius /= 2;
+    listRadius_ = radius;
     for (size_t i = 0; i < POPSIZE; ++i) {  
         // draw button from playButtons
         listButtons_[i].r = START_R + R_SLOPE * i;
         listButtons_[i].g = START_G + G_SLOPE * i;
         listButtons_[i].b = START_B + B_SLOPE * i;
-        float radius = ofGetScreenHeight();
-        radius -= (bigfont_.getLineHeight() * 2); // header and timer
-        radius /= (POPSIZE/2); // rows
-        radius -= VERT_MARGIN * 2;
-        radius /= 2;
         listButtons_[i].radius = radius;
-        listRadius_ = radius;
 
         float x = LR_MARGIN + (radius);
         if (i >= POPSIZE / 2) {
@@ -376,5 +399,32 @@ void nynexApp::setupListButtons() {
         y += radius;
         std::cout << x << " " << y << " " << radius << std::endl;
         listButtons_[i].y = y;
+    }
+}
+
+void nynexApp::setupRateButtons() {
+    activeButton_ = NULL;
+    float radius = ofGetScreenHeight();
+    radius -= (bigfont_.getLineHeight() * 2); // header and timer
+    radius /= (RATINGS+1); // rows
+    radius -= VERT_MARGIN * 2;
+    radius /= 2;
+    rateRadius_ = radius;
+    
+    float x = (ofGetScreenWidth() - LR_MARGIN - bigfont_.stringWidth("Cancel") - radius) / 2;
+    for (size_t i = 0; i <= RATINGS; ++i) {  
+        // draw button from playButtons
+        rateButtons_[i].r = START_R + R_SLOPE * i;
+        rateButtons_[i].g = START_G + G_SLOPE * i;
+        rateButtons_[i].b = START_B + B_SLOPE * i;
+        rateButtons_[i].radius = radius;
+        
+        rateButtons_[i].x = x;
+        
+        float y = radius + (bigfont_.getLineHeight() + VERT_MARGIN); // past header
+        y += ((radius * 2 + VERT_MARGIN) * (i % (RATINGS+1))); // past existing circles
+        y += radius;
+        std::cout << x << " " << y << " " << radius << std::endl;
+        rateButtons_[i].y = y;
     }
 }

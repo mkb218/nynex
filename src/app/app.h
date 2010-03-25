@@ -115,6 +115,7 @@ private:
     void drawGenList();
     void drawGenRate();
     void setupListButtons();
+    void setupRateButtons();
     bool checkActiveButton(int x, int y, int button);
     Config config_;
     int ratetimer_;
@@ -131,8 +132,9 @@ private:
     std::string bouncepath_;
     std::string configpath_;
     float listRadius_;
+    float rateRadius_;
     Button listButtons_[POPSIZE];
-    Button rateButtons_[RATINGS];
+    Button rateButtons_[RATINGS+1];
     Button * activeButton_;
 };
 }

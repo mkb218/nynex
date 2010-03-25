@@ -20,6 +20,23 @@ namespace nynex {
         virtual ~StepAction();
     };
     
+    class NynexGAStats : public GAStatistics {
+    public:
+        NynexGAStats() : GAStatistics() {}
+        NynexGAStats(const GAStatistics & other) : GAStatistics(other) {}
+        NynexGAStats(const NynexGAStats & other) : GAStatistics(other) {}
+        void setGen(int gen) { curgen = gen; }
+    };
+    
+    class NynexGA : public GASimpleGA {
+    public:
+        NynexGA(const GAPopulation & pop, int genStart) : GASimpleGA(pop) {
+            stats = NynexGAStats(stats);
+            stats.setGen(genStart);
+        }
+    };
+            
+    
     class Evolver {
     public:
         Evolver();
@@ -32,7 +49,7 @@ namespace nynex {
         void addNotifier(bool pre, StepAction &);
     private:
         void initGA(float pMutation, GABoolean elitist, const GAPopulation &);
-        GASimpleGA *ga_;
+        NynexGA *ga_;
         std::list<boost::reference_wrapper<StepAction> > prestepactions_;
         std::list<boost::reference_wrapper<StepAction> > poststepactions_;
     };
