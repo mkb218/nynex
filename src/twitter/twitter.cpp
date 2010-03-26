@@ -91,7 +91,7 @@ void TwitterAnnounce::action(const GAGeneticAlgorithm & ga) {
 TwitterServer::TwitterServer(const std::string & host, const std::string & username, const std::string & password, const std::string & bitlykeyfile) : username_(username), password_(password) {
     std::fstream ifs(bitlykeyfile.c_str());
     std::string line;
-    while (!ifs.eof()) {
+    while (!ifs.eof() && !ifs.fail()) {
         ifs >> line;
         size_t pos = line.find('=');
         if (pos != std::string::npos) {

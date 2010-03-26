@@ -61,7 +61,7 @@ void nynexApp::setup(){
     
     
     // add notifiers to ga
-    evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
+//    evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
     
     // setup fonts
     bigfont_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", BIGFONTSIZE);

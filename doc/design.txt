@@ -50,3 +50,7 @@ code layout
 considerations
 - use soundcloud for all web audio stuff. that way i don't get killed if i get slashdotted
 - use twitter for new generation announcements instead of streaming
+
+web voting
+- php or perl
+- i want to do voting and listening all on one page without reloads, which means i need ajax. use jquery i guess since it is already used in the soundcloud player
