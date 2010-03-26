@@ -10,7 +10,7 @@
 #include <fstream>
 
 #define POPSIZE 10
-#define GEN_LIMIT_MILLIS 3600000
+#define GEN_LIMIT_MILLIS 36000
 #define RATE_LIMIT_MILLIS 60 * 1000 * 5
 #define RATINGS 5
 
@@ -46,13 +46,14 @@ namespace nynex {
 class nynexApp : public ofBaseApp{
 
 public:
-    nynexApp() : state_(GENERATION_START), /*sc_(), */evolver_(NULL), /*twitter_(NULL), */activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf") {
+    nynexApp() : state_(GENERATION_START), /*sc_(), */evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf") {
         ofBaseApp();
     }
     ~nynexApp() { 
 //        delete sc_;
+        evolver_->saveToFile(config_.kvp["gastatefile"]);
         delete evolver_;
-//        delete twitter_;
+        delete twitter_;
     }
     void setup();
     void update();
@@ -100,8 +101,9 @@ private:
     void resetGenTimer() { gentimer_ = ofGetElapsedTimeMillis(); }
     bool generationTimesUp() { return (ofGetElapsedTimeMillis() - gentimer_) > GEN_LIMIT_MILLIS; }
     bool ratingTimesUp() { return (ofGetElapsedTimeMillis() - ratetimer_) > RATE_LIMIT_MILLIS; }
-    void switchState(State state) { state_ = state; framesSinceStateChange_ = 0; }
+    void switchState(State state);
     void bounceComps();
+    void bounceComp(size_t i);
     void startPlayComp();
     void playNextComp();
     bool gotRatings();
@@ -123,7 +125,7 @@ private:
     unsigned int framesSinceStateChange_;
     Evolver * evolver_;
 //    SoundCloudServer * sc_;
-//    TwitterServer * twitter_;
+    TwitterServer * twitter_;
     ofSoundPlayer player_;
     ofTrueTypeFont bigfont_;
     ofTrueTypeFont smallfont_;

@@ -11,13 +11,12 @@
 #define NYNEX_EVOLVER
 
 #include "composition.h"
-#include <boost/ref.hpp>
 
 namespace nynex {
     class StepAction {
     public:
         virtual void action(const GAGeneticAlgorithm &) = 0;
-        virtual ~StepAction();
+        virtual ~StepAction() {}
     };
     
     class NynexGAStats : public GAStatistics {
@@ -31,27 +30,28 @@ namespace nynex {
     class NynexGA : public GASimpleGA {
     public:
         NynexGA(const GAPopulation & pop, int genStart) : GASimpleGA(pop) {
-            stats = NynexGAStats(stats);
-            stats.setGen(genStart);
+            NynexGAStats s(stats);
+            s.setGen(genStart);
+            stats = s;
         }
-    };
-            
+    };      
     
     class Evolver {
     public:
         Evolver();
+        ~Evolver();
         void initGA(float pMutation, int pop, GABoolean elitist);
         void stepGA(); // apply ratings and step
         const GAPopulation & getPop();
         const GAGeneticAlgorithm & getGA();
         void loadFromFile(const std::string & filename);
         void saveToFile(const std::string & filename);
-        void addNotifier(bool pre, StepAction &);
+        void addNotifier(bool pre, StepAction *);
     private:
-        void initGA(float pMutation, GABoolean elitist, const GAPopulation &);
+        void initGA(float pMutation, GABoolean elitist, int gen, const GAPopulation &);
         NynexGA *ga_;
-        std::list<boost::reference_wrapper<StepAction> > prestepactions_;
-        std::list<boost::reference_wrapper<StepAction> > poststepactions_;
+        std::list<StepAction*> prestepactions_;
+        std::list<StepAction*> poststepactions_;
     };
 }
 

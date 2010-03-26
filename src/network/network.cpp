@@ -14,7 +14,7 @@ volatile CurlContext * CurlContext::getContext() {
     return context_; 
 }
 
-std::string getUrl(const std::string & url, const std::string & user = "", const std::string & password = "") {
+std::string nynex::getUrl(const std::string & url, const std::string & user, const std::string & password) {
     char errorbuf[CURL_ERROR_SIZE];
     volatile CurlContext *context = CurlContext::getContext();
     std::string resultbuf;
@@ -62,7 +62,7 @@ std::string getUrl(const std::string & url, const std::string & user = "", const
 }
 
 
-std::string postUrl(const std::string & url, const std::string & body, const std::string & user = "", const std::string & password = "") {
+std::string nynex::postUrl(const std::string & url, const std::string & body, const std::string & user, const std::string & password) {
     char errorbuf[CURL_ERROR_SIZE];
     volatile CurlContext *context = CurlContext::getContext();
     CURL * curl = curl_easy_init();
@@ -119,7 +119,7 @@ std::string postUrl(const std::string & url, const std::string & body, const std
     return resultbuf;
 }
 
-size_t storeData(void * ptr, size_t size, size_t nmemb, void * stream) {
+size_t nynex::storeData(void * ptr, size_t size, size_t nmemb, void * stream) {
     std::string & strout = *(std::string*)ptr;
     size_t insize = strout.size();
     strout.append((char*)stream, size*nmemb);

@@ -57,15 +57,18 @@ void nynexApp::setup(){
     }
     
     // create soundcloud and twitter servers from settings file, google voice downloader, web rating downloader
+    twitter_ = new TwitterServer(config_.kvp["twitterhost"],config_.kvp["twitteruser"],config_.kvp["twitterpass"],config_.kvp["bitlykeyfile"]);
+    
     
     // add notifiers to ga
+    evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
     
     // setup fonts
     bigfont_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", BIGFONTSIZE);
     smallfont_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", SMALLFONTSIZE);
     
     // start playin'
-    bounceComps();
+    bounceComp(0);
     startPlayComp(); // will call resetTimer()
     switchState(GENERATION_START);
 //    setupListButtons();
@@ -89,6 +92,7 @@ void nynexApp::update() {
         case GENERATION_START:
             if (!player_.getIsPlaying()) {
                 if (moreComps()) {
+                    bounceComp(compIndex_);
                     playNextComp();
                 } else {
                     resetGenTimer();
@@ -111,7 +115,7 @@ void nynexApp::update() {
             if (gotRatings()) {
                 evolver_->stepGA();
                 Ratings::getInstance().deleteRatings();
-                bounceComps();
+//                bounceComps();
             }
             startPlayComp();
             switchState(GENERATION_START);
@@ -198,7 +202,7 @@ bool nynexApp::checkActiveButton(int x, int y, int button) {
         }
     }
 
-    
+    return false;
 }
 
 //--------------------------------------------------------------
@@ -261,8 +265,11 @@ bool nynexApp::moreComps() {
 
 void nynexApp::bounceComps() {
     for(size_t i = 0; i < evolver_->getPop().size(); ++i) {
-        dynamic_cast<const Composition &>(evolver_->getPop().individual(i)).bounceToFile(bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
     }
+}
+
+void nynexApp::bounceComp(size_t i) {
+    dynamic_cast<const Composition &>(evolver_->getPop().individual(i)).bounceToFile(bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
 }
 
 bool nynexApp::gotRatings() {
@@ -340,7 +347,7 @@ void nynexApp::drawHeader(std::string s) {
 }
 
 void nynexApp::drawRateTimer() {
-    drawTimer(GEN_LIMIT_MILLIS - (ofGetElapsedTimeMillis() - ratetimer_));
+    drawTimer(RATE_LIMIT_MILLIS - (ofGetElapsedTimeMillis() - ratetimer_));
 }
 
 void nynexApp::drawGenTimer() {
@@ -362,14 +369,18 @@ void nynexApp::drawTimer(int timeleft) {
     timeleft /= 60;
     int hours = timeleft % 60;
     
-    ostringstream os;
-    os << std::setw(1) << hours;
-    os << std::setw(2) << std::setfill('0');
-    os << ":" << minutes << ":" << seconds << "." << millis;
-    
-    float width = bigfont_.stringWidth(os.str());
+    std::ostringstream os;
+    os << hours;
+    os << ":" << std::setw(2) << std::setfill('0');
+    os<< minutes;
+    os << ":" << std::setw(2) << std::setfill('0');
+    os << seconds;
+    os << "." << std::setw(2) << std::setfill('0');
+    os << millis;
+    std::string time = os.str();
+    float width = bigfont_.stringWidth(time);
     float pos = (ofGetScreenWidth() - width) / 2;
-    bigfont_.drawString(os.str(), pos, ofGetScreenHeight() - VERT_MARGIN);
+    bigfont_.drawString(time, pos, ofGetScreenHeight() - VERT_MARGIN);
 }
 
 void nynexApp::setupListButtons() {
@@ -427,4 +438,8 @@ void nynexApp::setupRateButtons() {
         std::cout << x << " " << y << " " << radius << std::endl;
         rateButtons_[i].y = y;
     }
+}
+
+void nynexApp::switchState(State state) { 
+    state_ = state; framesSinceStateChange_ = 0; 
 }

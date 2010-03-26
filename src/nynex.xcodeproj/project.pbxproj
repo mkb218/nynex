@@ -49,6 +49,7 @@
 		FCB6F4651151081E008B7934 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
 		FCB6F46611510824008B7934 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
 		FCC4850C11470F2D00EF5568 /* soundcloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */; };
+		FCC48B36115CE454004E5EB6 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
 		FCD2343F110FABDE0023CC4B /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FCD2347511107DE20023CC4B /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
 		FCDBFDF4115254B300644FC8 /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC146AA9110E604E006F10FB /* openFrameworksDebug.a */; };
@@ -644,6 +645,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCC48B36115CE454004E5EB6 /* twitter.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* app.cpp in Sources */,
 				FCD2343F110FABDE0023CC4B /* composition.cpp in Sources */,
@@ -794,6 +796,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/lib/osx\"";
 				OTHER_LDFLAGS = (
+					"-lcurl",
 					"-lga",
 					"-lsox",
 				);
@@ -958,6 +961,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/lib/osx\"";
 				OTHER_LDFLAGS = (
+					"-lcurl",
 					"-lga",
 					"-lsox",
 				);
@@ -1034,6 +1038,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/lib/osx\"";
 				OTHER_LDFLAGS = (
+					"-lcurl",
 					"-lga",
 					"-lsox",
 				);

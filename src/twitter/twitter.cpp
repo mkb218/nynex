@@ -6,6 +6,7 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include "network.h"
+#include <fstream>
 
 using namespace nynex;
 
@@ -85,4 +86,20 @@ void TwitterAnnounce::action(const GAGeneticAlgorithm & ga) {
     std::string generation = stringFrom(ga.generation());
     // todo get from config
     announcer_->announceGeneration("Generation " + generation + " created! #megapolis", "http://nynex.hydrogenproject.com/stream.php?generation="+generation,"http://nynex.hydrogenproject.com/listen.php?generation="+generation);
+}
+
+TwitterServer::TwitterServer(const std::string & host, const std::string & username, const std::string & password, const std::string & bitlykeyfile) : username_(username), password_(password) {
+    std::fstream ifs(bitlykeyfile.c_str());
+    std::string line;
+    while (!ifs.eof()) {
+        ifs >> line;
+        size_t pos = line.find('=');
+        if (pos != std::string::npos) {
+            if (line.substr(0, pos-1) == "bitlylogin") {
+                bitlylogin_ = line.substr(pos-1);
+            } else if (line.substr(0, pos-1) == "bitlykey") {
+                bitlykey_ = line.substr(pos-1);
+            }
+        }
+    }
 }
