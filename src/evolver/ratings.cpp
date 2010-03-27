@@ -8,6 +8,7 @@
  */
 
 #include "ratings.h"
+#include <fstream>
 
 using namespace nynex;
 
@@ -35,3 +36,20 @@ double Ratings::avgRatingForId(unsigned int id) {
     return sum/count;
 }
 
+void GrabWebRatings::action(const GAGeneticAlgorithm & ga) {
+    std::string cmd(Ratings::getInstance().getScpCmd());
+    const std::string & tmp(Ratings::getInstance().getTmpPath());
+    cmd.append(" ");
+    cmd.append(tmp);
+    system(cmd.c_str()); // TODO check return val
+    std::ifstream ifs(tmp.c_str());
+    std::string line;
+    while (!ifs.eof() && !ifs.fail()) {
+        ifs >> line;
+        size_t pos = line.find('=');
+        if (pos != std::string::npos) {
+            Ratings::getInstance().addRating(fromString<unsigned int>(line.substr(0, pos-1)),fromString<int>(line.substr(pos-1)));
+        }
+    }
+    unlink(tmp.c_str());
+}

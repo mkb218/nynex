@@ -54,3 +54,5 @@ considerations
 web voting
 - php or perl
 - i want to do voting and listening all on one page without reloads, which means i need ajax. use jquery i guess since it is already used in the soundcloud player
+- set up voting and play page much like the app itself, header at the top, play buttons in the middle in two columns.
+- rating buttons at bottom.

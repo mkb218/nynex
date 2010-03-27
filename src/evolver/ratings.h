@@ -14,9 +14,15 @@
 #include <string>
 #include <list>
 
+#include "evolver.h"
 #include "composition.h"
 
 namespace nynex {
+    class GrabWebRatings : public StepAction {
+    public:
+        virtual void action(const GAGeneticAlgorithm &);
+    };
+        
     class Ratings {
     public:
         static Ratings & getInstance();
@@ -24,9 +30,10 @@ namespace nynex {
         bool hasRatingForId(unsigned int id) { return (scores_.find(id) != scores_.end()); }
         double avgRatingForId(unsigned int id);
         void getServerRatings() {}
-        void setHost(const std::string & host) { host_ = host; }
-        void setPort(int port) { port_ = port; }
-        void setPath(const std::string & path) { path_ = path; }
+        void setScpCmd(const std::string & cmd) { cmd_ = cmd; }
+        void setTmpPath(const std::string & path) { tmppath_ = path; }
+        const std::string & getScpCmd() { return cmd_; }
+        const std::string & getTmpPath() { return tmppath_; }
         void deleteRatingsForId(unsigned int id) { scores_.erase(id); }
         void deleteRatings() { scores_.clear(); }
     private:
@@ -35,9 +42,8 @@ namespace nynex {
         Ratings(Ratings &) {}
         Ratings & operator=(Ratings&) {return *this;}
         std::map<unsigned int, std::list<int> > scores_;
-        std::string host_;
-        int port_;
-        std::string path_;
+        std::string cmd_;
+        std::string tmppath_;
     };
     
 }

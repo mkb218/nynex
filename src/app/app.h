@@ -83,6 +83,8 @@ private:
             kvp["samplerate"] = "44100";
             kvp["samplesize"] = "2";
             kvp["channels"] = "2";
+//            kvp["twitteruser"] = "nynexrepublic";
+            
         }
         void setFromStream(std::istream & i);
         std::map<std::string, std::string> kvp;
