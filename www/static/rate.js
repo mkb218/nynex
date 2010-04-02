@@ -5,3 +5,4 @@ soundManager.url = '.'; // change to '.' to use local non-crossdomain soundmanag
 $(function() {
   $("a.soundcloud-player#basic").scPlayer();
 });
+
