@@ -2,11 +2,13 @@
 #define _NYNEX_APP
 
 #include "ofMain.h"
+#include "ofxThread.h"
 #include "evolver.h"
 #include "soundcloud.h"
 #include "twitter.h"
 
 #include <string>
+#include <list>
 #include <fstream>
 
 #define POPSIZE 10
@@ -43,10 +45,45 @@
 #define B_SLOPE ((END_B - START_B) / (float)POPSIZE)
 
 namespace nynex {
+
+class Gatekeeper {
+public:
+    Gatekeeper(pthread_mutex_t *l) : l_(l) { pthread_mutex_lock(l_); }
+    ~Gatekeeper() { pthread_mutex_unlock(l_); }
+private:
+    pthread_mutex_t *l_;
+};
+    
+class BounceThread : public ofxThread {
+public:
+    BounceThread(const Composition & c, const std::string & s) : ofxThread() { 
+        pthread_mutex_init(&listmutex_, NULL);
+        sem_ = sem_open("/nynex_bounce_sem", O_CREAT, 0700, 0);
+        addPair(c, s); 
+    }
+    virtual ~BounceThread() {
+        sem_close(sem_);
+        sem_unlink("/nynex_bounce_sem");
+        pthread_mutex_destroy(&listmutex_);
+    }
+    void addPair(const Composition & c, const std::string & s) {
+        {
+            Gatekeeper g(&listmutex_);
+            bounces_.push_back(std::make_pair(&c, &s));
+        }
+        sem_post(sem_);        
+    }
+    virtual void threadedFunction();
+private:
+    pthread_mutex_t listmutex_;
+    sem_t *sem_;
+    std::list<std::pair<const Composition *, const std::string *> > bounces_;
+};
+    
 class nynexApp : public ofBaseApp{
 
 public:
-    nynexApp() : state_(GENERATION_START), /*sc_(), */evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf") {
+    nynexApp() : state_(GENERATION_START), /*sc_(), */evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf"), bounceThread(NULL) {
         ofBaseApp();
     }
     ~nynexApp() { 
@@ -126,9 +163,11 @@ private:
     int gentimer_;
     unsigned int framesSinceStateChange_;
     Evolver * evolver_;
+    
 //    SoundCloudServer * sc_;
     TwitterServer * twitter_;
     ofSoundPlayer player_;
+    BounceThread *bounceThread;
     ofTrueTypeFont bigfont_;
     ofTrueTypeFont smallfont_;
     int compIndex_;

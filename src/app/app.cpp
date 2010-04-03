@@ -19,6 +19,16 @@ static std::string fileForGenAndIndividual(int gen, int i) {
     return std::string("gen")+stringFrom(gen)+"i"+stringFrom(i)+".wav";
 }
 
+void BounceThread::threadedFunction() {
+    while (sem_trywait(sem_)) == 0) {
+        bounces_.front().first->bounceToFile(*bounces_.front().second);
+        {
+            Gatekeeper g(&listmutex_);
+            bounces_.pop_front();
+        } 
+    }
+}
+
 //--------------------------------------------------------------
 void nynexApp::setup(){
     // fullscreen
@@ -115,7 +125,7 @@ void nynexApp::update() {
             if (gotRatings()) {
                 evolver_->stepGA();
                 Ratings::getInstance().deleteRatings();
-//                bounceComps();
+                bounceComps();
             }
             startPlayComp();
             switchState(GENERATION_START);
@@ -266,11 +276,13 @@ bool nynexApp::moreComps() {
 
 void nynexApp::bounceComps() {
     for(size_t i = 0; i < evolver_->getPop().size(); ++i) {
+        bounceComp(i);
     }
 }
 
 void nynexApp::bounceComp(size_t i) {
-    dynamic_cast<const Composition &>(evolver_->getPop().individual(i)).bounceToFile(bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
+    delete bounceThread;
+    bounceThread = new BounceThread(dynamic_cast<const Composition &>(evolver_->getPop().individual(i)),bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
 }
 
 bool nynexApp::gotRatings() {
