@@ -1,0 +1,2 @@
+Twitter Announcements
+The openFrameworks app is now posting Twitter announcements. If you follow <a href="http://twitter.com/nynexrepublic">@nynexrepublic</a> you will see one now!
