@@ -10,7 +10,7 @@
 #include <fstream>
 
 #define POPSIZE 10
-#define GEN_LIMIT_MILLIS 36000
+#define GEN_LIMIT_MILLIS 10000
 #define RATE_LIMIT_MILLIS 60 * 1000 * 5
 #define RATINGS 5
 

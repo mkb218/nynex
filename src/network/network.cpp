@@ -100,7 +100,7 @@ std::string nynex::postUrl(const std::string & url, const std::string & body, co
                 throw std::runtime_error("setopt USER failed: " + stringFrom(result));
             }
             
-            result = curl_easy_setopt(curl, CURLOPT_PASSWORD, user.c_str());
+            result = curl_easy_setopt(curl, CURLOPT_PASSWORD, password.c_str());
             if (result != CURLE_OK) {
                 throw std::runtime_error("setopt PASS failed: " + stringFrom(result));
             }
@@ -120,8 +120,8 @@ std::string nynex::postUrl(const std::string & url, const std::string & body, co
 }
 
 size_t nynex::storeData(void * ptr, size_t size, size_t nmemb, void * stream) {
-    std::string & strout = *(std::string*)ptr;
+    std::string & strout = *(std::string*)stream;
     size_t insize = strout.size();
-    strout.append((char*)stream, size*nmemb);
+    strout.append((char*)ptr, size*nmemb);
     return strout.size() - insize;
 }

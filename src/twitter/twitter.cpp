@@ -79,7 +79,7 @@ std::string TwitterServer::getBitlyUrl(const std::string & url) const {
     std::istringstream is;
     is.str(response);
     read_json(is, pt);
-    return pt.get<std::string>("results.shortUrl");
+    return pt.get<std::string>(ptree::path_type((std::string("results!") + url + "!shortUrl"), '!'));
 }
 
 void TwitterAnnounce::action(const GAGeneticAlgorithm & ga) {
@@ -95,10 +95,10 @@ TwitterServer::TwitterServer(const std::string & host, const std::string & usern
         ifs >> line;
         size_t pos = line.find('=');
         if (pos != std::string::npos) {
-            if (line.substr(0, pos-1) == "bitlylogin") {
-                bitlylogin_ = line.substr(pos-1);
-            } else if (line.substr(0, pos-1) == "bitlykey") {
-                bitlykey_ = line.substr(pos-1);
+            if (line.substr(0, pos) == "bitlylogin") {
+                bitlylogin_ = line.substr(pos+1);
+            } else if (line.substr(0, pos) == "bitlykey") {
+                bitlykey_ = line.substr(pos+1);
             }
         }
     }

@@ -126,6 +126,7 @@ void Evolver::saveToFile(const std::string & filename) {
 
 void Evolver::addNotifier(bool pre, StepAction *s) {
     std::list<StepAction*> & actions = (pre)?prestepactions_:poststepactions_;
+    actions.push_back(s);
 }
 
 Evolver::~Evolver() {
