@@ -15,7 +15,7 @@ using namespace nynex;
 // 4b.) user clicks cancel button, no rating stored, back to step 2
 // 5.) time's up, retrieve web ratings. if there are ratings, step ga and bounce, otherwise just go back to step 1
 
-static std::string fileForGenAndIndividual(int gen, int i) {
+std::string nynex::fileForGenAndIndividual(int gen, int i) {
     return std::string("gen")+stringFrom(gen)+"i"+stringFrom(i)+".wav";
 }
 
@@ -58,7 +58,7 @@ void nynexApp::setup(){
     
     // create soundcloud and twitter servers from settings file, google voice downloader, web rating downloader
     twitter_ = new TwitterServer(config_.kvp["twitterhost"],config_.kvp["twitteruser"],config_.kvp["twitterpass"],config_.kvp["bitlykeyfile"]);
-    
+    sc_ = new SoundCloudServer(config_.kvp["soundcloudConsumerKey"], config_.kvp["soundcloudConsumerSecret"], bouncepath_, config_.kvp["soundcloudScpCmd"], true);
     
     // add notifiers to ga
     evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));

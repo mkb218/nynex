@@ -46,11 +46,11 @@ namespace nynex {
 class nynexApp : public ofBaseApp{
 
 public:
-    nynexApp() : state_(GENERATION_START), /*sc_(), */evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf") {
+    nynexApp() : state_(GENERATION_START), sc_(NULL), evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf") {
         ofBaseApp();
     }
     ~nynexApp() { 
-//        delete sc_;
+        delete sc_;
         evolver_->saveToFile(config_.kvp["gastatefile"]);
         delete evolver_;
         delete twitter_;
@@ -126,7 +126,7 @@ private:
     int gentimer_;
     unsigned int framesSinceStateChange_;
     Evolver * evolver_;
-//    SoundCloudServer * sc_;
+    SoundCloudServer * sc_;
     TwitterServer * twitter_;
     ofSoundPlayer player_;
     ofTrueTypeFont bigfont_;

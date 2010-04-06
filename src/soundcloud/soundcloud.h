@@ -17,6 +17,8 @@
 #include "evolver.h"
 
 namespace nynex {
+    std::string fileForGenAndIndividual(int gen, int i);
+    
     class SoundCloudAuthenticator {
     public:
         virtual ~SoundCloudAuthenticator();
@@ -41,37 +43,26 @@ namespace nynex {
     
     class SoundCloudServer {
     public:
-        static SoundCloudServer *StagingServerFactory(std::string host, std::string username, std::string password, const std::string & filepath, const std::string & albumTitle, const std::string & scpcmd, const std::string & filename) { return new SoundCloudServer(host, username, password, filepath, albumTitle, scpcmd, filename); }
-        static SoundCloudServer *ProdServerFactory(std::string host, std::string apiKey, const std::string & filepath, const std::string & albumTitle, const std::string & scpcmd, const std::string & filename) { return new SoundCloudServer(host, apiKey, filepath, albumTitle, scpcmd, filename); }
-        static void setDefaultAuthenticatorGenerator(SoundCloudAuthGenerator a) { defaultAuthenticatorGenerator_ = a; }
-        void fetchDropBox() const; // uses samplebank singleton and afconvert to add samples
-        std::vector<std::string> submitCompositions(const GAGeneticAlgorithm &) const; // returns list of identifiers used for streaming / web ratings
-        void setFilepath(const std::string & filepath) {
-            filepath_ = filepath;
-        }
-        const std::string & getFilepath() const { return filepath_; }
-        const std::string & getScpcmd() const { return scpcmd_; }
+        SoundCloudServer(const std::string & key, const std::string & secret, const std::string & filepath, const std::string & scpcmd, bool useSandbox);
         ~SoundCloudServer();
+        std::vector<std::string> submitCompositions(const GAGeneticAlgorithm &) const; // returns list of identifiers used for streaming / web ratings
+        const std::string & getFilepath() const;
+        const std::string & getScpcmd() const;
+        void setFilepath(const std::string & );
+        void setScpcmd(const std::string & );
     private:
-        SoundCloudServer(std::string host, std::string username, std::string password, const std::string & filepath, const std::string & albumTitle, const std::string & scpcmd, const std::string & filename) : host_(host), username_(username), password_(password), useKey_(false), authenticated_(false), scApi_(NULL), albumTitle_(albumTitle), filepath_(filepath), scpcmd_(scpcmd) { init(filename); }
-        SoundCloudServer(std::string host, std::string apiKey, const std::string & filepath, const std::string & albumTitle, const std::string & scpcmd, const std::string & filename) : host_(host), apiKey_(apiKey), useKey_(true), authenticated_(false), albumTitle_(albumTitle),  filepath_(filepath), scpcmd_(scpcmd) { init(filename); }
-        void init(const std::string & filename) { initSecrets(filename); scApi_ = SoundCloudCAPI_CreateWithDefaultCallbackAndGetCredentials(consumerKey_.c_str(), consumerSecret_.c_str(), "", 1); }
-        void initSecrets(const std::string & filename);
-        void authenticate();
+        SoundCloudServer(const SoundCloudServer &);
+        SoundCloudServer & operator=(const SoundCloudServer &);
+        void authenticate() const;
         static SoundCloudAuthGenerator defaultAuthenticatorGenerator_;
         SoundCloudAuthenticator * authenticator_;
         SoundCloudCAPI *scApi_;
-        std::string host_;
-        std::string username_;
-        std::string password_;
-        std::string apiKey_;
-        std::string consumerKey_;
-        std::string consumerSecret_;
-        std::string filepath_;
+        bool useSandbox_;
+        mutable bool authenticated_;
+        std::string key_;
+        std::string secret_;
         std::string scpcmd_;
-        std::string albumTitle_;
-        bool useKey_;
-        bool authenticated_;
+        std::string filepath_;
     }; 
 
     class SubmitSoundCloudAction : public StepAction {
@@ -85,7 +76,7 @@ namespace nynex {
     class SoundCloudDropBoxAction : public StepAction {
     public:
         SoundCloudDropBoxAction(const SoundCloudServer & server) : server_(&server) {}
-        virtual void action(const GAGeneticAlgorithm & ga) { server_->fetchDropBox(); }
+        virtual void action(const GAGeneticAlgorithm & ga);
     private:
         const SoundCloudServer * server_;
     };
