@@ -1,6 +1,9 @@
 #include "app.h"
 #include "ratings.h"
 
+#define SANDBOX 1
+#define SHORTCUT 0
+
 #include <iostream>
 #include <sys/stat.h>
 
@@ -16,7 +19,7 @@ using namespace nynex;
 // 5.) time's up, retrieve web ratings. if there are ratings, step ga and bounce, otherwise just go back to step 1
 
 std::string nynex::fileForGenAndIndividual(int gen, int i) {
-    return std::string("gen")+stringFrom(gen)+"i"+stringFrom(i)+".wav";
+    return std::string("gen")+stringFrom(gen)+"i"+stringFrom(i)+".aiff";
 }
 
 //--------------------------------------------------------------
@@ -58,9 +61,11 @@ void nynexApp::setup(){
     
     // create soundcloud and twitter servers from settings file, google voice downloader, web rating downloader
     twitter_ = new TwitterServer(config_.kvp["twitterhost"],config_.kvp["twitteruser"],config_.kvp["twitterpass"],config_.kvp["bitlykeyfile"]);
-    sc_ = new SoundCloudServer(config_.kvp["soundcloudConsumerKey"], config_.kvp["soundcloudConsumerSecret"], bouncepath_, config_.kvp["soundcloudScpCmd"], true);
+    sc_ = new SoundCloudServer(config_.kvp["soundcloudConsumerKey"], config_.kvp["soundcloudConsumerSecret"], bouncepath_, config_.kvp["soundcloudScpCmd"], SANDBOX);
     
     // add notifiers to ga
+    SubmitSoundCloudAction *sc = new SubmitSoundCloudAction(*sc_);
+    evolver_->addNotifier(false, sc);
     evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
     
     // setup fonts
@@ -68,12 +73,16 @@ void nynexApp::setup(){
     smallfont_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", SMALLFONTSIZE);
     
     // start playin'
-//    bounceComp(0);
-//    startPlayComp(); // will call resetTimer()
-//    switchState(GENERATION_START);
+#if SHORTCUT
     setupListButtons();
     resetGenTimer();
     switchState(GENERATION_LIST);
+#else
+    bounceComps();
+    sc->action(evolver_->getGA());
+    startPlayComp(); // will call resetTimer()
+    switchState(GENERATION_START);
+#endif
 }
 
 void nynexApp::Config::setFromStream(istream & is) {

@@ -21,11 +21,11 @@ namespace nynex {
     
     class SoundCloudAuthenticator {
     public:
-        virtual ~SoundCloudAuthenticator();
+        virtual ~SoundCloudAuthenticator() {}
         virtual bool authenticate() = 0;
     protected:
         SoundCloudAuthenticator(SoundCloudCAPI * api) : api_(api) {}
-        bool authserver();
+        int authserver();
         void setverifier(const std::string & buffer);
     private:
         SoundCloudCAPI * api_;
@@ -37,8 +37,14 @@ namespace nynex {
         static SoundCloudAuthenticator* create(SoundCloudCAPI*);
         virtual bool authenticate();
     };
+
+    class FileAuthenticator : public SoundCloudAuthenticator {
+    public:
+        FileAuthenticator(SoundCloudCAPI * api) : SoundCloudAuthenticator(api){}
+        static SoundCloudAuthenticator* create(SoundCloudCAPI*);
+        virtual bool authenticate();
+    };
     
-//    typedef scauthptr;
     typedef SoundCloudAuthenticator *(*SoundCloudAuthGenerator)(SoundCloudCAPI*);
     
     class SoundCloudServer {
@@ -46,16 +52,16 @@ namespace nynex {
         SoundCloudServer(const std::string & key, const std::string & secret, const std::string & filepath, const std::string & scpcmd, bool useSandbox);
         ~SoundCloudServer();
         std::vector<std::string> submitCompositions(const GAGeneticAlgorithm &) const; // returns list of identifiers used for streaming / web ratings
-        const std::string & getFilepath() const;
-        const std::string & getScpcmd() const;
-        void setFilepath(const std::string & );
-        void setScpcmd(const std::string & );
+        const std::string & getFilepath() const { return filepath_; }
+        const std::string & getScpcmd() const { return scpcmd_; }
+        void setFilepath(const std::string & s) { filepath_ = s; }
+        void setScpcmd(const std::string & s) { scpcmd_ = s; }
     private:
         SoundCloudServer(const SoundCloudServer &);
         SoundCloudServer & operator=(const SoundCloudServer &);
         void authenticate() const;
         static SoundCloudAuthGenerator defaultAuthenticatorGenerator_;
-        SoundCloudAuthenticator * authenticator_;
+        mutable SoundCloudAuthenticator * authenticator_;
         SoundCloudCAPI *scApi_;
         bool useSandbox_;
         mutable bool authenticated_;

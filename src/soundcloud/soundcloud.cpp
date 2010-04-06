@@ -19,18 +19,44 @@
 
 using namespace nynex;
 
-SoundCloudAuthGenerator SoundCloudServer::defaultAuthenticatorGenerator_ = TerminalAuthenticator::create;
+SoundCloudAuthGenerator SoundCloudServer::defaultAuthenticatorGenerator_ = FileAuthenticator::create;
 
 SoundCloudAuthenticator * TerminalAuthenticator::create(SoundCloudCAPI * api) {
     return new TerminalAuthenticator(api);
 }
 
+SoundCloudAuthenticator * FileAuthenticator::create(SoundCloudCAPI * api) {
+    return new FileAuthenticator(api);
+}
+
 bool TerminalAuthenticator::authenticate() {
-    while (!authserver()) {
+    while (authserver() != SCAuthenticationStatus_Authenticated) {
         std::string buffer;
         std::cout << "Please Auth, then enter the verification code here: " << std::flush;
+        std::cin >> buffer;
         setverifier(buffer);
     }
+}
+
+bool FileAuthenticator::authenticate() {
+    while (authserver() != SCAuthenticationStatus_Authenticated) {
+        std::string buffer;
+        std::cout << "Please Auth, then enter the verification code into /opt/nynex/etc/verifier within 60 seconds. " << std::endl;
+        sleep(60);
+        ifstream in("/opt/nynex/etc/verifier");
+        getline(in, buffer);
+        setverifier(buffer);
+    }
+    return true;
+}
+
+int SoundCloudAuthenticator::authserver() {
+    // Are we authorized yet?
+    return SoundCloudCAPI_EvaluateCredentials(api_);
+}
+
+void SoundCloudAuthenticator::setverifier(const std::string & buffer) {
+    SoundCloudCAPI_SetVerifier(api_, buffer.c_str());
 }
 
 void SubmitSoundCloudAction::action(const GAGeneticAlgorithm & ga) {
@@ -54,10 +80,11 @@ void SubmitSoundCloudAction::action(const GAGeneticAlgorithm & ga) {
     system(scpcmd.c_str());
 }
 
-SoundCloudServer::SoundCloudServer(const std::string & key, const std::string & secret, const std::string & filepath, const std::string & scpcmd, bool useSandbox) : filepath_(filepath), scpcmd_(scpcmd), authenticated_(false) { scApi_ = SoundCloudCAPI_CreateWithDefaultCallbackAndGetCredentials(key.c_str(), secret.c_str(), "", !useSandbox); }
+SoundCloudServer::SoundCloudServer(const std::string & key, const std::string & secret, const std::string & filepath, const std::string & scpcmd, bool useSandbox) : filepath_(filepath), scpcmd_(scpcmd), authenticated_(false), authenticator_(NULL) { scApi_ = SoundCloudCAPI_CreateWithDefaultCallbackAndGetCredentials(key.c_str(), secret.c_str(), "", !useSandbox); }
 
 
 SoundCloudServer::~SoundCloudServer() {
+    delete authenticator_;
     if (scApi_ != NULL) {
         SoundCloudCAPI_Delete(scApi_);
     }
@@ -96,10 +123,11 @@ std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlg
         std::string namestr("Generation ");
         namestr.append(genstr).append(" Individual ").append(stringFrom(i));
         filestr.append("/").append(fileForGenAndIndividual(gen,i));
-        cmd.append(genstr).append("' -T '").append(namestr).append("' -c 'http://nynex.hydrogenproject.com' '").append(filestr).append("'");
+        cmd.append(genstr).append("' -t '").append(namestr).append("' -c ':http://nynex.hydrogenproject.com' '").append(filestr).append("'");
+        system(cmd.c_str());
         
         // upload track to soundcloud
-        if (!authenticated_) {
+        while (!authenticated_) {
             authenticate();
         }
         
@@ -119,7 +147,7 @@ std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlg
         params[1].key="track[asset_data]";
         params[1].value=data;
         params[1].value_len=datalen;
-        params[1].filename=filestr.c_str();
+        params[1].filename=fileForGenAndIndividual(gen,i).c_str();
         int err; void * rcvdata; unsigned long long size;
         SoundCloudCAPI_performMethod(scApi_,"POST","/me/tracks",params,2, &err, &rcvdata, &size);
         free(data);
@@ -134,3 +162,9 @@ std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlg
     }
 }
 
+void SoundCloudServer::authenticate() const {
+    if (authenticator_ == NULL) {
+        authenticator_ = defaultAuthenticatorGenerator_(scApi_);
+    }
+    authenticated_ = authenticator_->authenticate();
+}
