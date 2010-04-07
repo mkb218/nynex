@@ -10,68 +10,14 @@
 			FC4C45681118EA3500394B9E /* evolver-test */,
 		);
 		breakpoints = (
-			FCA2BE701124E681007F7AB3 /* composition.cpp:244 */,
-			FCA2BE8D1124EA71007F7AB3 /* composition.cpp:244 */,
-			FCA2BE991124EAFE007F7AB3 /* composition.cpp:244 */,
-			FCA2BE9C1124EB60007F7AB3 /* composition.cpp:244 */,
-			FCA2BEA31124EBCC007F7AB3 /* composition.cpp:244 */,
-			FCA2BEA71124EC41007F7AB3 /* composition.cpp:222 */,
-			FCA2BECB1124F597007F7AB3 /* composition.cpp:225 */,
-			FCA2BEE711257D3B007F7AB3 /* composition.cpp:244 */,
-			FCA2BEFA11258758007F7AB3 /* composition.cpp:219 */,
-			FCA2BEFF112587E1007F7AB3 /* composition.cpp:227 */,
-			FCA2BF3C11258C49007F7AB3 /* composition.cpp:244 */,
-			FCA2BF691125912C007F7AB3 /* composition.cpp:244 */,
-			FC0F68F8112624AE00C9C3C8 /* composition.cpp:244 */,
-			FC823ED9113D4F6600028C6A /* composition.cpp:244 */,
-			FC823EE2113D4FED00028C6A /* composition.cpp:244 */,
-			FC823EEC113D50C000028C6A /* composition.cpp:244 */,
-			FCEEB264113EA869001C262F /* composition.h:104 */,
-			FCEEB266113EA86E001C262F /* composition.h:109 */,
-			FCEEB272113EA8D3001C262F /* composition.h:105 */,
-			FCEEB280113EAAC1001C262F /* malloc_ */,
-			FCEEB281113EAAC7001C262F /* malloc_error_break */,
-			FCEEB2B8113EAD0D001C262F /* composition.cpp:244 */,
-			FCEEB2BA113EAD10001C262F /* composition.cpp:244 */,
-			FCEEB2C4113EAD72001C262F /* composition.cpp:244 */,
-			FCEEB2FC113EBBD6001C262F /* composition.cpp:244 */,
-			FCEEB301113EBC02001C262F /* composition.cpp:244 */,
-			FCEEB31E113EBEB1001C262F /* composition.cpp:244 */,
-			FCEEB320113EBEB4001C262F /* composition.cpp:244 */,
-			FCA0FD76113ED22A004538C4 /* composition.cpp:244 */,
-			FCA0FD7C113ED283004538C4 /* composition.cpp:244 */,
-			FCA0FDEA113ED880004538C4 /* composition.cpp:244 */,
-			FCA0FE45113EE727004538C4 /* composition.cpp:244 */,
-			FCA0FE61113EE8CC004538C4 /* composition.cpp:244 */,
-			FCA0FE6F113EE941004538C4 /* composition.cpp:244 */,
-			FCA1182D113F645B00FEEA65 /* evolvertest.cpp:41 */,
-			FCA11872113F665300FEEA65 /* composition.cpp:65 */,
-			FCA1187D113F667A00FEEA65 /* composition.cpp:68 */,
-			FCA1187F113F667C00FEEA65 /* composition.cpp:73 */,
-			FCA11885113F66D200FEEA65 /* composition.cpp:80 */,
-			FCA1188F113F66F200FEEA65 /* composition.cpp:89 */,
-			FCA11899113F672C00FEEA65 /* composition.cpp:163 */,
-			FCA118C7113F6A8300FEEA65 /* composition.cpp:244 */,
-			FCA11901113F6BF500FEEA65 /* composition.cpp:244 */,
-			FCA11911113F6C7600FEEA65 /* composition.cpp:244 */,
-			FCA11938113FD3D700FEEA65 /* evolvertest.cpp:47 */,
-			FC86F9B8113FE9920047129F /* composition.cpp:244 */,
-			FC86F9BA113FE9A40047129F /* composition.cpp:244 */,
-			FC86F9D6113FEAE20047129F /* composition.cpp:244 */,
-			FCAAE1511140A8AE006E0A7C /* evolvertest.cpp:53 */,
-			FCAAE15E1140AC27006E0A7C /* evolvertest.cpp:39 */,
-			FCAAE16C1140ACC5006E0A7C /* composition.cpp:244 */,
-			FCD8BBE811413B8300938F3E /* composition.cpp:244 */,
-			FC41D2EF1141C5E800C9A61D /* composition.cpp:397 */,
-			FC41D2F51141C68300C9A61D /* composition.cpp:519 */,
-			FC41D3461141C92A00C9A61D /* composition.cpp:483 */,
-			FC41D3561141CAFD00C9A61D /* composition.cpp:517 */,
-			FC41D3E71142033500C9A61D /* composition.cpp:516 */,
-			FC41D3E91142034F00C9A61D /* composition.cpp:499 */,
-			FC41D4201142066200C9A61D /* composition.cpp:505 */,
-			FC41D47E1142E2A800C9A61D /* composition.cpp:395 */,
-			FC41D4971142E3D500C9A61D /* composition.cpp:475 */,
-			FC41D4991142E3D800C9A61D /* composition.cpp:474 */,
+			FC4DBB3B116CB6A700C8BF24 /* composition.cpp:466 */,
+			FC4DBB40116CB6E300C8BF24 /* composition.cpp:459 */,
+			FC4DBB4C116CB8B900C8BF24 /* composition.cpp:447 */,
+			FC4DBB52116CB93500C8BF24 /* composition.cpp:449 */,
+			FC4DBB58116CBB5C00C8BF24 /* composition.cpp:538 */,
+			FC4DBB6D116CBBE500C8BF24 /* composition.cpp:505 */,
+			FC4DBB6F116CBBE600C8BF24 /* composition.cpp:510 */,
+			FC4DBB71116CBBE800C8BF24 /* composition.cpp:514 */,
 		);
 		codeSenseManager = FC146648110E6007006F10FB /* Code sense */;
 		executables = (
@@ -128,16 +74,12 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 289511677;
-			PBXWorkspaceStateSaveDate = 289511677;
+			PBXPerProjectTemplateStateSaveDate = 292336676;
+			PBXWorkspaceStateSaveDate = 292336676;
 		};
 		perUserProjectItems = {
-			FC41D3DC1141FE9100C9A61D /* PBXBookmark */ = FC41D3DC1141FE9100C9A61D /* PBXBookmark */;
-			FC41D42D1142070A00C9A61D /* PBXBookmark */ = FC41D42D1142070A00C9A61D /* PBXBookmark */;
-			FC41D4A31142E4C300C9A61D /* PBXTextBookmark */ = FC41D4A31142E4C300C9A61D /* PBXTextBookmark */;
-			FC41D4AE1142E7B600C9A61D /* PBXTextBookmark */ = FC41D4AE1142E7B600C9A61D /* PBXTextBookmark */;
-			FC41D4AF1142E7B600C9A61D /* PBXTextBookmark */ = FC41D4AF1142E7B600C9A61D /* PBXTextBookmark */;
-			FC41D4B01142E7B600C9A61D /* PBXTextBookmark */ = FC41D4B01142E7B600C9A61D /* PBXTextBookmark */;
+			FC4DBB15116CB43500C8BF24 /* PBXBookmark */ = FC4DBB15116CB43500C8BF24 /* PBXBookmark */;
+			FC4DBB91116CBE7100C8BF24 /* PBXTextBookmark */ = FC4DBB91116CBE7100C8BF24 /* PBXTextBookmark */;
 		};
 		sourceControlManager = FC146647110E6007006F10FB /* Source Control */;
 		userBuildSettings = {
@@ -148,23 +90,6 @@
 		executables = (
 			FC14663F110E5FFA006F10FB /* nynex */,
 		);
-	};
-	FC0F68F8112624AE00C9C3C8 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.095894;
-		state = 2;
 	};
 	FC14663F110E5FFA006F10FB /* nynex */ = {
 		isa = PBXExecutable;
@@ -199,241 +124,6 @@
 	FC146648110E6007006F10FB /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
-	};
-	FC41D2EF1141C5E800C9A61D /* composition.cpp:397 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 397;
-		location = "evolver-test";
-		modificationTime = 289596696.541916;
-		state = 2;
-	};
-	FC41D2F51141C68300C9A61D /* composition.cpp:519 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		condition = FC41D3381141C69E00C9A61D /* XCGDBBreakpointCondition */;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 519;
-		location = "evolver-test";
-		modificationTime = 289596696.550561;
-		state = 2;
-	};
-	FC41D3381141C69E00C9A61D /* XCGDBBreakpointCondition */ = {
-		isa = XCGDBBreakpointCondition;
-		conditionString = "";
-	};
-	FC41D3461141C92A00C9A61D /* composition.cpp:483 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		condition = FC41D3471141C96400C9A61D /* XCGDBBreakpointCondition */;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 483;
-		location = "evolver-test";
-		modificationTime = 289596696.568646;
-		state = 2;
-	};
-	FC41D3471141C96400C9A61D /* XCGDBBreakpointCondition */ = {
-		isa = XCGDBBreakpointCondition;
-		conditionString = "";
-	};
-	FC41D3561141CAFD00C9A61D /* composition.cpp:517 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 517;
-		location = "evolver-test";
-		modificationTime = 289596696.578197;
-		state = 2;
-	};
-	FC41D3DC1141FE9100C9A61D /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-	};
-	FC41D3E71142033500C9A61D /* composition.cpp:516 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		condition = FC41D3F4114203A900C9A61D /* XCGDBBreakpointCondition */;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 516;
-		location = "evolver-test";
-		modificationTime = 289596696.586789;
-		state = 2;
-	};
-	FC41D3E91142034F00C9A61D /* composition.cpp:499 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 499;
-		location = "evolver-test";
-		modificationTime = 289596696.595201;
-		state = 2;
-	};
-	FC41D3F4114203A900C9A61D /* XCGDBBreakpointCondition */ = {
-		isa = XCGDBBreakpointCondition;
-		conditionString = "currentSampleLength > 44000";
-	};
-	FC41D4201142066200C9A61D /* composition.cpp:505 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		condition = FC41D4261142069100C9A61D /* XCGDBBreakpointCondition */;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 505;
-		location = "evolver-test";
-		modificationTime = 289596696.61268;
-		state = 2;
-	};
-	FC41D4261142069100C9A61D /* XCGDBBreakpointCondition */ = {
-		isa = XCGDBBreakpointCondition;
-		conditionString = "currentSampleLength > maxSampleSize";
-	};
-	FC41D42D1142070A00C9A61D /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-	};
-	FC41D47E1142E2A800C9A61D /* composition.cpp:395 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 395;
-		location = "evolver-test";
-		modificationTime = 289596696.621431;
-		state = 2;
-	};
-	FC41D4971142E3D500C9A61D /* composition.cpp:475 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 475;
-		location = "evolver-test";
-		modificationTime = 289596696.630323;
-		state = 2;
-	};
-	FC41D4991142E3D800C9A61D /* composition.cpp:474 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 1;
-		ignoreCount = 0;
-		lineNumber = 474;
-		location = "evolver-test";
-		modificationTime = 289596699.964504;
-		state = 1;
-	};
-	FC41D4A31142E4C300C9A61D /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "error: invalid conversion from ‘ssize_t (*)(int, void*, size_t)’ to ‘size_t’";
-		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		rLen = 0;
-		rLoc = 451;
-		rType = 1;
-	};
-	FC41D4AE1142E7B600C9A61D /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		name = "composition.cpp: 405";
-		rLen = 0;
-		rLoc = 13324;
-		rType = 0;
-		vrLen = 1548;
-		vrLoc = 13001;
-	};
-	FC41D4AF1142E7B600C9A61D /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FCD23436110FABDE0023CC4B /* composition.h */;
-		name = "composition.h: 28";
-		rLen = 0;
-		rLoc = 441;
-		rType = 0;
-		vrLen = 740;
-		vrLoc = 173;
-	};
-	FC41D4B01142E7B600C9A61D /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		name = "evolvertest.cpp: 26";
-		rLen = 0;
-		rLoc = 572;
-		rType = 0;
-		vrLen = 2753;
-		vrLoc = 251;
 	};
 	FC4C45681118EA3500394B9E /* evolver-test */ = {
 		activeExec = 0;
@@ -479,13 +169,17 @@
 	};
 	FC4C45CD1118EE4300394B9E /* evolvertest.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 1302}}";
-			sepNavSelRange = "{572, 0}";
-			sepNavVisRange = "{251, 2753}";
-			sepNavWindowFrame = "{{404, 199}, {618, 677}}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 1358}}";
+			sepNavSelRange = "{705, 0}";
+			sepNavVisRange = "{0, 1588}";
+			sepNavWindowFrame = "{{404, 143}, {618, 733}}";
 		};
 	};
-	FC823ED9113D4F6600028C6A /* composition.cpp:244 */ = {
+	FC4DBB15116CB43500C8BF24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
+	};
+	FC4DBB3B116CB6A700C8BF24 /* composition.cpp:466 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -497,12 +191,12 @@
 		functionName = "Sample::splitFile()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 244;
+		lineNumber = 466;
 		location = "evolver-test";
-		modificationTime = 289596696.10825;
+		modificationTime = 292338595.76642;
 		state = 2;
 	};
-	FC823EE2113D4FED00028C6A /* composition.cpp:244 */ = {
+	FC4DBB40116CB6E300C8BF24 /* composition.cpp:459 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -514,12 +208,12 @@
 		functionName = "Sample::splitFile()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 244;
+		lineNumber = 459;
 		location = "evolver-test";
-		modificationTime = 289596696.11729;
+		modificationTime = 292338595.767504;
 		state = 2;
 	};
-	FC823EEC113D50C000028C6A /* composition.cpp:244 */ = {
+	FC4DBB4C116CB8B900C8BF24 /* composition.cpp:447 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -531,12 +225,34 @@
 		functionName = "Sample::splitFile()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 244;
+		lineNumber = 447;
 		location = "evolver-test";
-		modificationTime = 289596696.14925;
+		modificationTime = 292338595.768258;
 		state = 2;
 	};
-	FC86F9B8113FE9920047129F /* composition.cpp:244 */ = {
+	FC4DBB52116CB93500C8BF24 /* composition.cpp:449 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		condition = FC4DBB54116CB95300C8BF24 /* XCGDBBreakpointCondition */;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		functionName = "Sample::splitFile()";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 449;
+		location = "evolver-test";
+		modificationTime = 292338595.769049;
+		state = 2;
+	};
+	FC4DBB54116CB95300C8BF24 /* XCGDBBreakpointCondition */ = {
+		isa = XCGDBBreakpointCondition;
+		conditionString = "sample_abs > 0";
+	};
+	FC4DBB58116CBB5C00C8BF24 /* composition.cpp:538 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -545,15 +261,15 @@
 		countType = 0;
 		delayBeforeContinue = 0;
 		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::initComposition(Composition & comp)";
-		hitCount = 0;
+		functionName = "Sample::splitFile()";
+		hitCount = 5;
 		ignoreCount = 0;
-		lineNumber = 244;
+		lineNumber = 538;
 		location = "evolver-test";
-		modificationTime = 289596696.460522;
-		state = 2;
+		modificationTime = 292338729.469474;
+		state = 1;
 	};
-	FC86F9BA113FE9A40047129F /* composition.cpp:244 */ = {
+	FC4DBB6D116CBBE500C8BF24 /* composition.cpp:505 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -562,15 +278,15 @@
 		countType = 0;
 		delayBeforeContinue = 0;
 		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Word::calcDuration()";
-		hitCount = 0;
+		functionName = "Sample::splitFile()";
+		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 244;
+		lineNumber = 505;
 		location = "evolver-test";
-		modificationTime = 289596696.478439;
+		modificationTime = 292338700.17455;
 		state = 2;
 	};
-	FC86F9D6113FEAE20047129F /* composition.cpp:244 */ = {
+	FC4DBB6F116CBBE600C8BF24 /* composition.cpp:510 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -579,13 +295,40 @@
 		countType = 0;
 		delayBeforeContinue = 0;
 		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Word::calcDuration()";
+		functionName = "Sample::splitFile()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 244;
+		lineNumber = 510;
 		location = "evolver-test";
-		modificationTime = 289596696.487434;
+		modificationTime = 292338701.062756;
 		state = 2;
+	};
+	FC4DBB71116CBBE800C8BF24 /* composition.cpp:514 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
+		functionName = "Sample::splitFile()";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 514;
+		location = "evolver-test";
+		modificationTime = 292338702.04661;
+		state = 2;
+	};
+	FC4DBB91116CBE7100C8BF24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
+		name = "evolvertest.cpp: 30";
+		rLen = 0;
+		rLoc = 705;
+		rType = 0;
+		vrLen = 1588;
+		vrLoc = 0;
 	};
 	FC8C0AB51111CF5700AFE817 /* soundcloud.h */ = {
 		uiCtxt = {
@@ -627,108 +370,6 @@
 			sepNavWindowFrame = "{{84, 77}, {618, 733}}";
 		};
 	};
-	FCA0FD76113ED22A004538C4 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Word::Word(const Sample * parent, size_t index, int age)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.267383;
-		state = 2;
-	};
-	FCA0FD7C113ED283004538C4 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Word::Word(const Sample * parent, size_t index, int age)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.279504;
-		state = 2;
-	};
-	FCA0FDEA113ED880004538C4 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::randomWord()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.288567;
-		state = 2;
-	};
-	FCA0FE45113EE727004538C4 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::randomWord()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.29722;
-		state = 2;
-	};
-	FCA0FE61113EE8CC004538C4 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::randomWord()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.305808;
-		state = 2;
-	};
-	FCA0FE6F113EE941004538C4 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::randomWord()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.324773;
-		state = 2;
-	};
 	FCA1170C113F208F00FEEA65 /* evolver.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 653}}";
@@ -745,462 +386,20 @@
 			sepNavWindowFrame = "{{37, 118}, {618, 733}}";
 		};
 	};
-	FCA1182D113F645B00FEEA65 /* evolvertest.cpp:41 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		functionName = "main(int argc, char **argv)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 41;
-		location = "evolver-test";
-		modificationTime = 289596696.333492;
-		state = 2;
-	};
-	FCA11872113F665300FEEA65 /* composition.cpp:65 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::Composition(const Composition & other)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 65;
-		location = "evolver-test";
-		modificationTime = 289596696.347164;
-		state = 2;
-	};
-	FCA1187D113F667A00FEEA65 /* composition.cpp:68 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::operator=(const GAGenome & other)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 68;
-		location = "evolver-test";
-		modificationTime = 289596696.356289;
-		state = 2;
-	};
-	FCA1187F113F667C00FEEA65 /* composition.cpp:73 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::copy(const GAGenome & other)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 73;
-		location = "evolver-test";
-		modificationTime = 289596696.36569;
-		state = 2;
-	};
-	FCA11885113F66D200FEEA65 /* composition.cpp:80 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::clone(CloneMethod)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 80;
-		location = "evolver-test";
-		modificationTime = 289596696.385433;
-		state = 2;
-	};
-	FCA1188F113F66F200FEEA65 /* composition.cpp:89 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::mutate(GAGenome & trg, float p)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 89;
-		location = "evolver-test";
-		modificationTime = 289596696.396174;
-		state = 2;
-	};
-	FCA11899113F672C00FEEA65 /* composition.cpp:163 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::crossover(const GAGenome & mom, const GAGenome & dad, GAGenome * bro, GAGenome * sis)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 163;
-		location = "evolver-test";
-		modificationTime = 289596696.405109;
-		state = 2;
-	};
-	FCA118C7113F6A8300FEEA65 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.413934;
-		state = 2;
-	};
-	FCA11901113F6BF500FEEA65 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::makeWords()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.431493;
-		state = 2;
-	};
-	FCA11911113F6C7600FEEA65 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::makeWords()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.44122;
-		state = 2;
-	};
-	FCA11938113FD3D700FEEA65 /* evolvertest.cpp:47 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		functionName = "main(int argc, char **argv)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 47;
-		location = "evolver-test";
-		modificationTime = 289596696.451727;
-		state = 2;
-	};
-	FCA2BE701124E681007F7AB3 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "ScoreFinder::operator()(Word & check)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596695.956031;
-		state = 2;
-	};
-	FCA2BE8D1124EA71007F7AB3 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::randomWord()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596695.96446;
-		state = 2;
-	};
-	FCA2BE991124EAFE007F7AB3 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::randomWord()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596695.973828;
-		state = 2;
-	};
-	FCA2BE9C1124EB60007F7AB3 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::randomWord()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596695.982285;
-		state = 2;
-	};
-	FCA2BEA31124EBCC007F7AB3 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::randomWord()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596695.991293;
-		state = 2;
-	};
-	FCA2BEA71124EC41007F7AB3 /* composition.cpp:222 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::bounceToFile(const std::string & filename)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 222;
-		location = "evolver-test";
-		modificationTime = 289596696.01314;
-		state = 2;
-	};
-	FCA2BECB1124F597007F7AB3 /* composition.cpp:225 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::bounceToFile(const std::string & filename)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 225;
-		location = "evolver-test";
-		modificationTime = 289596696.021633;
-		state = 2;
-	};
-	FCA2BEE711257D3B007F7AB3 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::setSampleDir(const std::string & dir)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.03151;
-		state = 2;
-	};
-	FCA2BEFA11258758007F7AB3 /* composition.cpp:219 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::bounceToFile(const std::string & filename)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 219;
-		location = "evolver-test";
-		modificationTime = 289596696.043402;
-		state = 2;
-	};
-	FCA2BEFF112587E1007F7AB3 /* composition.cpp:227 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::bounceToFile(const std::string & filename)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 227;
-		location = "evolver-test";
-		modificationTime = 289596696.052218;
-		state = 2;
-	};
-	FCA2BF3C11258C49007F7AB3 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::makeWords()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.06392;
-		state = 2;
-	};
-	FCA2BF691125912C007F7AB3 /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::splitFile()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.084123;
-		state = 2;
-	};
-	FCAAE1511140A8AE006E0A7C /* evolvertest.cpp:53 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		functionName = "main(int argc, char **argv)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 53;
-		location = "evolver-test";
-		modificationTime = 289596696.496243;
-		state = 1;
-	};
-	FCAAE15E1140AC27006E0A7C /* evolvertest.cpp:39 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */;
-		functionName = "main(int argc, char **argv)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 39;
-		location = "evolver-test";
-		modificationTime = 289596696.505554;
-		state = 1;
-	};
-	FCAAE16C1140ACC5006E0A7C /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::unserialize(const std::string & src)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.52308;
-		state = 1;
-	};
 	FCD23435110FABDE0023CC4B /* composition.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 11172}}";
-			sepNavSelRange = "{13324, 0}";
-			sepNavVisRange = "{13001, 1548}";
-			sepNavWindowFrame = "{{748, 177}, {618, 677}}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 11200}}";
+			sepNavSelRange = "{7495, 3}";
+			sepNavVisRange = "{6744, 1695}";
+			sepNavWindowFrame = "{{749, 129}, {618, 733}}";
 		};
 	};
 	FCD23436110FABDE0023CC4B /* composition.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {559, 3486}}";
-			sepNavSelRange = "{441, 0}";
+			sepNavSelRange = "{364, 32}";
 			sepNavVisRange = "{173, 740}";
-			sepNavWindowFrame = "{{352, 189}, {618, 677}}";
+			sepNavWindowFrame = "{{352, 133}, {618, 733}}";
 		};
 	};
 	FCD2347411107DE20023CC4B /* ratings.cpp */ = {
@@ -1210,220 +409,5 @@
 			sepNavVisRange = "{0, 729}";
 			sepNavWindowFrame = "{{562, 72}, {618, 733}}";
 		};
-	};
-	FCD8BBE811413B8300938F3E /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Composition::unserialize(const std::string & src)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.53295;
-		state = 2;
-	};
-	FCEEB264113EA869001C262F /* composition.h:104 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23436110FABDE0023CC4B /* composition.h */;
-		functionName = "alloc()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 104;
-		modificationTime = 289596696.157811;
-		state = 2;
-	};
-	FCEEB266113EA86E001C262F /* composition.h:109 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23436110FABDE0023CC4B /* composition.h */;
-		functionName = "dealloc()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 109;
-		location = "evolver-test";
-		modificationTime = 289596696.166578;
-		state = 2;
-	};
-	FCEEB272113EA8D3001C262F /* composition.h:105 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23436110FABDE0023CC4B /* composition.h */;
-		functionName = "alloc()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 105;
-		location = "evolver-test";
-		modificationTime = 289596696.175924;
-		state = 2;
-	};
-	FCEEB280113EAAC1001C262F /* malloc_ */ = {
-		isa = PBXSymbolicBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 1;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		hitCount = 0;
-		ignoreCount = 0;
-		location = "";
-		modificationTime = 289596696.657943;
-		state = 2;
-		symbolName = malloc_;
-	};
-	FCEEB281113EAAC7001C262F /* malloc_error_break */ = {
-		isa = PBXSymbolicBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 1;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		hitCount = 0;
-		ignoreCount = 0;
-		location = libSystem.B.dylib;
-		modificationTime = 289596696.666311;
-		state = 1;
-		symbolName = malloc_error_break;
-	};
-	FCEEB2B8113EAD0D001C262F /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SplitBuf::unload()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.193462;
-		state = 2;
-	};
-	FCEEB2BA113EAD10001C262F /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SplitBuf::load()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.202363;
-		state = 2;
-	};
-	FCEEB2C4113EAD72001C262F /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SplitBuf::filename()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.211162;
-		state = 2;
-	};
-	FCEEB2FC113EBBD6001C262F /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Word::getFilename()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.220231;
-		state = 2;
-	};
-	FCEEB301113EBC02001C262F /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "SampleBank::addSample(const std::string & filepath)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.229622;
-		state = 2;
-	};
-	FCEEB31E113EBEB1001C262F /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		functionName = "Sample::makeWords()";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.238513;
-		state = 2;
-	};
-	FCEEB320113EBEB4001C262F /* composition.cpp:244 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = FCD23435110FABDE0023CC4B /* composition.cpp */;
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 244;
-		location = "evolver-test";
-		modificationTime = 289596696.258988;
-		state = 2;
 	};
 }

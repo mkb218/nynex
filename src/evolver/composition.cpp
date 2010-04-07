@@ -28,6 +28,9 @@
 
 #include <errno.h>
 
+#define MAX_GAPSIZE 0.005
+#define MAX_SAMPLESIZE 0.5
+
 using namespace nynex;
 using std::sort;
 
@@ -393,6 +396,7 @@ void Sample::makeWords() {
     wordsReady_ = true;
 }
 
+
 void Sample::splitFile() {
     std::cout << "splitting sample " << filename_ << std::endl;
     SampleBank & bank = SampleBank::getInstance();
@@ -402,7 +406,7 @@ void Sample::splitFile() {
     double mean;
     size_t read;
     size_t bufsize = BUFSIZE;
-    sox_sample_t floor;
+    sox_sample_t floor, maxfloor, rmsfloor;
     {
         struct stat junk;
         int stat_status = stat(filename_.c_str(), &junk);
@@ -428,6 +432,8 @@ void Sample::splitFile() {
         
         // find mean of abs values
         double sum = 0.;
+        double squaresum = 0.;
+        sox_sample_t max = 0;
         size_t count = 0;
         size_t list_ix = 0;
         size_t limit = bufsize;
@@ -436,9 +442,14 @@ void Sample::splitFile() {
                 limit = read;
             }
             
+            sox_sample_t frame_abs = 0;
             for (size_t ix = 0; ix < bufsize; ++ix) {
                 ++count;
-                sum += abs((**it)[ix]);
+                sox_sample_t sample_abs = abs((**it)[ix]);
+                sum += sample_abs;
+                frame_abs += sample_abs;
+                squaresum += ((double)sample_abs * sample_abs);
+                max = (sample_abs > max) ? sample_abs : max;
             }
             if (unloadBufs) {
                 (*it)->unload();
@@ -446,17 +457,20 @@ void Sample::splitFile() {
         }
         
         mean = sum/count;
+#define FLOOR floor
         floor = 0.1 * mean;
+        maxfloor = 0.01 * max;
+        rmsfloor = 0.1 * sqrt(squaresum/count);
     }
     
     const size_t lastbufsize = read;
     
-    // if more than 0.01 s is below this level eliminate those samples
-    size_t gapsize = 0.0025 * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
-    size_t maxSampleSize = 0.5 * bank.getSampleRate() * bank.getChannels();
+    // if more than MAX_GAPSIZE is below this level eliminate those samples
+    size_t gapsize = MAX_GAPSIZE * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
+    size_t maxSampleSize = MAX_SAMPLESIZE * bank.getSampleRate() * bank.getChannels();
     // all samples between gaps are put in own files
     size_t word_ix = 0;
-    std::string filebase(filename_); // TODO kill extension
+    std::string filebase(filename_);
     std::string filename(filebase+"/"+stringFrom(word_ix));
     
     chdir(bank.getSampleDir().c_str());
@@ -484,10 +498,10 @@ void Sample::splitFile() {
             bool write = false;
             double s = 0;
             for (size_t sampleix = 0; sampleix < bank.getChannels(); ++sampleix) {
-               s += (*buf.front())[frameix+sampleix] / (double)bank.getChannels();
+               s += fabs((*buf.front())[frameix+sampleix] / (double)bank.getChannels());
             }
             
-            if (fabs(s) < floor && !inGap) {
+            if (s < FLOOR && !inGap) {
                 inGap = true;
                 edge = true;
                 write = (frameix - offset) > 0; 
@@ -520,6 +534,9 @@ void Sample::splitFile() {
                     // make a new word with each file
                     words_.push_back(new Word(this, word_ix));
                     ++word_ix;
+                    if (word_ix > 1000) {
+                        std::cout << "OH NO" << std::endl;
+                    }
                     filename = filebase+"/"+stringFrom(word_ix);
                     out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
                     offset = frameix;

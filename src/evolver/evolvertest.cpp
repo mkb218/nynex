@@ -27,6 +27,7 @@ int main(int argc, char **argv) {
     Composition c;
     bank.initComposition(c);
     c.bounceToFile("/Users/makane/code/nynex/output/whatwhat.mp3");
+    return 0;
     std::cout << c.serialize() << std::endl;
     for (int i = 0; i <= 100; ++i) {
         Ratings::getInstance().addRating(c.getObjectId(), random() % 5);

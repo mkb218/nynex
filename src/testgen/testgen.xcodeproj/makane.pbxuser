@@ -1,0 +1,85 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = FC4DBB81116CBE2800C8BF24 /* testgen */;
+		activeTarget = 8DD76F620486A84900D96B5E /* testgen */;
+		codeSenseManager = FC4DBB90116CBE4400C8BF24 /* Code sense */;
+		executables = (
+			FC4DBB81116CBE2800C8BF24 /* testgen */,
+		);
+		perUserDictionary = {
+			PBXPerProjectTemplateStateSaveDate = 292339240;
+			PBXWorkspaceStateSaveDate = 292339240;
+		};
+		perUserProjectItems = {
+			FC4DBB86116CBE2C00C8BF24 /* PBXBookmark */ = FC4DBB86116CBE2C00C8BF24 /* PBXBookmark */;
+			FC4DBB92116CBE7100C8BF24 /* PBXTextBookmark */ = FC4DBB92116CBE7100C8BF24 /* PBXTextBookmark */;
+		};
+		sourceControlManager = FC4DBB8F116CBE4400C8BF24 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {932, 649}}";
+			sepNavSelRange = "{53, 0}";
+			sepNavVisRange = "{0, 176}";
+			sepNavWindowFrame = "{{38, 90}, {991, 762}}";
+		};
+	};
+	8DD76F620486A84900D96B5E /* testgen */ = {
+		activeExec = 0;
+		executables = (
+			FC4DBB81116CBE2800C8BF24 /* testgen */,
+		);
+	};
+	FC4DBB81116CBE2800C8BF24 /* testgen */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = testgen;
+		sourceDirectories = (
+		);
+	};
+	FC4DBB86116CBE2C00C8BF24 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+	};
+	FC4DBB8F116CBE4400C8BF24 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	FC4DBB90116CBE4400C8BF24 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	FC4DBB92116CBE7100C8BF24 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		name = "main.cpp: 6";
+		rLen = 0;
+		rLoc = 53;
+		rType = 0;
+		vrLen = 176;
+		vrLoc = 0;
+	};
+}
