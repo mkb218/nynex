@@ -2,20 +2,20 @@
 {
 	E4B69B4C0A3A1720003C02F2 /* Project object */ = {
 		activeBuildConfigurationName = Debug;
-		activeExecutable = FC14663F110E5FFA006F10FB /* nynex */;
+		activeExecutable = FC4C456A1118EA3500394B9E /* evolver-test */;
 		activeSDKPreference = macosx10.5;
-		activeTarget = E4B69B5A0A3A1756003C02F2 /* nynex */;
+		activeTarget = FC4C45681118EA3500394B9E /* evolver-test */;
 		addToTargets = (
 			E4B69B5A0A3A1756003C02F2 /* nynex */,
 		);
 		breakpoints = (
 			FCEEB281113EAAC7001C262F /* malloc_error_break */,
-			FC7439A5116ACFE800E5AF93 /* app.cpp:81 */,
+			FC7439A5116ACFE800E5AF93 /* app.cpp:86 */,
 			FC7439AA116ACFF200E5AF93 /* soundcloud.cpp:63 */,
 			FC7439AC116ACFF700E5AF93 /* soundcloud.cpp:115 */,
 			FC7439DE116AD27900E5AF93 /* soundcloud.cpp:130 */,
 			FC743A1F116AD6A100E5AF93 /* soundcloud.cpp:134 */,
-			FC743A25116AD73500E5AF93 /* soundcloud.cpp:152 */,
+			FC743A25116AD73500E5AF93 /* soundcloud.cpp:153 */,
 		);
 		codeSenseManager = FC146648110E6007006F10FB /* Code sense */;
 		executables = (
@@ -76,14 +76,8 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 292196694;
-			PBXWorkspaceStateSaveDate = 292196694;
-		};
-		perUserProjectItems = {
-			FC743A05116AD40A00E5AF93 /* PBXBookmark */ = FC743A05116AD40A00E5AF93 /* PBXBookmark */;
-			FC743A06116AD42600E5AF93 /* PBXBookmark */ = FC743A06116AD42600E5AF93 /* PBXBookmark */;
-			FC743A38116AD90500E5AF93 /* PBXTextBookmark */ = FC743A38116AD90500E5AF93 /* PBXTextBookmark */;
-			FC743A39116AD90500E5AF93 /* PBXTextBookmark */ = FC743A39116AD90500E5AF93 /* PBXTextBookmark */;
+			PBXPerProjectTemplateStateSaveDate = 292284680;
+			PBXWorkspaceStateSaveDate = 292284680;
 		};
 		sourceControlManager = FC146647110E6007006F10FB /* Source Control */;
 		userBuildSettings = {
@@ -105,17 +99,17 @@
 	};
 	E4B69E1E0A3A1BDC003C02F2 /* app.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1009, 6034}}";
-			sepNavSelRange = "{2939, 0}";
-			sepNavVisRange = "{2369, 847}";
+			sepNavIntBoundsRect = "{{0, 0}, {691, 6636}}";
+			sepNavSelRange = "{9593, 0}";
+			sepNavVisRange = "{8878, 882}";
 			sepNavWindowFrame = "{{353, 320}, {750, 558}}";
 		};
 	};
 	E4B69E1F0A3A1BDC003C02F2 /* app.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {691, 2170}}";
-			sepNavSelRange = "{879, 0}";
-			sepNavVisRange = "{527, 865}";
+			sepNavIntBoundsRect = "{{0, 0}, {691, 2366}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{1123, 904}";
 			sepNavWindowFrame = "{{35, 314}, {750, 558}}";
 		};
 	};
@@ -266,7 +260,7 @@
 			sepNavWindowFrame = "{{404, 143}, {618, 733}}";
 		};
 	};
-	FC7439A5116ACFE800E5AF93 /* app.cpp:81 */ = {
+	FC7439A5116ACFE800E5AF93 /* app.cpp:86 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -278,9 +272,9 @@
 		functionName = "nynexApp::setup()";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 81;
+		lineNumber = 86;
 		location = nynexDebug;
-		modificationTime = 292214856.642416;
+		modificationTime = 292283663.950102;
 		state = 2;
 	};
 	FC7439AA116ACFF200E5AF93 /* soundcloud.cpp:63 */ = {
@@ -297,7 +291,7 @@
 		ignoreCount = 0;
 		lineNumber = 63;
 		location = nynexDebug;
-		modificationTime = 292214856.643088;
+		modificationTime = 292283663.950202;
 		state = 2;
 	};
 	FC7439AC116ACFF700E5AF93 /* soundcloud.cpp:115 */ = {
@@ -314,7 +308,7 @@
 		ignoreCount = 0;
 		lineNumber = 115;
 		location = nynexDebug;
-		modificationTime = 292214856.643654;
+		modificationTime = 292283663.950272;
 		state = 2;
 	};
 	FC7439DE116AD27900E5AF93 /* soundcloud.cpp:130 */ = {
@@ -331,16 +325,8 @@
 		ignoreCount = 0;
 		lineNumber = 130;
 		location = nynexDebug;
-		modificationTime = 292214856.64421;
+		modificationTime = 292283663.950342;
 		state = 2;
-	};
-	FC743A05116AD40A00E5AF93 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = FC8C0AB51111CF5700AFE817 /* soundcloud.h */;
-	};
-	FC743A06116AD42600E5AF93 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */;
 	};
 	FC743A1F116AD6A100E5AF93 /* soundcloud.cpp:134 */ = {
 		isa = PBXFileBreakpoint;
@@ -352,14 +338,14 @@
 		delayBeforeContinue = 0;
 		fileReference = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */;
 		functionName = "SoundCloudServer::submitCompositions(const GAGeneticAlgorithm & ga)";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 134;
 		location = nynexDebug;
-		modificationTime = 292214909.007506;
-		state = 1;
+		modificationTime = 292283663.950425;
+		state = 2;
 	};
-	FC743A25116AD73500E5AF93 /* soundcloud.cpp:152 */ = {
+	FC743A25116AD73500E5AF93 /* soundcloud.cpp:153 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -369,46 +355,26 @@
 		delayBeforeContinue = 0;
 		fileReference = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */;
 		functionName = "SoundCloudServer::submitCompositions(const GAGeneticAlgorithm & ga)";
-		hitCount = 0;
+		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 152;
+		lineNumber = 153;
 		location = nynexDebug;
-		modificationTime = 292214856.645432;
+		modificationTime = 292283704.8074511;
 		state = 1;
-	};
-	FC743A38116AD90500E5AF93 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */;
-		name = "soundcloud.cpp: 151";
-		rLen = 0;
-		rLoc = 5178;
-		rType = 0;
-		vrLen = 1876;
-		vrLoc = 3660;
-	};
-	FC743A39116AD90500E5AF93 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = FC8C0AB51111CF5700AFE817 /* soundcloud.h */;
-		name = "soundcloud.h: 45";
-		rLen = 0;
-		rLoc = 1284;
-		rType = 0;
-		vrLen = 1684;
-		vrLoc = 213;
 	};
 	FC8C0AB51111CF5700AFE817 /* soundcloud.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {559, 1274}}";
+			sepNavIntBoundsRect = "{{0, 0}, {559, 1330}}";
 			sepNavSelRange = "{1284, 0}";
-			sepNavVisRange = "{213, 1684}";
+			sepNavVisRange = "{1415, 1700}";
 			sepNavWindowFrame = "{{671, 118}, {618, 733}}";
 		};
 	};
 	FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {932, 2394}}";
-			sepNavSelRange = "{5178, 0}";
-			sepNavVisRange = "{3660, 1876}";
+			sepNavIntBoundsRect = "{{0, 0}, {1009, 2462}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 240}";
 			sepNavWindowFrame = "{{165, 95}, {991, 762}}";
 		};
 	};
@@ -500,10 +466,10 @@
 		continueAfterActions = 0;
 		countType = 0;
 		delayBeforeContinue = 0;
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		location = libSystem.B.dylib;
-		modificationTime = 292214919.12406;
+		modificationTime = 292283663.9508179;
 		state = 1;
 		symbolName = malloc_error_break;
 	};

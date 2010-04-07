@@ -2,7 +2,7 @@
 #include "ratings.h"
 
 #define SANDBOX 1
-#define SHORTCUT 0
+#define SHORTCUT 1
 
 #include <iostream>
 #include <sys/stat.h>
@@ -17,6 +17,10 @@ using namespace nynex;
 // 4a.) user clicks rating button, rating stored, back to step 2
 // 4b.) user clicks cancel button, no rating stored, back to step 2
 // 5.) time's up, retrieve web ratings. if there are ratings, step ga and bounce, otherwise just go back to step 1
+
+void BounceAction::action(const GAGeneticAlgorithm & ga) {
+    app_->bounceComps();
+}
 
 std::string nynex::fileForGenAndIndividual(int gen, int i) {
     return std::string("gen")+stringFrom(gen)+"i"+stringFrom(i)+".aiff";
@@ -65,6 +69,7 @@ void nynexApp::setup(){
     
     // add notifiers to ga
     SubmitSoundCloudAction *sc = new SubmitSoundCloudAction(*sc_);
+    evolver_->addNotifier(false, new BounceAction(this));
     evolver_->addNotifier(false, sc);
     evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
     
@@ -125,7 +130,7 @@ void nynexApp::update() {
             if (gotRatings()) {
                 evolver_->stepGA();
                 Ratings::getInstance().deleteRatings();
-                bounceComps();
+//                bounceComps(); done with BounceAction
             }
             startPlayComp();
             switchState(GENERATION_START);
@@ -274,13 +279,13 @@ bool nynexApp::moreComps() {
     return (compIndex_ < evolver_->getPop().size());
 }
 
-void nynexApp::bounceComps() {
+void nynexApp::bounceComps() const {
     for(size_t i = 0; i < evolver_->getPop().size(); ++i) {
         bounceComp(i);
     }
 }
 
-void nynexApp::bounceComp(size_t i) {
+void nynexApp::bounceComp(size_t i) const {
     dynamic_cast<const Composition &>(evolver_->getPop().individual(i)).bounceToFile(bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
 }
 

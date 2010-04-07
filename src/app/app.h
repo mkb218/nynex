@@ -43,6 +43,17 @@
 #define B_SLOPE ((END_B - START_B) / (float)POPSIZE)
 
 namespace nynex {
+
+class nynexApp;
+    
+class BounceAction : public StepAction {
+public:
+    BounceAction(const nynexApp * n) : app_(n){}
+    virtual void action(const GAGeneticAlgorithm & ga);
+private:
+    const nynexApp *app_;
+};
+
 class nynexApp : public ofBaseApp{
 
 public:
@@ -104,8 +115,8 @@ private:
     bool generationTimesUp() { return (ofGetElapsedTimeMillis() - gentimer_) > GEN_LIMIT_MILLIS; }
     bool ratingTimesUp() { return (ofGetElapsedTimeMillis() - ratetimer_) > RATE_LIMIT_MILLIS; }
     void switchState(State state);
-    void bounceComps();
-    void bounceComp(size_t i);
+    void bounceComps() const;
+    void bounceComp(size_t i) const;
     void startPlayComp();
     void playNextComp();
     bool gotRatings();
@@ -140,6 +151,7 @@ private:
     Button listButtons_[POPSIZE];
     Button rateButtons_[RATINGS+1];
     Button * activeButton_;
+    friend void BounceAction::action(const GAGeneticAlgorithm &);
 };
 }
 #endif

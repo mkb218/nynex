@@ -127,12 +127,11 @@ std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlg
         system(cmd.c_str());
         
         // upload track to soundcloud
-        while (!authenticated_) {
+/*        while (!authenticated_) {
             authenticate();
         }
-        
+  */      
         SoundCloudCAPI_SetResponseFormat(scApi_, SCResponseFormatJSON);
-        // Upload an mp3:
         FILE *f=fopen(filestr.c_str(), "r");
         fseek(f,0,SEEK_END);
         int datalen=ftell(f);
@@ -142,8 +141,10 @@ std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlg
         fclose(f);
         
         SoundCloudCAPI_Parameter params[2];
+        memset(params, 0, sizeof(SoundCloudCAPI_Parameter)*2);
         params[0].key="track[title]";
         params[0].value=namestr.c_str();
+        params[0].filename=NULL;
         params[1].key="track[asset_data]";
         params[1].value=data;
         params[1].value_len=datalen;
@@ -156,6 +157,7 @@ std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlg
         ptree pt;
         istringstream is;
         is.str(std::string((char*)data, size));
+        free(rcvdata);
 
         // keep ID handy
         ids.push_back(pt.get<std::string>(ptree::path_type("id")));
