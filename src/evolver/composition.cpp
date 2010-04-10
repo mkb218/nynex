@@ -378,7 +378,7 @@ void Sample::makeWords() {
     std::string indexfile = indexdir + "/" + filename_ + ".index";
     struct stat junk;
     
-    if (0 == stat(indexfile.c_str(), &junk)) {
+    if (false && (0 == stat(indexfile.c_str(), &junk))) {
         int files;
         std::ifstream stream(indexfile.c_str());
         if (stream.fail()) {
@@ -396,9 +396,33 @@ void Sample::makeWords() {
     wordsReady_ = true;
 }
 
+static inline int32_t to8bit(sox_sample_t s) {
+    SOX_SAMPLE_LOCALS;
+    int clips = 0;
+    return SOX_SAMPLE_TO_UNSIGNED_8BIT(s, clips);
+}
+
+static inline int32_t to16bit(sox_sample_t s) {
+    SOX_SAMPLE_LOCALS;
+    int clips = 0;
+    return SOX_SAMPLE_TO_SIGNED_16BIT(s, clips);
+}
+
+static inline int32_t to24bit(sox_sample_t s) {
+    SOX_SAMPLE_LOCALS;
+    int clips = 0;
+    return SOX_SAMPLE_TO_SIGNED_24BIT(s, clips);
+}
+
+static inline int32_t to32bit(sox_sample_t s) {
+    SOX_SAMPLE_LOCALS;
+    int clips = 0;
+    return SOX_SAMPLE_TO_SIGNED_24BIT(s, clips);
+}
 
 void Sample::splitFile() {
     std::cout << "splitting sample " << filename_ << std::endl;
+    static int32_t(*functable[5])(sox_sample_t) = {NULL, to8bit, to16bit, to24bit, to32bit};
     SampleBank & bank = SampleBank::getInstance();
     sox_format_t *in;
     std::list<SplitBuf* > buf;
@@ -423,7 +447,7 @@ void Sample::splitFile() {
         do {
             SplitBuf *newbuf = new SplitBuf(bufsize*sizeof(sox_sample_t));
             buf.push_back(newbuf);
-            read = sox_read(in, *newbuf, bufsize);
+            read = sox_read(in, *newbuf, bufsize);            
             if (unloadBufs) {
                 buf.back()->unload();
             }
@@ -442,12 +466,10 @@ void Sample::splitFile() {
                 limit = read;
             }
             
-            sox_sample_t frame_abs = 0;
             for (size_t ix = 0; ix < bufsize; ++ix) {
                 ++count;
-                sox_sample_t sample_abs = abs((**it)[ix]);
+                int sample_abs = abs(functable[bank.getSampleSize()]((**it)[ix]));
                 sum += sample_abs;
-                frame_abs += sample_abs;
                 squaresum += ((double)sample_abs * sample_abs);
                 max = (sample_abs > max) ? sample_abs : max;
             }
@@ -457,7 +479,7 @@ void Sample::splitFile() {
         }
         
         mean = sum/count;
-#define FLOOR floor
+#define FLOOR maxfloor
         floor = 0.1 * mean;
         maxfloor = 0.01 * max;
         rmsfloor = 0.1 * sqrt(squaresum/count);
@@ -485,40 +507,48 @@ void Sample::splitFile() {
     // stash it here instead of deleting
     size_t prevBufSize = 0;
     size_t lastBufSampleLength = 0;
+    size_t currentGapLength = 0;
     bool inGap = false;
+    bool edge = false;
+    bool writeGap = false;
     while ( !buf.empty() ) {
-        size_t offset = 0; // offset is the end of the last write from this buf.front()
-//        size_t boundary = 0; // boundary is the first sample of the current section
+        size_t lastWriteEnd = 0; // also the beginning of the current word
+        
         if (1 == buf.size()) {
             limit = lastbufsize;
         }
 
         for (size_t frameix = 0; frameix < limit; frameix += bank.getChannels()) {
-            bool edge = false;
-            bool write = false;
             double s = 0;
             for (size_t sampleix = 0; sampleix < bank.getChannels(); ++sampleix) {
-               s += fabs((*buf.front())[frameix+sampleix] / (double)bank.getChannels());
+               s += fabs(functable[bank.getSampleSize()]((*buf.front())[frameix+sampleix]) / (double)bank.getChannels());
             }
             
-            if (s < FLOOR && !inGap) {
-                inGap = true;
-                edge = true;
-                write = (frameix - offset) > 0; 
-                // we are starting a gap, unless this is the first buf
-            } else if (inGap) {
-                inGap = false;
-                edge = true;
-                write = !((frameix - offset + prevBufSize) > gapsize);
-            } else if (!inGap && (frameix - offset + lastBufSampleLength) > maxSampleSize) {
-                edge = true;
-                write = true;
-                
+            if (s < FLOOR) {
+                if (!inGap) {
+                    // start counting gap
+                    inGap = true;
+                    currentGapLength = 0;
+                } else {
+                    ++currentGapLength;
+                }
+            } else {
+                if (inGap) {
+                    inGap = false;
+                    if (currentGapLength > gapsize) {
+                        edge = true;
+                        writeGap = false;
+                    }
+                } else if (!inGap && (frameix - lastWriteEnd + lastBufSampleLength) > maxSampleSize) {
+                    edge = writeGap = true;
+                }
             }
             
             if (edge) {
-                if (write) {
-                    write = false;
+                edge = false;
+                size_t writeLen;
+                if (writeGap) {
+                    writeLen = (frameix - lastWriteEnd) * bank.getSampleSize();
                     if (prevBuf != NULL) {
                         assert(prevBufSize > 0);
                         sox_write(out, (sox_sample_t*)prevBuf, prevBufSize);
@@ -527,29 +557,42 @@ void Sample::splitFile() {
                         prevBufSize = 0;
                     }
                     
-                    size_t samplesToWrite = frameix - offset;
-                    sox_write(out, *(buf.front()) + offset, samplesToWrite);
+                    sox_write(out, *(buf.front()) + lastWriteEnd * bank.getSampleSize(), writeLen);
                 } else {
-                    sox_close(out);
-                    // make a new word with each file
-                    words_.push_back(new Word(this, word_ix));
-                    ++word_ix;
-                    if (word_ix > 1000) {
-                        std::cout << "OH NO" << std::endl;
+                    writeLen = (frameix - lastWriteEnd - currentGapLength) * bank.getSampleSize();
+                    if (prevBuf != NULL) {
+                        assert(prevBufSize > 0);
+                        size_t prevWriteSize = prevBufSize;
+                        if (currentGapLength > lastWriteEnd) {
+                            // we don't need to reach back into the prevBuf to kill the gap
+                            writeLen = 0;
+                            prevWriteSize -= (currentGapLength - lastWriteEnd) * bank.getSampleSize();
+                        }
+                        sox_write(out, (sox_sample_t*)prevBuf, prevWriteSize);
+                        delete prevBuf;
+                        prevBuf = NULL;
+                        prevBufSize = 0;
                     }
-                    filename = filebase+"/"+stringFrom(word_ix);
-                    out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
-                    offset = frameix;
+                    
+                    if (writeLen > 0) {
+                        sox_write(out, *(buf.front()) + lastWriteEnd * bank.getSampleSize(), writeLen);
+                    }
                 }
+                words_.push_back(new Word(this, word_ix));
+                ++word_ix;
+                sox_close(out);
+                filename = filebase+"/"+stringFrom(word_ix);
+                out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
+                lastWriteEnd = frameix;
             }             
         }
         
         if (inGap) {
             prevBuf = buf.front();
-            prevBufSize = limit - offset;
+            prevBufSize = (limit - lastWriteEnd) * bank.getSampleSize();
         } else {
-            lastBufSampleLength = limit - offset;
-            sox_write(out, *(buf.front())+offset, limit - offset);
+            lastBufSampleLength = limit - lastWriteEnd;
+            sox_write(out, *(buf.front())+lastWriteEnd, (limit - lastWriteEnd) * bank.getSampleSize());
             delete buf.front();
         }
         buf.pop_front();

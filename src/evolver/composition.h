@@ -25,8 +25,8 @@ extern "C" {
 }
 #include "ga/ga.h"
 
-#define BUFSIZE (1 << 24)
-#define MAXBUFS 64
+#define BUFSIZE (1 << 16)
+#define MAXBUFS 8
 #define MAXFILEINMEM BUFSIZE * MAXBUFS
 #define INTERVAL 0.1
 #define MINDURATION 15.0

@@ -4,17 +4,26 @@
 		activeBuildConfigurationName = Debug;
 		activeExecutable = FC4DBB81116CBE2800C8BF24 /* testgen */;
 		activeTarget = 8DD76F620486A84900D96B5E /* testgen */;
+		breakpoints = (
+			FC9375B0116E913300A26715 /* main.cpp:68 */,
+			FC9375D2116E92CC00A26715 /* main.cpp:52 */,
+			FC9375E0116F536300A26715 /* main.cpp:60 */,
+			FC937605116F560E00A26715 /* main.cpp:47 */,
+			FC937607116F562E00A26715 /* main.cpp:52 */,
+			FC937609116F562F00A26715 /* main.cpp:50 */,
+			FC937653116F595F00A26715 /* main.cpp:40 */,
+		);
 		codeSenseManager = FC4DBB90116CBE4400C8BF24 /* Code sense */;
 		executables = (
 			FC4DBB81116CBE2800C8BF24 /* testgen */,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 292339240;
-			PBXWorkspaceStateSaveDate = 292339240;
+			PBXPerProjectTemplateStateSaveDate = 292559566;
+			PBXWorkspaceStateSaveDate = 292559566;
 		};
 		perUserProjectItems = {
-			FC4DBB86116CBE2C00C8BF24 /* PBXBookmark */ = FC4DBB86116CBE2C00C8BF24 /* PBXBookmark */;
-			FC4DBB92116CBE7100C8BF24 /* PBXTextBookmark */ = FC4DBB92116CBE7100C8BF24 /* PBXTextBookmark */;
+			FCE73EBD11701AD00033505C /* PBXBookmark */ = FCE73EBD11701AD00033505C /* PBXBookmark */;
+			FCE73ED611701BFE0033505C /* PBXTextBookmark */ = FCE73ED611701BFE0033505C /* PBXTextBookmark */;
 		};
 		sourceControlManager = FC4DBB8F116CBE4400C8BF24 /* Source Control */;
 		userBuildSettings = {
@@ -22,10 +31,10 @@
 	};
 	08FB7796FE84155DC02AAC07 /* main.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {932, 649}}";
-			sepNavSelRange = "{53, 0}";
-			sepNavVisRange = "{0, 176}";
-			sepNavWindowFrame = "{{38, 90}, {991, 762}}";
+			sepNavIntBoundsRect = "{{0, 0}, {716, 938}}";
+			sepNavSelRange = "{1089, 0}";
+			sepNavVisRange = "{160, 1574}";
+			sepNavWindowFrame = "{{38, 87}, {775, 765}}";
 		};
 	};
 	8DD76F620486A84900D96B5E /* testgen */ = {
@@ -37,8 +46,10 @@
 	FC4DBB81116CBE2800C8BF24 /* testgen */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
+			YES,
 		);
 		argumentStrings = (
+			foo.wav,
 		);
 		autoAttachOnCrash = 1;
 		breakpointsEnabled = 1;
@@ -47,6 +58,7 @@
 		customDataFormattersEnabled = 1;
 		debuggerPlugin = GDBDebugging;
 		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
 		enableDebugStr = 1;
 		environmentEntries = (
 		);
@@ -54,12 +66,14 @@
 		executableUserSymbolLevel = 0;
 		libgmallocEnabled = 0;
 		name = testgen;
+		savedGlobals = {
+		};
 		sourceDirectories = (
 		);
-	};
-	FC4DBB86116CBE2C00C8BF24 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		variableFormatDictionary = {
+			"s-sox_sample_t-generate" = 1;
+			"t-sox_sample_t-main" = 1;
+		};
 	};
 	FC4DBB8F116CBE4400C8BF24 /* Source Control */ = {
 		isa = PBXSourceControlManager;
@@ -72,14 +86,135 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	FC4DBB92116CBE7100C8BF24 /* PBXTextBookmark */ = {
+	FC9375B0116E913300A26715 /* main.cpp:68 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 68;
+		location = testgen;
+		modificationTime = 292510049.724552;
+		state = 2;
+	};
+	FC9375D2116E92CC00A26715 /* main.cpp:52 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 52;
+		location = testgen;
+		modificationTime = 292510049.72473;
+		state = 2;
+	};
+	FC9375E0116F536300A26715 /* main.cpp:60 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 60;
+		location = testgen;
+		modificationTime = 292510049.724843;
+		state = 2;
+	};
+	FC937605116F560E00A26715 /* main.cpp:47 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 47;
+		modificationTime = 292510049.724935;
+		state = 2;
+	};
+	FC937607116F562E00A26715 /* main.cpp:52 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 52;
+		location = testgen;
+		modificationTime = 292510049.725036;
+		state = 2;
+	};
+	FC937609116F562F00A26715 /* main.cpp:50 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 50;
+		location = testgen;
+		modificationTime = 292510049.725135;
+		state = 2;
+	};
+	FC937653116F595F00A26715 /* main.cpp:40 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		functionName = "main (int argc, char * const argv[])";
+		hitCount = 1;
+		ignoreCount = 0;
+		lineNumber = 40;
+		modificationTime = 292559566.380293;
+		state = 0;
+	};
+	FCE73EBD11701AD00033505C /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+	};
+	FCE73ED611701BFE0033505C /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
-		name = "main.cpp: 6";
+		name = "main.cpp: 35";
 		rLen = 0;
-		rLoc = 53;
+		rLoc = 1089;
 		rType = 0;
-		vrLen = 176;
-		vrLoc = 0;
+		vrLen = 1574;
+		vrLoc = 160;
 	};
 }
