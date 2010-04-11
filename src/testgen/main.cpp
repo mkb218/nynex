@@ -17,22 +17,11 @@ int main (int argc, char * const argv[]) {
 
     sox_format_t *out = sox_open_write(argv[1], &signal, NULL, NULL, NULL, NULL);
     srandomdev();
-    generate(out, 20, 0x1111, 0x1111);
-    generate(out, 22050, 3276, 0x7fff);
-    generate(out, 20, 0x1111, 0x1111);
-    generate(out, 2000, 0, 0x0100);
-    generate(out, 20, 0x2222, 0x2222);
-    generate(out, 44060, 3276, 0x7fff);
-    generate(out, 20, 0x2222, 0x2222);
-    generate(out, 20, 0x3333, 0x3333);
-    generate(out, 44060, 3276, 0x7fff);
-    generate(out, 20, 0x3333, 0x3333);
-    generate(out, 20, 0x4444, 0x4444);
-    generate(out, 44060, 3276, 0x7fff);
-    generate(out, 20, 0x4444, 0x4444);
-    generate(out, 20, 0x5555, 0x5555);
-    generate(out, 44060, 3276, 0x7fff);
-    generate(out, 20, 0x5555, 0x5555);
+    generate(out, 20, 101, 101);
+    generate(out, 20, 50, 50);
+    generate(out, 20, 49, 49);
+    generate(out, 20, 10000, 10000);
+    generate(out, 20, 49, 49);
     sox_close(out);
     sox_format_t *in = sox_open_read(argv[1], &signal, NULL, NULL);
     sox_sample_t t;
@@ -55,12 +44,11 @@ void generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t
                 }
                 s <<= 16;
                 buf[i] = s;
+                if (random() % 2) {
+                    buf[i] *= -1;
+                }
             }
   
-  //          buf[i] = 0x01020304;
-            if (random() % 2) {
-                buf[i] *= -1;
-            }
         }
     } catch (...) {
         delete [] buf;

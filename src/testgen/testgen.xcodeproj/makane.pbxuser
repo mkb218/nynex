@@ -5,25 +5,21 @@
 		activeExecutable = FC4DBB81116CBE2800C8BF24 /* testgen */;
 		activeTarget = 8DD76F620486A84900D96B5E /* testgen */;
 		breakpoints = (
-			FC9375B0116E913300A26715 /* main.cpp:68 */,
-			FC9375D2116E92CC00A26715 /* main.cpp:52 */,
-			FC9375E0116F536300A26715 /* main.cpp:60 */,
-			FC937605116F560E00A26715 /* main.cpp:47 */,
-			FC937607116F562E00A26715 /* main.cpp:52 */,
-			FC937609116F562F00A26715 /* main.cpp:50 */,
-			FC937653116F595F00A26715 /* main.cpp:40 */,
+			FC9375B0116E913300A26715 /* main.cpp:56 */,
+			FC9375D2116E92CC00A26715 /* main.cpp:41 */,
+			FC9375E0116F536300A26715 /* main.cpp:52 */,
+			FC937605116F560E00A26715 /* main.cpp:36 */,
+			FC937607116F562E00A26715 /* main.cpp:41 */,
+			FC937609116F562F00A26715 /* main.cpp:39 */,
+			FC937653116F595F00A26715 /* main.cpp:29 */,
 		);
 		codeSenseManager = FC4DBB90116CBE4400C8BF24 /* Code sense */;
 		executables = (
 			FC4DBB81116CBE2800C8BF24 /* testgen */,
 		);
 		perUserDictionary = {
-			PBXPerProjectTemplateStateSaveDate = 292559566;
-			PBXWorkspaceStateSaveDate = 292559566;
-		};
-		perUserProjectItems = {
-			FCE73EBD11701AD00033505C /* PBXBookmark */ = FCE73EBD11701AD00033505C /* PBXBookmark */;
-			FCE73ED611701BFE0033505C /* PBXTextBookmark */ = FCE73ED611701BFE0033505C /* PBXTextBookmark */;
+			PBXPerProjectTemplateStateSaveDate = 292644122;
+			PBXWorkspaceStateSaveDate = 292644122;
 		};
 		sourceControlManager = FC4DBB8F116CBE4400C8BF24 /* Source Control */;
 		userBuildSettings = {
@@ -31,9 +27,9 @@
 	};
 	08FB7796FE84155DC02AAC07 /* main.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {716, 938}}";
-			sepNavSelRange = "{1089, 0}";
-			sepNavVisRange = "{160, 1574}";
+			sepNavIntBoundsRect = "{{0, 0}, {716, 812}}";
+			sepNavSelRange = "{769, 0}";
+			sepNavVisRange = "{53, 1377}";
 			sepNavWindowFrame = "{{38, 87}, {775, 765}}";
 		};
 	};
@@ -86,7 +82,7 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
-	FC9375B0116E913300A26715 /* main.cpp:68 */ = {
+	FC9375B0116E913300A26715 /* main.cpp:56 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -98,12 +94,29 @@
 		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 68;
+		lineNumber = 56;
 		location = testgen;
-		modificationTime = 292510049.724552;
+		modificationTime = 292647635.034635;
 		state = 2;
 	};
-	FC9375D2116E92CC00A26715 /* main.cpp:52 */ = {
+	FC9375D2116E92CC00A26715 /* main.cpp:41 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 41;
+		location = testgen;
+		modificationTime = 292647635.035812;
+		state = 2;
+	};
+	FC9375E0116F536300A26715 /* main.cpp:52 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -117,10 +130,10 @@
 		ignoreCount = 0;
 		lineNumber = 52;
 		location = testgen;
-		modificationTime = 292510049.72473;
+		modificationTime = 292647635.037061;
 		state = 2;
 	};
-	FC9375E0116F536300A26715 /* main.cpp:60 */ = {
+	FC937605116F560E00A26715 /* main.cpp:36 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -132,12 +145,28 @@
 		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 60;
+		lineNumber = 36;
+		modificationTime = 292647635.038168;
+		state = 2;
+	};
+	FC937607116F562E00A26715 /* main.cpp:41 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 41;
 		location = testgen;
-		modificationTime = 292510049.724843;
+		modificationTime = 292647635.039289;
 		state = 2;
 	};
-	FC937605116F560E00A26715 /* main.cpp:47 */ = {
+	FC937609116F562F00A26715 /* main.cpp:39 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -149,45 +178,12 @@
 		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 47;
-		modificationTime = 292510049.724935;
-		state = 2;
-	};
-	FC937607116F562E00A26715 /* main.cpp:52 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
-		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 52;
+		lineNumber = 39;
 		location = testgen;
-		modificationTime = 292510049.725036;
+		modificationTime = 292647635.040439;
 		state = 2;
 	};
-	FC937609116F562F00A26715 /* main.cpp:50 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
-		functionName = "generate(sox_format_t* file, size_t samples, sox_sample_t min, sox_sample_t max)";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 50;
-		location = testgen;
-		modificationTime = 292510049.725135;
-		state = 2;
-	};
-	FC937653116F595F00A26715 /* main.cpp:40 */ = {
+	FC937653116F595F00A26715 /* main.cpp:29 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -197,24 +193,10 @@
 		delayBeforeContinue = 0;
 		fileReference = 08FB7796FE84155DC02AAC07 /* main.cpp */;
 		functionName = "main (int argc, char * const argv[])";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 40;
-		modificationTime = 292559566.380293;
-		state = 0;
-	};
-	FCE73EBD11701AD00033505C /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
-	};
-	FCE73ED611701BFE0033505C /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
-		name = "main.cpp: 35";
-		rLen = 0;
-		rLoc = 1089;
-		rType = 0;
-		vrLen = 1574;
-		vrLoc = 160;
+		lineNumber = 29;
+		modificationTime = 292647743.837501;
+		state = 1;
 	};
 }

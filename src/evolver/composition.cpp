@@ -28,8 +28,8 @@
 
 #include <errno.h>
 
-#define MAX_GAPSIZE 0.005
-#define MAX_SAMPLESIZE 0.5
+#define MIN_SAMPLESIZE 0.1
+#define MAX_SAMPLESIZE 2
 
 using namespace nynex;
 using std::sort;
@@ -378,7 +378,7 @@ void Sample::makeWords() {
     std::string indexfile = indexdir + "/" + filename_ + ".index";
     struct stat junk;
     
-    if (false && (0 == stat(indexfile.c_str(), &junk))) {
+    if (0 == stat(indexfile.c_str(), &junk)) {
         int files;
         std::ifstream stream(indexfile.c_str());
         if (stream.fail()) {
@@ -430,7 +430,7 @@ void Sample::splitFile() {
     double mean;
     size_t read;
     size_t bufsize = BUFSIZE;
-    sox_sample_t floor, maxfloor, rmsfloor;
+    sox_sample_t floor, maxfloor, rmsfloor, exit;
     {
         struct stat junk;
         int stat_status = stat(filename_.c_str(), &junk);
@@ -479,16 +479,16 @@ void Sample::splitFile() {
         }
         
         mean = sum/count;
-#define FLOOR maxfloor
-        floor = 0.1 * mean;
+#define FLOOR floor
+        floor = 0.15 * mean;
         maxfloor = 0.01 * max;
-        rmsfloor = 0.1 * sqrt(squaresum/count);
+        rmsfloor = 0.2 * sqrt(squaresum/count);
+        exit = FLOOR * 0.2;
     }
     
     const size_t lastbufsize = read;
     
-    // if more than MAX_GAPSIZE is below this level eliminate those samples
-    size_t gapsize = MAX_GAPSIZE * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
+    size_t minSampleSize = MIN_SAMPLESIZE * bank.getSampleRate() * bank.getChannels();
     size_t maxSampleSize = MAX_SAMPLESIZE * bank.getSampleRate() * bank.getChannels();
     // all samples between gaps are put in own files
     size_t word_ix = 0;
@@ -502,15 +502,8 @@ void Sample::splitFile() {
     size_t list_ix = 0;
     size_t limit = bufsize;
     
-    SplitBuf * prevBuf = NULL; // if the end of a buf is in a gap
-    // but we don't yet know if the gap is long enough to dump
-    // stash it here instead of deleting
-    size_t prevBufSize = 0;
-    size_t lastBufSampleLength = 0;
-    size_t currentGapLength = 0;
-    bool inGap = false;
-    bool edge = false;
-    bool writeGap = false;
+    bool inGap = true;
+    bool outputReady = false;
     while ( !buf.empty() ) {
         size_t lastWriteEnd = 0; // also the beginning of the current word
         
@@ -521,84 +514,53 @@ void Sample::splitFile() {
         for (size_t frameix = 0; frameix < limit; frameix += bank.getChannels()) {
             double s = 0;
             for (size_t sampleix = 0; sampleix < bank.getChannels(); ++sampleix) {
-               s += fabs(functable[bank.getSampleSize()]((*buf.front())[frameix+sampleix]) / (double)bank.getChannels());
+                double sampleval = functable[bank.getSampleSize()]((*buf.front())[frameix+sampleix]);
+                s += (fabs(sampleval) / bank.getChannels());
             }
             
-            if (s < FLOOR) {
-                if (!inGap) {
-                    // start counting gap
-                    inGap = true;
-                    currentGapLength = 0;
-                } else {
-                    ++currentGapLength;
+            if (!inGap && (frameix - lastWriteEnd > minSampleSize) && ((s < exit) || (frameix - lastWriteEnd) > maxSampleSize)) {
+                // write sample
+                if (!outputReady) {
+                    out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
+                    outputReady = true;
                 }
-            } else {
-                if (inGap) {
-                    inGap = false;
-                    if (currentGapLength > gapsize) {
-                        edge = true;
-                        writeGap = false;
-                    }
-                } else if (!inGap && (frameix - lastWriteEnd + lastBufSampleLength) > maxSampleSize) {
-                    edge = writeGap = true;
-                }
-            }
-            
-            if (edge) {
-                edge = false;
-                size_t writeLen;
-                if (writeGap) {
-                    writeLen = (frameix - lastWriteEnd) * bank.getSampleSize();
-                    if (prevBuf != NULL) {
-                        assert(prevBufSize > 0);
-                        sox_write(out, (sox_sample_t*)prevBuf, prevBufSize);
-                        delete prevBuf;
-                        prevBuf = NULL;
-                        prevBufSize = 0;
-                    }
-                    
-                    sox_write(out, *(buf.front()) + lastWriteEnd * bank.getSampleSize(), writeLen);
-                } else {
-                    writeLen = (frameix - lastWriteEnd - currentGapLength) * bank.getSampleSize();
-                    if (prevBuf != NULL) {
-                        assert(prevBufSize > 0);
-                        size_t prevWriteSize = prevBufSize;
-                        if (currentGapLength > lastWriteEnd) {
-                            // we don't need to reach back into the prevBuf to kill the gap
-                            writeLen = 0;
-                            prevWriteSize -= (currentGapLength - lastWriteEnd) * bank.getSampleSize();
-                        }
-                        sox_write(out, (sox_sample_t*)prevBuf, prevWriteSize);
-                        delete prevBuf;
-                        prevBuf = NULL;
-                        prevBufSize = 0;
-                    }
-                    
-                    if (writeLen > 0) {
-                        sox_write(out, *(buf.front()) + lastWriteEnd * bank.getSampleSize(), writeLen);
-                    }
+                sox_write(out, *(buf.front()) + lastWriteEnd, frameix - lastWriteEnd);
+                if (frameix - lastWriteEnd == 0) {
+                    std::cout << "what1";
                 }
                 words_.push_back(new Word(this, word_ix));
                 ++word_ix;
                 sox_close(out);
+                outputReady = false;
                 filename = filebase+"/"+stringFrom(word_ix);
-                out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
                 lastWriteEnd = frameix;
-            }             
+                inGap = (s < exit);
+            } else if (inGap && s > FLOOR) {
+                lastWriteEnd = frameix;
+                inGap = false;
+            }
+            
         }
         
-        if (inGap) {
-            prevBuf = buf.front();
-            prevBufSize = (limit - lastWriteEnd) * bank.getSampleSize();
-        } else {
-            lastBufSampleLength = limit - lastWriteEnd;
-            sox_write(out, *(buf.front())+lastWriteEnd, (limit - lastWriteEnd) * bank.getSampleSize());
-            delete buf.front();
+        if (!inGap && limit - lastWriteEnd > 0) {
+            if (!outputReady) {
+                out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
+                outputReady = true;
+            }
+            if (limit - lastWriteEnd == 0) {
+                std::cout << "what2";
+            }
+            sox_write(out, *(buf.front())+lastWriteEnd, limit - lastWriteEnd);
         }
+        delete buf.front();
         buf.pop_front();
     }
-    sox_close(out);
-    words_.push_back(new Word(this, word_ix));
+    if (outputReady) {
+        sox_close(out);
+        words_.push_back(new Word(this, word_ix));
+    } else {
+        --word_ix;
+    }
     
     mkdir_or_throw("indexes");
     std::ofstream stream(("indexes/"+filebase+".index").c_str());
@@ -822,6 +784,7 @@ void SplitBuf::load() const {
 
 void SplitBuf::unload() const {
     if (state_ != INMEM) throw std::logic_error("unload called with no buffer");
+    mkdir_or_throw(SampleBank::getInstance().getTmpDir());
     sox_format_t *out = sox_open_write(filename().c_str(), &(SampleBank::getInstance().getSignalInfo()), &(SampleBank::getInstance().getEncodingInfo()), "raw", NULL, NULL);
     if (size_ != sox_write(out, buf_, size_)) {
         throw std::runtime_error("couldn't write whole file");
