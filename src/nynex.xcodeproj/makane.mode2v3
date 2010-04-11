@@ -235,7 +235,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCE7417C117175350033505C</string>
+						<string>FCE7418111717B950033505C</string>
 						<key>history</key>
 						<array>
 							<string>FCE741541171737F0033505C</string>
@@ -275,7 +275,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCE7417D117175350033505C</string>
+						<string>FCE7418211717B950033505C</string>
 						<key>history</key>
 						<array>
 							<string>FCF49D8D116FD3F80025EB83</string>
@@ -315,7 +315,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>FCE7417E117175350033505C</string>
+						<string>FCE7418311717B950033505C</string>
 						<key>history</key>
 						<array>
 							<string>FCE7404C117167410033505C</string>
@@ -598,7 +598,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>292648245.94189698</real>
+	<real>292649877.19650102</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -613,7 +613,6 @@
 	<integer>0</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>FCE7417F117175350033505C</string>
 		<string>FCE73DE7116FD4220033505C</string>
 		<string>FCE73DF1116FD8A40033505C</string>
 		<string>FCE73DF2116FD8A40033505C</string>
@@ -622,8 +621,8 @@
 		<string>/Users/makane/code/nynex/src/nynex.xcodeproj</string>
 		<string>FC4DBB18116CB43800C8BF24</string>
 		<string>FCE73E92117019F50033505C</string>
-		<string>1C530D54069F1CE1000CFCEE</string>
 		<string>1C530D5B069F1CE1000CFCEE</string>
+		<string>1C530D54069F1CE1000CFCEE</string>
 	</array>
 	<key>WindowString</key>
 	<string>1088 458 350 420 0 0 1440 878 </string>
