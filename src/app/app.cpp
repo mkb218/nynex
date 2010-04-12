@@ -16,25 +16,26 @@ using namespace nynex;
 // 5.) time's up, retrieve web ratings. if there are ratings, step ga and bounce, otherwise just go back to step 1
 
 static std::string fileForGenAndIndividual(int gen, int i) {
-    return std::string("gen")+stringFrom(gen)+"i"+stringFrom(i)+".wav";
+    return std::string("gen")+stringFrom(gen)+"i"+stringFrom(i)+".aiff";
 }
 
 void BounceThread::threadedFunction() {
     bool done;
-    
     {
         Gatekeeper g(&listmutex_);
         done = bounces_.empty();
     }
     
     while (!done) {
-        bounces_.front().first->bounceToFile(*bounces_.front().second);
+        std::cout << "bouncing to file " << bounces_.front().second << std::endl;
+        bounces_.front().first->bounceToFile(bounces_.front().second);
         {
             Gatekeeper g(&listmutex_);
             bounces_.pop_front();
             done = bounces_.empty();
         }
     }
+    std::cout << "thread complete" << std::endl;
 }
 
 //--------------------------------------------------------------
@@ -87,7 +88,7 @@ void nynexApp::setup(){
     
     // start playin'
     bounceComps();
-    switchState(GENERATION_START); // call this before bouncecomp to avoid getting mangled by the bounce thread
+    switchState(GENERATION_START);
     startPlayComp();
 /*    setupListButtons();
     resetGenTimer();
@@ -136,6 +137,7 @@ void nynexApp::update() {
                 Ratings::getInstance().deleteRatings();
                 bounceComps();
             }
+        case INIT:
             switchState(GENERATION_START);
             startPlayComp();
             break;
@@ -151,6 +153,7 @@ void nynexApp::draw(){
             drawGenStart();
             break;
         case GENERATION_END:
+        case INIT:
             drawGenEnd();
             break;
         case GENERATION_LIST:
@@ -196,12 +199,10 @@ bool nynexApp::checkActiveButton(int x, int y, int button) {
         
     if (state_ == GENERATION_LIST) {
         for (size_t i = 0; i < POPSIZE; ++i) {
-            std::cout << "check button " << i << std::endl;
             int xdist = x - listButtons_[i].x;
             int ydist = y - listButtons_[i].y;
             if (xdist*xdist + ydist*ydist <= listButtons_[i].radius*listButtons_[i].radius) {
                 // active
-                std::cout << "found button " << i << std::endl;
                 listButtons_[i].radius = listRadius_+ACTIVE_RADIUS_INCREMENT;
                 activeButton_ = listButtons_+i;
                 return true;
@@ -291,6 +292,7 @@ void nynexApp::bounceComp(size_t i) {
     if (bounceThread_ == NULL || !bounceThread_->isThreadRunning()) {
         delete bounceThread_;
         bounceThread_ = new BounceThread(dynamic_cast<const Composition &>(evolver_->getPop().individual(i)),bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
+        bounceThread_->startThread();
     } else {
         bounceThread_->addPair(dynamic_cast<const Composition &>(evolver_->getPop().individual(i)),bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
     }
@@ -432,7 +434,6 @@ void nynexApp::setupListButtons() {
         float y = radius + (bigfont_.getLineHeight() + VERT_MARGIN); // past header
         y += ((radius * 2 + VERT_MARGIN) * (i % (POPSIZE/2))); // past existing circles
         y += radius;
-        std::cout << x << " " << y << " " << radius << std::endl;
         listButtons_[i].y = y;
     }
 }
@@ -459,7 +460,6 @@ void nynexApp::setupRateButtons() {
         float y = radius + (bigfont_.getLineHeight() + VERT_MARGIN); // past header
         y += ((radius * 2 + VERT_MARGIN) * (i % (RATINGS+1))); // past existing circles
         y += radius;
-        std::cout << x << " " << y << " " << radius << std::endl;
         rateButtons_[i].y = y;
     }
 }

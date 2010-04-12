@@ -65,18 +65,19 @@ public:
     }
     void addPair(const Composition & c, const std::string & s) {
         Gatekeeper g(&listmutex_);
-        bounces_.push_back(std::make_pair(&c, &s));
+        std::cout << "adding file " << s<< std::endl;
+        bounces_.push_back(std::make_pair(&c, s));
     }
     virtual void threadedFunction();
 private:
     pthread_mutex_t listmutex_;
-    std::list<std::pair<const Composition *, const std::string *> > bounces_;
+    std::list<std::pair<const Composition *, std::string> > bounces_;
 };
     
 class nynexApp : public ofBaseApp{
 
 public:
-    nynexApp() : state_(GENERATION_START), /*sc_(), */evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf"), bounceThread_(NULL) {
+    nynexApp() : state_(INIT), /*sc_(), */evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf"), bounceThread_(NULL) {
         ofBaseApp();
     }
     ~nynexApp() { 
@@ -97,7 +98,8 @@ public:
     void mouseReleased(int x, int y, int button);
     void windowResized(int w, int h);
 private:
-    enum State { GENERATION_START,
+    enum State { INIT,
+        GENERATION_START,
         GENERATION_LIST,
         GENERATION_RATE,
         GENERATION_END
