@@ -58,32 +58,25 @@ class BounceThread : public ofxThread {
 public:
     BounceThread(const Composition & c, const std::string & s) : ofxThread() { 
         pthread_mutex_init(&listmutex_, NULL);
-        sem_ = sem_open("/nynex_bounce_sem", O_CREAT, 0700, 0);
         addPair(c, s); 
     }
     virtual ~BounceThread() {
-        sem_close(sem_);
-        sem_unlink("/nynex_bounce_sem");
         pthread_mutex_destroy(&listmutex_);
     }
     void addPair(const Composition & c, const std::string & s) {
-        {
-            Gatekeeper g(&listmutex_);
-            bounces_.push_back(std::make_pair(&c, &s));
-        }
-        sem_post(sem_);        
+        Gatekeeper g(&listmutex_);
+        bounces_.push_back(std::make_pair(&c, &s));
     }
     virtual void threadedFunction();
 private:
     pthread_mutex_t listmutex_;
-    sem_t *sem_;
     std::list<std::pair<const Composition *, const std::string *> > bounces_;
 };
     
 class nynexApp : public ofBaseApp{
 
 public:
-    nynexApp() : state_(GENERATION_START), /*sc_(), */evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf"), bounceThread(NULL) {
+    nynexApp() : state_(GENERATION_START), /*sc_(), */evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf"), bounceThread_(NULL) {
         ofBaseApp();
     }
     ~nynexApp() { 
@@ -167,7 +160,7 @@ private:
 //    SoundCloudServer * sc_;
     TwitterServer * twitter_;
     ofSoundPlayer player_;
-    BounceThread *bounceThread;
+    BounceThread *bounceThread_;
     ofTrueTypeFont bigfont_;
     ofTrueTypeFont smallfont_;
     int compIndex_;

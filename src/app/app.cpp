@@ -20,19 +20,27 @@ static std::string fileForGenAndIndividual(int gen, int i) {
 }
 
 void BounceThread::threadedFunction() {
-    while (sem_trywait(sem_)) == 0) {
+    bool done;
+    
+    {
+        Gatekeeper g(&listmutex_);
+        done = bounces_.empty();
+    }
+    
+    while (!done) {
         bounces_.front().first->bounceToFile(*bounces_.front().second);
         {
             Gatekeeper g(&listmutex_);
             bounces_.pop_front();
-        } 
+            done = bounces_.empty();
+        }
     }
 }
 
 //--------------------------------------------------------------
 void nynexApp::setup(){
     // fullscreen
-    ofSetFullscreen(true);
+    ofSetFullscreen(false);
     
     // set background color
     ofBackground(BG_R, BG_G, BG_B);
@@ -78,11 +86,12 @@ void nynexApp::setup(){
     smallfont_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", SMALLFONTSIZE);
     
     // start playin'
-    bounceComp(0);
-    startPlayComp(); // will call resetTimer()
-    switchState(GENERATION_START);
-//    setupListButtons();
-//    switchState(GENERATION_LIST);
+    bounceComps();
+    switchState(GENERATION_START); // call this before bouncecomp to avoid getting mangled by the bounce thread
+    startPlayComp();
+/*    setupListButtons();
+    resetGenTimer();
+    switchState(GENERATION_LIST); */
 }
 
 void nynexApp::Config::setFromStream(istream & is) {
@@ -102,7 +111,7 @@ void nynexApp::update() {
         case GENERATION_START:
             if (!player_.getIsPlaying()) {
                 if (moreComps()) {
-                    bounceComp(compIndex_);
+//                    bounceComp(compIndex_);
                     playNextComp();
                 } else {
                     resetGenTimer();
@@ -127,8 +136,8 @@ void nynexApp::update() {
                 Ratings::getInstance().deleteRatings();
                 bounceComps();
             }
-            startPlayComp();
             switchState(GENERATION_START);
+            startPlayComp();
             break;
         default:
             switchState(GENERATION_START); // can't happen!
@@ -260,8 +269,6 @@ void nynexApp::windowResized(int w, int h){
 
 void nynexApp::startPlayComp() {
     compIndex_ = 0;
-    resetGenTimer();
-    playNextComp();
 }
 
 void nynexApp::playNextComp() {
@@ -281,8 +288,12 @@ void nynexApp::bounceComps() {
 }
 
 void nynexApp::bounceComp(size_t i) {
-    delete bounceThread;
-    bounceThread = new BounceThread(dynamic_cast<const Composition &>(evolver_->getPop().individual(i)),bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
+    if (bounceThread_ == NULL || !bounceThread_->isThreadRunning()) {
+        delete bounceThread_;
+        bounceThread_ = new BounceThread(dynamic_cast<const Composition &>(evolver_->getPop().individual(i)),bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
+    } else {
+        bounceThread_->addPair(dynamic_cast<const Composition &>(evolver_->getPop().individual(i)),bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
+    }
 }
 
 bool nynexApp::gotRatings() {
@@ -454,5 +465,8 @@ void nynexApp::setupRateButtons() {
 }
 
 void nynexApp::switchState(State state) { 
-    state_ = state; framesSinceStateChange_ = 0; 
+    if (bounceThread_ == NULL || !bounceThread_->isThreadRunning()) {
+        state_ = state;
+        framesSinceStateChange_ = 0; 
+    }
 }
