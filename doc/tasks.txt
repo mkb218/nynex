@@ -14,6 +14,6 @@
 - double check to make sure all correct license advertising clauses are present, make sure i am using a compatible license. might need to be gpl :(
 - make sure ga's terminator is NEVER
 - install pygooglevoice, soundcloud c api wrapper, curl,  on kiosk
-- can i figure out a way to bounce compositions in a separate thread to avoid UI lockups?
+- can i figure out a way to bounce compositions in a separate thread to avoid UI lockups? - DONE
 - can i figure out a way to allow people to pop in CDs or attach usb drives? SAFELY. deprioritize this
-- add beteckna to contrib
+- add beteckna to contrib page
