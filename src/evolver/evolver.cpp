@@ -83,7 +83,7 @@ void Evolver::loadFromFile(const std::string & filename) {
         std::runtime_error("input file failed for " + filename);
     }
     std::string serialized;
-    stream >> serialized;
+    getline(stream,serialized);
     std::list<std::string> strs;
     boost::split(strs, serialized, boost::is_from_range(TERMINATOR, TERMINATOR));
     if (strs.size() < 5) { 
