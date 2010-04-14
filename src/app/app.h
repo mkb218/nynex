@@ -87,7 +87,7 @@ private:
 class nynexApp : public ofBaseApp{
 
 public:
-    nynexApp() : state_(INIT), sc_(NULL), evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf"), bounceThread_(NULL) {
+    nynexApp() : state_(INIT), sc_(NULL), evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf"), bounceThread_(NULL), framesSinceStateChange_(0) {
         ofBaseApp();
     }
     ~nynexApp() { 
@@ -156,6 +156,7 @@ private:
     void drawTimer(int);
     void drawGenTimer();
     void drawRateTimer();
+    void drawEndTimer();
     void drawGenEnd();
     void drawGenStart();
     void drawGenList();

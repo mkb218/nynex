@@ -67,6 +67,7 @@ void nynexApp::setup(){
     SampleBank::getInstance().setSampleRate(fromString<double>(config_.kvp["samplerate"]));
     SampleBank::getInstance().setSampleSize(fromString<int>(config_.kvp["samplesize"]));
     SampleBank::getInstance().setChannels(fromString<int>(config_.kvp["channels"]));
+    SampleBank::getInstance().setTmpDir(config_.kvp["tmpdir"]);
     SampleBank::getInstance().setSampleDir(samplepath_);
     
     // init ga (from file if exists)
@@ -327,7 +328,7 @@ bool nynexApp::gotRatings() {
 
 void nynexApp::drawGenStart() {
     std::string s("Generation ");
-    s = s + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(compIndex_-1);
+    s = s + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(min(0,compIndex_-1));
     float width = bigfont_.stringWidth(s);
     float height = bigfont_.getLineHeight();
     float hpos = (ofGetWidth() - width) / 2;
@@ -337,9 +338,8 @@ void nynexApp::drawGenStart() {
 }
 
 void nynexApp::drawGenEnd() {
-    static char "
     drawHeader(std::string("Creating Next Generation\nContribute! Call " PHONE " or visit\nhttp://nynex.hydrogenproject.com"));
-//    drawGenTimer();
+    drawEndTimer();
 }
 
 void nynexApp::drawGenList() {
@@ -397,11 +397,16 @@ void nynexApp::drawRateTimer() {
 void nynexApp::drawGenTimer() {
     drawTimer(GEN_LIMIT_MILLIS - (ofGetElapsedTimeMillis() - gentimer_));
 }
-              
+
+void nynexApp::drawEndTimer() {
+    drawTimer(framesSinceStateChange_ * -19294);
+}
+
 void nynexApp::drawTimer(int timeleft) {
     if (timeleft > 0) {
         ofSetColor(0x000000);
     } else {
+        timeleft = -timeleft;
         ofSetColor(TIMER_RED);
     }
     
