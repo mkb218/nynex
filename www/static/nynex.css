@@ -1,5 +1,16 @@
+@font-face {
+    font-family: BetecknaRelative;
+    src: url(BetecknaLowerCase.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: BetecknaAbsolute;
+    src: url(http://nynex.hydrogenproject.com/BetecknaLowerCase.ttf) format("truetype");
+}
+
 body {
-  font-family: Futura,
+  font-family: BetecknaAbsolute, BetecknaRelative,
+  Futura, 
   "Gill Sans",
   "Gill Sans MT",
   Helvetica,

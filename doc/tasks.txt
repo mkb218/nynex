@@ -16,4 +16,5 @@
 - install pygooglevoice, soundcloud c api wrapper, curl,  on kiosk
 - can i figure out a way to bounce compositions in a separate thread to avoid UI lockups? - DONE
 - can i figure out a way to allow people to pop in CDs or attach usb drives? SAFELY. deprioritize this
-- add beteckna to contrib page
+- add beteckna to contrib page - done
+- redo site in php with single header and footer. blah

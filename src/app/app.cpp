@@ -82,23 +82,30 @@ void nynexApp::setup(){
         evolver_->initGA(fromString<float>(config_.kvp["pMutation"]), fromString<int>(config_.kvp["popSize"]), fromString<bool>(config_.kvp["elitist"])?gaTrue:gaFalse);
     }
     
-    // create soundcloud and twitter servers from settings file, google voice downloader, web rating downloader
-    twitter_ = new TwitterServer(config_.kvp["twitterhost"],config_.kvp["twitteruser"],config_.kvp["twitterpass"],config_.kvp["bitlykeyfile"]);
-    sc_ = new SoundCloudServer(config_.kvp["soundcloudConsumerKey"], config_.kvp["soundcloudConsumerSecret"], bouncepath_, config_.kvp["soundcloudScpCmd"], SANDBOX);
     
-    // add notifiers to ga
-    SubmitSoundCloudAction *sc = new SubmitSoundCloudAction(*sc_);
-    evolver_->addNotifier(false, new BounceAction(this));
-    evolver_->addNotifier(false, sc);
-    evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
+    bool offline = fromString<bool>(config_.kvp["offline"]);
+    SubmitSoundCloudAction *sc = NULL;
+    if (!offline) {
+        // create soundcloud and twitter servers from settings file, google voice downloader, web rating downloader
+        twitter_ = new TwitterServer(config_.kvp["twitterhost"],config_.kvp["twitteruser"],config_.kvp["twitterpass"],config_.kvp["bitlykeyfile"]);
+        sc_ = new SoundCloudServer(config_.kvp["soundcloudConsumerKey"], config_.kvp["soundcloudConsumerSecret"], bouncepath_, config_.kvp["soundcloudScpCmd"], SANDBOX);
+
+        // add notifiers to ga
+        sc = new SubmitSoundCloudAction(*sc_);
+        evolver_->addNotifier(false, new BounceAction(this));
+        evolver_->addNotifier(false, sc);
+        evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
+    }
     
     // setup fonts
-    bigfont_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", BIGFONTSIZE);
-    smallfont_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", SMALLFONTSIZE);
+    bigfont_.loadFont("/Users/makane/code/nynex/3rdparty/BetecknaLowerCase.ttf", BIGFONTSIZE);
+    smallfont_.loadFont("/Users/makane/code/nynex/3rdparty/BetecknaLowerCase.ttf", SMALLFONTSIZE);
     
     // start playin'
     bounceComps();
-    startPlayComp(); // will call resetTimer()
+    if (!offline) {
+        sc->action(evolver_->getGA());
+    }
     startPlayComp();
 /*    setupListButtons();
     resetGenTimer();
@@ -330,8 +337,9 @@ void nynexApp::drawGenStart() {
 }
 
 void nynexApp::drawGenEnd() {
+    static char "
     drawHeader(std::string("Creating Next Generation\nContribute! Call " PHONE " or visit\nhttp://nynex.hydrogenproject.com"));
-    drawGenTimer();
+//    drawGenTimer();
 }
 
 void nynexApp::drawGenList() {
