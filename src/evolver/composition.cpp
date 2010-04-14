@@ -28,9 +28,6 @@
 
 #include <errno.h>
 
-#define MIN_SAMPLESIZE 0.1
-#define MAX_SAMPLESIZE 2
-
 using namespace nynex;
 using std::sort;
 
@@ -396,46 +393,29 @@ void Sample::makeWords() {
     wordsReady_ = true;
 }
 
-static inline int32_t to8bit(sox_sample_t s) {
-    SOX_SAMPLE_LOCALS;
-    int clips = 0;
-    return SOX_SAMPLE_TO_UNSIGNED_8BIT(s, clips);
-}
-
-static inline int32_t to16bit(sox_sample_t s) {
-    SOX_SAMPLE_LOCALS;
-    int clips = 0;
-    return SOX_SAMPLE_TO_SIGNED_16BIT(s, clips);
-}
-
-static inline int32_t to24bit(sox_sample_t s) {
-    SOX_SAMPLE_LOCALS;
-    int clips = 0;
-    return SOX_SAMPLE_TO_SIGNED_24BIT(s, clips);
-}
-
-static inline int32_t to32bit(sox_sample_t s) {
-    SOX_SAMPLE_LOCALS;
-    int clips = 0;
-    return SOX_SAMPLE_TO_SIGNED_24BIT(s, clips);
-}
-
 void Sample::splitFile() {
     std::cout << "splitting sample " << filename_ << std::endl;
-    static int32_t(*functable[5])(sox_sample_t) = {NULL, to8bit, to16bit, to24bit, to32bit};
     SampleBank & bank = SampleBank::getInstance();
     sox_format_t *in;
     std::list<SplitBuf* > buf;
     chdir(bank.getSampleDir().c_str());
-    double mean;
-    size_t read;
-    size_t bufsize = BUFSIZE;
-    sox_sample_t floor, maxfloor, rmsfloor, exit;
-    {
-        struct stat junk;
-        int stat_status = stat(filename_.c_str(), &junk);
-        if (stat_status != 0) {
-            throw std::runtime_error(std::string("stat failed ") + stringFrom(stat_status));
+
+    struct stat junk;
+    int stat_status = stat(filename_.c_str(), &junk);
+    if (stat_status != 0) {
+        throw std::runtime_error(std::string("stat failed ") + stringFrom(stat_status));
+    }
+    bool unloadBufs = (junk.st_size > MAXFILEINMEM);
+    in = sox_open_read(filename_.c_str(), &(bank.getSignalInfo()), NULL, NULL);
+    
+    size_t bufsize = BUFSIZE * bank.getChannels(); // needs to be a multiple of number of samples in a frame
+    size_t read = 0; // need this later
+    do {
+        SplitBuf *newbuf = new SplitBuf(bufsize*sizeof(sox_sample_t));
+        buf.push_back(newbuf);
+        read = sox_read(in, *newbuf, bufsize);
+        if (unloadBufs) {
+            buf.back()->unload();
         }
     } while (bufsize == read);
     sox_close(in);
@@ -449,127 +429,83 @@ void Sample::splitFile() {
         if (list_ix + 1 == buf.size()) {
             limit = read;
         }
-        read = 0; // need this later
-        do {
-            SplitBuf *newbuf = new SplitBuf(bufsize*sizeof(sox_sample_t));
-            buf.push_back(newbuf);
-            read = sox_read(in, *newbuf, bufsize);            
-            if (unloadBufs) {
-                buf.back()->unload();
-            }
-        } while (bufsize == read);
-        sox_close(in);
         
-        // find mean of abs values
-        double sum = 0.;
-        double squaresum = 0.;
-        sox_sample_t max = 0;
-        size_t count = 0;
-        size_t list_ix = 0;
-        size_t limit = bufsize;
-        for (std::list<SplitBuf*>::iterator it = buf.begin(); it != buf.end(); ++it) {
-            if (list_ix + 1 == buf.size()) {
-                limit = read;
-            }
-            
-            for (size_t ix = 0; ix < bufsize; ++ix) {
-                ++count;
-                int sample_abs = abs(functable[bank.getSampleSize()]((**it)[ix]));
-                sum += sample_abs;
-                squaresum += ((double)sample_abs * sample_abs);
-                max = (sample_abs > max) ? sample_abs : max;
-            }
-            if (unloadBufs) {
-                (*it)->unload();
-            }
+        for (size_t ix = 0; ix < bufsize; ++ix) {
+            ++count;
+            sum += abs((**it)[ix]);
         }
-        
-        mean = sum/count;
-#define FLOOR floor
-        floor = 0.15 * mean;
-        maxfloor = 0.01 * max;
-        rmsfloor = 0.2 * sqrt(squaresum/count);
-        exit = FLOOR * 0.2;
+        if (unloadBufs) {
+            (*it)->unload();
+        }
     }
     
     double mean = sum/count;
     sox_sample_t floor = 0.1 * mean;
     const size_t lastbufsize = read;
     
-    size_t minSampleSize = MIN_SAMPLESIZE * bank.getSampleRate() * bank.getChannels();
-    size_t maxSampleSize = MAX_SAMPLESIZE * bank.getSampleRate() * bank.getChannels();
+    // if more than 0.01 s is below this level eliminate those samples
+    size_t gapsize = 0.0025 * bank.getSampleRate() * bank.getChannels(); // s * frames/s * samples/frame
+    size_t maxSampleSize = gapsize * 50;
     // all samples between gaps are put in own files
     size_t currentGapLength = 0;
     size_t currentSampleLength = 0;
     size_t word_ix = 0;
-    std::string filebase(filename_);
+    std::string filebase(filename_); // TODO kill extension
     std::string filename(filebase+"/"+stringFrom(word_ix));
     chdir(bank.getSampleDir().c_str());
     mkdir_or_throw("words");
     mkdir_or_throw((std::string("words/")+filebase).c_str());
     sox_format_t * out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
-    size_t list_ix = 0;
-    size_t limit = bufsize;
-    
-    bool inGap = true;
-    bool outputReady = false;
+    list_ix = 0;
+    limit = bufsize;
+    size_t bufsingap = 0;
     while ( !buf.empty() ) {
-        size_t lastWriteEnd = 0; // also the beginning of the current word
-        
+        size_t offset = 0;
         if (1 == buf.size()) {
             limit = lastbufsize;
         }
 
         for (size_t frameix = 0; frameix < limit; frameix += bank.getChannels()) {
+            ++currentSampleLength;
             double s = 0;
             for (size_t sampleix = 0; sampleix < bank.getChannels(); ++sampleix) {
-                double sampleval = functable[bank.getSampleSize()]((*buf.front())[frameix+sampleix]);
-                s += (fabs(sampleval) / bank.getChannels());
+               s += ((*(buf.front()))[frameix+sampleix] / (double)bank.getChannels());
+            }
+            if (abs(s) < floor) {
+                ++currentGapLength;
+            } else {
+                currentGapLength = 0;
             }
             
-            if (!inGap && (frameix - lastWriteEnd > minSampleSize) && ((s < exit) || (frameix - lastWriteEnd) > maxSampleSize)) {
-                // write sample
-                if (!outputReady) {
-                    out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
-                    outputReady = true;
-                }
-                sox_write(out, *(buf.front()) + lastWriteEnd, frameix - lastWriteEnd);
-                if (frameix - lastWriteEnd == 0) {
-                    std::cout << "what1";
-                }
+            if ((currentGapLength > gapsize || currentSampleLength > maxSampleSize) &&
+                (currentSampleLength > currentGapLength)) {
+                size_t samplesToWrite = frameix - offset;
+#ifndef DONTSKIPGAPS
+                // need number of samples between start of buffer and end of gap
+                samplesToWrite -= ((currentGapLength * bank.getChannels()) // total length of gap
+                                  - (bufsingap * bufsize));
+
+#endif
+                sox_write(out, *(buf.front()) + offset, samplesToWrite);
+                sox_close(out);
+                // make a new word with each file
                 words_.push_back(new Word(this, word_ix));
                 ++word_ix;
-                sox_close(out);
-                outputReady = false;
                 filename = filebase+"/"+stringFrom(word_ix);
-                lastWriteEnd = frameix;
-                inGap = (s < exit);
-            } else if (inGap && s > FLOOR) {
-                lastWriteEnd = frameix;
-                inGap = false;
-            }
-            
-        }
-        
-        if (!inGap && limit - lastWriteEnd > 0) {
-            if (!outputReady) {
                 out = sox_open_write(("words/"+filename).c_str(), &(bank.getSignalInfo()), &(bank.getEncodingInfo()), "raw", NULL, NULL);
-                outputReady = true;
-            }
-            if (limit - lastWriteEnd == 0) {
-                std::cout << "what2";
-            }
-            sox_write(out, *(buf.front())+lastWriteEnd, limit - lastWriteEnd);
+                offset = frameix;
+                bufsingap = 0;
+                currentGapLength = 0;
+                currentSampleLength = 0;
+            }             
         }
+        ++bufsingap;
+        sox_write(out, *(buf.front())+offset, limit - offset);
         delete buf.front();
         buf.pop_front();
     }
-    if (outputReady) {
-        sox_close(out);
-        words_.push_back(new Word(this, word_ix));
-    } else {
-        --word_ix;
-    }
+    sox_close(out);
+    words_.push_back(new Word(this, word_ix));
     
     mkdir_or_throw("indexes");
     std::ofstream stream(("indexes/"+filebase+".index").c_str());
@@ -800,7 +736,6 @@ void SplitBuf::load() const {
 
 void SplitBuf::unload() const {
     if (state_ != INMEM) throw std::logic_error("unload called with no buffer");
-    mkdir_or_throw(SampleBank::getInstance().getTmpDir());
     sox_format_t *out = sox_open_write(filename().c_str(), &(SampleBank::getInstance().getSignalInfo()), &(SampleBank::getInstance().getEncodingInfo()), "raw", NULL, NULL);
     if (size_ != sox_write(out, buf_, size_)) {
         throw std::runtime_error("couldn't write whole file");
