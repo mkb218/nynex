@@ -2,15 +2,17 @@
 #define _NYNEX_APP
 
 #include "ofMain.h"
+#include "ofxThread.h"
 #include "evolver.h"
 #include "soundcloud.h"
 #include "twitter.h"
 
 #include <string>
+#include <list>
 #include <fstream>
 
 #define POPSIZE 10
-#define GEN_LIMIT_MILLIS 10000
+#define GEN_LIMIT_MILLIS 36000
 #define RATE_LIMIT_MILLIS 60 * 1000 * 5
 #define RATINGS 5
 
@@ -44,20 +46,64 @@
 
 namespace nynex {
 
+class Gatekeeper {
+public:
+    Gatekeeper(pthread_mutex_t *l) : l_(l) { pthread_mutex_lock(l_); }
+    ~Gatekeeper() { pthread_mutex_unlock(l_); }
+private:
+    pthread_mutex_t *l_;
+};
 class nynexApp;
     
-class BounceAction : public StepAction {
+class BounceThread : public ofxThread {
 public:
+    BounceThread(const Composition & c, const std::string & s) : ofxThread() { 
+        pthread_mutex_init(&listmutex_, NULL);
+        sem_ = sem_open("/nynex_bounce_sem", O_CREAT, 0700, 0);
+        addPair(c, s); 
+    }
+    virtual ~BounceThread() {
+        sem_close(sem_);
+        sem_unlink("/nynex_bounce_sem");
+        pthread_mutex_destroy(&listmutex_);
+    }
+    void addPair(const Composition & c, const std::string & s) {
+        {
+            Gatekeeper g(&listmutex_);
+            bounces_.push_back(std::make_pair(&c, &s));
+        }
+        sem_post(sem_);        
+    }
+    virtual void threadedFunction();
+
+    BounceThread(const Composition & c, const std::string & s) : ofxThread() { 
+        pthread_mutex_init(&listmutex_, NULL);
+        addPair(c, s); 
+    }
+    virtual ~BounceThread() {
+        pthread_mutex_destroy(&listmutex_);
+    }
+    void addPair(const Composition & c, const std::string & s) {
+        Gatekeeper g(&listmutex_);
+        std::cout << "adding file " << s<< std::endl;
+        bounces_.push_back(std::make_pair(&c, s));
+    }
+    virtual void threadedFunction();
+private:
+    pthread_mutex_t listmutex_;
+    std::list<std::pair<const Composition *, std::string> > bounces_;
+};
+
+class BounceAction : public StepAction {
     BounceAction(const nynexApp * n) : app_(n){}
     virtual void action(const GAGeneticAlgorithm & ga);
 private:
     const nynexApp *app_;
 };
-
 class nynexApp : public ofBaseApp{
 
 public:
-    nynexApp() : state_(GENERATION_START), sc_(NULL), evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf") {
+    nynexApp() : state_(INIT), sc_(NULL), evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf"), bounceThread_(NULL) {
         ofBaseApp();
     }
     ~nynexApp() { 
@@ -78,7 +124,8 @@ public:
     void mouseReleased(int x, int y, int button);
     void windowResized(int w, int h);
 private:
-    enum State { GENERATION_START,
+    enum State { INIT,
+        GENERATION_START,
         GENERATION_LIST,
         GENERATION_RATE,
         GENERATION_END
@@ -140,6 +187,7 @@ private:
     SoundCloudServer * sc_;
     TwitterServer * twitter_;
     ofSoundPlayer player_;
+    BounceThread *bounceThread_;
     ofTrueTypeFont bigfont_;
     ofTrueTypeFont smallfont_;
     int compIndex_;

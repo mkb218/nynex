@@ -22,8 +22,27 @@ void BounceAction::action(const GAGeneticAlgorithm & ga) {
     app_->bounceComps();
 }
 
-std::string nynex::fileForGenAndIndividual(int gen, int i) {
+static std::string fileForGenAndIndividual(int gen, int i) {
     return std::string("gen")+stringFrom(gen)+"i"+stringFrom(i)+".aiff";
+}
+
+void BounceThread::threadedFunction() {
+    bool done;
+    {
+        Gatekeeper g(&listmutex_);
+        done = bounces_.empty();
+    }
+    
+    while (!done) {
+        std::cout << "bouncing to file " << bounces_.front().second << std::endl;
+        bounces_.front().first->bounceToFile(bounces_.front().second);
+        {
+            Gatekeeper g(&listmutex_);
+            bounces_.pop_front();
+            done = bounces_.empty();
+        }
+    }
+    std::cout << "thread complete" << std::endl;
 }
 
 //--------------------------------------------------------------
@@ -78,16 +97,12 @@ void nynexApp::setup(){
     smallfont_.loadFont("/Users/makane/code/nynex/3rdparty/FuturaMedium.ttf", SMALLFONTSIZE);
     
     // start playin'
-#if SHORTCUT
-    setupListButtons();
-    resetGenTimer();
-    switchState(GENERATION_LIST);
-#else
     bounceComps();
-    sc->action(evolver_->getGA());
     startPlayComp(); // will call resetTimer()
-    switchState(GENERATION_START);
-#endif
+    startPlayComp();
+/*    setupListButtons();
+    resetGenTimer();
+    switchState(GENERATION_LIST); */
 }
 
 void nynexApp::Config::setFromStream(istream & is) {
@@ -132,8 +147,9 @@ void nynexApp::update() {
                 Ratings::getInstance().deleteRatings();
 //                bounceComps(); done with BounceAction
             }
-            startPlayComp();
+        case INIT:
             switchState(GENERATION_START);
+            startPlayComp();
             break;
         default:
             switchState(GENERATION_START); // can't happen!
@@ -147,6 +163,7 @@ void nynexApp::draw(){
             drawGenStart();
             break;
         case GENERATION_END:
+        case INIT:
             drawGenEnd();
             break;
         case GENERATION_LIST:
@@ -192,12 +209,10 @@ bool nynexApp::checkActiveButton(int x, int y, int button) {
         
     if (state_ == GENERATION_LIST) {
         for (size_t i = 0; i < POPSIZE; ++i) {
-            std::cout << "check button " << i << std::endl;
             int xdist = x - listButtons_[i].x;
             int ydist = y - listButtons_[i].y;
             if (xdist*xdist + ydist*ydist <= listButtons_[i].radius*listButtons_[i].radius) {
                 // active
-                std::cout << "found button " << i << std::endl;
                 listButtons_[i].radius = listRadius_+ACTIVE_RADIUS_INCREMENT;
                 activeButton_ = listButtons_+i;
                 return true;
@@ -265,8 +280,6 @@ void nynexApp::windowResized(int w, int h){
 
 void nynexApp::startPlayComp() {
     compIndex_ = 0;
-    resetGenTimer();
-    playNextComp();
 }
 
 void nynexApp::playNextComp() {
@@ -285,8 +298,14 @@ void nynexApp::bounceComps() const {
     }
 }
 
-void nynexApp::bounceComp(size_t i) const {
-    dynamic_cast<const Composition &>(evolver_->getPop().individual(i)).bounceToFile(bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
+void nynexApp::bounceComp(size_t i) {
+    if (bounceThread_ == NULL || !bounceThread_->isThreadRunning()) {
+        delete bounceThread_;
+        bounceThread_ = new BounceThread(dynamic_cast<const Composition &>(evolver_->getPop().individual(i)),bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
+        bounceThread_->startThread();
+    } else {
+        bounceThread_->addPair(dynamic_cast<const Composition &>(evolver_->getPop().individual(i)),bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
+    }
 }
 
 bool nynexApp::gotRatings() {
@@ -425,7 +444,6 @@ void nynexApp::setupListButtons() {
         float y = radius + (bigfont_.getLineHeight() + VERT_MARGIN); // past header
         y += ((radius * 2 + VERT_MARGIN) * (i % (POPSIZE/2))); // past existing circles
         y += radius;
-        std::cout << x << " " << y << " " << radius << std::endl;
         listButtons_[i].y = y;
     }
 }
@@ -452,11 +470,13 @@ void nynexApp::setupRateButtons() {
         float y = radius + (bigfont_.getLineHeight() + VERT_MARGIN); // past header
         y += ((radius * 2 + VERT_MARGIN) * (i % (RATINGS+1))); // past existing circles
         y += radius;
-        std::cout << x << " " << y << " " << radius << std::endl;
         rateButtons_[i].y = y;
     }
 }
 
 void nynexApp::switchState(State state) { 
-    state_ = state; framesSinceStateChange_ = 0; 
+    if (bounceThread_ == NULL || !bounceThread_->isThreadRunning()) {
+        state_ = state;
+        framesSinceStateChange_ = 0; 
+    }
 }
