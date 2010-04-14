@@ -22,7 +22,7 @@ void BounceAction::action(const GAGeneticAlgorithm & ga) {
     app_->bounceComps();
 }
 
-static std::string fileForGenAndIndividual(int gen, int i) {
+std::string nynex::fileForGenAndIndividual(int gen, int i) {
     return std::string("gen")+stringFrom(gen)+"i"+stringFrom(i)+".aiff";
 }
 
@@ -292,7 +292,7 @@ bool nynexApp::moreComps() {
     return (compIndex_ < evolver_->getPop().size());
 }
 
-void nynexApp::bounceComps() const {
+void nynexApp::bounceComps() {
     for(size_t i = 0; i < evolver_->getPop().size(); ++i) {
         bounceComp(i);
     }

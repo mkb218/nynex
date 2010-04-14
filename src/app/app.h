@@ -53,29 +53,11 @@ public:
 private:
     pthread_mutex_t *l_;
 };
+    
 class nynexApp;
     
 class BounceThread : public ofxThread {
 public:
-    BounceThread(const Composition & c, const std::string & s) : ofxThread() { 
-        pthread_mutex_init(&listmutex_, NULL);
-        sem_ = sem_open("/nynex_bounce_sem", O_CREAT, 0700, 0);
-        addPair(c, s); 
-    }
-    virtual ~BounceThread() {
-        sem_close(sem_);
-        sem_unlink("/nynex_bounce_sem");
-        pthread_mutex_destroy(&listmutex_);
-    }
-    void addPair(const Composition & c, const std::string & s) {
-        {
-            Gatekeeper g(&listmutex_);
-            bounces_.push_back(std::make_pair(&c, &s));
-        }
-        sem_post(sem_);        
-    }
-    virtual void threadedFunction();
-
     BounceThread(const Composition & c, const std::string & s) : ofxThread() { 
         pthread_mutex_init(&listmutex_, NULL);
         addPair(c, s); 
@@ -95,11 +77,13 @@ private:
 };
 
 class BounceAction : public StepAction {
-    BounceAction(const nynexApp * n) : app_(n){}
+public:
+    BounceAction(nynexApp * n) : app_(n){}
     virtual void action(const GAGeneticAlgorithm & ga);
 private:
-    const nynexApp *app_;
+    nynexApp *app_;
 };
+    
 class nynexApp : public ofBaseApp{
 
 public:
@@ -162,8 +146,8 @@ private:
     bool generationTimesUp() { return (ofGetElapsedTimeMillis() - gentimer_) > GEN_LIMIT_MILLIS; }
     bool ratingTimesUp() { return (ofGetElapsedTimeMillis() - ratetimer_) > RATE_LIMIT_MILLIS; }
     void switchState(State state);
-    void bounceComps() const;
-    void bounceComp(size_t i) const;
+    void bounceComps();
+    void bounceComp(size_t i);
     void startPlayComp();
     void playNextComp();
     bool gotRatings();

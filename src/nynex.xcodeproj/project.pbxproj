@@ -50,6 +50,8 @@
 		FCD2343F110FABDE0023CC4B /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FCD2347511107DE20023CC4B /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
 		FCDBFDF4115254B300644FC8 /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC146AA9110E604E006F10FB /* openFrameworksDebug.a */; };
+		FCEF2DA811754C0100AB4907 /* SoundCloudCAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEF2DA711754C0100AB4907 /* SoundCloudCAPI.framework */; };
+		FCF5CF101175480E0058A5D4 /* ofxThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCF5CF0E1175480E0058A5D4 /* ofxThread.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +144,9 @@
 		FCD23435110FABDE0023CC4B /* composition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composition.cpp; sourceTree = "<group>"; };
 		FCD23436110FABDE0023CC4B /* composition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composition.h; sourceTree = "<group>"; };
 		FCD2347411107DE20023CC4B /* ratings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ratings.cpp; sourceTree = "<group>"; };
+		FCEF2DA711754C0100AB4907 /* SoundCloudCAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundCloudCAPI.framework; path = "../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug/SoundCloudCAPI.framework"; sourceTree = SOURCE_ROOT; };
+		FCF5CF0E1175480E0058A5D4 /* ofxThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxThread.cpp; path = openFrameworks/utils/ofxThread.cpp; sourceTree = "<group>"; };
+		FCF5CF0F1175480E0058A5D4 /* ofxThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxThread.h; path = openFrameworks/utils/ofxThread.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +178,7 @@
 				E4C2429410CC5C38004149E2 /* freetype.a in Frameworks */,
 				E4C242CD10CC650E004149E2 /* libfmodex.dylib in Frameworks */,
 				E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */,
+				FCEF2DA811754C0100AB4907 /* SoundCloudCAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +254,8 @@
 		E45BE0480E8CC657009D7055 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				FCF5CF0E1175480E0058A5D4 /* ofxThread.cpp */,
+				FCF5CF0F1175480E0058A5D4 /* ofxThread.h */,
 				E4C2425B10CC5A78004149E2 /* glut */,
 				E45BEC7B0E8CC911009D7055 /* poco */,
 				E45BE2D50E8CC69C009D7055 /* rtAudio */,
@@ -377,6 +385,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				FCEF2DA711754C0100AB4907 /* SoundCloudCAPI.framework */,
 				E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4B69E1C0A3A1BDC003C02F2 /* app */,
@@ -647,6 +656,7 @@
 				FCD2347511107DE20023CC4B /* ratings.cpp in Sources */,
 				FCA1170E113F208F00FEEA65 /* evolver.cpp in Sources */,
 				FC9F3198114A79920098C488 /* network.cpp in Sources */,
+				FCF5CF101175480E0058A5D4 /* ofxThread.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,11 +744,13 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
@@ -901,11 +913,13 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -984,11 +998,13 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
