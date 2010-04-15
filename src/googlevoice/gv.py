@@ -11,6 +11,6 @@ voice.login()
 
 for message in voice.voicemail().messages:
     path=message.download(download_dir)
-    call(["afconvert", path, sample_dir + os.path.basename(path)]);
+    call(["afconvert", path, sample_dir + os.path.basename(path)])
     message.delete()
 
