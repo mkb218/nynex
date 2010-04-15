@@ -34,6 +34,7 @@
 		E4C242CD10CC650E004149E2 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C242CC10CC650E004149E2 /* libfmodex.dylib */; };
 		E4C2443910CC7693004149E2 /* openFrameworks-Info.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */; };
 		E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C246D910CCAE22004149E2 /* freeimage.a */; };
+		FC25555E1176924E00C79DB4 /* gv.py in CopyFiles */ = {isa = PBXBuildFile; fileRef = FC25555A1176924100C79DB4 /* gv.py */; };
 		FC336DCE1147D34C00E1A5BD /* soundcloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */; };
 		FC336DD01147D34C00E1A5BD /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FC336DDB1147D38300E1A5BD /* soundcloud-test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC336DDA1147D38300E1A5BD /* soundcloud-test.cpp */; };
@@ -85,6 +86,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC2555531176920700C79DB4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				FC25555E1176924E00C79DB4 /* gv.py in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +138,8 @@
 		E4C2429310CC5C38004149E2 /* freetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freetype.a; path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/lib/osx/freetype.a; sourceTree = "<absolute>"; };
 		E4C242CC10CC650E004149E2 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodex.dylib; path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/lib/osx/libfmodex.dylib; sourceTree = "<absolute>"; };
 		E4C246D910CCAE22004149E2 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/lib/osx/freeimage.a; sourceTree = "<absolute>"; };
+		FC25555A1176924100C79DB4 /* gv.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = gv.py; sourceTree = "<group>"; };
+		FC2555611176926900C79DB4 /* gvoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gvoice.h; sourceTree = "<group>"; };
 		FC336DD71147D34C00E1A5BD /* soundcloud-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "soundcloud-test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC336DDA1147D38300E1A5BD /* soundcloud-test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "soundcloud-test.cpp"; sourceTree = "<group>"; };
 		FC4C45691118EA3500394B9E /* evolver-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "evolver-test"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -391,6 +404,7 @@
 				E4B69E1C0A3A1BDC003C02F2 /* app */,
 				E4C2422310CC54B6004149E2 /* osx */,
 				E45BE0360E8CC5DE009D7055 /* libs */,
+				FC2555591176924100C79DB4 /* googlevoice */,
 				FCD23434110FABDE0023CC4B /* evolver */,
 				FC9F3194114A79910098C488 /* network */,
 				FC8C0AB41111CF2300AFE817 /* soundcloud */,
@@ -494,6 +508,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FC2555591176924100C79DB4 /* googlevoice */ = {
+			isa = PBXGroup;
+			children = (
+				FC25555A1176924100C79DB4 /* gv.py */,
+				FC2555611176926900C79DB4 /* gvoice.h */,
+			);
+			path = googlevoice;
+			sourceTree = "<group>";
+		};
 		FC8C0AB41111CF2300AFE817 /* soundcloud */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,6 +572,7 @@
 				E4B6FFFD0C3F9AB9008CF71C /* ShellScript */,
 				E4C2427710CC5ABF004149E2 /* CopyFiles */,
 				E4C2444710CC769B004149E2 /* CopyFiles */,
+				FC2555531176920700C79DB4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
