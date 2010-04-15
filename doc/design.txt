@@ -54,3 +54,7 @@ considerations
 web voting
 - php or perl
 - i want to do voting and listening all on one page without reloads, which means i need ajax. use jquery i guess since it is already used in the soundcloud player
+
+gvoice
+- popen("script");
+- read. each line is a path name in sampledir, so call bank::addSample

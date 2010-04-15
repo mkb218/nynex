@@ -10,14 +10,23 @@
 #ifndef NYNEX_GVOICE
 #define NYNEX_GVOICE
 
+#include <stdio.h>
+#include "evolver.h"
+#include "composition.h"
+
+namespace nynex {
 class GVoiceAction : public StepAction {
 public:
-    GVoiceAction(const std::string & scriptpath) : scriptpath_(scriptpath) {}
     virtual void action(const GAGeneticAlgorithm & ga) {
-        system((std::string("python ") + scriptpath_ + " gv.py").c_str());
+        FILE *script = popen((std::string("python ") + ofToDataPath("gv.py")).c_str(), "r");
+        char buf[FILENAME_MAX];
+        while (fgets(buf, FILENAME_MAX, script) != NULL) {
+            buf[strlen(buf) - 2] = '\0'; // get rid of newline
+            SampleBank::getInstance().addSample(buf);
+        }
+        pclose(script);
     }
 private:
-    std::string scriptpath_;
 };
-
+}
 #endif

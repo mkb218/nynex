@@ -165,11 +165,11 @@ namespace nynex {
         const sox_encodinginfo_t & getEncodingInfo() const;
         const sox_signalinfo_t & getSignalInfo() const;
         const std::map<std::string, Sample*> & getSampleMap() { return sampleMap_; }
+        void addSample(const std::string & path);
     private:
         SampleBank();
         SampleBank(SampleBank &) {} // never called
         SampleBank & operator=(SampleBank &) {return *this;} // never called
-        void addSample(const std::string & path);
         static SampleBank * instance_;
         double sampleRate_;
         unsigned int channels_;

@@ -7,6 +7,8 @@
 #include <iostream>
 #include <sys/stat.h>
 
+#include "gvoice.h"
+
 using namespace nynex;
 
 // app has following states
@@ -96,11 +98,12 @@ void nynexApp::setup(){
         evolver_->addNotifier(false, new BounceAction(this));
         evolver_->addNotifier(false, sc);
         evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
+        evolver_->addNotifier(true, new GVoiceAction());
     }
     
     // setup fonts
-    bigfont_.loadFont("/Users/makane/code/nynex/3rdparty/BetecknaLowerCase.ttf", BIGFONTSIZE);
-    smallfont_.loadFont("/Users/makane/code/nynex/3rdparty/BetecknaLowerCase.ttf", SMALLFONTSIZE);
+    bigfont_.loadFont("BetecknaLowerCase.ttf", BIGFONTSIZE);
+    smallfont_.loadFont("BetecknaLowerCase.ttf", SMALLFONTSIZE);
     
     // start playin'
     bounceComps();
