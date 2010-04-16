@@ -29,11 +29,17 @@ Evolver::Evolver() {
     ga_ = NULL;
 }
 
+GABoolean nynex::neverTerminate(GAGeneticAlgorithm &) { 
+    return gaFalse; 
+}
+
+
 void Evolver::initGA(float pMutation, GABoolean elitist, int gen, const GAPopulation & pop) {
     delete ga_;
     ga_ = new NynexGA(pop, gen);
     ga_->elitist(elitist);
     ga_->pMutation(pMutation);
+    ga_->terminator(neverTerminate);
     std::cout << ga_->pCrossover() << std::endl;
 }
     

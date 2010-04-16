@@ -13,6 +13,8 @@
 #include "composition.h"
 
 namespace nynex {
+    GABoolean neverTerminate(GAGeneticAlgorithm &);
+    
     class StepAction {
     public:
         virtual void action(const GAGeneticAlgorithm &) = 0;
