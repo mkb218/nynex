@@ -22,6 +22,11 @@ body {
   margin-right:2in
 }
 
+form {
+  margin-left:1in;
+  margin-right:1in
+}
+
 div {
   padding-top: 12pt ;
   padding-bottom: 12pt

@@ -90,7 +90,7 @@ SoundCloudServer::~SoundCloudServer() {
     }
 }
 
-/*void SoundCloudServer::fetchDropBox() const {
+void SoundCloudServer::fetchDropBox() {
     void *data;
     unsigned long long datalen;
     int errnum;
@@ -104,12 +104,10 @@ SoundCloudServer::~SoundCloudServer() {
     
     // foreach file in list
     // download file
-    // delete file from dropbox
+    // delete file from dropbox? maybe only do this manually
     // convert to WAV in preferred format
     // SampleBank::getInstance().addSample(WAV)
 }
-*/
-
 
 std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlgorithm & ga) const {
     int gen = ga.generation();
@@ -127,10 +125,10 @@ std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlg
         system(cmd.c_str());
         
         // upload track to soundcloud
-/*        while (!authenticated_) {
+        while (!authenticated_) {
             authenticate();
         }
-  */      
+        
         SoundCloudCAPI_SetResponseFormat(scApi_, SCResponseFormatJSON);
         FILE *f=fopen(filestr.c_str(), "r");
         fseek(f,0,SEEK_END);

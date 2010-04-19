@@ -9,7 +9,7 @@
 * UI - good shape for now
 * google voice downloader - needs testing
 * twitter announcements :) :) :) :) - done
-* soundcloud downloader
+* soundcloud downloader - DEAD. soundcloud no longer offers the API that would allow me to do this. need web uploader instead :(
 - fs1rgen working, or at least patch selection and output recording - nope
 - double check to make sure all correct license advertising clauses are present, make sure i am using a compatible license. might need to be gpl - done
 - make sure ga's terminator is NEVER - done

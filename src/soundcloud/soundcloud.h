@@ -52,6 +52,7 @@ namespace nynex {
         SoundCloudServer(const std::string & key, const std::string & secret, const std::string & filepath, const std::string & scpcmd, bool useSandbox);
         ~SoundCloudServer();
         std::vector<std::string> submitCompositions(const GAGeneticAlgorithm &) const; // returns list of identifiers used for streaming / web ratings
+        void fetchDropBox();
         const std::string & getFilepath() const { return filepath_; }
         const std::string & getScpcmd() const { return scpcmd_; }
         void setFilepath(const std::string & s) { filepath_ = s; }
@@ -81,10 +82,10 @@ namespace nynex {
     
     class SoundCloudDropBoxAction : public StepAction {
     public:
-        SoundCloudDropBoxAction(const SoundCloudServer & server) : server_(&server) {}
+        SoundCloudDropBoxAction(SoundCloudServer & server) : server_(&server) {}
         virtual void action(const GAGeneticAlgorithm & ga);
     private:
-        const SoundCloudServer * server_;
+        SoundCloudServer * server_;
     };
     
     
