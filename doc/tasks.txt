@@ -13,7 +13,7 @@
 - fs1rgen working, or at least patch selection and output recording - nope
 - double check to make sure all correct license advertising clauses are present, make sure i am using a compatible license. might need to be gpl - done
 - make sure ga's terminator is NEVER - done
-- install pygooglevoice, soundcloud c api wrapper, curl, python2.6 on kiosk
+- install pygooglevoice, soundcloud c api wrapper, curl, python2.6, Net::SCP, ssh key on kiosk
 - can i figure out a way to bounce compositions in a separate thread to avoid UI lockups? - DONE
 - can i figure out a way to allow people to pop in CDs or attach usb drives? SAFELY. deprioritize this
 - add beteckna to contrib page - done

@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 
 #include "gvoice.h"
+#include "uploads.h"
 
 using namespace nynex;
 
@@ -99,6 +100,7 @@ void nynexApp::setup(){
         evolver_->addNotifier(false, sc);
         evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
         evolver_->addNotifier(true, new GVoiceAction());
+//        evolver_->addNotifier(true, new GrabUploadsAction(config_.kvp["uploadServer"], config_.kvp["uploadPath"]));
     }
     
     // setup fonts

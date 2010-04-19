@@ -45,6 +45,7 @@
 		FC9F3198114A79920098C488 /* network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3195114A79920098C488 /* network.cpp */; };
 		FCA1170E113F208F00FEEA65 /* evolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA1170D113F208F00FEEA65 /* evolver.cpp */; };
 		FCA1170F113F208F00FEEA65 /* evolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA1170D113F208F00FEEA65 /* evolver.cpp */; };
+		FCAB5166117BF6B10007234F /* uploads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCAB5165117BF6B10007234F /* uploads.cpp */; };
 		FCB6F46611510824008B7934 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
 		FCC48B36115CE454004E5EB6 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
 		FCD2343F110FABDE0023CC4B /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
@@ -142,6 +143,8 @@
 		FC9F3196114A79920098C488 /* network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = network.h; sourceTree = "<group>"; };
 		FCA1170C113F208F00FEEA65 /* evolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolver.h; sourceTree = "<group>"; };
 		FCA1170D113F208F00FEEA65 /* evolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = evolver.cpp; sourceTree = "<group>"; };
+		FCAB5164117BF6B10007234F /* uploads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uploads.h; sourceTree = "<group>"; };
+		FCAB5165117BF6B10007234F /* uploads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uploads.cpp; sourceTree = "<group>"; };
 		FCD23435110FABDE0023CC4B /* composition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composition.cpp; sourceTree = "<group>"; };
 		FCD23436110FABDE0023CC4B /* composition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composition.h; sourceTree = "<group>"; };
 		FCD2347411107DE20023CC4B /* ratings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ratings.cpp; sourceTree = "<group>"; };
@@ -392,6 +395,7 @@
 				E4B69E1C0A3A1BDC003C02F2 /* app */,
 				E4C2422310CC54B6004149E2 /* osx */,
 				E45BE0360E8CC5DE009D7055 /* libs */,
+				FCAB5162117BF6A10007234F /* uploads */,
 				FC2555591176924100C79DB4 /* googlevoice */,
 				FCD23434110FABDE0023CC4B /* evolver */,
 				FC9F3194114A79910098C488 /* network */,
@@ -532,6 +536,15 @@
 			path = network;
 			sourceTree = "<group>";
 		};
+		FCAB5162117BF6A10007234F /* uploads */ = {
+			isa = PBXGroup;
+			children = (
+				FCAB5164117BF6B10007234F /* uploads.h */,
+				FCAB5165117BF6B10007234F /* uploads.cpp */,
+			);
+			path = uploads;
+			sourceTree = "<group>";
+		};
 		FCD23434110FABDE0023CC4B /* evolver */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,6 +680,7 @@
 				FCA1170E113F208F00FEEA65 /* evolver.cpp in Sources */,
 				FC9F3198114A79920098C488 /* network.cpp in Sources */,
 				FCF5CF101175480E0058A5D4 /* ofxThread.cpp in Sources */,
+				FCAB5166117BF6B10007234F /* uploads.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

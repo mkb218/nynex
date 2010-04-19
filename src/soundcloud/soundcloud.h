@@ -80,15 +80,6 @@ namespace nynex {
         const SoundCloudServer * server_;
     };
     
-    class SoundCloudDropBoxAction : public StepAction {
-    public:
-        SoundCloudDropBoxAction(SoundCloudServer & server) : server_(&server) {}
-        virtual void action(const GAGeneticAlgorithm & ga);
-    private:
-        SoundCloudServer * server_;
-    };
-    
-    
 }
 
 #endif

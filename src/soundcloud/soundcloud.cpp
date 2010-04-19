@@ -90,25 +90,6 @@ SoundCloudServer::~SoundCloudServer() {
     }
 }
 
-void SoundCloudServer::fetchDropBox() {
-    void *data;
-    unsigned long long datalen;
-    int errnum;
-    SoundCloudCAPI_Parameter filter = { "filter", "drop", 0, NULL };
-    int res = SoundCloudCAPI_performMethod(scApi_, "GET", "/events", &filter, 1 ,&errnum, &data, &datalen);
-    if (!res) {
-        std::cout << "something wrong" << std::endl;
-    }
-    
-    // now what?
-    
-    // foreach file in list
-    // download file
-    // delete file from dropbox? maybe only do this manually
-    // convert to WAV in preferred format
-    // SampleBank::getInstance().addSample(WAV)
-}
-
 std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlgorithm & ga) const {
     int gen = ga.generation();
     std::vector<std::string> ids;
