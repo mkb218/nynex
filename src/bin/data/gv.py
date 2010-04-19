@@ -11,6 +11,8 @@ voice.login()
 
 for message in voice.voicemail().messages:
     path=message.download(download_dir)
-    call(["afconvert", path, sample_dir + os.path.basename(path)])
+    target=sample_dir + os.path.basename(path) + ".aiff"
+    call(["afconvert", "-f", "AIFF", "-d", "BEI16", "-c", "2", "--src_complexity", "bats", path, target])
+    print(target)
     message.delete()
 
