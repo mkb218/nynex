@@ -5,8 +5,7 @@
 	$generation = fgets($file);
 	while (!feof($file)) {
 		$line = fgets($file);
-		$kv = explode("=", $line, 2);
-		$tracks[$kv[0]] = $kv[1];
+		array_push($tracks,trim($line));
 	}
 	
 	$file = "rate";
