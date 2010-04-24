@@ -25,7 +25,7 @@
 			}
 			$content .= "</span><a class=\"soundcloud-player\" id=\"basic\" href=\"http://soundcloud.com/tracks/$id\">Play</a><br/>";
 			$content .= "<hr/>";
-		$content .= "</div>";
+//		$content .= "</div>";
 		++$i;
 	}
 
