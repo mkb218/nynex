@@ -3,6 +3,7 @@
 		$file = @fopen("defaultrate.txt", "r");
 	}
 	$generation = fgets($file);
+	$tracks = array();
 	while (!feof($file)) {
 		$line = fgets($file);
 		array_push($tracks,trim($line));
