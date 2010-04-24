@@ -28,13 +28,13 @@
 		++$i;
 	}
 
-$headers = <<<EOT;
+$headers = <<<EOT
 <link href="player.css" media="all" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="soundmanager2.js" />
 <script type="text/javascript" src="jquery-1.3.2.min.js" />
 <script type="text/javascript" src="player.js" />
 <script type="text/javascript" src="rate.js" />
-EOT
+EOT;
 	require("template.inc");
 
 ?>
