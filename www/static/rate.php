@@ -11,7 +11,7 @@
 	
 	$file = "rate";
 	$titlebar = "rating generation $generation";
-	$title = $titlebar;
+	$title = "Generation $generation";
 	$subtitle = "Please listen to and rate the following compositions.";
 	foreach ($tracks as $i => $url) {
 		$content .= "Individual $i: <span name=\"rate$i\">";
