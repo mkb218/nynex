@@ -1,6 +1,6 @@
 <?php
 	$file = "contrib";
-	$titlebar = "The Republic of Nynex - contributors";
+	$titlebar = "contributors";
 	$title = "Contributors";
 	$subtitle = "The below artists contributed audio to this project. If you would also like to contribute audio, contact nynex at hydrogen project point com or call (978) 406-9639. By contributing audio, you implicitly allow the Republic of Nynex to remix your work and retransmit it in that form.";
 	$content = <<<EOT

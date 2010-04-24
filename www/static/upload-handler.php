@@ -22,7 +22,7 @@
 	}
 
 	$file = "upload";
-	$titlebar = "The Republic of Nynex - contribute";
+	$titlebar = "contribute";
 	$maxfilesize = ini_get("upload_max_filesize");
 	$content = <<<EOT
 <p>You can add your tracks to the project by uploading an audio file below. Preferred formats are MP3, WAV, and AIFF. Maximum size is $maxfilesize. We will only be able to notify you of a failure manually, and only if you provide contact information.</p>

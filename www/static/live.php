@@ -1,6 +1,6 @@
 <?php
 	$file = "live";
-	$titlebar = "The Republic of Nynex - demonstrations";
+	$titlebar = "demonstrations";
 	$title = "Demonstrations";
 	$subtitle = "The Republic of Nynex is designed to serve as a bridge between the online world and the physical one.";
 	$content = <<<EOT

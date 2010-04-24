@@ -1,6 +1,6 @@
 <?php
 	$file = "about";
-	$titlebar = "The Republic of Nynex - about";
+	$titlebar = "about";
 	$title = "About the Republic of Nynex.";
 	$subtitle = "The Republic of Nynex is an audio art installation that uses genetic programming to create audio compositions using audience-submitted raw audio and a Yamaha FS1r synthesizer.";
 	$content = <<<EOT

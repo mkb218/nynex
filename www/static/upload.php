@@ -1,6 +1,6 @@
 <?php
 	$file = "upload";
-	$titlebar = "The Republic of Nynex - contribute";
+	$titlebar = "contribute";
 	$title = "Contribute.";
 	$subtitle = "Help make things interesting.";
 	$maxfilesize = ini_get("upload_max_filesize");
