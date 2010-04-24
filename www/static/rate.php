@@ -13,7 +13,8 @@
 	$titlebar = "rating generation $generation";
 	$title = "Generation $generation";
 	$subtitle = "Please listen to and rate the following compositions.";
-	foreach ($tracks as $i => $url) {
+	$i = 0;
+	foreach ($tracks as $id) {
 		$content .= "Individual $i: <span name=\"rate$i\">";
 		if ($ratings[$i]) { 
 			$content .= "Thanks for rating!";
@@ -22,11 +23,12 @@
 				$content .= "<a href=\"\" name=\"rate${i}-${vote}\"><img src=\"rate${vote}.png\" alt=\"Rate ${vote} points for individual ${i}\" height=\"16\"/></a>";
 				}
 			}
-			$content .= "</span><a class=\"soundcloud-player\" id=\"basic\" href=\"$url\">Play</a><br/>";
+			$content .= "</span><a class=\"soundcloud-player\" id=\"basic\" href=\"http://soundcloud.com/tracks/$id\">Play</a><br/>";
 			if ($i != 0) {
 				$content .= "<hr/>";
 			}
 		$content .= "</div>";
+		++$i;
 	}
 
 	require("template.inc");
