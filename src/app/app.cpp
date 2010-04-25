@@ -113,7 +113,7 @@ void nynexApp::setup(){
     smallfont_.loadFont("/opt/nynex/bin/BetecknaLowerCase.ttf", SMALLFONTSIZE);
     
     // start playin'
-    bounceComps();
+/*    bounceComps();
     while (bounceThread_->isThreadRunning()) {
         sleep(1);
     }
@@ -121,10 +121,10 @@ void nynexApp::setup(){
     if (!offline) {
         ssca->action(evolver_->getGA());
     }
-    startPlayComp();/*
+    startPlayComp();/*/
     setupListButtons();
     resetGenTimer();
-    switchState(GENERATION_LIST); */
+    switchState(GENERATION_LIST);
 }
 
 void nynexApp::Config::setFromStream(istream & is) {

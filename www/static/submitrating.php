@@ -23,7 +23,7 @@ function rate($id,$rating) {
 	
 	$f = fopen(STORE, "w");
 	if (flock($f, LOCK_EX)) {
-		$json = json_encode($ratings, JSON_FORCE_OBJECT);
+		$json = json_encode($ratings);
 		fwrite($f, $json);
 		fclose($f);
 	} else {
