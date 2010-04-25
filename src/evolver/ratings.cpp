@@ -49,7 +49,7 @@ void Ratings::getServerRatings() {
     if (ret != 0) {
         return;
     }
-    std::ifstream ifs(tmp.c_str());
+    std::ifstream ifs((tmp+"/ratings.json").c_str());
 
     using boost::property_tree::ptree;
     ptree pt;
