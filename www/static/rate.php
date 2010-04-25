@@ -34,6 +34,7 @@
 			$content .= "<hr/>";
 		++$i;
 	}
+	$content .= "<input type=\"hidden\" value=\"$generation\" />";
 	$content .= "<input type=\"submit\" value=\"submit\" /></form>";
 
 $headers = <<<EOT

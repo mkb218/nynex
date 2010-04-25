@@ -12,6 +12,9 @@ function rate($id,$rating) {
 				$json .= $buf;
 			}
 			$ratings = json_decode($json, true);
+			if ($ratings["generation"] != $_GET["generation"]) {
+				$ratings = array();
+			}
 			fclose($f);
 		} else {
 			return false;
@@ -19,7 +22,9 @@ function rate($id,$rating) {
 	} else {
 		$ratings = array();
 	}
+	
 	$ratings[$id] += $rating;
+	$ratings["generation"] = $_GET["generation"];
 	
 	$f = fopen(STORE, "w");
 	if (flock($f, LOCK_EX)) {
