@@ -45,7 +45,10 @@ void Ratings::getServerRatings() {
     const std::string & tmp(Ratings::getInstance().getTmpPath());
     cmd.append(" ");
     cmd.append(tmp);
-    system(cmd.c_str()); // TODO check return val
+    int ret = system(cmd.c_str()); // TODO check return val
+    if (ret != 0) {
+        return;
+    }
     std::ifstream ifs(tmp.c_str());
 
     using boost::property_tree::ptree;

@@ -9,7 +9,7 @@
 		$line = fgets($file);
 		if ($line) {
 			$fields = explode("=", trim($line));
-			array_push($ids, $fields[o]);
+			array_push($ids, $fields[0]);
 			array_push($urls, $fields[1]);
 		}
 	}
