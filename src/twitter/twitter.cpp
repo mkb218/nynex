@@ -31,8 +31,8 @@ void TwitterServer::announceGeneration(const std::string & announcement, const s
     std::string tweet(announcement);
     tweet.append(" listen and rate: ");
     tweet.append(getBitlyUrl(htmlUrl));
-    tweet.append(" stream: ");
-    tweet.append(getBitlyUrl(listenUrl));
+//    tweet.append(" stream: ");
+//    tweet.append(getBitlyUrl(listenUrl));
     while (tweet.size() > 140) {
         // remove hash tags
         size_t start, end;
@@ -85,7 +85,7 @@ std::string TwitterServer::getBitlyUrl(const std::string & url) const {
 void TwitterAnnounce::action(const GAGeneticAlgorithm & ga) {
     std::string generation = stringFrom(ga.generation());
     // todo get from config
-    announcer_->announceGeneration("Generation " + generation + " created! #megapolis", "http://nynex.hydrogenproject.com/stream.php?generation="+generation,"http://nynex.hydrogenproject.com/listen.php?generation="+generation);
+    announcer_->announceGeneration("Generation " + generation + " created! #megapolis", "","http://nynex.hydrogenproject.com/rate.php");
 }
 
 TwitterServer::TwitterServer(const std::string & host, const std::string & username, const std::string & password, const std::string & bitlykeyfile) : username_(username), password_(password) {

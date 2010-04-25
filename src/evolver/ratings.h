@@ -18,18 +18,13 @@
 #include "composition.h"
 
 namespace nynex {
-    class GrabWebRatings : public StepAction {
-    public:
-        virtual void action(const GAGeneticAlgorithm &);
-    };
-        
     class Ratings {
     public:
         static Ratings & getInstance();
         void addRating(unsigned int id, int score);
         bool hasRatingForId(unsigned int id) { return (scores_.find(id) != scores_.end()); }
         double avgRatingForId(unsigned int id);
-        void getServerRatings() {}
+        void getServerRatings();
         void setScpCmd(const std::string & cmd) { cmd_ = cmd; }
         void setTmpPath(const std::string & path) { tmppath_ = path; }
         const std::string & getScpCmd() { return cmd_; }

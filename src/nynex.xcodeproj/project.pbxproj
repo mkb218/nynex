@@ -47,6 +47,10 @@
 		FCA1170F113F208F00FEEA65 /* evolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA1170D113F208F00FEEA65 /* evolver.cpp */; };
 		FCAB5166117BF6B10007234F /* uploads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCAB5165117BF6B10007234F /* uploads.cpp */; };
 		FCB6F46611510824008B7934 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
+		FCBC00061183A847008261E4 /* gvoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCBC00051183A847008261E4 /* gvoice.cpp */; };
+		FCBCFF1D11829328008261E4 /* BetecknaLowerCase.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCBCFF151182931A008261E4 /* BetecknaLowerCase.ttf */; };
+		FCBCFF1E11829328008261E4 /* getuploads.pl in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCBCFF161182931A008261E4 /* getuploads.pl */; };
+		FCBCFF1F11829328008261E4 /* gv.py in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCBCFF171182931A008261E4 /* gv.py */; };
 		FCC48B36115CE454004E5EB6 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
 		FCD2343F110FABDE0023CC4B /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FCD2347511107DE20023CC4B /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
@@ -83,6 +87,18 @@
 			dstSubfolderSpec = 7;
 			files = (
 				E4C2443910CC7693004149E2 /* openFrameworks-Info.plist in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCBCFF181182931A008261E4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /opt/nynex/bin;
+			dstSubfolderSpec = 0;
+			files = (
+				FCBCFF1D11829328008261E4 /* BetecknaLowerCase.ttf in CopyFiles */,
+				FCBCFF1E11829328008261E4 /* getuploads.pl in CopyFiles */,
+				FCBCFF1F11829328008261E4 /* gv.py in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +161,10 @@
 		FCA1170D113F208F00FEEA65 /* evolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = evolver.cpp; sourceTree = "<group>"; };
 		FCAB5164117BF6B10007234F /* uploads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uploads.h; sourceTree = "<group>"; };
 		FCAB5165117BF6B10007234F /* uploads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uploads.cpp; sourceTree = "<group>"; };
+		FCBC00051183A847008261E4 /* gvoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gvoice.cpp; sourceTree = "<group>"; };
+		FCBCFF151182931A008261E4 /* BetecknaLowerCase.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BetecknaLowerCase.ttf; sourceTree = "<group>"; };
+		FCBCFF161182931A008261E4 /* getuploads.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = getuploads.pl; sourceTree = "<group>"; };
+		FCBCFF171182931A008261E4 /* gv.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = gv.py; sourceTree = "<group>"; };
 		FCD23435110FABDE0023CC4B /* composition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composition.cpp; sourceTree = "<group>"; };
 		FCD23436110FABDE0023CC4B /* composition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composition.h; sourceTree = "<group>"; };
 		FCD2347411107DE20023CC4B /* ratings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ratings.cpp; sourceTree = "<group>"; };
@@ -394,6 +414,7 @@
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4B69E1C0A3A1BDC003C02F2 /* app */,
 				E4C2422310CC54B6004149E2 /* osx */,
+				FCBCFF141182931A008261E4 /* data */,
 				E45BE0360E8CC5DE009D7055 /* libs */,
 				FCAB5162117BF6A10007234F /* uploads */,
 				FC2555591176924100C79DB4 /* googlevoice */,
@@ -504,6 +525,7 @@
 			isa = PBXGroup;
 			children = (
 				FC2555611176926900C79DB4 /* gvoice.h */,
+				FCBC00051183A847008261E4 /* gvoice.cpp */,
 			);
 			path = googlevoice;
 			sourceTree = "<group>";
@@ -545,6 +567,17 @@
 			path = uploads;
 			sourceTree = "<group>";
 		};
+		FCBCFF141182931A008261E4 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				FCBCFF151182931A008261E4 /* BetecknaLowerCase.ttf */,
+				FCBCFF161182931A008261E4 /* getuploads.pl */,
+				FCBCFF171182931A008261E4 /* gv.py */,
+			);
+			name = data;
+			path = bin/data;
+			sourceTree = "<group>";
+		};
 		FCD23434110FABDE0023CC4B /* evolver */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +605,8 @@
 				E4B6FFFD0C3F9AB9008CF71C /* ShellScript */,
 				E4C2427710CC5ABF004149E2 /* CopyFiles */,
 				E4C2444710CC769B004149E2 /* CopyFiles */,
+				FCBCFF181182931A008261E4 /* CopyFiles */,
+				FCBC00BB1183CBD8008261E4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -664,6 +699,19 @@
 			shellPath = /bin/sh;
 			shellScript = "cp -f /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"\ninstall_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\" ";
 		};
+		FCBC00BB1183CBD8008261E4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "chmod +x /opt/nynex/bin/*.pl\nchmod +x /opt/nynex/bin/*.py";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -681,6 +729,7 @@
 				FC9F3198114A79920098C488 /* network.cpp in Sources */,
 				FCF5CF101175480E0058A5D4 /* ofxThread.cpp in Sources */,
 				FCAB5166117BF6B10007234F /* uploads.cpp in Sources */,
+				FCBC00061183A847008261E4 /* gvoice.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,7 +36,7 @@ double Ratings::avgRatingForId(unsigned int id) {
     return sum/count;
 }
 
-void GrabWebRatings::action(const GAGeneticAlgorithm & ga) {
+void Ratings::getServerRatings() {
     std::string cmd(Ratings::getInstance().getScpCmd());
     const std::string & tmp(Ratings::getInstance().getTmpPath());
     cmd.append(" ");

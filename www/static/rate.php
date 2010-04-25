@@ -6,7 +6,9 @@
 	$tracks = array();
 	while (!feof($file)) {
 		$line = fgets($file);
-		array_push($tracks,trim($line));
+		if ($line) {
+			array_push($tracks,trim($line));
+		}
 	}
 	
 	$file = "rate";
@@ -14,19 +16,21 @@
 	$title = "Generation $generation";
 	$subtitle = "Please listen to and rate the following compositions.";
 	$i = 0;
+	$content .= "<form method=\"GET\" action=\"submitrating.php\" >";
 	foreach ($tracks as $id) {
 		$content .= "Individual $i: <span name=\"rate$i\">";
-		if ($ratings[$i]) { 
+		if ($_GET["ratings"][$id]) { 
 			$content .= "Thanks for rating!";
 		} else { 
 			foreach (array(1,2,3,4,5) as $vote) { 
-				$content .= "<a href=\"\" name=\"rate${i}-${vote}\"><img src=\"rate${vote}.png\" alt=\"Rate ${vote} points for individual ${i}\" height=\"16\"/></a>";
+				$content .= "<img src=\"rate${vote}.png\" alt=\"Rate ${vote} points for individual ${i}\" height=\"16\"/><input type=\"radio\" name=\"rate[${id}]\" value=\"$vote\" />";
 				}
 			}
 			$content .= "</span><a class=\"soundcloud-player\" id=\"basic\" href=\"http://soundcloud.com/tracks/$id\">Play</a><br/>";
 			$content .= "<hr/>";
 		++$i;
 	}
+	$content .= "<input type=\"submit\" value=\"submit\" /></form>";
 
 $headers = <<<EOT
 <link href="player.css" media="all" rel="stylesheet" type="text/css" />

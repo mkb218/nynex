@@ -60,14 +60,29 @@ void SoundCloudAuthenticator::setverifier(const std::string & buffer) {
 }
 
 void SubmitSoundCloudAction::action(const GAGeneticAlgorithm & ga) {
+#if 1
     std::vector<std::string> comps = server_->submitCompositions(ga);
-    std::string outfilename(server_->getFilepath()+stringFrom(ga.generation()));
+#else
+    std::vector<std::string> comps;
+    comps.push_back("2096511");
+    comps.push_back("2096512");
+    comps.push_back("2096513");
+    comps.push_back("2096514");
+    comps.push_back("2096515");
+    comps.push_back("2096516");
+    comps.push_back("2096517");
+    comps.push_back("2096518");
+    comps.push_back("2096519");
+    comps.push_back("2096520");
+#endif
+    std::string outfilename(server_->getFilepath()+"/ratings.txt");
     std::ofstream outf(outfilename.c_str()); // todo check status
     
     // store result, upload map file
     // filename: ~/genmaps/<number>/
     // contains one soundcloud track id per line
     
+    outf << ga.generation() << std::endl;
     BOOST_FOREACH(std::string & c, comps) {
         outf << c << std::endl;
     }
@@ -96,6 +111,7 @@ std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlg
     for (int i = 0; i < ga.population().size(); ++i) {
         Composition & comp = dynamic_cast<Composition &>(ga.population().individual(i));
         // punt to id3v2 to set tags
+        std::cout << " uploading track " << i << std::endl;
         std::string cmd("id3v2 -a 'Republic of Nynex' -A 'Generation ");
         std::string genstr(stringFrom(gen));
         std::string filestr(filepath_);
@@ -135,12 +151,13 @@ std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlg
         using boost::property_tree::ptree;
         ptree pt;
         istringstream is;
-        is.str(std::string((char*)data, size));
-        free(rcvdata);
-
+        is.str(std::string((char*)rcvdata, size));
+        read_json(is,pt);
         // keep ID handy
         ids.push_back(pt.get<std::string>(ptree::path_type("id")));
+        free(rcvdata);
     }
+    return ids;
 }
 
 void SoundCloudServer::authenticate() const {

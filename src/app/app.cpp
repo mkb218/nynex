@@ -1,8 +1,7 @@
 #include "app.h"
 #include "ratings.h"
 
-#define SANDBOX 1
-#define SHORTCUT 1
+#define SANDBOX 0
 
 #include <iostream>
 #include <sys/stat.h>
@@ -86,7 +85,11 @@ void nynexApp::setup(){
         evolver_->initGA(fromString<float>(config_.kvp["pMutation"]), fromString<int>(config_.kvp["popSize"]), fromString<bool>(config_.kvp["elitist"])?gaTrue:gaFalse);
     }
     
+    Ratings::getInstance().setTmpPath(config_.kvp["tmpdir"]);
+    Ratings::getInstance().setScpCmd(config_.kvp["ratingscp"]);
     
+    evolver_->addNotifier(false, new BounceAction(this));
+
     bool offline = fromString<bool>(config_.kvp["offline"]);
     SubmitSoundCloudAction *sc = NULL;
     if (!offline) {
@@ -96,24 +99,23 @@ void nynexApp::setup(){
 
         // add notifiers to ga
         sc = new SubmitSoundCloudAction(*sc_);
-        evolver_->addNotifier(false, new BounceAction(this));
-        evolver_->addNotifier(false, sc);
-        evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
         evolver_->addNotifier(true, new GVoiceAction());
-//        evolver_->addNotifier(true, new GrabUploadsAction(config_.kvp["uploadServer"], config_.kvp["uploadPath"]));
+        evolver_->addNotifier(true, new GrabUploadsAction(config_.kvp["uploadUser"], config_.kvp["uploadServer"], config_.kvp["uploadPath"]));
+//        evolver_->addNotifier(false, sc);
+        evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
     }
     
     // setup fonts
-    bigfont_.loadFont("BetecknaLowerCase.ttf", BIGFONTSIZE);
-    smallfont_.loadFont("BetecknaLowerCase.ttf", SMALLFONTSIZE);
+    bigfont_.loadFont("/opt/nynex/bin/BetecknaLowerCase.ttf", BIGFONTSIZE);
+    smallfont_.loadFont("/opt/nynex/bin/BetecknaLowerCase.ttf", SMALLFONTSIZE);
     
     // start playin'
     bounceComps();
     if (!offline) {
-        sc->action(evolver_->getGA());
+     //   sc->action(evolver_->getGA());
     }
-    startPlayComp();
-/*    setupListButtons();
+    startPlayComp();/*
+    setupListButtons();
     resetGenTimer();
     switchState(GENERATION_LIST); */
 }
@@ -158,6 +160,7 @@ void nynexApp::update() {
             if (gotRatings()) {
                 evolver_->stepGA();
                 Ratings::getInstance().deleteRatings();
+                evolver_->saveToFile(config_.kvp["gastatefile"]);
 //                bounceComps(); done with BounceAction
             }
         case INIT:
@@ -333,7 +336,7 @@ bool nynexApp::gotRatings() {
 
 void nynexApp::drawGenStart() {
     std::string s("Generation ");
-    s = s + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(min(0,compIndex_-1));
+    s = s + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(std::max<int>(0,compIndex_-1));
     float width = bigfont_.stringWidth(s);
     float height = bigfont_.getLineHeight();
     float hpos = (ofGetWidth() - width) / 2;
@@ -404,7 +407,7 @@ void nynexApp::drawGenTimer() {
 }
 
 void nynexApp::drawEndTimer() {
-    drawTimer(framesSinceStateChange_ * -19294);
+    drawTimer(framesSinceStateChange_ * -60);
 }
 
 void nynexApp::drawTimer(int timeleft) {

@@ -467,7 +467,7 @@ void Sample::splitFile() {
         
             for (size_t ix = 0; ix < bufsize; ++ix) {
                 ++count;
-                sum += abs((**it)[ix]);
+                sum += abs(functable[bank.getSampleSize()]((**it)[ix]));
             }
             if (unloadBufs) {
                 (*it)->unload();
@@ -784,6 +784,7 @@ void SplitBuf::load() const {
 
 void SplitBuf::unload() const {
     if (state_ != INMEM) throw std::logic_error("unload called with no buffer");
+    mkdir_or_throw(SampleBank::getInstance().getTmpDir().c_str());
     sox_format_t *out = sox_open_write(filename().c_str(), &(SampleBank::getInstance().getSignalInfo()), &(SampleBank::getInstance().getEncodingInfo()), "raw", NULL, NULL);
     if (size_ != sox_write(out, buf_, size_)) {
         throw std::runtime_error("couldn't write whole file");

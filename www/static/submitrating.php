@@ -1,6 +1,7 @@
 <?php
 
-define(STORE, "ratings.json");
+// define(STORE, "/home/mkb218/www/nynex-trax/ratings.json");
+define(STORE, "/Users/makane/ratings.json");
 
 function rate($id,$rating) {
 	if (file_exists(STORE)) {
@@ -10,7 +11,7 @@ function rate($id,$rating) {
 			while ($buf = fread($f, 8192)) {
 				$json .= $buf;
 			}
-			$ratings = json_decode($json);
+			$ratings = json_decode($json, true);
 			fclose($f);
 		} else {
 			return false;
@@ -32,23 +33,17 @@ function rate($id,$rating) {
 	return true;
 }
 
-if (array_exists($_GET, "xml")) {
-	$xml = (intval($_GET["xml"]) == 1);
-} else {
-	$xml = true;
-}
-
-if (array_exists($_GET, "id") && array_exists($_GET, "rating")) {
-	$id = intval($_GET["id"]);
-	$rating = intval($_GET["rating"]);
-	if ($id == $_GET["id"] && $rating == $_GET["rating"]) {
-		if ($xml) {
-			xmlResponse(rate($id, $rating));
-		} else {
-			redirectResponse(rate($id, $rating));
-		}
+$qratings = array();
+foreach ( $_GET["rate"] as $id => $rating ) {
+	$id = intval($id);
+	$rating = intval($rating);
+	if (rate($id, $rating)) {
+		$qratings[$id] = $rating;
 	}
 }
+
+header("Location: rate.php?".http_build_query(array('ratings' => $qratings)));
+
 
 
 ?>

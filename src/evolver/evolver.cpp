@@ -58,7 +58,6 @@ void Evolver::initGA(float pMutation, int popSize, GABoolean elitist) {
 }
 
 void Evolver::stepGA() {
-    Ratings::getInstance().getServerRatings();
     BOOST_FOREACH(StepAction * stepaction, prestepactions_) {
         // GVoice download
         // update server ratings

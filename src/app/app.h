@@ -25,7 +25,6 @@
 #define PHONE "(978) 406-9639"
 
 #define TRANSITION_FRAMES 60
-#define FONTFILE_PATH "/Library/Fonts/Futura.dfont"
 
 #define LR_MARGIN 25
 #define VERT_MARGIN 35
