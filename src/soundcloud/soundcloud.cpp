@@ -61,7 +61,7 @@ void SoundCloudAuthenticator::setverifier(const std::string & buffer) {
 
 void SubmitSoundCloudAction::action(const GAGeneticAlgorithm & ga) {
 #if 1
-    std::vector<std::string> comps = server_->submitCompositions(ga);
+    std::vector<std::pair<std::string, std::string> > comps = server_->submitCompositions(ga);
 #else
     std::vector<std::string> comps;
     comps.push_back("2096511");
@@ -83,8 +83,8 @@ void SubmitSoundCloudAction::action(const GAGeneticAlgorithm & ga) {
     // contains one soundcloud track id per line
     
     outf << ga.generation() << std::endl;
-    BOOST_FOREACH(std::string & c, comps) {
-        outf << c << std::endl;
+    BOOST_FOREACH(std::pair<std::string, std::string> & c, comps) {
+        outf << c.first << "=" << c.second << std::endl;
     }
     outf.close();
     
@@ -105,7 +105,7 @@ SoundCloudServer::~SoundCloudServer() {
     }
 }
 
-std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlgorithm & ga) const {
+std::vector<std::pair<std::string, std::string> > SoundCloudServer::submitCompositions(const GAGeneticAlgorithm & ga) const {
     int gen = ga.generation();
     std::vector<std::string> ids;
     for (int i = 0; i < ga.population().size(); ++i) {
@@ -154,7 +154,7 @@ std::vector<std::string> SoundCloudServer::submitCompositions(const GAGeneticAlg
         is.str(std::string((char*)rcvdata, size));
         read_json(is,pt);
         // keep ID handy
-        ids.push_back(pt.get<std::string>(ptree::path_type("id")));
+        ids.push_back(make_pair(pt.get<std::string>(ptree::path_type("id")), pt.get<std::string>(ptree::path_type("permalink_url"))));
         free(rcvdata);
     }
     return ids;

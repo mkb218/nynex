@@ -101,7 +101,7 @@ void nynexApp::setup(){
         sc = new SubmitSoundCloudAction(*sc_);
         evolver_->addNotifier(true, new GVoiceAction());
         evolver_->addNotifier(true, new GrabUploadsAction(config_.kvp["uploadUser"], config_.kvp["uploadServer"], config_.kvp["uploadPath"]));
-//        evolver_->addNotifier(false, sc);
+        evolver_->addNotifier(false, sc);
         evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
     }
     
@@ -112,7 +112,7 @@ void nynexApp::setup(){
     // start playin'
     bounceComps();
     if (!offline) {
-     //   sc->action(evolver_->getGA());
+        sc->action(evolver_->getGA());
     }
     startPlayComp();/*
     setupListButtons();

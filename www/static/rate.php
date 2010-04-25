@@ -3,11 +3,14 @@
 		$file = @fopen("defaultrate.txt", "r");
 	}
 	$generation = fgets($file);
-	$tracks = array();
+	$urls = array();
+	$ids = array();
 	while (!feof($file)) {
 		$line = fgets($file);
 		if ($line) {
-			array_push($tracks,trim($line));
+			$fields = explode("=", trim($line));
+			array_push($ids, $fields[o]);
+			array_push($urls, $fields[1]);
 		}
 	}
 	
@@ -17,7 +20,8 @@
 	$subtitle = "Please listen to and rate the following compositions.";
 	$i = 0;
 	$content .= "<form method=\"GET\" action=\"submitrating.php\" >";
-	foreach ($tracks as $id) {
+	foreach ($ids as $id) {
+		$url = $urls[$i];
 		$content .= "Individual $i: <span name=\"rate$i\">";
 		if ($_GET["ratings"][$id]) { 
 			$content .= "Thanks for rating!";
@@ -26,7 +30,7 @@
 				$content .= "<img src=\"rate${vote}.png\" alt=\"Rate ${vote} points for individual ${i}\" height=\"16\"/><input type=\"radio\" name=\"rate[${id}]\" value=\"$vote\" />";
 				}
 			}
-			$content .= "</span><a class=\"soundcloud-player\" id=\"basic\" href=\"http://soundcloud.com/tracks/$id\">Play</a><br/>";
+			$content .= "</span><a class=\"soundcloud-player\" id=\"basic\" href=\"$url\">Play</a><br/>";
 			$content .= "<hr/>";
 		++$i;
 	}
