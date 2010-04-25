@@ -1,7 +1,7 @@
 <?php
 
-// define(STORE, "/home/mkb218/www/nynex-trax/ratings.json");
-define(STORE, "/Users/makane/ratings.json");
+define(STORE, "/home/mkb218/www/nynex-trax/ratings.json");
+//define(STORE, "/Users/makane/ratings.json");
 
 function rate($id,$rating) {
 	if (file_exists(STORE)) {

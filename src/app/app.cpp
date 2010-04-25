@@ -22,6 +22,9 @@ using namespace nynex;
 
 void BounceAction::action(const GAGeneticAlgorithm & ga) {
     app_->bounceComps();
+    while (app_->bounceThread_->isThreadRunning()) {
+        sleep(1);
+    }
 }
 
 std::string nynex::fileForGenAndIndividual(int gen, int i) {
@@ -91,17 +94,17 @@ void nynexApp::setup(){
     evolver_->addNotifier(false, new BounceAction(this));
 
     bool offline = fromString<bool>(config_.kvp["offline"]);
-    SubmitSoundCloudAction *sc = NULL;
+    SubmitSoundCloudAction *ssca = NULL;
     if (!offline) {
         // create soundcloud and twitter servers from settings file, google voice downloader, web rating downloader
         twitter_ = new TwitterServer(config_.kvp["twitterhost"],config_.kvp["twitteruser"],config_.kvp["twitterpass"],config_.kvp["bitlykeyfile"]);
         sc_ = new SoundCloudServer(config_.kvp["soundcloudConsumerKey"], config_.kvp["soundcloudConsumerSecret"], bouncepath_, config_.kvp["soundcloudScpCmd"], SANDBOX);
 
         // add notifiers to ga
-        sc = new SubmitSoundCloudAction(*sc_);
+        ssca = new SubmitSoundCloudAction(*sc_);
         evolver_->addNotifier(true, new GVoiceAction());
         evolver_->addNotifier(true, new GrabUploadsAction(config_.kvp["uploadUser"], config_.kvp["uploadServer"], config_.kvp["uploadPath"]));
-        evolver_->addNotifier(false, sc);
+        evolver_->addNotifier(false, ssca);
         evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
     }
     
@@ -111,8 +114,12 @@ void nynexApp::setup(){
     
     // start playin'
     bounceComps();
+    while (bounceThread_->isThreadRunning()) {
+        sleep(1);
+    }
+    
     if (!offline) {
-        sc->action(evolver_->getGA());
+        ssca->action(evolver_->getGA());
     }
     startPlayComp();/*
     setupListButtons();

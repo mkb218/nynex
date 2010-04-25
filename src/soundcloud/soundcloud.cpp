@@ -83,7 +83,8 @@ void SubmitSoundCloudAction::action(const GAGeneticAlgorithm & ga) {
     // contains one soundcloud track id per line
     
     outf << ga.generation() << std::endl;
-    BOOST_FOREACH(std::pair<std::string, std::string> & c, comps) {
+    typedef std::pair<std::string, std::string> stringpair;
+    BOOST_FOREACH(stringpair & c, comps) {
         outf << c.first << "=" << c.second << std::endl;
     }
     outf.close();
@@ -107,7 +108,7 @@ SoundCloudServer::~SoundCloudServer() {
 
 std::vector<std::pair<std::string, std::string> > SoundCloudServer::submitCompositions(const GAGeneticAlgorithm & ga) const {
     int gen = ga.generation();
-    std::vector<std::string> ids;
+    std::vector<std::pair<std::string, std::string> > ids;
     for (int i = 0; i < ga.population().size(); ++i) {
         Composition & comp = dynamic_cast<Composition &>(ga.population().individual(i));
         // punt to id3v2 to set tags
