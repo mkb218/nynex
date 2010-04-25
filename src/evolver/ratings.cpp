@@ -9,6 +9,10 @@
 
 #include "ratings.h"
 #include <fstream>
+#include <boost/foreach.hpp>
+#undef check
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 using namespace nynex;
 
@@ -43,13 +47,13 @@ void Ratings::getServerRatings() {
     cmd.append(tmp);
     system(cmd.c_str()); // TODO check return val
     std::ifstream ifs(tmp.c_str());
-    std::string line;
-    while (!ifs.eof() && !ifs.fail()) {
-        ifs >> line;
-        size_t pos = line.find('=');
-        if (pos != std::string::npos) {
-            Ratings::getInstance().addRating(fromString<unsigned int>(line.substr(0, pos-1)),fromString<int>(line.substr(pos-1)));
-        }
+
+    using boost::property_tree::ptree;
+    ptree pt;
+    read_json(ifs,pt);
+
+    BOOST_FOREACH(ptree::value_type & v, pt) {
+        Ratings::getInstance().addRating(fromString<unsigned int>(v.first),fromString<int>(v.second.data()));
     }
     unlink(tmp.c_str());
 }
