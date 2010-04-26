@@ -85,7 +85,7 @@ std::string TwitterServer::getBitlyUrl(const std::string & url) const {
 void TwitterAnnounce::action(const GAGeneticAlgorithm & ga) {
     std::string generation = stringFrom(ga.generation());
     // todo get from config
-    announcer_->announceGeneration("Generation " + generation + " created! #megapolis", "","http://nynex.hydrogenproject.com/rate.php");
+    announcer_->announceGeneration("Generation " + generation + " created! #megapolis #fb", "","http://nynex.hydrogenproject.com/rate.php");
 }
 
 TwitterServer::TwitterServer(const std::string & host, const std::string & username, const std::string & password, const std::string & bitlykeyfile) : username_(username), password_(password) {

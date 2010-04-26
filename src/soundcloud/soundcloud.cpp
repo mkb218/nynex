@@ -113,7 +113,7 @@ std::vector<std::pair<std::string, std::string> > SoundCloudServer::submitCompos
         Composition & comp = dynamic_cast<Composition &>(ga.population().individual(i));
         // punt to id3v2 to set tags
         std::cout << " uploading track " << i << std::endl;
-        std::string cmd("id3v2 -a 'Republic of Nynex' -A 'Generation ");
+        std::string cmd("/opt/local/bin/id3v2 -a 'Republic of Nynex' -A 'Generation ");
         std::string genstr(stringFrom(gen));
         std::string filestr(filepath_);
         std::string namestr("Generation ");

@@ -18,6 +18,8 @@
 	<p><a href="http://twitter.com">Twitter</a>... well, you probably all know what Twitter is. Republic of Nynex uses Twitter to announce new generations.</p>
 	<p><a href="http://liboauth.sourceforge.net">liboauth</a> is a software package implementing Twitter's OAuth API, used to connect to both SoundCloud.</a></p>
 	<p><a href="http://gnu.ethz.ch/linuks.mine.nu/beteckna/">Beteckna</a> is a GPL-licensed font inspired by Futura.</p>
+	<hr />
+	<p>The Republic of Nynex was created by <a href="http://hydrogenproject.com">Matthew Kane</a>, a software engineer and college radio DJ from Salem, Massachusetts.</p>
 EOT;
 	require("template.inc");
 ?>

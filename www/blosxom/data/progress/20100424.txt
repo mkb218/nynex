@@ -1,2 +1,2 @@
 Some operations
-IF you have been following the project on SoundCloud or Twitter, you will have noticed the appearance of actual output. This is the final stretch to Megapolis. The Google Voice and upload handlers are complete. You can call the number to leave a message and the message will be absorbed.
+If you have been following the project on SoundCloud or Twitter, you will have noticed the appearance of actual output. This is the final stretch to Megapolis. The Google Voice and upload handlers are complete. You can call the number to leave a message and the message will be absorbed.
