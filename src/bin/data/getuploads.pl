@@ -24,15 +24,25 @@ my $scp = Net::SCP->new({host => $server, user => $user, interactive => 0 });
 $scp->get("/home/mkb218/$filename") or logdie "scp failed $!";
 system("ssh -2 $user\@$server rm $filename") and logdie "remote rmtar failed $!";
 system("tar zxf $filename") and logdie "local untar failed $!";
+
 if ( -f "manifest") {
-    my @files = split(/\n/, `cat manifest`);
-    foreach my $file (@files) {
-        next if ($file =~ /^nynex-trax$/);
-        if (!system("afconvert -f AIFF -d BEI16 -c 2 --src-complexity bats --src-quality 127 $file /opt/nynex/samples/$file.aiff > /dev/null 2>&1")) {
+    open (MANIFEST, "manifest") or logdie "manifest open failed $!";
+    my $line;
+    
+    while ($line = <MANIFEST>) {
+        chomp $line;
+        $line =~ s/\s+$//;
+        my ($path, $file, $author, $contact_info);
+        $path = basename($path);
+        if (!system("afconvert -f AIFF -d BEI16 -c 2 --src-complexity bats --src-quality 127 '$path' '/opt/nynex/samples/$file.aiff' > /dev/null 2>&1")) {
             print "/opt/nynex/samples/$file.aiff\n";
-            print LOG "/opt/nynex/samples/$file.aiff\n";
+            print LOG "$line\n";
             unlink $file;
+        } else {
+            print LOG "$line failed audio conversion";
         }
     }
+    close MANIFEST;
     unlink("manifest");
 }
+close LOG;
