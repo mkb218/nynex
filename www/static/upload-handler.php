@@ -9,7 +9,7 @@
 			
 			$fileh = fopen($archive_path."/manifest", "a");
 			flock($fileh, LOCK_EX);
-			fwrite($fileh, join("|", array($_FILES["file"]["tmp_name"], $_FILES["file"]["name"], $_POST["contributor_name"], $_POST["contact_name"], $_POST["contact"]));
+			fwrite($fileh, join("|", array($_FILES["file"]["tmp_name"], $_FILES["file"]["name"], $_POST["contributor_name"], $_POST["contact_name"], $_POST["contact"])));
 			fwrite($fileh,"\n");
 			fclose($fileh);
 		} else {
