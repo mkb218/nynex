@@ -89,12 +89,7 @@ public:
     nynexApp() : state_(INIT), sc_(NULL), evolver_(NULL), twitter_(NULL), activeButton_(NULL), samplepath_("/opt/nynex/samples"), bouncepath_("/opt/nynex/output"), configpath_("/opt/nynex/etc/nynex.conf"), bounceThread_(NULL), framesSinceStateChange_(0) {
         ofBaseApp();
     }
-    ~nynexApp() { 
-        delete sc_;
-        evolver_->saveToFile(config_.kvp["gastatefile"]);
-        delete evolver_;
-        delete twitter_;
-    }
+    ~nynexApp();
     void setup();
     void update();
     void draw();

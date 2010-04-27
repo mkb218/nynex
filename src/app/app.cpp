@@ -49,6 +49,13 @@ void BounceThread::threadedFunction() {
     }
     std::cout << "thread complete" << std::endl;
 }
+nynexApp::~nynexApp() { 
+    delete sc_;
+    evolver_->saveToFile(config_.kvp["gastatefile"]);
+    Ratings::getInstance().saveToFile(config_.kvp["ratingsfile"]);
+    delete evolver_;
+    delete twitter_;
+}
 
 //--------------------------------------------------------------
 void nynexApp::setup(){
@@ -78,9 +85,11 @@ void nynexApp::setup(){
     // init ga (from file if exists)
     evolver_ = new Evolver();
     struct stat junk;
+    bool cached = false;
     if (0 == stat(config_.kvp["gastatefile"].c_str(), &junk)) {
         try {
             evolver_->loadFromFile(config_.kvp["gastatefile"]);
+            cached = true;
         } catch ( ... ) {
             evolver_->initGA(fromString<float>(config_.kvp["pMutation"]), fromString<int>(config_.kvp["popSize"]), fromString<bool>(config_.kvp["elitist"])?gaTrue:gaFalse);
         }
@@ -90,6 +99,13 @@ void nynexApp::setup(){
     
     Ratings::getInstance().setTmpPath(config_.kvp["tmpdir"]);
     Ratings::getInstance().setScpCmd(config_.kvp["ratingscp"]);
+    if (0 == stat(config_.kvp["ratingsfile"].c_str(), &junk)) {
+        try {
+            Ratings::getInstance().loadFromFile(config_.kvp["ratingsfile"]);
+        } catch ( ... ) {
+            // oh well
+        }
+    }
     
     evolver_->addNotifier(false, new BounceAction(this));
 
@@ -113,18 +129,21 @@ void nynexApp::setup(){
     smallfont_.loadFont("/opt/nynex/bin/BetecknaLowerCase.ttf", SMALLFONTSIZE);
     
     // start playin'
-/*    bounceComps();
-    while (bounceThread_->isThreadRunning()) {
-        sleep(1);
+    if (!cached) {
+        bounceComps();
+        while (bounceThread_->isThreadRunning()) {
+            sleep(1);
+        }
+        
+        if (!offline) {
+            ssca->action(evolver_->getGA());
+        }
+        startPlayComp();
+    } else {
+        setupListButtons();
+        resetGenTimer();
+        switchState(GENERATION_LIST);
     }
-    
-    if (!offline) {
-        ssca->action(evolver_->getGA());
-    }
-    startPlayComp();/*/
-    setupListButtons();
-    resetGenTimer();
-    switchState(GENERATION_LIST);
 }
 
 void nynexApp::Config::setFromStream(istream & is) {

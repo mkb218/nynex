@@ -43,7 +43,7 @@ foreach ( $_GET["rate"] as $id => $rating ) {
 	$id = intval($id);
 	$rating = intval($rating);
 	if (rate($id, $rating)) {
-		$qratings[$id] = $rating;
+		array_push($qratings[$id], $rating);
 	}
 }
 

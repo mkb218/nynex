@@ -21,6 +21,8 @@ namespace nynex {
     class Ratings {
     public:
         static Ratings & getInstance();
+        void saveToFile(const std::string & filename);
+        void loadFromFile(const std::string & filename);
         void addRating(unsigned int id, int score);
         bool hasRatingForId(unsigned int id) { return (scores_.find(id) != scores_.end()); }
         double avgRatingForId(unsigned int id);
@@ -33,6 +35,7 @@ namespace nynex {
         void deleteRatings() { scores_.clear(); }
     private:
         static Ratings * instance_;
+        void addRatingsFromStream(std::istream &);
         Ratings() {}
         Ratings(Ratings &) {}
         Ratings & operator=(Ratings&) {return *this;}

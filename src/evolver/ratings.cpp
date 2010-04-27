@@ -49,14 +49,39 @@ void Ratings::getServerRatings() {
     if (ret != 0) {
         return;
     }
+    
     std::ifstream ifs((tmp+"/ratings.json").c_str());
+    addRatingsFromStream(ifs);
+    unlink(tmp.c_str());
+}
 
+void Ratings::addRatingsFromStream(std::istream & s) {
     using boost::property_tree::ptree;
     ptree pt;
-    read_json(ifs,pt);
-
+    read_json(s,pt);
+    
     BOOST_FOREACH(ptree::value_type & v, pt) {
-        Ratings::getInstance().addRating(fromString<unsigned int>(v.first),fromString<int>(v.second.data()));
+        addRating(fromString<unsigned int>(v.first),fromString<int>(v.second.data()));
     }
-    unlink(tmp.c_str());
+}    
+
+void Ratings::saveToFile(const std::string & filename) {
+    if (instance_ == NULL) { return; }
+    std::ofstream outfile(filename.c_str());
+    using boost::property_tree::ptree;
+    ptree pt;
+    typedef std::pair<const unsigned int, std::list<int> > herepair;
+    BOOST_FOREACH(herepair & p, scores_) {
+        BOOST_FOREACH(int score, p.second) {
+            pt.add(stringFrom(p.first), stringFrom(score));
+        }
+    }
+    write_json(outfile,pt);
+}
+
+void Ratings::loadFromFile(const std::string & filename) {
+    deleteRatings();
+    
+    std::ifstream ifs(filename.c_str());
+    addRatingsFromStream(ifs);
 }
