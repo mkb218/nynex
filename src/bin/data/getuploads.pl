@@ -32,7 +32,7 @@ if ( -f "manifest") {
     while ($line = <MANIFEST>) {
         chomp $line;
         $line =~ s/\s+$//;
-        my ($path, $file, $author, $contact_info) = split(/\|/, $line);;
+        my ($path, $file, $author, $contact_info) = split(/\|/, $line);
         $path = basename($path);
         if (!system("afconvert -f AIFF -d BEI16 -c 2 --src-complexity bats --src-quality 127 '$path' '/opt/nynex/samples/$file.aiff' > /dev/null 2>&1")) {
             print "/opt/nynex/samples/$file.aiff\n";
@@ -43,6 +43,7 @@ if ( -f "manifest") {
         }
     }
     close MANIFEST;
+    unlink $filename
     unlink("manifest");
 }
 close LOG;
