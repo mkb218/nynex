@@ -34,7 +34,7 @@
 using namespace nynex;
 using std::sort;
 
-static void mkdir_or_throw(const char * dir) throw(std::runtime_error) {
+void nynex::mkdir_or_throw(const char * dir) throw(std::runtime_error) {
     struct stat dirinfo;
     if (0 == stat(dir, &dirinfo)) {
         if (!(dirinfo.st_mode & S_IFDIR)) {
@@ -751,7 +751,7 @@ Word* SampleBank::randomWord() {
         ix = random() % words_.size();
     } while ((words_[ix])->getScore() <= random() % 10000 / 10000); 
 
-    std::cout << (words_[ix])->getFilename() << " score " << (words_[ix])->getScore() << std::endl;
+//    std::cout << (words_[ix])->getFilename() << " score " << (words_[ix])->getScore() << std::endl;
     return (words_[ix]);
 }
 

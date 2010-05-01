@@ -128,6 +128,8 @@ void nynexApp::setup(){
     bigfont_.loadFont("/opt/nynex/bin/BetecknaLowerCase.ttf", BIGFONTSIZE);
     smallfont_.loadFont("/opt/nynex/bin/BetecknaLowerCase.ttf", SMALLFONTSIZE);
     
+    mkdir_or_throw("/tmp/nynex");
+    
     // start playin'
     if (!cached) {
         bounceComps();

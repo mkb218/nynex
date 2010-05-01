@@ -50,6 +50,8 @@ Type fromString(const std::string & i) {
 
 
 namespace nynex {
+    void mkdir_or_throw(const char * dir) throw(std::runtime_error);
+    
     class Sample;
     
     class Word {
