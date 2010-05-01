@@ -37,6 +37,7 @@ double Ratings::avgRatingForId(unsigned int id) {
         sum += *it;
         ++count;
     }
+    if (count == 0) { count = 1; }
     return sum/count;
 }
 
