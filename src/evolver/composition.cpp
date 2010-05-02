@@ -79,8 +79,8 @@ void Composition::copy(const GAGenome & other) {
 }
 
 GAGenome * Composition::clone(CloneMethod) const {
-    // clone is meant to be a distinct entity with different objectid
-    return new Composition(words_);
+    // clones should have same objectid
+    return new Composition(words_, getObjectId());
 }
 
 void Composition::init(GAGenome & trg) {
@@ -807,3 +807,14 @@ void SplitBuf::rmtmp() const {
     }
 }
 
+unsigned int Composition::getObjectId() const {
+    // this just needs to be a hash to avoid dealing with stupid copies
+    unsigned int hash = 5381;
+    BOOST_FOREACH(Word* w, words_) {
+        BOOST_FOREACH(char c, w->getParent()->getFilename()) {
+            hash = ((hash << 5) ^ hash) + c;
+        }
+        hash = ((hash << 5) ^ hash) + w->getIndex();
+    }
+    return hash;
+}

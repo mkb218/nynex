@@ -225,7 +225,7 @@ void nynexApp::draw(){
 
 //--------------------------------------------------------------
 void nynexApp::keyPressed(int key){
-
+    
 }
 
 //--------------------------------------------------------------
@@ -353,7 +353,7 @@ void nynexApp::bounceComp(size_t i) {
 }
 
 bool nynexApp::gotRatings() {
-    Ratings::getInstance().getServerRatings();
+//    Ratings::getInstance().getServerRatings();
     for (size_t i = 0; i < evolver_->getPop().size(); ++i) {
         if (Ratings::getInstance().hasRatingForId(dynamic_cast<Composition&>(evolver_->getPop().individual(i)).getObjectId())) {
             return true;

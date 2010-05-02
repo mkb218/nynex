@@ -38,6 +38,7 @@ double Ratings::avgRatingForId(unsigned int id) {
         ++count;
     }
     if (count == 0) { count = 1; }
+    std::cout << "Avg for " << id << ": " << sum/count << std::endl;
     return sum/count;
 }
 

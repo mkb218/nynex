@@ -199,7 +199,7 @@ namespace nynex {
         void copy(const GAGenome &);
         std::string serialize() const;
         void bounceToFile(const std::string & filename) const;
-        unsigned int getObjectId() const { return objectId_; }
+        unsigned int getObjectId() const;
         static Composition* unserialize(const std::string &);
         static void init(GAGenome&);
         static int mutate(GAGenome &, float);
