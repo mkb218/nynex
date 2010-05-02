@@ -23,7 +23,11 @@ function rate($id,$rating) {
 		$ratings = array();
 	}
 	
-	$ratings[$id] += $rating;
+	if (!array_key_exists($id, $ratings)) {
+		$ratings[$id] = array();
+	}
+	
+	array_push($ratings[$id], $rating);
 	$ratings["generation"] = $_GET["generation"];
 	
 	$f = fopen(STORE, "w");
