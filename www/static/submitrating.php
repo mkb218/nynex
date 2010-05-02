@@ -25,6 +25,8 @@ function rate($id,$rating) {
 	
 	if (!array_key_exists($id, $ratings)) {
 		$ratings[$id] = array();
+	} elseif (!is_array($ratings[$id])) {
+		$ratings[$id] = array($ratings[$id]);
 	}
 	
 	array_push($ratings[$id], $rating);
