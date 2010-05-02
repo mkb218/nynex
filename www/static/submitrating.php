@@ -41,6 +41,9 @@ function rate($id,$rating) {
 $qratings = array();
 foreach ( $_GET["rate"] as $id => $rating ) {
 	$id = intval($id);
+	if (!array_key_exists($id, $qratings)) {
+		$qratings[$id] = array();
+	}
 	$rating = intval($rating);
 	if (rate($id, $rating)) {
 		array_push($qratings[$id], $rating);

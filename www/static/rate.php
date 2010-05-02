@@ -22,12 +22,12 @@
 	$content .= "<form method=\"GET\" action=\"submitrating.php\" >";
 	foreach ($ids as $id) {
 		$url = $urls[$i];
-		$content .= "Individual $i: <span name=\"rate$i\">";
+		$content .= "Individual $i: <span name=\"rate$id\">";
 		if ($_GET["ratings"][$i]) { 
 			$content .= "Thanks for rating!";
 		} else { 
 			foreach (array(1,2,3,4,5) as $vote) { 
-				$content .= "<img src=\"rate${vote}.png\" alt=\"Rate ${vote} points for individual ${i}\" height=\"16\"/><input type=\"radio\" name=\"rate[${i}]\" value=\"$vote\" />";
+				$content .= "<img src=\"rate${vote}.png\" alt=\"Rate ${vote} points for individual ${i}\" height=\"16\"/><input type=\"radio\" name=\"rate[${id}]\" value=\"$vote\" />";
 				}
 			}
 			$content .= "</span><a class=\"soundcloud-player\" id=\"basic\" href=\"$url\">Play</a><br/>";
