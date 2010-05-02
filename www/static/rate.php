@@ -23,7 +23,7 @@
 	foreach ($ids as $id) {
 		$url = $urls[$i];
 		$content .= "Individual $i: <span name=\"rate$id\">";
-		if ($_GET["ratings"][$i]) { 
+		if ($_GET["ratings"][$id]) { 
 			$content .= "Thanks for rating!";
 		} else { 
 			foreach (array(1,2,3,4,5) as $vote) { 
