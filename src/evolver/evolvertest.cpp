@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
     bank.setSampleRate(44100);
     bank.setSampleSize(2);
     bank.setTmpDir("/tmp/nynex");
-    bank.setSampleDir("/Users/makane/code/nynex/samples");
+    bank.setSampleDir("/Users/makane/code/nynex/subset");
 /*    Composition c;
     bank.initComposition(c);
     c.bounceToFile("/Users/makane/code/nynex/output/whatwhat.mp3");
@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
     Ratings & r = Ratings::getInstance();
     e.initGA(0.1, 10, gaFalse);
     for (int i = 0; i <= 100; ++i) {
-        Ratings::getInstance().addRating(random() % 10, random() % 5);
+        Ratings::getInstance().addRating(dynamic_cast<Composition &>(e.getPop().individual(i%10)).getObjectId(), random() % 5);
     }    
     while (e.getGA().generation() < 3) {
         const GAPopulation & pop = e.getPop();

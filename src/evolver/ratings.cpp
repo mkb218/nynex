@@ -62,7 +62,9 @@ void Ratings::addRatingsFromStream(std::istream & s) {
     read_json(s,pt);
     
     BOOST_FOREACH(ptree::value_type & v, pt) {
-        addRating(fromString<unsigned int>(v.first),fromString<int>(v.second.data()));
+        BOOST_FOREACH(ptree::value_type & x, v.second) {
+            addRating(fromString<unsigned int>(v.first),fromString<int>(x.second.data()));
+        }
     }
 }    
 

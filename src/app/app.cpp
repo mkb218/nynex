@@ -307,7 +307,7 @@ void nynexApp::mouseReleased(int x, int y, int button){
             switchState(GENERATION_RATE);
         } else if (state_ == GENERATION_RATE) {
             if (activeButton_ != rateButtons_) { // cancel
-                Ratings::getInstance().addRating(compIndex_-1, activeButton_ - rateButtons_);
+                Ratings::getInstance().addRating(dynamic_cast<Composition &>(evolver_->getPop().individual(compIndex_-1)).getObjectId(), activeButton_ - rateButtons_);
             }
             setupListButtons();
             player_.stop();
@@ -355,7 +355,7 @@ void nynexApp::bounceComp(size_t i) {
 bool nynexApp::gotRatings() {
     Ratings::getInstance().getServerRatings();
     for (size_t i = 0; i < evolver_->getPop().size(); ++i) {
-        if (Ratings::getInstance().hasRatingForId(i)) {
+        if (Ratings::getInstance().hasRatingForId(dynamic_cast<Composition&>(evolver_->getPop().individual(i)).getObjectId())) {
             return true;
         }
     }

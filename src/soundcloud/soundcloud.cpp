@@ -155,7 +155,7 @@ std::vector<std::pair<std::string, std::string> > SoundCloudServer::submitCompos
         is.str(std::string((char*)rcvdata, size));
         read_json(is,pt);
         // keep ID handy
-        ids.push_back(make_pair(pt.get<std::string>(ptree::path_type("id")), pt.get<std::string>(ptree::path_type("permalink_url"))));
+        ids.push_back(make_pair(stringFrom(comp.getObjectId()), pt.get<std::string>(ptree::path_type("permalink_url"))));
         free(rcvdata);
     }
     return ids;
