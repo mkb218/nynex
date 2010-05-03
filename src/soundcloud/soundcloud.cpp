@@ -36,6 +36,7 @@ bool TerminalAuthenticator::authenticate() {
         std::cin >> buffer;
         setverifier(buffer);
     }
+    return true;
 }
 
 bool FileAuthenticator::authenticate() {
@@ -60,22 +61,18 @@ void SoundCloudAuthenticator::setverifier(const std::string & buffer) {
 }
 
 void SubmitSoundCloudAction::action(const GAGeneticAlgorithm & ga) {
-#if 1
-    std::vector<std::pair<std::string, std::string> > comps = server_->submitCompositions(ga);
-#else
-    std::vector<std::string> comps;
-    comps.push_back("2096511");
-    comps.push_back("2096512");
-    comps.push_back("2096513");
-    comps.push_back("2096514");
-    comps.push_back("2096515");
-    comps.push_back("2096516");
-    comps.push_back("2096517");
-    comps.push_back("2096518");
-    comps.push_back("2096519");
-    comps.push_back("2096520");
-#endif
-    std::string outfilename(server_->getFilepath()+"/ratings.txt");
+    std::vector<std::pair<std::string, std::string> > comps;
+    std::string outfilename;
+    if (!offline_) {
+        comps = server_->submitCompositions(ga);
+        outfilename = server_->getFilepath()+"/ratings.txt";
+    } else {
+        for (size_t i = 0; i < ga.population().size(); ++i) {
+            Composition & c = dynamic_cast<Composition &>(ga.population().individual(i));
+            comps.push_back(make_pair(stringFrom(c.getObjectId()), std::string("http://soundcloud.com/republic-of-nynex/generation-") + stringFrom(ga.generation()) + "-individual-" + stringFrom(i)));
+        }
+        outfilename = "/tmp/nynex/ratings.txt";
+    }
     std::ofstream outf(outfilename.c_str()); // todo check status
     
     // store result, upload map file
@@ -96,7 +93,7 @@ void SubmitSoundCloudAction::action(const GAGeneticAlgorithm & ga) {
     system(scpcmd.c_str());
 }
 
-SoundCloudServer::SoundCloudServer(const std::string & key, const std::string & secret, const std::string & filepath, const std::string & scpcmd, bool useSandbox) : filepath_(filepath), scpcmd_(scpcmd), authenticated_(false), authenticator_(NULL) { scApi_ = SoundCloudCAPI_CreateWithDefaultCallbackAndGetCredentials(key.c_str(), secret.c_str(), "", !useSandbox); }
+SoundCloudServer::SoundCloudServer(const std::string & key, const std::string & secret, const std::string & filepath, const std::string & scpcmd, bool useSandbox, bool offline) : filepath_(filepath), scpcmd_(scpcmd), authenticated_(false), authenticator_(NULL), offline_(offline) { scApi_ = SoundCloudCAPI_CreateWithDefaultCallbackAndGetCredentials(key.c_str(), secret.c_str(), "", !useSandbox); }
 
 
 SoundCloudServer::~SoundCloudServer() {
@@ -109,6 +106,7 @@ SoundCloudServer::~SoundCloudServer() {
 std::vector<std::pair<std::string, std::string> > SoundCloudServer::submitCompositions(const GAGeneticAlgorithm & ga) const {
     int gen = ga.generation();
     std::vector<std::pair<std::string, std::string> > ids;
+    if (offline_) return ids;
     for (int i = 0; i < ga.population().size(); ++i) {
         Composition & comp = dynamic_cast<Composition &>(ga.population().individual(i));
         // punt to id3v2 to set tags

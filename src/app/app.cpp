@@ -110,18 +110,20 @@ void nynexApp::setup(){
     evolver_->addNotifier(false, new BounceAction(this));
 
     bool offline = fromString<bool>(config_.kvp["offline"]);
-    SubmitSoundCloudAction *ssca = NULL;
+    sc_ = new SoundCloudServer(config_.kvp["soundcloudConsumerKey"], config_.kvp["soundcloudConsumerSecret"], bouncepath_, config_.kvp["soundcloudScpCmd"], SANDBOX, offline);
+    SubmitSoundCloudAction *ssca = new SubmitSoundCloudAction(*sc_, offline);
+
     if (!offline) {
         // create soundcloud and twitter servers from settings file, google voice downloader, web rating downloader
         twitter_ = new TwitterServer(config_.kvp["twitterhost"],config_.kvp["twitteruser"],config_.kvp["twitterpass"],config_.kvp["bitlykeyfile"]);
-        sc_ = new SoundCloudServer(config_.kvp["soundcloudConsumerKey"], config_.kvp["soundcloudConsumerSecret"], bouncepath_, config_.kvp["soundcloudScpCmd"], SANDBOX);
 
         // add notifiers to ga
-        ssca = new SubmitSoundCloudAction(*sc_);
         evolver_->addNotifier(true, new GVoiceAction());
         evolver_->addNotifier(true, new GrabUploadsAction(config_.kvp["uploadUser"], config_.kvp["uploadServer"], config_.kvp["uploadPath"]));
         evolver_->addNotifier(false, ssca);
         evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
+    } else {
+        evolver_->addNotifier(false, ssca);
     }
     
     // setup fonts
@@ -137,9 +139,7 @@ void nynexApp::setup(){
             sleep(1);
         }
         
-        if (!offline) {
-            ssca->action(evolver_->getGA());
-        }
+        ssca->action(evolver_->getGA());
         startPlayComp();
     } else {
         setupListButtons();
@@ -374,7 +374,7 @@ void nynexApp::drawGenStart() {
 }
 
 void nynexApp::drawGenEnd() {
-    drawHeader(std::string("Creating Next Generation\nContribute! Call " PHONE " or visit\nhttp://nynex.hydrogenproject.com"));
+    drawHeader(std::string("Creating Next Generation\nContribute! Call " PHONE "\nor follow @nynexrepublic on Twitter or visit\nhttp://nynex.hydrogenproject.com"));
     drawEndTimer();
 }
 
