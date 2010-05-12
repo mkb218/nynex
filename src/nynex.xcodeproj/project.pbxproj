@@ -52,9 +52,10 @@
 		FCBCFF1E11829328008261E4 /* getuploads.pl in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCBCFF161182931A008261E4 /* getuploads.pl */; };
 		FCBCFF1F11829328008261E4 /* gv.py in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCBCFF171182931A008261E4 /* gv.py */; };
 		FCC48B36115CE454004E5EB6 /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
+		FCCEEEDF119A51DC001CA481 /* SoundCloudCAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEF2DA711754C0100AB4907 /* SoundCloudCAPI.framework */; };
 		FCD2343F110FABDE0023CC4B /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FCD2347511107DE20023CC4B /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
-		FCDBFDF4115254B300644FC8 /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC146AA9110E604E006F10FB /* openFrameworksDebug.a */; };
+		FCDBFDF4115254B300644FC8 /* openFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC146AA9110E604E006F10FB /* openFrameworks.a */; };
 		FCEF2DA811754C0100AB4907 /* SoundCloudCAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEF2DA711754C0100AB4907 /* SoundCloudCAPI.framework */; };
 		FCF5CF101175480E0058A5D4 /* ofxThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCF5CF0E1175480E0058A5D4 /* ofxThread.cpp */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FCCEEED7119A5125001CA481 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FCCEEEDF119A51DC001CA481 /* SoundCloudCAPI.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -126,7 +137,7 @@
 		E45BE9770E8CC7DD009D7055 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		E45BE9790E8CC7DD009D7055 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
-		E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nynexDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* nynex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nynex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = app/main.cpp; sourceTree = SOURCE_ROOT; };
 		E4B69E1E0A3A1BDC003C02F2 /* app.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; path = app.cpp; sourceTree = "<group>"; };
 		E4B69E1F0A3A1BDC003C02F2 /* app.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
@@ -178,7 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCDBFDF4115254B300644FC8 /* openFrameworksDebug.a in Frameworks */,
+				FCDBFDF4115254B300644FC8 /* openFrameworks.a in Frameworks */,
 				E45BE0AA0E8CC67C009D7055 /* GLee.a in Frameworks */,
 				E45BE2E40E8CC69C009D7055 /* rtAudio.a in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
@@ -410,7 +421,7 @@
 			isa = PBXGroup;
 			children = (
 				FCEF2DA711754C0100AB4907 /* SoundCloudCAPI.framework */,
-				E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */,
+				E4B69B5B0A3A1756003C02F2 /* nynex.app */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4B69E1C0A3A1BDC003C02F2 /* app */,
 				E4C2422310CC54B6004149E2 /* osx */,
@@ -516,7 +527,7 @@
 		FC146AA5110E604E006F10FB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FC146AA9110E604E006F10FB /* openFrameworksDebug.a */,
+				FC146AA9110E604E006F10FB /* openFrameworks.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -607,6 +618,7 @@
 				E4C2444710CC769B004149E2 /* CopyFiles */,
 				FCBCFF181182931A008261E4 /* CopyFiles */,
 				FCBC00BB1183CBD8008261E4 /* ShellScript */,
+				FCCEEED7119A5125001CA481 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -614,7 +626,7 @@
 			);
 			name = nynex;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* nynex.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FC336DCB1147D34C00E1A5BD /* soundcloud-test */ = {
@@ -676,10 +688,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		FC146AA9110E604E006F10FB /* openFrameworksDebug.a */ = {
+		FC146AA9110E604E006F10FB /* openFrameworks.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = openFrameworksDebug.a;
+			path = openFrameworks.a;
 			remoteRef = FC146AA8110E604E006F10FB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
