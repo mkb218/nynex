@@ -60,7 +60,7 @@ nynexApp::~nynexApp() {
 //--------------------------------------------------------------
 void nynexApp::setup(){
     // fullscreen
-    ofSetFullscreen(false);
+    ofSetFullscreen(true);
     
     // set background color
     ofBackground(BG_R, BG_G, BG_B);

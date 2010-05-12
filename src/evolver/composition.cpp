@@ -494,7 +494,7 @@ void Sample::splitFile() {
     size_t list_ix = 0;
     size_t limit = bufsize;
     bool inGap = true;
-    bool outputReady = false;
+    bool outputReady = true;
     
     while ( !buf.empty() ) {
         size_t lastWriteEnd = 0; // also the beginning of the current word
