@@ -20,6 +20,7 @@
 	$subtitle = "Please listen to and rate the following compositions.";
 	$i = 0;
 	$content .= "<form method=\"GET\" action=\"submitrating.php\" >";
+	$content .= "<p>Legend: <img src=\"rate1.png\" /> = 1 (bad), <img src=\"rate5.png\" /> = 5 (good)</p>";
 	foreach ($ids as $id) {
 		$url = $urls[$i];
 		$content .= "Individual $i: <span name=\"rate$id\">";
