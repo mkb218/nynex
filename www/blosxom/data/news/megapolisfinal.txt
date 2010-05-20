@@ -1,0 +1,8 @@
+Megapolis Festival 2010 Roundup
+Megapolis 2010 is over! The final generation is <a href="http://soundcloud.com/republic-of-nynex/megapolis-2010-terminal-generation">here</a>. Here are the future plans for this project:
+- I am going to make a web-only version and reduce the frequency to a daily run.
+- A new generation will only advance once there are at least 5 ratings for EACH member of the current generation.
+- The installation version will play compositions when idle instead of waiting for a click to play it anew. 
+- Change the scoring algorithm to sort samples by age and use their order in the sorted sequence as the score, instead of their raw recency. This will stop a phenomenon I noticed late in the game where having a bunch of samples that were 6 years old making the skew towards newer material practically invisible.
+- Normalize scores and do a single roulette wheel selection with the chance of a sample being selected proportional to its score. Currently the mutation operator picks a random sample with a uniform distribution and then uses its score to decide whether to pick again.
+- Come up with some objective component to the fitness operator in addition to user ratings.
