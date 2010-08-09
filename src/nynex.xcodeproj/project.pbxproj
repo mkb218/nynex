@@ -37,6 +37,38 @@
 		FC336DCE1147D34C00E1A5BD /* soundcloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */; };
 		FC336DD01147D34C00E1A5BD /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FC336DDB1147D38300E1A5BD /* soundcloud-test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC336DDA1147D38300E1A5BD /* soundcloud-test.cpp */; };
+		FC4A18111210AE56002CE65E /* soundcloud.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AB61111CF5700AFE817 /* soundcloud.cpp */; };
+		FC4A18121210AE56002CE65E /* twitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC8C0AD01111D4E500AFE817 /* twitter.cpp */; };
+		FC4A18131210AE56002CE65E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
+		FC4A18151210AE56002CE65E /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
+		FC4A18161210AE56002CE65E /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
+		FC4A18171210AE56002CE65E /* evolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA1170D113F208F00FEEA65 /* evolver.cpp */; };
+		FC4A18181210AE56002CE65E /* network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC9F3195114A79920098C488 /* network.cpp */; };
+		FC4A181A1210AE56002CE65E /* uploads.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCAB5165117BF6B10007234F /* uploads.cpp */; };
+		FC4A181B1210AE56002CE65E /* gvoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCBC00051183A847008261E4 /* gvoice.cpp */; };
+		FC4A18201210AE56002CE65E /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
+		FC4A18211210AE56002CE65E /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
+		FC4A18221210AE56002CE65E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9730E8CC7DD009D7055 /* AudioToolbox.framework */; };
+		FC4A18231210AE56002CE65E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9740E8CC7DD009D7055 /* Carbon.framework */; };
+		FC4A18241210AE56002CE65E /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9750E8CC7DD009D7055 /* CoreAudio.framework */; };
+		FC4A18251210AE56002CE65E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9760E8CC7DD009D7055 /* CoreFoundation.framework */; };
+		FC4A18261210AE56002CE65E /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9770E8CC7DD009D7055 /* CoreServices.framework */; };
+		FC4A18271210AE56002CE65E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9790E8CC7DD009D7055 /* OpenGL.framework */; };
+		FC4A18281210AE56002CE65E /* QuickTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */; };
+		FC4A18291210AE56002CE65E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424410CC5A17004149E2 /* AppKit.framework */; };
+		FC4A182A1210AE56002CE65E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424510CC5A17004149E2 /* Cocoa.framework */; };
+		FC4A182B1210AE56002CE65E /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424610CC5A17004149E2 /* IOKit.framework */; };
+		FC4A182C1210AE56002CE65E /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2425F10CC5A78004149E2 /* GLUT.framework */; };
+		FC4A182D1210AE56002CE65E /* CppUnit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2427A10CC5B66004149E2 /* CppUnit.a */; };
+		FC4A182E1210AE56002CE65E /* PocoFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2427B10CC5B66004149E2 /* PocoFoundation.a */; };
+		FC4A182F1210AE56002CE65E /* PocoNet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2427C10CC5B66004149E2 /* PocoNet.a */; };
+		FC4A18301210AE56002CE65E /* PocoUtil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2427D10CC5B66004149E2 /* PocoUtil.a */; };
+		FC4A18311210AE56002CE65E /* PocoXML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2427E10CC5B66004149E2 /* PocoXML.a */; };
+		FC4A18351210AE56002CE65E /* SoundCloudCAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEF2DA711754C0100AB4907 /* SoundCloudCAPI.framework */; };
+		FC4A18381210AE56002CE65E /* SoundCloudCAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEF2DA711754C0100AB4907 /* SoundCloudCAPI.framework */; };
+		FC4A183F1210AE56002CE65E /* getuploads.pl in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCBCFF161182931A008261E4 /* getuploads.pl */; };
+		FC4A18401210AE56002CE65E /* gv.py in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCBCFF171182931A008261E4 /* gv.py */; };
+		FC4A185B1210AFCD002CE65E /* headless.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCA53A0812102F830075EDBC /* headless.cpp */; };
 		FC4C45751118EAFD00394B9E /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
 		FC4C45761118EAFD00394B9E /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FC4C45CF1118EE5100394B9E /* evolvertest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC4C45CD1118EE4300394B9E /* evolvertest.cpp */; };
@@ -88,6 +120,45 @@
 			dstSubfolderSpec = 7;
 			files = (
 				E4C2443910CC7693004149E2 /* openFrameworks-Info.plist in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4A18371210AE56002CE65E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FC4A18381210AE56002CE65E /* SoundCloudCAPI.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4A18391210AE56002CE65E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4A183B1210AE56002CE65E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC4A183D1210AE56002CE65E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /opt/nynex/bin;
+			dstSubfolderSpec = 0;
+			files = (
+				FC4A183F1210AE56002CE65E /* getuploads.pl in CopyFiles */,
+				FC4A18401210AE56002CE65E /* gv.py in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +229,8 @@
 		FC2555611176926900C79DB4 /* gvoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gvoice.h; sourceTree = "<group>"; };
 		FC336DD71147D34C00E1A5BD /* soundcloud-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "soundcloud-test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC336DDA1147D38300E1A5BD /* soundcloud-test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "soundcloud-test.cpp"; sourceTree = "<group>"; };
+		FC4A18461210AE56002CE65E /* headlessDebug. */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = headlessDebug.; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC4A18481210AE56002CE65E /* openFrameworks-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info copy.plist"; sourceTree = "<group>"; };
 		FC4C45691118EA3500394B9E /* evolver-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "evolver-test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4C45CC1118EE4300394B9E /* evolvertest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolvertest.h; sourceTree = "<group>"; };
 		FC4C45CD1118EE4300394B9E /* evolvertest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = evolvertest.cpp; sourceTree = "<group>"; };
@@ -171,7 +244,6 @@
 		FCA1170C113F208F00FEEA65 /* evolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolver.h; sourceTree = "<group>"; };
 		FCA1170D113F208F00FEEA65 /* evolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = evolver.cpp; sourceTree = "<group>"; };
 		FCA53A0812102F830075EDBC /* headless.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = headless.cpp; sourceTree = "<group>"; };
-		FCA53A0D12102FA60075EDBC /* headless */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = headless; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCAB5164117BF6B10007234F /* uploads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uploads.h; sourceTree = "<group>"; };
 		FCAB5165117BF6B10007234F /* uploads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uploads.cpp; sourceTree = "<group>"; };
 		FCBC00051183A847008261E4 /* gvoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gvoice.cpp; sourceTree = "<group>"; };
@@ -226,14 +298,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC4C45671118EA3500394B9E /* Frameworks */ = {
+		FC4A181C1210AE56002CE65E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC4A18201210AE56002CE65E /* AGL.framework in Frameworks */,
+				FC4A18211210AE56002CE65E /* ApplicationServices.framework in Frameworks */,
+				FC4A18221210AE56002CE65E /* AudioToolbox.framework in Frameworks */,
+				FC4A18231210AE56002CE65E /* Carbon.framework in Frameworks */,
+				FC4A18241210AE56002CE65E /* CoreAudio.framework in Frameworks */,
+				FC4A18251210AE56002CE65E /* CoreFoundation.framework in Frameworks */,
+				FC4A18261210AE56002CE65E /* CoreServices.framework in Frameworks */,
+				FC4A18271210AE56002CE65E /* OpenGL.framework in Frameworks */,
+				FC4A18281210AE56002CE65E /* QuickTime.framework in Frameworks */,
+				FC4A18291210AE56002CE65E /* AppKit.framework in Frameworks */,
+				FC4A182A1210AE56002CE65E /* Cocoa.framework in Frameworks */,
+				FC4A182B1210AE56002CE65E /* IOKit.framework in Frameworks */,
+				FC4A182C1210AE56002CE65E /* GLUT.framework in Frameworks */,
+				FC4A182D1210AE56002CE65E /* CppUnit.a in Frameworks */,
+				FC4A182E1210AE56002CE65E /* PocoFoundation.a in Frameworks */,
+				FC4A182F1210AE56002CE65E /* PocoNet.a in Frameworks */,
+				FC4A18301210AE56002CE65E /* PocoUtil.a in Frameworks */,
+				FC4A18311210AE56002CE65E /* PocoXML.a in Frameworks */,
+				FC4A18351210AE56002CE65E /* SoundCloudCAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FCA53A0B12102FA60075EDBC /* Frameworks */ = {
+		FC4C45671118EA3500394B9E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -444,7 +535,8 @@
 				FC8C0ACF1111D4E500AFE817 /* twitter */,
 				FC4C45691118EA3500394B9E /* evolver-test */,
 				FC336DD71147D34C00E1A5BD /* soundcloud-test */,
-				FCA53A0D12102FA60075EDBC /* headless */,
+				FC4A18461210AE56002CE65E /* headlessDebug. */,
+				FC4A18481210AE56002CE65E /* openFrameworks-Info copy.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -656,6 +748,28 @@
 			productReference = FC336DD71147D34C00E1A5BD /* soundcloud-test */;
 			productType = "com.apple.product-type.tool";
 		};
+		FC4A180F1210AE56002CE65E /* headless */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FC4A18421210AE56002CE65E /* Build configuration list for PBXNativeTarget "headless" */;
+			buildPhases = (
+				FC4A18101210AE56002CE65E /* Sources */,
+				FC4A181C1210AE56002CE65E /* Frameworks */,
+				FC4A18361210AE56002CE65E /* ShellScript */,
+				FC4A18371210AE56002CE65E /* CopyFiles */,
+				FC4A18391210AE56002CE65E /* CopyFiles */,
+				FC4A183B1210AE56002CE65E /* CopyFiles */,
+				FC4A183D1210AE56002CE65E /* CopyFiles */,
+				FC4A18411210AE56002CE65E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = headless;
+			productName = myOFApp;
+			productReference = FC4A18461210AE56002CE65E /* headlessDebug. */;
+			productType = "com.apple.product-type.application";
+		};
 		FC4C45681118EA3500394B9E /* evolver-test */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC4C45701118EA5600394B9E /* Build configuration list for PBXNativeTarget "evolver-test" */;
@@ -670,22 +784,6 @@
 			name = "evolver-test";
 			productName = "evolver-test";
 			productReference = FC4C45691118EA3500394B9E /* evolver-test */;
-			productType = "com.apple.product-type.tool";
-		};
-		FCA53A0C12102FA60075EDBC /* headless */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FCA53A1212102FD10075EDBC /* Build configuration list for PBXNativeTarget "headless" */;
-			buildPhases = (
-				FCA53A0A12102FA60075EDBC /* Sources */,
-				FCA53A0B12102FA60075EDBC /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = headless;
-			productName = headless;
-			productReference = FCA53A0D12102FA60075EDBC /* headless */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -710,7 +808,7 @@
 				E4B69B5A0A3A1756003C02F2 /* nynex */,
 				FC4C45681118EA3500394B9E /* evolver-test */,
 				FC336DCB1147D34C00E1A5BD /* soundcloud-test */,
-				FCA53A0C12102FA60075EDBC /* headless */,
+				FC4A180F1210AE56002CE65E /* headless */,
 			);
 		};
 /* End PBXProject section */
@@ -738,6 +836,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "cp -f /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"\ninstall_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\" ";
+		};
+		FC4A18361210AE56002CE65E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -f /Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"\ninstall_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\" ";
+		};
+		FC4A18411210AE56002CE65E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "chmod +x /opt/nynex/bin/*.pl\nchmod +x /opt/nynex/bin/*.py";
 		};
 		FCBC00BB1183CBD8008261E4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -785,6 +909,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FC4A18101210AE56002CE65E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC4A18111210AE56002CE65E /* soundcloud.cpp in Sources */,
+				FC4A18121210AE56002CE65E /* twitter.cpp in Sources */,
+				FC4A185B1210AFCD002CE65E /* headless.cpp in Sources */,
+				FC4A18131210AE56002CE65E /* main.cpp in Sources */,
+				FC4A18151210AE56002CE65E /* composition.cpp in Sources */,
+				FC4A18161210AE56002CE65E /* ratings.cpp in Sources */,
+				FC4A18171210AE56002CE65E /* evolver.cpp in Sources */,
+				FC4A18181210AE56002CE65E /* network.cpp in Sources */,
+				FC4A181A1210AE56002CE65E /* uploads.cpp in Sources */,
+				FC4A181B1210AE56002CE65E /* gvoice.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FC4C45661118EA3500394B9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -793,13 +934,6 @@
 				FC4C45751118EAFD00394B9E /* ratings.cpp in Sources */,
 				FC4C45761118EAFD00394B9E /* composition.cpp in Sources */,
 				FCA1170F113F208F00FEEA65 /* evolver.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FCA53A0A12102FA60075EDBC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1325,6 +1459,260 @@
 			};
 			name = ReleaseUniversal;
 		};
+		FC4A18431210AE56002CE65E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G4;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GENERATE_PKGINFO_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI",
+					/opt/local/include,
+					../3rdparty/galib247,
+					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOsc/libs/oscpack/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glut/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
+				);
+				INFOPLIST_FILE = "";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"/code/nynex/3rdparty/soundcloud-c-api-wrapper/**",
+					/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworksCompiled/lib/osx,
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					../3rdparty/galib247/ga,
+					/opt/local/lib,
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/freeimage/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/GLee/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/lib/osx\"";
+				OTHER_LDFLAGS = (
+					"-lcurl",
+					"-lga",
+					"-lsox",
+				);
+				PREBINDING = NO;
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)Debug";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WRAPPER_EXTENSION = "";
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		FC4A18441210AE56002CE65E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					"../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI",
+					/opt/local/include,
+					../3rdparty/galib247,
+					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOsc/libs/oscpack/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glut/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
+				);
+				INFOPLIST_FILE = "/Users/makane/code/nynex/src/openFrameworks-Info copy.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"/code/nynex/3rdparty/soundcloud-c-api-wrapper/**",
+					/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworksCompiled/lib/osx,
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					../3rdparty/galib247/ga,
+					/opt/local/lib,
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/freeimage/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/GLee/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/lib/osx\"";
+				OTHER_LDFLAGS = (
+					"-lcurl",
+					"-lga",
+					"-lsox",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FC4A18451210AE56002CE65E /* ReleaseUniversal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/glut/lib/osx\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Release\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug\"";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G4;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				HEADER_SEARCH_PATHS = (
+					"../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI",
+					/opt/local/include,
+					../3rdparty/galib247,
+					"../3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworks/**",
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOpenCv/libs/opencv/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/addons/ofxOsc/libs/oscpack/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glut/include,
+					../3rdparty/of_preRelease_v0061_osx_FAT/libs/glee/include,
+				);
+				INFOPLIST_FILE = "/Users/makane/code/nynex/src/openFrameworks-Info copy.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"/code/nynex/3rdparty/soundcloud-c-api-wrapper/**",
+					/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/openFrameworksCompiled/lib/osx,
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					../3rdparty/galib247/ga,
+					/opt/local/lib,
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/freeimage/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/fmodex/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/freetype/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/FreeImage/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/GLee/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/poco/lib/osx\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"/Users/makane/code/nynex/3rdparty/of_preRelease_v0061_osx_FAT/libs/rtAudio/lib/osx\"";
+				OTHER_LDFLAGS = (
+					"-lcurl",
+					"-lga",
+					"-lsox",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)Universal";
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = ReleaseUniversal;
+		};
 		FC4C456B1118EA3600394B9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1445,63 +1833,6 @@
 			};
 			name = ReleaseUniversal;
 		};
-		FCA53A0F12102FA70075EDBC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = ../3rdparty/galib247;
-				INSTALL_PATH = /usr/local/bin;
-				PREBINDING = NO;
-				PRODUCT_NAME = headless;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
-			};
-			name = Debug;
-		};
-		FCA53A1012102FA70075EDBC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = ../3rdparty/galib247;
-				INSTALL_PATH = /usr/local/bin;
-				PREBINDING = NO;
-				PRODUCT_NAME = headless;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-		FCA53A1112102FA70075EDBC /* ReleaseUniversal */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = ../3rdparty/galib247;
-				INSTALL_PATH = /usr/local/bin;
-				PREBINDING = NO;
-				PRODUCT_NAME = headless;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
-			};
-			name = ReleaseUniversal;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1535,22 +1866,22 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		FC4A18421210AE56002CE65E /* Build configuration list for PBXNativeTarget "headless" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FC4A18431210AE56002CE65E /* Debug */,
+				FC4A18441210AE56002CE65E /* Release */,
+				FC4A18451210AE56002CE65E /* ReleaseUniversal */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FC4C45701118EA5600394B9E /* Build configuration list for PBXNativeTarget "evolver-test" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FC4C456B1118EA3600394B9E /* Debug */,
 				FC4C456C1118EA3600394B9E /* Release */,
 				FC4C456D1118EA3600394B9E /* ReleaseUniversal */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FCA53A1212102FD10075EDBC /* Build configuration list for PBXNativeTarget "headless" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FCA53A0F12102FA70075EDBC /* Debug */,
-				FCA53A1012102FA70075EDBC /* Release */,
-				FCA53A1112102FA70075EDBC /* ReleaseUniversal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

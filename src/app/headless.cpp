@@ -12,11 +12,13 @@
 #define SANDBOX 0
 
 #include <iostream>
+#include <fstream>
 #include <sys/stat.h>
 
 #include "gvoice.h"
 #include "soundcloud.h"
 #include "uploads.h"
+#include "twitter.h"
 
 using namespace nynex;
 
@@ -24,8 +26,9 @@ using namespace nynex;
 // 1.) retrieve web ratings. 
 // 2.) if there are ratings, step ga and bounce files, upload and notify
 
-struct headlessCtx {
-    // should really extract this class into one common location but who cares
+struct HeadlessCtx {
+    ~HeadlessCtx();
+    // should really extract this config Struct into one common location but who cares
     struct Config {
         Config() {
             // defaults!
@@ -43,6 +46,7 @@ struct headlessCtx {
         std::map<std::string, std::string> kvp;
     };
     
+    void setup();
     void bounceComps();
     void bounceComp(size_t i);
     bool gotRatings();
@@ -56,21 +60,36 @@ struct headlessCtx {
     std::string configpath_;
 };
 
+static void setup(HeadlessCtx *ctx, const char *configpath);
 
 int main(int argc, char *argv[]) {
-    
-    evolver_->stepGA();
-    Ratings::getInstance().deleteRatings();
-    evolver_->saveToFile(*statefile_);
+    HeadlessCtx ctx;
+    if (argc > 1) {
+        setup(&ctx, argv[0]);
+    } else {
+        setup(&ctx, NULL);
+    }
+    if (ctx.gotRatings()) {
+        ctx.evolver_->stepGA();
+        Ratings::getInstance().deleteRatings();
+        ctx.evolver_->saveToFile(*(ctx.statefile_)); // TODO find statefile
+    }
     return 0;
 }
 
+class BounceAction : public StepAction {
+public:
+    BounceAction(HeadlessCtx * n) : app_(n){}
+    virtual void action(const GAGeneticAlgorithm & ga);
+private:
+    HeadlessCtx *app_;
+};
 
 void BounceAction::action(const GAGeneticAlgorithm & ga) {
     app_->bounceComps();
 }
 
-nynexApp::~nynexApp() { 
+HeadlessCtx::~HeadlessCtx() { 
     delete sc_;
     evolver_->saveToFile(config_.kvp["gastatefile"]);
     Ratings::getInstance().saveToFile(config_.kvp["ratingsfile"]);
@@ -79,94 +98,71 @@ nynexApp::~nynexApp() {
 }
 
 //--------------------------------------------------------------
-void nynexApp::setup(){
-    // fullscreen
-    ofSetFullscreen(true);
-    
-    // set background color
-    ofBackground(BG_R, BG_G, BG_B);
-    
-    // set frame rate + vert refresh
-    ofSetFrameRate(60);
-    ofSetVerticalSync(true);
-    
+void setup(HeadlessCtx *ctx, const char *configpath){
     // init config if file exists
-    ifstream is(configpath_.c_str());
-    if (!is.fail()) {
-        config_.setFromStream(is);
+    if (configpath != NULL) {
+        std::ifstream is(configpath); // TODO: grab from cmdline
+        if (!is.fail()) {
+            ctx->config_.setFromStream(is);
+        }
     }
     
     // must get this from config!
-    SampleBank::getInstance().setSampleRate(fromString<double>(config_.kvp["samplerate"]));
-    SampleBank::getInstance().setSampleSize(fromString<int>(config_.kvp["samplesize"]));
-    SampleBank::getInstance().setChannels(fromString<int>(config_.kvp["channels"]));
-    SampleBank::getInstance().setTmpDir(config_.kvp["tmpdir"]);
-    SampleBank::getInstance().setSampleDir(samplepath_);
+    SampleBank::getInstance().setSampleRate(fromString<double>(ctx->config_.kvp["samplerate"]));
+    SampleBank::getInstance().setSampleSize(fromString<int>(ctx->config_.kvp["samplesize"]));
+    SampleBank::getInstance().setChannels(fromString<int>(ctx->config_.kvp["channels"]));
+    SampleBank::getInstance().setTmpDir(ctx->config_.kvp["tmpdir"]);
+    SampleBank::getInstance().setSampleDir(ctx->samplepath_);
     
     // init ga (from file if exists)
-    evolver_ = new Evolver();
+    ctx->evolver_ = new Evolver();
     struct stat junk;
     bool cached = false;
-    if (0 == stat(config_.kvp["gastatefile"].c_str(), &junk)) {
+    if (0 == stat(ctx->config_.kvp["gastatefile"].c_str(), &junk)) {
         try {
-            evolver_->loadFromFile(config_.kvp["gastatefile"]);
+            ctx->evolver_->loadFromFile(ctx->config_.kvp["gastatefile"]);
             cached = true;
         } catch ( ... ) {
-            evolver_->initGA(fromString<float>(config_.kvp["pMutation"]), fromString<int>(config_.kvp["popSize"]), fromString<bool>(config_.kvp["elitist"])?gaTrue:gaFalse);
+            ctx->evolver_->initGA(fromString<float>(ctx->config_.kvp["pMutation"]), fromString<int>(ctx->config_.kvp["popSize"]), fromString<bool>(ctx->config_.kvp["elitist"])?gaTrue:gaFalse);
         }
     } else { 
-        evolver_->initGA(fromString<float>(config_.kvp["pMutation"]), fromString<int>(config_.kvp["popSize"]), fromString<bool>(config_.kvp["elitist"])?gaTrue:gaFalse);
+        ctx->evolver_->initGA(fromString<float>(ctx->config_.kvp["pMutation"]), fromString<int>(ctx->config_.kvp["popSize"]), fromString<bool>(ctx->config_.kvp["elitist"])?gaTrue:gaFalse);
     }
     
-    Ratings::getInstance().setTmpPath(config_.kvp["tmpdir"]);
-    Ratings::getInstance().setScpCmd(config_.kvp["ratingscp"]);
-    if (0 == stat(config_.kvp["ratingsfile"].c_str(), &junk)) {
+    Ratings::getInstance().setTmpPath(ctx->config_.kvp["tmpdir"]);
+    Ratings::getInstance().setScpCmd(ctx->config_.kvp["ratingscp"]);
+    if (0 == stat(ctx->config_.kvp["ratingsfile"].c_str(), &junk)) {
         try {
-            Ratings::getInstance().loadFromFile(config_.kvp["ratingsfile"]);
+            Ratings::getInstance().loadFromFile(ctx->config_.kvp["ratingsfile"]);
         } catch ( ... ) {
             // oh well
         }
     }
     
-    evolver_->addNotifier(false, new BounceAction(this));
+    ctx->evolver_->addNotifier(false, new BounceAction(ctx));
     
-    bool offline = fromString<bool>(config_.kvp["offline"]);
-    sc_ = new SoundCloudServer(config_.kvp["soundcloudConsumerKey"], config_.kvp["soundcloudConsumerSecret"], bouncepath_, config_.kvp["soundcloudScpCmd"], SANDBOX, offline);
-    SubmitSoundCloudAction *ssca = new SubmitSoundCloudAction(*sc_, offline);
+    bool offline = fromString<bool>(ctx->config_.kvp["offline"]);
+    ctx->sc_ = new SoundCloudServer(ctx->config_.kvp["soundcloudConsumerKey"], ctx->config_.kvp["soundcloudConsumerSecret"], ctx->bouncepath_, ctx->config_.kvp["soundcloudScpCmd"], SANDBOX, offline);
+    SubmitSoundCloudAction *ssca = new SubmitSoundCloudAction(*ctx->sc_, offline);
     
     if (!offline) {
         // create soundcloud and twitter servers from settings file, google voice downloader, web rating downloader
-        twitter_ = new TwitterServer(config_.kvp["twitterhost"],config_.kvp["twitteruser"],config_.kvp["twitterpass"],config_.kvp["bitlykeyfile"]);
+        ctx->twitter_ = new TwitterServer(ctx->config_.kvp["twitterhost"],ctx->config_.kvp["twitteruser"],ctx->config_.kvp["twitterpass"],ctx->config_.kvp["bitlykeyfile"]);
         
         // add notifiers to ga
-        evolver_->addNotifier(true, new GVoiceAction());
-        evolver_->addNotifier(true, new GrabUploadsAction(config_.kvp["uploadUser"], config_.kvp["uploadServer"], config_.kvp["uploadPath"]));
-        evolver_->addNotifier(false, ssca);
-        evolver_->addNotifier(false, new TwitterAnnounce(*twitter_));
+        ctx->evolver_->addNotifier(true, new GVoiceAction());
+        ctx->evolver_->addNotifier(true, new GrabUploadsAction(ctx->config_.kvp["uploadUser"], ctx->config_.kvp["uploadServer"], ctx->config_.kvp["uploadPath"]));
+        ctx->evolver_->addNotifier(false, ssca);
+        ctx->evolver_->addNotifier(false, new TwitterAnnounce(*ctx->twitter_));
     } else {
-        evolver_->addNotifier(false, ssca);
+        ctx->evolver_->addNotifier(false, ssca);
     }
-    
-    // setup fonts
-    bigfont_.loadFont("/opt/nynex/bin/BetecknaLowerCase.ttf", BIGFONTSIZE);
-    smallfont_.loadFont("/opt/nynex/bin/BetecknaLowerCase.ttf", SMALLFONTSIZE);
     
     mkdir_or_throw("/tmp/nynex");
     
-    // start playin'
-    if (!cached) {
-        bounceComps();        
-        ssca->action(evolver_->getGA());
-        startPlayComp();
-    } else {
-        setupListButtons();
-        resetGenTimer();
-        compIndex_ = 0;
-        switchState(GENERATION_RATE);
-    }
 }
 
-void nynexApp::Config::setFromStream(istream & is) {
+void HeadlessCtx::Config::setFromStream(std::istream & is) {
     std::string line;
     while (!is.eof()) {
         getline(is,line);
@@ -177,378 +173,3 @@ void nynexApp::Config::setFromStream(istream & is) {
     }
 }
 
-//--------------------------------------------------------------
-void nynexApp::update() {
-    switch (state_) {
-        case GENERATION_START:
-            if (!player_.getIsPlaying()) {
-                if (moreComps()) {
-                    //                    bounceComp(compIndex_);
-                    playNextComp();
-                } else {
-                    resetGenTimer();
-                    setupRateButtons();
-                    switchState(GENERATION_RATE);
-                }
-            }
-            break;
-            /*        case GENERATION_LIST:
-             if (generationTimesUp()) {
-             switchState(GENERATION_END);
-             }
-             break;
-             */      case GENERATION_RATE:
-            if (ratingTimesUp()) {
-                if (compIndex_ < evolver_->getGA().population().size()) {
-                    ++compIndex_;
-                } else {
-                    compIndex_ = 0;
-                }
-                switchState(GENERATION_RATE);
-            }
-            break;
-        case GENERATION_END:
-            if (gotRatings()) {
-                delete evolverThread_;
-                evolverThread_ = new EvolverThread(evolver_, config_.kvp["gastatefile"]);
-                evolverThread_->startThread();
-                //                bounceComps(); done with BounceAction
-            }
-        case INIT:
-            switchState(GENERATION_START);
-            startPlayComp();
-            break;
-        default:
-            switchState(GENERATION_START); // can't happen!
-    }
-}
-
-//--------------------------------------------------------------
-void nynexApp::draw(){
-    switch (state_) {
-        case GENERATION_START:
-            drawGenStart();
-            break;
-        case GENERATION_END:
-        case INIT:
-            drawGenEnd();
-            break;
-        case GENERATION_LIST:
-            drawGenList();
-            break;
-        case GENERATION_RATE:
-            drawGenRate();
-            break;
-        default:
-            // can't happen
-            switchState(GENERATION_START);
-    }
-    ++framesSinceStateChange_;
-}
-
-//--------------------------------------------------------------
-void nynexApp::keyPressed(int key){
-    
-}
-
-//--------------------------------------------------------------
-void nynexApp::keyReleased(int key){
-    
-}
-
-//--------------------------------------------------------------
-void nynexApp::mouseMoved(int x, int y ){
-    checkActiveButton(x,y,0);
-}
-
-bool nynexApp::checkActiveButton(int x, int y, int button) {
-    if (activeButton_ != NULL) {
-        int xdist = x - activeButton_->x;
-        int ydist = y - activeButton_->y;
-        if (xdist*xdist + ydist*ydist > activeButton_->radius*activeButton_->radius) {
-            // not active
-            activeButton_->radius = (state_ == GENERATION_LIST)?listRadius_:rateRadius_;
-            activeButton_ = NULL;
-        } else {
-            return true;
-        }
-    }
-    
-    if (state_ == GENERATION_LIST) {
-        for (size_t i = 0; i < POPSIZE; ++i) {
-            int xdist = x - listButtons_[i].x;
-            int ydist = y - listButtons_[i].y;
-            if (xdist*xdist + ydist*ydist <= listButtons_[i].radius*listButtons_[i].radius) {
-                // active
-                listButtons_[i].radius = listRadius_+ACTIVE_RADIUS_INCREMENT;
-                activeButton_ = listButtons_+i;
-                return true;
-            }
-        }
-    } else if (state_ == GENERATION_RATE) {
-        for (size_t i = 0; i <= RATINGS; ++i) {
-            int xdist = x - rateButtons_[i].x;
-            int ydist = y - rateButtons_[i].y;
-            if (xdist*xdist + ydist*ydist <= rateButtons_[i].radius*rateButtons_[i].radius) {
-                // active
-                
-                rateButtons_[i].radius = rateRadius_+ACTIVE_RADIUS_INCREMENT;
-                activeButton_ = rateButtons_+i;
-                return true;
-            }
-        }
-    }
-    
-    return false;
-}
-
-//--------------------------------------------------------------
-void nynexApp::mouseDragged(int x, int y, int button){
-    // if button == left mouse
-    // if position within a button, change activebutton
-    //    checkActiveButton(x,y,button);
-}
-
-//--------------------------------------------------------------
-void nynexApp::mousePressed(int x, int y, int button){
-    // if button == left mouse
-    // if position within a button, change activebutton
-    //    checkActiveButton(x,y,button);
-}
-
-
-
-//--------------------------------------------------------------
-void nynexApp::mouseReleased(int x, int y, int button){
-    // check position against all buttons
-    if (checkActiveButton(x,y,button)) {
-        if (state_ == GENERATION_LIST) {
-            compIndex_ = activeButton_ - listButtons_;
-            playNextComp();
-            resetRateTimer();
-            setupRateButtons();
-            switchState(GENERATION_RATE);
-        } else if (state_ == GENERATION_RATE) {
-            if (activeButton_ != rateButtons_) { // cancel
-                Ratings::getInstance().addRating(dynamic_cast<Composition &>(evolver_->getPop().individual(compIndex_-1)).getObjectId(), activeButton_ - rateButtons_);
-            }
-            setupListButtons();
-            player_.stop();
-            switchState(GENERATION_LIST);
-        }
-    }
-}
-
-//--------------------------------------------------------------
-void nynexApp::windowResized(int w, int h){
-    //    ofSetFullscreen(true); // don't fuck with the window, jerkface
-}
-
-
-void nynexApp::startPlayComp() {
-    compIndex_ = 0;
-}
-
-void nynexApp::playNextComp() {
-    player_.loadSound(bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), compIndex_));
-    player_.play();
-    ++compIndex_;
-}
-
-bool nynexApp::moreComps() {
-    return (compIndex_ < evolver_->getPop().size());
-}
-
-void nynexApp::bounceComps() {
-    for(size_t i = 0; i < evolver_->getPop().size(); ++i) {
-        bounceComp(i);
-    }
-}
-
-void nynexApp::bounceComp(size_t i) {
-    dynamic_cast<const Composition &>(evolver_->getPop().individual(i)).bounceToFile(bouncepath_+"/"+fileForGenAndIndividual(evolver_->getGA().generation(), i));
-}
-
-bool nynexApp::gotRatings() {
-    //    Ratings::getInstance().getServerRatings();
-    std::string & val = config_.kvp["minratings"];
-    int min = 0;
-    if (val.size() != 0) {
-        min = fromString<int>(val);
-    }
-    
-    for (size_t i = 0; i < evolver_->getPop().size(); ++i) {
-        if (Ratings::getInstance().ratingCountForId(dynamic_cast<Composition&>(evolver_->getPop().individual(i)).getObjectId()) < min) {
-            return false;
-        }
-    }
-    return true;
-}
-
-void nynexApp::drawGenStart() {
-    std::string s("Generation ");
-    s = s + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(std::max<int>(0,compIndex_-1));
-    float width = bigfont_.stringWidth(s);
-    float height = bigfont_.getLineHeight();
-    float hpos = (ofGetWidth() - width) / 2;
-    float vpos = (ofGetHeight() - height) / 2;
-    ofSetColor(0x000000);
-    bigfont_.drawString(s, hpos, vpos);
-}
-
-void nynexApp::drawGenEnd() {
-    drawHeader(std::string("Creating Next Generation\nContribute! Call " PHONE "\nor follow @nynexrepublic on Twitter or visit\nhttp://nynex.hydrogenproject.com"));
-    drawEndTimer();
-}
-
-void nynexApp::drawGenList() {
-    drawHeader(std::string("Please rate Generation ") + stringFrom(evolver_->getGA().generation()));
-    
-    for (size_t i = 0; i < POPSIZE; ++i) {  
-        // draw button from playButtons
-        Button *b = listButtons_+i;
-        ofSetColor(b->r, b->g, b->b);
-        ofCircle(b->x,b->y,b->radius);
-        
-        // draw label
-        std::string label("Individual ");
-        label.append(stringFrom(i));
-        float x = b->x + b->radius + LR_MARGIN;
-        float y = b->y + bigfont_.stringHeight(label.c_str())/2;
-        ofSetColor(0);
-        bigfont_.drawString(label, x, y);
-    }
-    
-    drawGenTimer();
-}
-
-void nynexApp::drawGenRate() {
-    drawHeader(std::string("Rating Generation ") + stringFrom(evolver_->getGA().generation()) +" Individual " + stringFrom(compIndex_-1));
-    for (size_t i = 0; i < RATINGS+1; ++i) {  
-        // draw button from playButtons
-        Button *b = rateButtons_+i;
-        ofSetColor(b->r, b->g, b->b);
-        ofCircle(b->x,b->y,b->radius);
-        
-        // draw label
-        std::string label(!i?"Cancel":stringFrom(i));
-        float x = b->x + b->radius + LR_MARGIN;
-        float y = b->y + bigfont_.stringHeight(label.c_str())/2;
-        ofSetColor(0);
-        bigfont_.drawString(label, x, y);
-    }
-    
-    drawRateTimer();
-}
-
-void nynexApp::drawHeader(std::string s) {
-    float width = bigfont_.stringWidth(s);
-    float height = bigfont_.getLineHeight();
-    float pos = (ofGetWidth() - width) / 2;
-    ofSetColor(0x000000);
-    bigfont_.drawString(s, pos, height+VERT_MARGIN);
-}
-
-void nynexApp::drawRateTimer() {
-    drawTimer(RATE_LIMIT_MILLIS - (ofGetElapsedTimeMillis() - ratetimer_));
-}
-
-void nynexApp::drawGenTimer() {
-    drawTimer(GEN_LIMIT_MILLIS - (ofGetElapsedTimeMillis() - gentimer_));
-}
-
-void nynexApp::drawEndTimer() {
-    drawTimer(framesSinceStateChange_ * -60);
-}
-
-void nynexApp::drawTimer(int timeleft) {
-    if (timeleft > 0) {
-        ofSetColor(0x000000);
-    } else {
-        timeleft = -timeleft;
-        ofSetColor(TIMER_RED);
-    }
-    
-    int millis = timeleft % 1000;
-    timeleft /= 1000;
-    int seconds = timeleft % 60;
-    timeleft /= 60;
-    int minutes = timeleft % 60;
-    timeleft /= 60;
-    int hours = timeleft % 60;
-    
-    std::ostringstream os;
-    os << hours;
-    os << ":" << std::setw(2) << std::setfill('0');
-    os<< minutes;
-    os << ":" << std::setw(2) << std::setfill('0');
-    os << seconds;
-    os << "." << std::setw(2) << std::setfill('0');
-    os << millis;
-    std::string time = os.str();
-    float width = bigfont_.stringWidth(time);
-    float pos = (ofGetWidth() - width) / 2;
-    bigfont_.drawString(time, pos, ofGetHeight() - VERT_MARGIN);
-}
-
-void nynexApp::setupListButtons() {
-    activeButton_ = NULL;
-    float radius = ofGetHeight();
-    radius -= (bigfont_.getLineHeight() * 2); // header and timer
-    radius /= (POPSIZE/2); // rows
-    radius -= VERT_MARGIN * 2;
-    radius /= 2;
-    listRadius_ = radius;
-    for (size_t i = 0; i < POPSIZE; ++i) {  
-        // draw button from playButtons
-        listButtons_[i].r = START_R + R_SLOPE * i;
-        listButtons_[i].g = START_G + G_SLOPE * i;
-        listButtons_[i].b = START_B + B_SLOPE * i;
-        listButtons_[i].radius = radius;
-        
-        float x = LR_MARGIN + (radius);
-        if (i >= POPSIZE / 2) {
-            x += ofGetWidth() / 2 ;
-        }
-        
-        listButtons_[i].x = x;
-        
-        float y = radius + (bigfont_.getLineHeight() + VERT_MARGIN); // past header
-        y += ((radius * 2 + VERT_MARGIN) * (i % (POPSIZE/2))); // past existing circles
-        y += radius;
-        listButtons_[i].y = y;
-    }
-}
-
-void nynexApp::setupRateButtons() {
-    activeButton_ = NULL;
-    float radius = ofGetHeight();
-    radius -= (bigfont_.getLineHeight() * 2); // header and timer
-    radius /= (RATINGS+1); // rows
-    radius -= VERT_MARGIN * 2;
-    radius /= 2;
-    rateRadius_ = radius;
-    
-    float x = (ofGetWidth() - LR_MARGIN - bigfont_.stringWidth("Cancel") - radius) / 2;
-    for (size_t i = 0; i <= RATINGS; ++i) {  
-        // draw button from playButtons
-        rateButtons_[i].r = START_R + R_SLOPE * i;
-        rateButtons_[i].g = START_G + G_SLOPE * i;
-        rateButtons_[i].b = START_B + B_SLOPE * i;
-        rateButtons_[i].radius = radius;
-        
-        rateButtons_[i].x = x;
-        
-        float y = radius + (bigfont_.getLineHeight() + VERT_MARGIN); // past header
-        y += ((radius * 2 + VERT_MARGIN) * (i % (RATINGS+1))); // past existing circles
-        y += radius;
-        rateButtons_[i].y = y;
-    }
-}
-
-void nynexApp::switchState(State state) { 
-    if (evolverThread_ == NULL || !evolverThread_->isThreadRunning()) {
-        state_ = state;
-        framesSinceStateChange_ = 0; 
-    }
-}
