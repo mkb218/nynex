@@ -62,7 +62,7 @@ struct HeadlessCtx {
 
 static void setup(HeadlessCtx *ctx, const char *configpath);
 
-int main(int argc, char *argv[]) {
+extern "C" int main(int argc, char *argv[]) {
     HeadlessCtx ctx;
     if (argc > 1) {
         setup(&ctx, argv[0]);
