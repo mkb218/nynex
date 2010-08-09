@@ -55,7 +55,7 @@
 		FCCEEEDF119A51DC001CA481 /* SoundCloudCAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCEF2DA711754C0100AB4907 /* SoundCloudCAPI.framework */; };
 		FCD2343F110FABDE0023CC4B /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD23435110FABDE0023CC4B /* composition.cpp */; };
 		FCD2347511107DE20023CC4B /* ratings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCD2347411107DE20023CC4B /* ratings.cpp */; };
-		FCDBFDF4115254B300644FC8 /* openFrameworks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC146AA9110E604E006F10FB /* openFrameworks.a */; };
+		FCDBFDF4115254B300644FC8 /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC146AA9110E604E006F10FB /* openFrameworksDebug.a */; };
 		FCEF2DA811754C0100AB4907 /* SoundCloudCAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCEF2DA711754C0100AB4907 /* SoundCloudCAPI.framework */; };
 		FCF5CF101175480E0058A5D4 /* ofxThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCF5CF0E1175480E0058A5D4 /* ofxThread.cpp */; };
 /* End PBXBuildFile section */
@@ -137,7 +137,7 @@
 		E45BE9770E8CC7DD009D7055 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		E45BE9790E8CC7DD009D7055 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
-		E4B69B5B0A3A1756003C02F2 /* nynex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nynex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nynexDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = app/main.cpp; sourceTree = SOURCE_ROOT; };
 		E4B69E1E0A3A1BDC003C02F2 /* app.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; path = app.cpp; sourceTree = "<group>"; };
 		E4B69E1F0A3A1BDC003C02F2 /* app.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
@@ -170,6 +170,8 @@
 		FC9F3196114A79920098C488 /* network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = network.h; sourceTree = "<group>"; };
 		FCA1170C113F208F00FEEA65 /* evolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = evolver.h; sourceTree = "<group>"; };
 		FCA1170D113F208F00FEEA65 /* evolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = evolver.cpp; sourceTree = "<group>"; };
+		FCA53A0812102F830075EDBC /* headless.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = headless.cpp; sourceTree = "<group>"; };
+		FCA53A0D12102FA60075EDBC /* headless */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = headless; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCAB5164117BF6B10007234F /* uploads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uploads.h; sourceTree = "<group>"; };
 		FCAB5165117BF6B10007234F /* uploads.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uploads.cpp; sourceTree = "<group>"; };
 		FCBC00051183A847008261E4 /* gvoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gvoice.cpp; sourceTree = "<group>"; };
@@ -189,7 +191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCDBFDF4115254B300644FC8 /* openFrameworks.a in Frameworks */,
+				FCDBFDF4115254B300644FC8 /* openFrameworksDebug.a in Frameworks */,
 				E45BE0AA0E8CC67C009D7055 /* GLee.a in Frameworks */,
 				E45BE2E40E8CC69C009D7055 /* rtAudio.a in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
@@ -225,6 +227,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FC4C45671118EA3500394B9E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCA53A0B12102FA60075EDBC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -421,7 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				FCEF2DA711754C0100AB4907 /* SoundCloudCAPI.framework */,
-				E4B69B5B0A3A1756003C02F2 /* nynex.app */,
+				E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4B69E1C0A3A1BDC003C02F2 /* app */,
 				E4C2422310CC54B6004149E2 /* osx */,
@@ -435,6 +444,7 @@
 				FC8C0ACF1111D4E500AFE817 /* twitter */,
 				FC4C45691118EA3500394B9E /* evolver-test */,
 				FC336DD71147D34C00E1A5BD /* soundcloud-test */,
+				FCA53A0D12102FA60075EDBC /* headless */,
 			);
 			sourceTree = "<group>";
 		};
@@ -444,6 +454,7 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* app.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* app.h */,
+				FCA53A0812102F830075EDBC /* headless.cpp */,
 			);
 			path = app;
 			sourceTree = "<group>";
@@ -527,7 +538,7 @@
 		FC146AA5110E604E006F10FB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FC146AA9110E604E006F10FB /* openFrameworks.a */,
+				FC146AA9110E604E006F10FB /* openFrameworksDebug.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -614,11 +625,11 @@
 				E4B69B580A3A1756003C02F2 /* Sources */,
 				E4B69B590A3A1756003C02F2 /* Frameworks */,
 				E4B6FFFD0C3F9AB9008CF71C /* ShellScript */,
+				FCCEEED7119A5125001CA481 /* CopyFiles */,
 				E4C2427710CC5ABF004149E2 /* CopyFiles */,
 				E4C2444710CC769B004149E2 /* CopyFiles */,
 				FCBCFF181182931A008261E4 /* CopyFiles */,
 				FCBC00BB1183CBD8008261E4 /* ShellScript */,
-				FCCEEED7119A5125001CA481 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -626,7 +637,7 @@
 			);
 			name = nynex;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* nynex.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* nynexDebug.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FC336DCB1147D34C00E1A5BD /* soundcloud-test */ = {
@@ -661,6 +672,22 @@
 			productReference = FC4C45691118EA3500394B9E /* evolver-test */;
 			productType = "com.apple.product-type.tool";
 		};
+		FCA53A0C12102FA60075EDBC /* headless */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FCA53A1212102FD10075EDBC /* Build configuration list for PBXNativeTarget "headless" */;
+			buildPhases = (
+				FCA53A0A12102FA60075EDBC /* Sources */,
+				FCA53A0B12102FA60075EDBC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = headless;
+			productName = headless;
+			productReference = FCA53A0D12102FA60075EDBC /* headless */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -683,15 +710,16 @@
 				E4B69B5A0A3A1756003C02F2 /* nynex */,
 				FC4C45681118EA3500394B9E /* evolver-test */,
 				FC336DCB1147D34C00E1A5BD /* soundcloud-test */,
+				FCA53A0C12102FA60075EDBC /* headless */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		FC146AA9110E604E006F10FB /* openFrameworks.a */ = {
+		FC146AA9110E604E006F10FB /* openFrameworksDebug.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = openFrameworks.a;
+			path = openFrameworksDebug.a;
 			remoteRef = FC146AA8110E604E006F10FB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -765,6 +793,13 @@
 				FC4C45751118EAFD00394B9E /* ratings.cpp in Sources */,
 				FC4C45761118EAFD00394B9E /* composition.cpp in Sources */,
 				FCA1170F113F208F00FEEA65 /* evolver.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCA53A0A12102FA60075EDBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1410,6 +1445,63 @@
 			};
 			name = ReleaseUniversal;
 		};
+		FCA53A0F12102FA70075EDBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = ../3rdparty/galib247;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = headless;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = Debug;
+		};
+		FCA53A1012102FA70075EDBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = ../3rdparty/galib247;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = headless;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		FCA53A1112102FA70075EDBC /* ReleaseUniversal */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = ../3rdparty/galib247;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = headless;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = ReleaseUniversal;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1449,6 +1541,16 @@
 				FC4C456B1118EA3600394B9E /* Debug */,
 				FC4C456C1118EA3600394B9E /* Release */,
 				FC4C456D1118EA3600394B9E /* ReleaseUniversal */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FCA53A1212102FD10075EDBC /* Build configuration list for PBXNativeTarget "headless" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FCA53A0F12102FA70075EDBC /* Debug */,
+				FCA53A1012102FA70075EDBC /* Release */,
+				FCA53A1112102FA70075EDBC /* ReleaseUniversal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -103,6 +103,12 @@ SoundCloudServer::~SoundCloudServer() {
     }
 }
 
+
+std::string nynex::fileForGenAndIndividual(int gen, int i) {
+    return std::string("gen")+stringFrom(gen)+"i"+stringFrom(i)+".aiff";
+}
+
+
 std::vector<std::pair<std::string, std::string> > SoundCloudServer::submitCompositions(const GAGeneticAlgorithm & ga) const {
     int gen = ga.generation();
     std::vector<std::pair<std::string, std::string> > ids;

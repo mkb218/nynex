@@ -29,6 +29,10 @@ void Ratings::addRating(unsigned int id, int score) {
     scores_[id].push_back(score);
 }
 
+int Ratings::ratingCountForId(unsigned int id) {
+    return scores_[id].size();
+}
+
 double Ratings::avgRatingForId(unsigned int id) {
     std::list<int> & list = scores_[id];
     double sum = 0.;

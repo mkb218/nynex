@@ -60,7 +60,7 @@ namespace nynex {
         Word(const Word &);
         std::string getFilename() const;
         int getAge() const;
-        double getScore() const;
+        int getScore() const;
         double getDuration() const;
         const Sample * getParent() { return parent_; }
         size_t getIndex() { return index_; }
@@ -125,8 +125,8 @@ namespace nynex {
         bool operator<(const Sample &) const;
         Sample & operator=(const Sample & other);
         int getAge() const { return age_; }
-        void setScore(double);
-        double getScore() const;
+        void setScore(int);
+        int getScore() const;
         const std::list<Word*> & getWords();
         const std::string & getFilename() const { return filename_; }
     private:
@@ -135,7 +135,7 @@ namespace nynex {
         std::list<Word*> words_;
         std::string filename_; // relative to sampledir
         int age_;
-        double score_;
+        int score_;
         bool wordsReady_;
     };
 

@@ -24,6 +24,7 @@ namespace nynex {
         void saveToFile(const std::string & filename);
         void loadFromFile(const std::string & filename);
         void addRating(unsigned int id, int score);
+        int ratingCountForId(unsigned int id);
         bool hasRatingForId(unsigned int id) { return (scores_.find(id) != scores_.end()); }
         double avgRatingForId(unsigned int id);
         void getServerRatings();

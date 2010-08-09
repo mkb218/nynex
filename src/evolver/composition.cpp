@@ -307,15 +307,15 @@ int Word::getAge() const {
     return parent_->getAge();
 }
 
-double Word::getScore() const {
+int Word::getScore() const {
     return parent_->getScore();
 }
 
-void Sample::setScore(double score) {
+void Sample::setScore(int score) {
     score_ = score;
 }
 
-double Sample::getScore() const {
+int Sample::getScore() const {
     return score_;
 }
 
@@ -336,7 +336,7 @@ void Word::calcDuration() {
     duration_ /= bank.getSampleRate(); // seconds / file
 }
 
-Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(filename), score_(0.) {
+Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(filename), score_(0) {
     chdir(SampleBank::getInstance().getSampleDir().c_str());
     struct stat age_s;
     if (0 == stat(filename_.c_str(),&age_s)) {
@@ -346,7 +346,7 @@ Sample::Sample(const std::string & filename) : wordsReady_(false),filename_(file
     }
 }
 
-Sample::Sample(const Sample & other) : filename_(other.filename_),age_(other.age_),wordsReady_(other.wordsReady_),words_(other.words_), score_(0.) {
+Sample::Sample(const Sample & other) : filename_(other.filename_),age_(other.age_),wordsReady_(other.wordsReady_),words_(other.words_), score_(0) {
 }
 
 Sample::~Sample() {
@@ -711,48 +711,44 @@ void SampleBank::addSample(const std::string & filepath) {
     }
 }
 
-//ScoreFinder::ScoreFinder() : score_(random()%10000/10000.0) {}
-//
-//ScoreFinder::ScoreFinder(double score) : score_(score) {}
-//
-//bool ScoreFinder::operator()(Word & check) const {
-//    return (score_ - check.getScore() <= 0.00001);
-//}
-//        
+class ScoreFinder {
+public:
+    ScoreFinder(int);
+    ScoreFinder(const ScoreFinder &);
+    bool operator()(Sample * c);
+private:
+    int score_;
+};
+
+ScoreFinder::ScoreFinder(int max) : score_(random()%10000/10000.0) {}
+
+ScoreFinder::ScoreFinder(const ScoreFinder & s) : score_(s.score_) {}
+
+bool ScoreFinder::operator()(Sample * c) {
+    return (score_ >= c->getScore());
+}
+        
 Word* SampleBank::randomWord() {
     if (needsResort_) {
         sort(samples_.begin(), samples_.end(), SampleSorter());
-        double oldestAge = samples_.front()->getAge();
-        double interval = oldestAge * INTERVAL;
-        oldestAge -= interval;
-        double newestAge = samples_.back()->getAge() + interval;
-        double slope = 1 / (newestAge - oldestAge);
-        double yInt = - oldestAge * slope;
-        for (std::vector<Sample*>::iterator it = samples_.begin(); it != samples_.end(); ++it) {
-            if (oldestAge == newestAge) {
-                (*it)->setScore(0.);
-            } else {
-                double age = (*it)->getAge();
-                double score = slope * age + yInt;
-                if (score != score) { // NaN
-                    score = 0;
-                }
-                
-//                std::cout << score << std::endl;
-                (*it)->setScore(score);
-            }
+        int score = 1;
+        int scoreincrement = 1;
+        BOOST_FOREACH(Sample * s, samples_) {
+            s->setScore(score);
+            score += scoreincrement;
+            ++scoreincrement;
         }
         needsResort_ = false;
     }
     
-    // this ain't working, but need word index file first to test more easily.
-    size_t ix;
-    do {
-        ix = random() % words_.size();
-    } while ((words_[ix])->getScore() <= random() % 10000 / 10000); 
-
-//    std::cout << (words_[ix])->getFilename() << " score " << (words_[ix])->getScore() << std::endl;
-    return (words_[ix]);
+    int maxscore = samples_.back()->getScore();    
+    std::vector<Sample*>::iterator it = std::find_if(samples_.begin(), samples_.end(), ScoreFinder(maxscore));
+    std::list<Word*>::const_iterator w = (*it)->getWords().begin();
+    for (int i = (random() % (*it)->getWords().size()); i >= 0; --i) {
+        ++w;
+    }
+    
+    return *w;
 }
 
 void SampleBank::initComposition(Composition & comp) {
