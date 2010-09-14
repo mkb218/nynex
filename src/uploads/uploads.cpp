@@ -8,7 +8,6 @@
  */
 
 #include "uploads.h"
-#include "ofMain.h"
 
 using namespace nynex;
 

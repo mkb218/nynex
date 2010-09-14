@@ -192,6 +192,7 @@
 		FC2555611176926900C79DB4 /* gvoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gvoice.h; sourceTree = "<group>"; };
 		FC336DD71147D34C00E1A5BD /* soundcloud-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "soundcloud-test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC336DDA1147D38300E1A5BD /* soundcloud-test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "soundcloud-test.cpp"; sourceTree = "<group>"; };
+		FC3A1F8B1223223F009C86C4 /* tweet.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = tweet.pl; sourceTree = "<group>"; };
 		FC4A18481210AE56002CE65E /* openFrameworks-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info copy.plist"; sourceTree = "<group>"; };
 		FC4A18721210B2AE002CE65E /* headless */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = headless; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4A18781210B2F8002CE65E /* SoundCloudCAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundCloudCAPI.framework; path = "../3rdparty/soundcloud-c-api-wrapper/SoundCloudCAPI/build/Debug/SoundCloudCAPI.framework"; sourceTree = SOURCE_ROOT; };
@@ -631,6 +632,7 @@
 		FCBCFF141182931A008261E4 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				FC3A1F8B1223223F009C86C4 /* tweet.pl */,
 				FCBCFF151182931A008261E4 /* BetecknaLowerCase.ttf */,
 				FCBCFF161182931A008261E4 /* getuploads.pl */,
 				FCBCFF171182931A008261E4 /* gv.py */,

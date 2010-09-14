@@ -46,21 +46,16 @@ void TwitterServer::announceGeneration(const std::string & announcement, const s
             }
         } else {
             // maybe more to do here
-            tweet.erase(140, tweet.size());
+            tweet.erase(137, tweet.size());
+            tweet.append("...");
         }
     }
-//    tweet = urlEncode(tweet);
-//    tweet = std::string("status=") + urlEncode(tweet);
-    tweet = std::string("status=") + tweet;
     // todo get from config
-    std::string tweetUrl("http://api.twitter.com/l/statuses/update.json");
-    using boost::property_tree::ptree;
-/*    ptree pt;
-    pt.put("status", tweet);
-    ostringstream os;
-    write_json(os, pt);
-    std::string tweetJson(os.str());*/
-    postUrl(tweetUrl, tweet, username_, password_);
+    
+    int scriptresult = 1;
+    while ( scriptresult = system((std::string("/opt/nynex/bin/tweet.pl '") + twitterKey_ + "' '" + twitterSecret_ + "' '" + tweet + "'").c_str()) ) {
+        
+    }
 }
 
 std::string TwitterServer::getBitlyUrl(const std::string & url) const {
@@ -88,7 +83,7 @@ void TwitterAnnounce::action(const GAGeneticAlgorithm & ga) {
     announcer_->announceGeneration("Generation " + generation + " created! #megapolis", "","http://nynex.hydrogenproject.com/rate.php");
 }
 
-TwitterServer::TwitterServer(const std::string & host, const std::string & username, const std::string & password, const std::string & bitlykeyfile) : username_(username), password_(password) {
+TwitterServer::TwitterServer(const std::string & host, const std::string & twitterKey, const std::string & twitterSecret, const std::string & bitlykeyfile) : twitterKey_(twitterKey), twitterSecret_(twitterSecret) {
     std::fstream ifs(bitlykeyfile.c_str());
     std::string line;
     while (!ifs.eof() && !ifs.fail()) {
